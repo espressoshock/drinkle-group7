@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Group id="Left side list of ingredients" layoutX="36.0" layoutY="105.0" />
+      <Group id="Cetner graphics/data" layoutX="276.0" layoutY="113.0">
+         <children>
+            <Group id="Chosen Ingredient" layoutX="92.0">
+               <children>
+                  <Label layoutY="1.0" text="Chosen ingredient:" />
+                  <Label fx:id="lblIngredient" layoutX="108.0" text="Name">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <ButtonBar layoutY="439.0" prefHeight="40.0" prefWidth="314.0">
+               <buttons>
+                  <Button mnemonicParsing="false" onAction="#setText" text="Go to previous">
+                     <tooltip>
+                        <Tooltip text="Go to previous ingredient" />
+                     </tooltip>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#setText" text="Add another ingredient">
+                     <tooltip>
+                        <Tooltip text="Add another ingredient from the list" />
+                     </tooltip>
+                  </Button>
+               </buttons>
+            </ButtonBar>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="66.0" layoutY="158.0">
+               <cursor>
+                  <Cursor fx:constant="NONE" />
+               </cursor>
+               <effect>
+                  <Glow />
+               </effect>
+               <image>
+                  <Image url="@../images/martini.png" />
+               </image>
+            </ImageView>
+            <Group id="Volume (center)" layoutX="94.0" layoutY="51.0">
+               <children>
+                  <Label text="Volume" />
+                  <Label fx:id="lblVol" layoutX="8.0" layoutY="18.0" text="0ml">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <Group id="Cost (center)" layoutX="208.0" layoutY="51.0">
+               <children>
+                  <Label layoutX="2.0" text="Cost" />
+                  <Label fx:id="lblCost" layoutY="18.0" text="0.0$">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <ProgressBar fx:id="progressGlass" layoutX="83.0" layoutY="127.0" prefHeight="18.0" prefWidth="163.0" progress="0.0" />
+            <Slider fx:id="slider" blockIncrement="0.01" layoutX="261.0" layoutY="42.0" max="1.0" orientation="VERTICAL">
+               <tooltip>
+                  <Tooltip text="Slide to adjust the volume of the ingredient." />
+               </tooltip>
+            </Slider>
+         </children>
+      </Group>
+      <Group id="Right side graphics/data" layoutX="638.0" layoutY="42.0">
+         <children>
+            <Group id="Alc%" layoutX="4.0" layoutY="126.0">
+               <children>
+                  <Label text="Alcohol%">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+                  <ProgressIndicator layoutX="12.0" layoutY="27.0" progress="0.0">
+                     <tooltip>
+                        <Tooltip text="Alcohol amount in percent" />
+                     </tooltip>
+                  </ProgressIndicator>
+               </children>
+            </Group>
+            <Group id="Pour Cost" layoutX="110.0" layoutY="126.0">
+               <children>
+                  <ProgressIndicator layoutX="12.0" layoutY="27.0" progress="0.0">
+                     <tooltip>
+                        <Tooltip text="Pour cost in percent" />
+                     </tooltip>
+                  </ProgressIndicator>
+                  <Label text="Pour Cost">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <Group id="Total Volume" layoutX="1.0" layoutY="212.0">
+               <children>
+                  <Label layoutX="2.0" text="Total volume">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="4.0" layoutY="13.0" text="0">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <Button layoutX="94.0" layoutY="212.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="85.0" text="Manage">
+               <tooltip>
+                  <Tooltip text="Manage the volume of the glass" />
+               </tooltip>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Group id="Number of ingredients" layoutX="137.0" layoutY="58.0">
+               <children>
+                  <Label text="N.I.">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="2.0" layoutY="15.0" text="0">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <Group id="Notes" layoutX="17.0" layoutY="58.0">
+               <children>
+                  <TextField layoutY="7.0" prefHeight="37.0" prefWidth="114.0" text="Served cold">
+                     <tooltip>
+                        <Tooltip text="Add your notes here." />
+                     </tooltip>
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="8.0" text="Notes">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <Group id="Cocktail name" layoutX="14.0">
+               <children>
+                  <TextField layoutY="6.0" prefHeight="37.0" prefWidth="135.0" text="Cocktail Name">
+                     <tooltip>
+                        <Tooltip text="Write a name for your cocktail." />
+                     </tooltip>
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="9.0" layoutY="-3.0" text="Name">
+                     <font>
+                        <Font name="Arial Black" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+            <ImageView fitHeight="30.0" fitWidth="26.0" layoutX="154.0" layoutY="5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <image>
+                  <Image url="@../images/folder.png" />
+               </image>
+            </ImageView>
+            <ScrollPane fx:id="addedIngredients" layoutY="254.0" prefHeight="200.0" prefWidth="179.0">
+               <content>
+                  <VBox fx:id="vBoxChosenIngredients" prefHeight="200.0" prefWidth="164.0">
+                     <children>
+                        <Group id="Ingredient 1">
+                           <children>
+                              <Label layoutX="16.0" text="Ingredient 1" />
+                              <Label layoutX="148.0" text="0ml">
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ProgressBar fx:id="testBar" layoutX="14.0" layoutY="28.0" prefHeight="10.0" prefWidth="159.0" progress="0.0" />
+                           </children>
+                        </Group>
+                        <Group id="Ingredient 1" layoutX="-4.0" layoutY="10.0">
+                           <children>
+                              <Label layoutX="16.0" text="Ingredient 1" />
+                              <Label layoutX="148.0" text="0ml">
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ProgressBar fx:id="testBar1" layoutX="14.0" layoutY="28.0" prefHeight="10.0" prefWidth="159.0" progress="0.0" />
+                           </children>
+                        </Group>
+                        <Group id="Ingredient 1" layoutX="-4.0" layoutY="10.0">
+                           <children>
+                              <Label layoutX="16.0" text="Ingredient 1" />
+                              <Label layoutX="148.0" text="0ml">
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ProgressBar fx:id="testBar2" layoutX="14.0" layoutY="28.0" prefHeight="10.0" prefWidth="159.0" progress="0.0" />
+                           </children>
+                        </Group>
+                        <Group id="Ingredient 1" layoutX="-4.0" layoutY="48.0">
+                           <children>
+                              <Label layoutX="16.0" text="Ingredient 1" />
+                              <Label layoutX="148.0" text="0ml">
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ProgressBar fx:id="testBar11" layoutX="14.0" layoutY="28.0" prefHeight="10.0" prefWidth="159.0" progress="0.0" />
+                           </children>
+                        </Group>
+                        <Group id="Ingredient 1" layoutX="-4.0" layoutY="86.0">
+                           <children>
+                              <Label layoutX="16.0" text="Ingredient 1" />
+                              <Label layoutX="148.0" text="0ml">
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ProgressBar fx:id="testBar21" layoutX="14.0" layoutY="28.0" prefHeight="10.0" prefWidth="159.0" progress="0.0" />
+                           </children>
+                        </Group>
+                        <Group id="Ingredient 1" layoutX="-4.0" layoutY="124.0">
+                           <children>
+                              <Label layoutX="16.0" text="Ingredient 1" />
+                              <Label layoutX="148.0" text="0ml">
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ProgressBar fx:id="testBar111" layoutX="14.0" layoutY="28.0" prefHeight="10.0" prefWidth="159.0" progress="0.0" />
+                           </children>
+                        </Group>
+                        <Group id="Ingredient 1" layoutX="-4.0" layoutY="162.0">
+                           <children>
+                              <Label layoutX="16.0" text="Ingredient 1" />
+                              <Label layoutX="148.0" text="0ml">
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ProgressBar fx:id="testBar211" layoutX="14.0" layoutY="28.0" prefHeight="10.0" prefWidth="159.0" progress="0.0" />
+                           </children>
+                        </Group>
+                        <Group id="Ingredient 1" layoutX="-4.0" layoutY="200.0">
+                           <children>
+                              <Label layoutX="16.0" text="Ingredient 1" />
+                              <Label layoutX="148.0" text="0ml">
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ProgressBar fx:id="testBar1111" layoutX="14.0" layoutY="28.0" prefHeight="10.0" prefWidth="159.0" progress="0.0" />
+                           </children>
+                        </Group>
+                        <Group id="Ingredient 1" layoutX="-4.0" layoutY="238.0">
+                           <children>
+                              <Label layoutX="16.0" text="Ingredient 1" />
+                              <Label layoutX="148.0" text="0ml">
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ProgressBar fx:id="testBar2111" layoutX="14.0" layoutY="28.0" prefHeight="10.0" prefWidth="159.0" progress="0.0" />
+                           </children>
+                        </Group>
+                        <Group id="Ingredient 1" layoutX="-4.0" layoutY="276.0">
+                           <children>
+                              <Label layoutX="16.0" text="Ingredient 1" />
+                              <Label layoutX="148.0" text="0ml">
+                                 <font>
+                                    <Font name="Arial Black" size="12.0" />
+                                 </font>
+                              </Label>
+                              <ProgressBar fx:id="testBar11111" layoutX="14.0" layoutY="28.0" prefHeight="10.0" prefWidth="159.0" progress="0.0" />
+                           </children>
+                        </Group>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </Group>
+      <Label fx:id="lblHeader" alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="41.0" prefHeight="45.0" prefWidth="356.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <ScrollPane id="Chose ingredient list" layoutX="43.0" layoutY="111.0" prefHeight="472.0" prefWidth="196.0">
+         <content>
+            <VBox fx:id="vBoxChosenIngredients1" prefHeight="200.0" prefWidth="164.0">
+               <children>
+                  <Group>
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 1" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group>
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 2" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group>
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 3" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group>
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 4" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group>
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 5" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group>
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 6" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group>
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 7" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group>
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 8" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group>
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 9" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="10.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 1" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="27.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 2" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="44.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 3" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="61.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 4" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="78.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 5" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="95.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 6" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="112.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 7" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="129.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 8" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="146.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 9" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="163.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 1" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="180.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 2" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="197.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 3" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="214.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 4" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="231.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 5" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="248.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 6" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="265.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 7" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="282.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 8" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="299.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 9" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="316.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 1" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="333.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 2" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="350.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 3" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="367.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 4" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="384.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 5" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="401.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 6" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="418.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 7" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="435.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 8" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+                  <Group layoutX="10.0" layoutY="452.0">
+                     <children>
+                        <Label onMouseClicked="#choseIngredient" text="Name 9" />
+                        <Label layoutX="130.0" text="0.0$" />
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Group>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <Group id="Export Generate" fx:id="exportGenerate" layoutX="663.0" layoutY="519.0">
+         <children>
+            <Button fx:id="btnExport" mnemonicParsing="false" prefHeight="28.0" prefWidth="142.0" text="Export">
+               <tooltip>
+                  <Tooltip text="Export recipe" />
+               </tooltip>
+            </Button>
+            <Button fx:id="btnGenerate" layoutX="1.0" layoutY="38.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="142.0" text="Generate">
+               <tooltip>
+                  <Tooltip text="Export recipe" />
+               </tooltip>
+            </Button>
+         </children>
+      </Group>
+   </children>
+</AnchorPane>
