@@ -34,17 +34,21 @@ public class IngredientViewController implements Initializable {
             button41, button42,button43,button44,button45,button46,button47,button48, btnCreate,
             btnAddToInventory, btnInvisibleOne, btnInvisibleTwo, btnInvisibleThree, btnSearch;
     @FXML
-    private AnchorPane anchorPaneIngredients;
+    private MenuButton menuButtonGOTO;
+/*    @FXML //Not sure is need it
+    private AnchorPane anchorPaneIngredients;*/
+/*    @FXML //Not sure is need it
+    private VBox vBoxIngredients;*/
+/*    @FXML //Not sure is need it
+    private ScrollPane scrollPaneIngredients;*/
     @FXML
-    private VBox vBoxIngredients;
-    @FXML
-    private ScrollPane scrollPaneIngredients;
+    private CheckBox checkBoxAddFavorite,checkBoxLike;
     @FXML
     private ComboBox comboBoxBrands, comboBoxTypes;
     @FXML
     private TextArea txtAreaDescription;
     @FXML
-    private ImageView imgRecipient,ImgAlternativeOne,imgAlternativTwo,imgAlternativeThree;
+    private ImageView imgRecipient,ImgAlternativeOne,imgAlternativeTwo,imgAlternativeThree;
     @FXML
     private TextField txtFieldSimilarWith, txtFieldVisualisations, txtFieldLikes, txtFieldProductName,txtFieldAlcohol,txtFieldPrice,txtFieldSearchOptions;
     @FXML
@@ -56,16 +60,22 @@ public class IngredientViewController implements Initializable {
 
         setTypesList();
         setBrandsList();
-
+        //Change Product with the one selected from the alternatives
         btnInvisibleOne.setOnAction(e->{});
         btnInvisibleTwo.setOnAction(e->{});
         btnInvisibleThree.setOnAction(e->{});
 
+        //Opens two scenes to chose from
+        menuButtonGOTO.setOnAction(e->{});
+
+        //comboBox Types will display all the "IngredientCategory,
+        // and will set the Brands ComboBox, and the VBox buttons, when a "type" is selected
         comboBoxTypes.setItems(ingredientsType);
         comboBoxTypes.getItems().addAll();
+        //
         comboBoxBrands.getItems().addAll();
 
-        txtFieldSearchOptions.setOnAction(e->{});
+
         txtFieldSimilarWith.setOnAction(e->{});
 
         btnCreate.setOnAction(e->{});
@@ -75,10 +85,11 @@ public class IngredientViewController implements Initializable {
 
    // TODO*********************Methods*************************************
 
-    public void setTxtFieldMoreFrom(){}
+    public void setTxtFieldSimilarWith(){}
     public void setImageRecipient(){}
-    public void setImageCornerUp(){}
-    public void setImageCornerDown(){}
+    public void setImgAlternativeOne(){}
+    public void setImgAlternativeTwo(){}
+    public void setImgAlternativeThree(){}
     public void setTxtAreaDescription(){}
     public void setVBox(){}
     public String readComboBoxBrands(ActionEvent event){String brand="product brand"; return brand;}

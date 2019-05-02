@@ -266,18 +266,18 @@
             </VBox>
          </content>
       </ScrollPane>
-      <TextArea fx:id="txtAreaDescription" editable="false" layoutX="311.0" layoutY="58.0" prefHeight="240.0" prefWidth="290.0" promptText="Product description" AnchorPane.bottomAnchor="433.0" AnchorPane.leftAnchor="311.0" AnchorPane.rightAnchor="399.0" AnchorPane.topAnchor="58.0" />
-      <ImageView fx:id="imgRecipient" fitHeight="448.0" fitWidth="375.0" layoutX="627.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="627.0" AnchorPane.rightAnchor="140.8545379638672" AnchorPane.topAnchor="176.0">
+      <TextArea fx:id="txtAreaDescription" editable="false" layoutX="311.0" layoutY="58.0" prefHeight="240.0" prefWidth="290.0" promptText="Product description" text="Product description" AnchorPane.bottomAnchor="433.0" AnchorPane.leftAnchor="311.0" AnchorPane.rightAnchor="399.0" AnchorPane.topAnchor="58.0" />
+      <ImageView fx:id="imgRecipient" fitHeight="465.0" fitWidth="296.0" layoutX="669.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="110.41510009765625" AnchorPane.leftAnchor="669.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="208.0">
          <image>
-            <Image url="@../images/alcoholPictures/glenfarclassWhiskey.PNG" />
+            <Image url="@../images/ingredientViewStartDisplay/ingredientsMainView.png" />
          </image>
       </ImageView>
       <TextField fx:id="txtFieldSearchOptions" layoutX="305.0" layoutY="15.0" prefHeight="31.0" prefWidth="167.0" promptText="Search specific product" style="-fx-background-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="302.0" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="15.0" />
-      <ComboBox fx:id="comboBoxTypes" layoutX="5.0" layoutY="19.0" prefWidth="150.0" promptText="Select Type" style="-fx-border-radius: 10; -fx-background-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="842.0" AnchorPane.topAnchor="15.0" />
-      <ComboBox fx:id="comboBoxBrands" layoutX="155.0" layoutY="21.0" prefWidth="150.0" promptText="Select Brand" style="-fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="15.0" />
+      <ComboBox fx:id="comboBoxTypes" layoutX="5.0" layoutY="19.0" prefHeight="31.0" prefWidth="152.0" promptText="Select Type" style="-fx-border-radius: 10; -fx-background-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="823.0" AnchorPane.topAnchor="15.0" />
+      <ComboBox fx:id="comboBoxBrands" layoutX="155.0" layoutY="21.0" prefHeight="31.0" prefWidth="140.0" promptText="Select Brand" style="-fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="680.0" AnchorPane.topAnchor="15.0" />
       <Button fx:id="btnCreate" layoutX="41.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="217.0" stylesheets="@../css/ingredient-view.css" text="Create" />
       <Button fx:id="btnAddToInventory" layoutX="336.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="217.0" stylesheets="@../css/ingredient-view.css" text="Add to my inventory" />
-      <TextField fx:id="txtFieldSimilarWith" editable="false" layoutX="380.0" layoutY="414.0" promptText="Product Name" />
+      <TextField fx:id="txtFieldSimilarWith" editable="false" layoutX="380.0" layoutY="414.0" promptText="Product Name" text="Product Name" />
       <AnchorPane layoutX="305.0" layoutY="245.0" />
       <Label layoutX="307.0" layoutY="321.0" text="Alcohol " />
       <Label layoutX="309.0" layoutY="369.0" text="Price     " />
@@ -291,45 +291,48 @@
          <font>
             <Font size="10.0" />
          </font></TextField>
-      <ImageView fx:id="imgAlternativeThree" fitHeight="150.0" fitWidth="105.0" layoutX="508.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.0">
+      <ImageView fx:id="imgAlternativeThree" fitHeight="146.0" fitWidth="90.0" layoutX="521.0" layoutY="485.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="99.0">
          <image>
-            <Image url="@../images/alcoholPictures/jamesonWhiskey.PNG" />
+            <Image url="@../images/ingredientViewStartDisplay/ingredientMiseEnPlace.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgAlternativTwo" fitHeight="147.0" fitWidth="105.0" layoutX="412.0" layoutY="501.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.375">
+      <ImageView fx:id="imgAlternativeTwo" fitHeight="147.0" fitWidth="105.0" layoutX="412.0" layoutY="501.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.375">
          <image>
-            <Image url="@../images/alcoholPictures/glenfiddichWhiskey.PNG" />
+            <Image url="@../images/ingredientViewStartDisplay/ingredientGarnish.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ImgAlternativeOne" fitHeight="150.0" fitWidth="90.0" layoutX="302.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="ImgAlternativeOne" fitHeight="139.0" fitWidth="90.0" layoutX="301.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/alcoholPictures/jackDaniel'sWhiskey.PNG" />
+            <Image url="@../images/ingredientViewStartDisplay/ingredientGlasses.png" />
          </image>
       </ImageView>
       <Label layoutX="305.0" layoutY="414.0" prefHeight="26.0" prefWidth="76.0" text="Similar with" />
-      <TextField fx:id="txtFieldProductName" editable="false" layoutX="639.0" layoutY="50.0" prefHeight="39.0" prefWidth="296.0" promptText="Product  Name" />
-      <TextField fx:id="txtFieldLikes" editable="false" layoutX="905.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" />
-      <TextField fx:id="txtFieldVisualisations" editable="false" layoutX="716.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" />
+      <TextField fx:id="txtFieldProductName" editable="false" layoutX="639.0" layoutY="50.0" prefHeight="39.0" prefWidth="296.0" promptText="Product  Name" text="Product Name " />
+      <TextField fx:id="txtFieldLikes" editable="false" layoutX="905.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" text="No" />
+      <TextField fx:id="txtFieldVisualisations" editable="false" layoutX="716.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" text="No" />
       <Label layoutX="864.0" layoutY="121.0" opacity="0.67" text="Likes" />
       <Label layoutX="627.0" layoutY="121.0" opacity="0.67" text="Visualisations" />
-      <CheckBox layoutX="874.0" layoutY="659.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" text="Like it!" />
-      <CheckBox layoutX="657.0" layoutY="659.0" mnemonicParsing="false" text="Add to favorits" />
+      <CheckBox fx:id="checkBoxLike" layoutX="711.0" layoutY="684.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" stylesheets="@../css/ingredient-view.css" text="Like it!" />
+      <CheckBox fx:id="checkBoxAddFavorite" layoutX="711.0" layoutY="648.0" mnemonicParsing="false" stylesheets="@../css/ingredient-view.css" text="Add to favorits" />
       <Button fx:id="btnInvisibleOne" layoutX="308.0" layoutY="522.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="76.0" stylesheets="@../css/ingredient-view.css" />
       <Button fx:id="btnInvisibleTwo" layoutX="430.0" layoutY="524.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="65.0" stylesheets="@../css/ingredient-view.css" />
-      <Button fx:id="btnInvisibleThree" layoutX="535.0" layoutY="520.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="56.0" stylesheets="@../css/ingredient-view.css" />
-      <ImageView fitHeight="50.0" fitWidth="55.0" layoutX="466.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="btnInvisibleThree" layoutX="535.0" layoutY="520.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="65.0" stylesheets="@../css/ingredient-view.css" />
+      <ImageView fitHeight="50.0" fitWidth="55.0" layoutX="447.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/searchImage.png" />
+            <Image url="@../images/ingredientViewStartDisplay/searchImage.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnSearch" layoutX="468.0" layoutY="15.0" minHeight="10.0" minWidth="52.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="54.0" stylesheets="@../css/ingredient-view.css" />
+      <Button fx:id="btnSearch" layoutX="446.0" layoutY="15.0" minHeight="10.0" minWidth="52.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="54.0" stylesheets="@../css/ingredient-view.css" />
       <Label layoutX="597.0" layoutY="318.0" text="\%" />
       <Label layoutX="598.0" layoutY="364.0" text="\$" />
-      <MenuButton fx:id="menuButtonGOTO" layoutX="899.0" layoutY="20.0" mnemonicParsing="false" stylesheets="@../css/ingredient-view.css" text="Go To">
+      <MenuButton fx:id="menuButtonGOTO" layoutX="880.0" layoutY="17.0" mnemonicParsing="false" stylesheets="@../css/ingredient-view.css" text="Go To">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
         </items>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </MenuButton>
    </children>
 </AnchorPane>
