@@ -4,6 +4,8 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
@@ -277,12 +279,18 @@
       <Button fx:id="btnAddToInventory" layoutX="336.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="217.0" stylesheets="@../css/ingredient-view.css" text="Add to my inventory" />
       <TextField fx:id="txtFieldSimilarWith" editable="false" layoutX="380.0" layoutY="414.0" promptText="Product Name" />
       <AnchorPane layoutX="305.0" layoutY="245.0" />
-      <Label layoutX="307.0" layoutY="321.0" text="Alcohol %" />
-      <Label layoutX="309.0" layoutY="369.0" text="Price     $" />
+      <Label layoutX="307.0" layoutY="321.0" text="Alcohol " />
+      <Label layoutX="309.0" layoutY="369.0" text="Price     " />
       <ProgressBar fx:id="prgBarAlc" layoutX="366.0" layoutY="325.0" prefHeight="10.0" prefWidth="179.0" progress="0.51" stylesheets="@../css/ingredient-view.css" />
       <ProgressBar fx:id="prgBarPrice" layoutX="366.0" layoutY="373.0" prefHeight="10.0" prefWidth="179.0" progress="0.5" stylesheets="@../css/ingredient-view.css" />
-      <TextField fx:id="txtFieldAlcohol" editable="false" layoutX="547.0" layoutY="312.0" prefHeight="26.0" prefWidth="65.0" promptText="Acl%" />
-      <TextField fx:id="txtFieldPrice" editable="false" layoutX="547.0" layoutY="359.0" prefHeight="26.0" prefWidth="65.0" promptText="\$" />
+      <TextField fx:id="txtFieldAlcohol" editable="false" layoutX="547.0" layoutY="314.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="52.0" promptText="Alcoh.">
+         <font>
+            <Font size="10.0" />
+         </font></TextField>
+      <TextField fx:id="txtFieldPrice" editable="false" layoutX="547.0" layoutY="359.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="52.0" promptText="Price">
+         <font>
+            <Font size="10.0" />
+         </font></TextField>
       <ImageView fx:id="imgAlternativeThree" fitHeight="150.0" fitWidth="105.0" layoutX="508.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.0">
          <image>
             <Image url="@../images/alcoholPictures/jamesonWhiskey.PNG" />
@@ -299,7 +307,7 @@
          </image>
       </ImageView>
       <Label layoutX="305.0" layoutY="414.0" prefHeight="26.0" prefWidth="76.0" text="Similar with" />
-      <TextField fx:id="txtFieldProductName" editable="false" layoutX="657.0" layoutY="31.0" prefHeight="39.0" prefWidth="296.0" promptText="Product  Name" />
+      <TextField fx:id="txtFieldProductName" editable="false" layoutX="639.0" layoutY="50.0" prefHeight="39.0" prefWidth="296.0" promptText="Product  Name" />
       <TextField fx:id="txtFieldLikes" editable="false" layoutX="905.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" />
       <TextField fx:id="txtFieldVisualisations" editable="false" layoutX="716.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" />
       <Label layoutX="864.0" layoutY="121.0" opacity="0.67" text="Likes" />
@@ -315,5 +323,13 @@
          </image>
       </ImageView>
       <Button fx:id="btnSearch" layoutX="468.0" layoutY="15.0" minHeight="10.0" minWidth="52.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="54.0" stylesheets="@../css/ingredient-view.css" />
+      <Label layoutX="597.0" layoutY="318.0" text="\%" />
+      <Label layoutX="598.0" layoutY="364.0" text="\$" />
+      <MenuButton fx:id="menuButtonGOTO" layoutX="899.0" layoutY="20.0" mnemonicParsing="false" stylesheets="@../css/ingredient-view.css" text="Go To">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Action 1" />
+          <MenuItem mnemonicParsing="false" text="Action 2" />
+        </items>
+      </MenuButton>
    </children>
 </AnchorPane>

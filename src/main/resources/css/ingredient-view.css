@@ -20,6 +20,13 @@
     -fx-border-radius: 5;
     -fx-background-radius: 5;
 }
+#menuButtonGOTO{
+    -fx-background-color: #ff7028;
+    -fx-border-color: #ff7028;
+    -fx-text-fill: black;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
 #btnCreate{
     -fx-background-color: blue;
     -fx-background-radius: 10;
@@ -50,5 +57,10 @@
     -fx-progress-color: #2065ff;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
+}
+#anchorPaneIngredients{
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
 }
 
