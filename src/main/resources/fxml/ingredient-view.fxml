@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
 
 <AnchorPane fx:id="anchorPaneIngredients" prefHeight="729.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.IngredientViewController">
    <children>
@@ -262,15 +264,50 @@
             </VBox>
          </content>
       </ScrollPane>
-      <TextArea fx:id="txtAreaDescription" layoutX="304.0" layoutY="48.0" prefHeight="181.0" prefWidth="290.0" promptText="Product description" AnchorPane.bottomAnchor="500.0" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="405.0" AnchorPane.topAnchor="50.0" />
-      <ImageView fx:id="imgRecipient" fitHeight="665.0" fitWidth="370.0" layoutX="624.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="624.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="58.0" />
+      <TextArea fx:id="txtAreaDescription" editable="false" layoutX="311.0" layoutY="58.0" prefHeight="240.0" prefWidth="290.0" promptText="Product description" AnchorPane.bottomAnchor="433.0" AnchorPane.leftAnchor="311.0" AnchorPane.rightAnchor="399.0" AnchorPane.topAnchor="58.0" />
+      <ImageView fx:id="imgRecipient" fitHeight="448.0" fitWidth="375.0" layoutX="627.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="627.0" AnchorPane.rightAnchor="140.8545379638672" AnchorPane.topAnchor="176.0">
+         <image>
+            <Image url="@../images/alcoholPictures/glenfarclassWhiskey.PNG" />
+         </image>
+      </ImageView>
       <TextField fx:id="txtFieldSearchOptions" layoutX="305.0" layoutY="15.0" prefHeight="31.0" prefWidth="167.0" promptText="Search specific product" style="-fx-background-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="302.0" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="15.0" />
-      <ComboBox fx:id="comboBoxTypes" layoutX="5.0" layoutY="19.0" opacity="0.74" prefWidth="150.0" promptText="Select Type" style="-fx-border-radius: 10; -fx-background-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="842.0" AnchorPane.topAnchor="15.0" />
-      <ComboBox fx:id="comboBoxBrands" layoutX="155.0" layoutY="21.0" opacity="0.74" prefWidth="150.0" promptText="Select Brand" style="-fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="15.0" />
-      <ImageView fx:id="imgCornerUp" fitHeight="142.0" fitWidth="160.0" layoutX="302.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="302.0" AnchorPane.rightAnchor="538.0" />
+      <ComboBox fx:id="comboBoxTypes" layoutX="5.0" layoutY="19.0" prefWidth="150.0" promptText="Select Type" style="-fx-border-radius: 10; -fx-background-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="842.0" AnchorPane.topAnchor="15.0" />
+      <ComboBox fx:id="comboBoxBrands" layoutX="155.0" layoutY="21.0" prefWidth="150.0" promptText="Select Brand" style="-fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="700.0" AnchorPane.topAnchor="15.0" />
       <Button fx:id="btnCreate" layoutX="41.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="217.0" stylesheets="@../css/ingredient-view.css" text="Create" />
-      <Button fx:id="btnAddToInventory" layoutX="336.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="217.0" stylesheets="@../css/ingredient-view.css" text="Add to my inventor" />
-      <TextField fx:id="txtFieldMoreFrom" layoutX="374.0" layoutY="245.0" />
-      <Label layoutX="305.0" layoutY="245.0" prefHeight="26.0" prefWidth="76.0" text="More from " />
+      <Button fx:id="btnAddToInventory" layoutX="336.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="217.0" stylesheets="@../css/ingredient-view.css" text="Add to my inventory" />
+      <TextField fx:id="txtFieldSimilarWith" editable="false" layoutX="380.0" layoutY="414.0" promptText="Product Name" />
+      <AnchorPane layoutX="305.0" layoutY="245.0" />
+      <Label layoutX="305.0" layoutY="315.0" text="Alcohol %" />
+      <Label layoutX="308.0" layoutY="363.0" text="Price     $" />
+      <ProgressBar layoutX="366.0" layoutY="325.0" prefHeight="10.0" prefWidth="179.0" progress="0.51" />
+      <ProgressBar layoutX="366.0" layoutY="373.0" prefHeight="10.0" prefWidth="179.0" progress="0.5" />
+      <TextField fx:id="txtFieldAlcohol" editable="false" layoutX="547.0" layoutY="312.0" prefHeight="26.0" prefWidth="65.0" promptText="Acl%" />
+      <TextField fx:id="txtFieldPrice" editable="false" layoutX="547.0" layoutY="359.0" prefHeight="26.0" prefWidth="65.0" promptText="\$" />
+      <ImageView fx:id="imgAlternativeThree" fitHeight="150.0" fitWidth="105.0" layoutX="508.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.0">
+         <image>
+            <Image url="@../images/alcoholPictures/jamesonWhiskey.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgAlternativTwo" fitHeight="147.0" fitWidth="105.0" layoutX="412.0" layoutY="501.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.375">
+         <image>
+            <Image url="@../images/alcoholPictures/glenfiddichWhiskey.PNG" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ImgAlternativeOne" fitHeight="150.0" fitWidth="90.0" layoutX="302.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/alcoholPictures/jackDaniel'sWhiskey.PNG" />
+         </image>
+      </ImageView>
+      <Label layoutX="305.0" layoutY="414.0" prefHeight="26.0" prefWidth="76.0" text="Similar with" />
+      <TextField fx:id="txtFieldProductName" editable="false" layoutX="657.0" layoutY="31.0" prefHeight="39.0" prefWidth="296.0" promptText="Product  Name" />
+      <TextField fx:id="txtFieldLikes" editable="false" layoutX="905.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" />
+      <TextField fx:id="txtFieldVisualisations" editable="false" layoutX="716.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" />
+      <Label layoutX="864.0" layoutY="121.0" opacity="0.67" text="Likes" />
+      <Label layoutX="627.0" layoutY="121.0" opacity="0.67" text="Visualisations" />
+      <CheckBox layoutX="874.0" layoutY="659.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" text="Like it!" />
+      <CheckBox layoutX="657.0" layoutY="659.0" mnemonicParsing="false" text="Add to favorits" />
+      <Button fx:id="btnInvisibleOne" layoutX="308.0" layoutY="522.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="76.0" stylesheets="@../css/ingredient-view.css" />
+      <Button fx:id="btnInvisibleTwo" layoutX="430.0" layoutY="524.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="65.0" stylesheets="@../css/ingredient-view.css" />
+      <Button fx:id="btnInvisibleThree" layoutX="535.0" layoutY="520.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="56.0" stylesheets="@../css/ingredient-view.css" />
    </children>
 </AnchorPane>

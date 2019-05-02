@@ -1,21 +1,32 @@
 .button {
-    -fx-background-color: #1337ff;
-    -fx-border-color: #1643ff;
-    -fx-progress-color: blue;
+    -fx-background-color: white;
+    -fx-border-color: white;
+    -fx-progress-color: white;
+    -fx-text-fill: #cbcbcb;
 }
 .text-field {
     -fx-background-color: #ffb2b3;
 }
 .combo-box{
-    -fx-background-color: #ff6e5a;
-    -fx-border-color: #ff6e5a;
+    -fx-background-color: #ff7028;
+    -fx-border-color: #ff7028;
+    -fx-text-fill: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
 #btnCreate{
+    -fx-background-color: blue;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
+    -fx-text-fill: white;
 }
 #btnAddToInventory{
     -fx-background-radius: 10;
     -fx-border-radius: 10;
     -fx-background-color: #ff7028;
+    -fx-text-fill: white;
+}
+#btnInvisibleOne,#btnInvisibleTwo,#btnInvisibleThree{
+    -fx-background-color: invisible;
+    -fx-border-color: invisible;
 }

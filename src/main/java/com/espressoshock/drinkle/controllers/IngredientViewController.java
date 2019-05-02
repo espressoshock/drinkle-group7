@@ -31,7 +31,8 @@ public class IngredientViewController implements Initializable {
             button11, button12,button13,button14,button15,button16,button17,button18,button19,button20,
             button21, button22,button23,button24,button25,button26,button27,button28,button29,button30,
             button31, button32,button33,button34,button35,button36,button37,button38,button39,button40,
-            button41, button42,button43,button44,button45,button46,button47,button48, btnCreate;
+            button41, button42,button43,button44,button45,button46,button47,button48, btnCreate,
+            btnAddToInventory, btnInvisibleOne, btnInvisibleTwo, btnInvisibleThree;
     @FXML
     private AnchorPane anchorPaneIngredients;
     @FXML
@@ -41,13 +42,12 @@ public class IngredientViewController implements Initializable {
     @FXML
     private ComboBox comboBoxBrands, comboBoxTypes;
     @FXML
-    private TextField txtFieldSearchOptions;
-    @FXML
     private TextArea txtAreaDescription;
     @FXML
-    private ImageView imgRecipient,imgCornerUp,imgCornerDown;
+    private ImageView imgRecipient,ImgAlternativeOne,imgAlternativTwo,imgAlternativeThree;
     @FXML
-    private TextField txtFieldMoreFrom;
+    private TextField txtFieldSimilarWith, txtFieldVisualisations, txtFieldLikes, txtFieldProductName,txtFieldAlcohol,txtFieldPrice,txtFieldSearchOptions;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,16 +55,24 @@ public class IngredientViewController implements Initializable {
         setTypesList();
         setBrandsList();
 
+        btnInvisibleOne.setOnAction(e->{});
+        btnInvisibleTwo.setOnAction(e->{});
+        btnInvisibleThree.setOnAction(e->{});
+
         comboBoxTypes.setItems(ingredientsType);
         comboBoxTypes.getItems().addAll();
         comboBoxBrands.getItems().addAll();
 
         txtFieldSearchOptions.setOnAction(e->{});
-        txtFieldMoreFrom.setOnAction(e->{});
+        txtFieldSimilarWith.setOnAction(e->{});
 
         btnCreate.setOnAction(e->{});
+        btnAddToInventory.setOnAction(e->{});
 
     }
+
+   // TODO*********************Methods*************************************
+
     public void setTxtFieldMoreFrom(){}
     public void setImageRecipient(){}
     public void setImageCornerUp(){}
@@ -74,6 +82,9 @@ public class IngredientViewController implements Initializable {
     public String readComboBoxBrands(ActionEvent event){String brand="product brand"; return brand;}
     public String readComboBoxTypes(ActionEvent event){String type="product type"; return type;}
     public char[] readTxtFieldSearchOptions(){char[] text = new char[1]; return text;}
+
+    //TODO****************************************************************
+
     public void setBrandsList(){
         brandsList.add(new Brand("Absolute","Vodka",IngredientCategory.VODKA));
         brandsList.add(new Brand("Grey Goose","Vodka",IngredientCategory.VODKA));
@@ -215,6 +226,7 @@ public class IngredientViewController implements Initializable {
         brandsList.add(new Brand("Sugar","Powder",IngredientCategory.POWDER));
         brandsList.add(new Brand("Cocoa","Powder",IngredientCategory.POWDER));*/
     }
+
     public void setTypesList(){
         typesList.add(IngredientCategory.WINE);
         typesList.add(IngredientCategory.BEER);
@@ -239,6 +251,7 @@ public class IngredientViewController implements Initializable {
         typesList.add(IngredientCategory.FRUIT);
         typesList.add(IngredientCategory.DAIRY_PRODUCT);
     }
+
     public void setOnActionIngredientsVBox(){
         button1.setOnAction(e->{});
         button2.setOnAction(e->{});
