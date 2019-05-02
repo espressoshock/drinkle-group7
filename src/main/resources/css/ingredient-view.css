@@ -7,12 +7,17 @@
 .text-field {
     -fx-background-color: #ffb2b3;
 }
+#txtFieldSearchOptions{
+    -fx-text-fill: black;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
 .combo-box{
     -fx-background-color: #ff7028;
     -fx-border-color: #ff7028;
     -fx-text-fill: black;
-    -fx-border-radius: 10;
-    -fx-background-radius: 10;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
 }
 #btnCreate{
     -fx-background-color: blue;
@@ -30,3 +35,9 @@
     -fx-background-color: invisible;
     -fx-border-color: invisible;
 }
+#btnSearch{
+    -fx-background-color: invisible;
+    -fx-border-color: #e5e5e5;
+    -fx-border-radius: 0 20 20 0;
+}
+

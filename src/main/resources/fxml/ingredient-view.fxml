@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneIngredients" prefHeight="729.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.IngredientViewController">
+<AnchorPane fx:id="anchorPaneIngredients" prefHeight="700.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.IngredientViewController">
    <children>
       <ScrollPane fx:id="scrollPaneIngredients" hbarPolicy="ALWAYS" layoutY="50.0" prefHeight="611.0" prefWidth="290.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="705.0" AnchorPane.topAnchor="50.0">
          <content>
@@ -309,5 +309,11 @@
       <Button fx:id="btnInvisibleOne" layoutX="308.0" layoutY="522.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="76.0" stylesheets="@../css/ingredient-view.css" />
       <Button fx:id="btnInvisibleTwo" layoutX="430.0" layoutY="524.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="65.0" stylesheets="@../css/ingredient-view.css" />
       <Button fx:id="btnInvisibleThree" layoutX="535.0" layoutY="520.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="56.0" stylesheets="@../css/ingredient-view.css" />
+      <ImageView fitHeight="50.0" fitWidth="55.0" layoutX="466.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/searchImage.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnSearch" layoutX="468.0" layoutY="15.0" minHeight="10.0" minWidth="52.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="54.0" stylesheets="@../css/ingredient-view.css" />
    </children>
 </AnchorPane>
