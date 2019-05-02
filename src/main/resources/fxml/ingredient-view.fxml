@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
@@ -18,246 +17,246 @@
 
 <AnchorPane fx:id="anchorPaneIngredients" prefHeight="700.0" prefWidth="950.0" stylesheets="@../css/ingredient-view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.IngredientViewController">
    <children>
-      <ScrollPane fx:id="scrollPaneIngredients" hbarPolicy="ALWAYS" layoutY="50.0" prefHeight="611.0" prefWidth="290.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="705.0" AnchorPane.topAnchor="50.0">
+      <ScrollPane fx:id="scrollPaneIngredients" hbarPolicy="ALWAYS" layoutY="50.0" prefHeight="608.0" prefWidth="277.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="698.0" AnchorPane.topAnchor="50.0">
          <content>
             <VBox fx:id="vBoxIngredients" prefHeight="1560.0" prefWidth="282.0">
                <children>
-                  <Button fx:id="button1" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="1">
+                  <Button fx:id="button1" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button2" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="2">
+                  <Button fx:id="button2" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button3" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="3">
+                  <Button fx:id="button3" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button4" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="4">
+                  <Button fx:id="button4" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button5" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="5">
+                  <Button fx:id="button5" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button6" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="6">
+                  <Button fx:id="button6" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button7" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="7">
+                  <Button fx:id="button7" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="41.0" prefWidth="281.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button8" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="8">
+                  <Button fx:id="button8" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button9" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="9">
+                  <Button fx:id="button9" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button10" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="10">
+                  <Button fx:id="button10" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button11" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="11">
+                  <Button fx:id="button11" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button12" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="12">
+                  <Button fx:id="button12" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button13" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="13">
+                  <Button fx:id="button13" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button14" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="14">
+                  <Button fx:id="button14" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button15" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="15">
+                  <Button fx:id="button15" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button16" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="16">
+                  <Button fx:id="button16" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button17" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="17">
+                  <Button fx:id="button17" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button18" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="18">
+                  <Button fx:id="button18" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button19" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="19">
+                  <Button fx:id="button19" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button20" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="20">
+                  <Button fx:id="button20" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button21" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="21">
+                  <Button fx:id="button21" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button22" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="22">
+                  <Button fx:id="button22" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button23" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="23">
+                  <Button fx:id="button23" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button24" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="24">
+                  <Button fx:id="button24" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button25" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="25">
+                  <Button fx:id="button25" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button26" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="26">
+                  <Button fx:id="button26" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button27" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="27">
+                  <Button fx:id="button27" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button28" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="28">
+                  <Button fx:id="button28" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button29" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="29">
+                  <Button fx:id="button29" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button30" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="30">
+                  <Button fx:id="button30" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button31" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="31">
+                  <Button fx:id="button31" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button32" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="32">
+                  <Button fx:id="button32" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button33" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="33">
+                  <Button fx:id="button33" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button34" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="34">
+                  <Button fx:id="button34" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button35" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="35">
+                  <Button fx:id="button35" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button36" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="36">
+                  <Button fx:id="button36" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button37" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="37">
+                  <Button fx:id="button37" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button38" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="38">
+                  <Button fx:id="button38" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button39" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="39">
+                  <Button fx:id="button39" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button40" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="40">
+                  <Button fx:id="button40" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button41" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="41">
+                  <Button fx:id="button41" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button42" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="42">
+                  <Button fx:id="button42" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button43" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="43">
+                  <Button fx:id="button43" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button44" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="44">
+                  <Button fx:id="button44" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button45" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="45">
+                  <Button fx:id="button45" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button46" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="46">
+                  <Button fx:id="button46" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button47" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="47">
+                  <Button fx:id="button47" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button48" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="48">
+                  <Button fx:id="button48" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -266,24 +265,22 @@
             </VBox>
          </content>
       </ScrollPane>
-      <TextArea fx:id="txtAreaDescription" editable="false" layoutX="311.0" layoutY="58.0" prefHeight="240.0" prefWidth="290.0" promptText="Product description" text="Product description" AnchorPane.bottomAnchor="433.0" AnchorPane.leftAnchor="311.0" AnchorPane.rightAnchor="399.0" AnchorPane.topAnchor="58.0" />
+      <TextArea fx:id="txtAreaDescription" editable="false" layoutX="311.0" layoutY="58.0" prefHeight="247.0" prefWidth="296.0" promptText="Product description" text="The first step to making a great cocktail &#10;is having the necessary tools at hand. &#10;Cocktail making is an art, and just like a &#10;painter needs a good brush, a mixologist &#10;needs a good shaker. Bartenders use a&#10; whole collection of odd tools that makes&#10; them look like lab scientists about to&#10; make a discovery, and though it may look&#10; daunting, it is simpler than one might think.&#10; We gather a list of all the essential tools&#10; any aspiring mixologist needs in order to &#10;make a killer cocktail that will wow their&#10; friends." AnchorPane.bottomAnchor="426.0" AnchorPane.leftAnchor="311.0" AnchorPane.rightAnchor="373.0" AnchorPane.topAnchor="58.0" />
       <ImageView fx:id="imgRecipient" fitHeight="465.0" fitWidth="296.0" layoutX="669.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="110.41510009765625" AnchorPane.leftAnchor="669.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="208.0">
          <image>
             <Image url="@../images/ingredientViewStartDisplay/ingredientsMainView.png" />
          </image>
       </ImageView>
       <TextField fx:id="txtFieldSearchOptions" layoutX="305.0" layoutY="15.0" prefHeight="31.0" prefWidth="167.0" promptText="Search specific product" style="-fx-background-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="302.0" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="15.0" />
-      <ComboBox fx:id="comboBoxTypes" layoutX="5.0" layoutY="19.0" prefHeight="31.0" prefWidth="152.0" promptText="Select Type" style="-fx-border-radius: 10; -fx-background-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="823.0" AnchorPane.topAnchor="15.0" />
-      <ComboBox fx:id="comboBoxBrands" layoutX="155.0" layoutY="21.0" prefHeight="31.0" prefWidth="140.0" promptText="Select Brand" style="-fx-background-radius: 10; -fx-border-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="680.0" AnchorPane.topAnchor="15.0" />
       <Button fx:id="btnCreate" layoutX="41.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="217.0" stylesheets="@../css/ingredient-view.css" text="Create" />
       <Button fx:id="btnAddToInventory" layoutX="336.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="217.0" stylesheets="@../css/ingredient-view.css" text="Add to my inventory" />
-      <TextField fx:id="txtFieldSimilarWith" editable="false" layoutX="380.0" layoutY="414.0" promptText="Product Name" text="Product Name" />
+      <TextField fx:id="txtFieldSimilarWith" editable="false" layoutX="380.0" layoutY="414.0" promptText="Product Name" />
       <AnchorPane layoutX="305.0" layoutY="245.0" />
       <Label layoutX="307.0" layoutY="321.0" text="Alcohol " />
       <Label layoutX="309.0" layoutY="369.0" text="Price     " />
       <ProgressBar fx:id="prgBarAlc" layoutX="366.0" layoutY="325.0" prefHeight="10.0" prefWidth="179.0" progress="0.51" stylesheets="@../css/ingredient-view.css" />
       <ProgressBar fx:id="prgBarPrice" layoutX="366.0" layoutY="373.0" prefHeight="10.0" prefWidth="179.0" progress="0.5" stylesheets="@../css/ingredient-view.css" />
-      <TextField fx:id="txtFieldAlcohol" editable="false" layoutX="547.0" layoutY="314.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="52.0" promptText="Alcoh.">
+      <TextField fx:id="txtFieldAlcohol" editable="false" layoutX="547.0" layoutY="314.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="52.0" promptText="Alcoh">
          <font>
             <Font size="10.0" />
          </font></TextField>
@@ -307,9 +304,9 @@
          </image>
       </ImageView>
       <Label layoutX="305.0" layoutY="414.0" prefHeight="26.0" prefWidth="76.0" text="Similar with" />
-      <TextField fx:id="txtFieldProductName" editable="false" layoutX="639.0" layoutY="50.0" prefHeight="39.0" prefWidth="296.0" promptText="Product  Name" text="Product Name " />
-      <TextField fx:id="txtFieldLikes" editable="false" layoutX="905.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" text="No" />
-      <TextField fx:id="txtFieldVisualisations" editable="false" layoutX="716.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" text="No" />
+      <TextField fx:id="txtFieldProductName" editable="false" layoutX="639.0" layoutY="50.0" prefHeight="39.0" prefWidth="296.0" promptText="Product  Name" />
+      <TextField fx:id="txtFieldLikes" editable="false" layoutX="905.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" promptText="No" />
+      <TextField fx:id="txtFieldVisualisations" editable="false" layoutX="716.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" promptText="No" />
       <Label layoutX="864.0" layoutY="121.0" opacity="0.67" text="Likes" />
       <Label layoutX="627.0" layoutY="121.0" opacity="0.67" text="Visualisations" />
       <CheckBox fx:id="checkBoxLike" layoutX="711.0" layoutY="684.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" stylesheets="@../css/ingredient-view.css" text="Like it!" />
@@ -327,12 +324,62 @@
       <Label layoutX="598.0" layoutY="364.0" text="\$" />
       <MenuButton fx:id="menuButtonGOTO" layoutX="880.0" layoutY="17.0" mnemonicParsing="false" stylesheets="@../css/ingredient-view.css" text="Go To">
         <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
+          <MenuItem fx:id="menuItemAccountScene" mnemonicParsing="false" text="Account Scene" />
+          <MenuItem fx:id="menuItemRecipe" mnemonicParsing="false" text="Recipe Scene" />
         </items>
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+      </MenuButton>
+      <MenuButton fx:id="menuButtonSelectType" layoutX="5.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" stylesheets="@../css/ingredient-view.css" text="Select Type">
+        <items>
+            <MenuItem fx:id="menuItemVodka" mnemonicParsing="false" text="Vodka" />
+            <MenuItem fx:id="menuItemGin" mnemonicParsing="false" text="Gin" />
+            <MenuItem fx:id="menuItemWhiskey" mnemonicParsing="false" text="Whiskey" />
+            <MenuItem fx:id="menuItemVermouth" mnemonicParsing="false" text="Vermouth" />
+            <MenuItem fx:id="menuItemLiqueur" mnemonicParsing="false" text="Liqueur" />
+            <MenuItem fx:id="menuItemRum" mnemonicParsing="false" text="Rum" />
+            <MenuItem fx:id="menuItemTequila" mnemonicParsing="false" text="Tequila" />
+            <MenuItem fx:id="menuItemBitter" mnemonicParsing="false" text="Bitter" />
+          <MenuItem fx:id="menuItemWine" mnemonicParsing="false" text="Wine" />
+          <MenuItem fx:id="menuItemBeer" mnemonicParsing="false" text="Beer" />
+            <MenuItem fx:id="menuItemBrandy" mnemonicParsing="false" text="Brandy" />
+            <MenuItem fx:id="menuItemCider" mnemonicParsing="false" text="Cider" />
+            <MenuItem fx:id="menuItemWater" mnemonicParsing="false" text="Water" />
+            <MenuItem fx:id="menuItemSyrup" mnemonicParsing="false" text="Syrup" />
+            <MenuItem fx:id="menuItemJuice" mnemonicParsing="false" text="Juice" />
+            <MenuItem fx:id="menuItemWarmDrink" mnemonicParsing="false" text="Warm Drink" />
+            <MenuItem fx:id="menuItemIceType" mnemonicParsing="false" text="Ice Type" />
+            <MenuItem fx:id="menuItemFruit" mnemonicParsing="false" text="Fruits" />
+            <MenuItem fx:id="menuItemGarnish" mnemonicParsing="false" text="Garnish" />
+            <MenuItem fx:id="menuItemPowder" mnemonicParsing="false" text="Powder" />
+            <MenuItem fx:id="menuItemGlassware" mnemonicParsing="false" text="Glassware" />
+            <MenuItem fx:id="menuItemDairyProducts" mnemonicParsing="false" text="Dairy Products" />
+        </items>
+      </MenuButton>
+      <MenuButton fx:id="menuButtonSelectBrand" layoutX="157.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="141.0" stylesheets="@../css/ingredient-view.css" text="Select Brand">
+        <items>
+          <MenuItem fx:id="menuItemBrand1" mnemonicParsing="false" />
+          <MenuItem fx:id="menuItemBrand2" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand3" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand4" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand5" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand6" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand7" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand8" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand9" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand10" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand11" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand12" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand13" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand14" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand15" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand16" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand17" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand18" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand19" mnemonicParsing="false" />
+            <MenuItem fx:id="menuItemBrand20" mnemonicParsing="false" />
+        </items>
       </MenuButton>
    </children>
 </AnchorPane>

@@ -21,4 +21,9 @@ public class Brand {
 
     public IngredientCategory getProductType() { return productType;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

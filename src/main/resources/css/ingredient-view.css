@@ -16,19 +16,16 @@
 .check-box{
     -fx-border-radius: 20;
 }
-.combo-box{
-    -fx-background-color: #ff7028;
-    -fx-border-color: #ff7028;
-    -fx-text-fill: black;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
-}
-#menuButtonGOTO{
+
+.menu-button{
     -fx-background-color: #ff7028;
     -fx-border-color: #ff7028;
     -fx-text-fill: black;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
+}
+.menu-item{
+    -fx-background-color: #fff4f3;
 }
 #btnCreate{
     -fx-background-color: blue;

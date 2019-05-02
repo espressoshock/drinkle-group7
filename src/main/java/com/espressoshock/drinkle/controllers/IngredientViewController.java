@@ -21,11 +21,6 @@ public class IngredientViewController implements Initializable {
     private ArrayList<Brand> brandsList = new ArrayList<>();
     private ArrayList<IngredientCategory> typesList = new ArrayList<>();
 
-
-    ObservableList<Brand> ingredientsBrand = FXCollections.observableArrayList(brandsList);
-    ObservableList<IngredientCategory> ingredientsType = FXCollections.observableArrayList(typesList);
-
-
     @FXML
     private Button button1, button2,button3,button4,button5,button6,button7,button8,button9,button10,
             button11, button12,button13,button14,button15,button16,button17,button18,button19,button20,
@@ -34,17 +29,24 @@ public class IngredientViewController implements Initializable {
             button41, button42,button43,button44,button45,button46,button47,button48, btnCreate,
             btnAddToInventory, btnInvisibleOne, btnInvisibleTwo, btnInvisibleThree, btnSearch;
     @FXML
-    private MenuButton menuButtonGOTO;
+    private MenuButton menuButtonGOTO,menuButtonSelectBrand,menuButtonSelectType;
+    @FXML
+    private MenuItem menuItemAccountScene,menuItemRecipe,menuItemBrand1,menuItemBrand2,menuItemBrand3,menuItemBrand4,menuItemBrand5,
+            menuItemBrand6,menuItemBrand7,menuItemBrand8,menuItemBrand9,menuItemBrand10,menuItemBrand11,menuItemBrand12,menuItemBrand13,
+            menuItemBrand14,menuItemBrand15, menuItemBrand16,menuItemBrand17,menuItemBrand18,menuItemBrand19,menuItemBrand20,
+            menuItemVodka,menuItemGin,menuItemWhiskey,menuItemVermouth,menuItemLiqueur,menuItemRum,menuItemTequila,menuItemBitter,menuItemWine,
+            menuItemBeer,menuItemBrandy,menuItemCider,menuItemWater,menuItemSyrup,menuItemuice,menuItemWarmDrink,menuItemIceType,
+            menuItemFruit,menuItemGarnish,menuItemPowder,menuItemGlassware,menuItemDairyProducts;
+
 /*    @FXML //Not sure is need it
     private AnchorPane anchorPaneIngredients;*/
 /*    @FXML //Not sure is need it
     private VBox vBoxIngredients;*/
 /*    @FXML //Not sure is need it
     private ScrollPane scrollPaneIngredients;*/
+
     @FXML
     private CheckBox checkBoxAddFavorite,checkBoxLike;
-    @FXML
-    private ComboBox comboBoxBrands, comboBoxTypes;
     @FXML
     private TextArea txtAreaDescription;
     @FXML
@@ -58,8 +60,6 @@ public class IngredientViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        setTypesList();
-        setBrandsList();
         //Change Product with the one selected from the alternatives
         btnInvisibleOne.setOnAction(e->{});
         btnInvisibleTwo.setOnAction(e->{});
@@ -70,10 +70,7 @@ public class IngredientViewController implements Initializable {
 
         //comboBox Types will display all the "IngredientCategory,
         // and will set the Brands ComboBox, and the VBox buttons, when a "type" is selected
-        comboBoxTypes.setItems(ingredientsType);
-        comboBoxTypes.getItems().addAll();
-        //
-        comboBoxBrands.getItems().addAll();
+
 
 
         txtFieldSimilarWith.setOnAction(e->{});
@@ -315,4 +312,5 @@ public class IngredientViewController implements Initializable {
         button47.setOnAction(e->{});
         button48.setOnAction(e->{});
     }
+
 }
