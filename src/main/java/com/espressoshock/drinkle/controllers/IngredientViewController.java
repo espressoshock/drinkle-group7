@@ -47,6 +47,8 @@ public class IngredientViewController implements Initializable {
     private ImageView imgRecipient,ImgAlternativeOne,imgAlternativTwo,imgAlternativeThree;
     @FXML
     private TextField txtFieldSimilarWith, txtFieldVisualisations, txtFieldLikes, txtFieldProductName,txtFieldAlcohol,txtFieldPrice,txtFieldSearchOptions;
+    @FXML
+    private ProgressBar prgBarAlc, prgBarPrice;
 
 
     @Override

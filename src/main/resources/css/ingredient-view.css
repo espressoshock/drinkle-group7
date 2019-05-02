@@ -5,9 +5,10 @@
     -fx-text-fill: #cbcbcb;
 }
 .text-field {
-    -fx-background-color: #ffb2b3;
+    -fx-background-color: invisible;
 }
 #txtFieldSearchOptions{
+    -fx-background-color: #ffb2b3;
     -fx-text-fill: black;
     -fx-background-radius: 5;
     -fx-border-radius: 5;
@@ -39,5 +40,15 @@
     -fx-background-color: invisible;
     -fx-border-color: #e5e5e5;
     -fx-border-radius: 0 20 20 0;
+}
+#prgBarAlc{
+    -fx-progress-color: red;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+#prgBarPrice{
+    -fx-progress-color: #2065ff;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
 }
 

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneIngredients" prefHeight="700.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.IngredientViewController">
+<AnchorPane fx:id="anchorPaneIngredients" prefHeight="700.0" prefWidth="950.0" stylesheets="@../css/ingredient-view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.IngredientViewController">
    <children>
       <ScrollPane fx:id="scrollPaneIngredients" hbarPolicy="ALWAYS" layoutY="50.0" prefHeight="611.0" prefWidth="290.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="705.0" AnchorPane.topAnchor="50.0">
          <content>
@@ -277,10 +277,10 @@
       <Button fx:id="btnAddToInventory" layoutX="336.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="217.0" stylesheets="@../css/ingredient-view.css" text="Add to my inventory" />
       <TextField fx:id="txtFieldSimilarWith" editable="false" layoutX="380.0" layoutY="414.0" promptText="Product Name" />
       <AnchorPane layoutX="305.0" layoutY="245.0" />
-      <Label layoutX="305.0" layoutY="315.0" text="Alcohol %" />
-      <Label layoutX="308.0" layoutY="363.0" text="Price     $" />
-      <ProgressBar layoutX="366.0" layoutY="325.0" prefHeight="10.0" prefWidth="179.0" progress="0.51" />
-      <ProgressBar layoutX="366.0" layoutY="373.0" prefHeight="10.0" prefWidth="179.0" progress="0.5" />
+      <Label layoutX="307.0" layoutY="321.0" text="Alcohol %" />
+      <Label layoutX="309.0" layoutY="369.0" text="Price     $" />
+      <ProgressBar fx:id="prgBarAlc" layoutX="366.0" layoutY="325.0" prefHeight="10.0" prefWidth="179.0" progress="0.51" stylesheets="@../css/ingredient-view.css" />
+      <ProgressBar fx:id="prgBarPrice" layoutX="366.0" layoutY="373.0" prefHeight="10.0" prefWidth="179.0" progress="0.5" stylesheets="@../css/ingredient-view.css" />
       <TextField fx:id="txtFieldAlcohol" editable="false" layoutX="547.0" layoutY="312.0" prefHeight="26.0" prefWidth="65.0" promptText="Acl%" />
       <TextField fx:id="txtFieldPrice" editable="false" layoutX="547.0" layoutY="359.0" prefHeight="26.0" prefWidth="65.0" promptText="\$" />
       <ImageView fx:id="imgAlternativeThree" fitHeight="150.0" fitWidth="105.0" layoutX="508.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.0">
