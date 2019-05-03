@@ -1,0 +1,31 @@
+/********* COMMON STYLES */
+
+
+
+/********* =FONTS */
+@font-face {
+    font-family: 'Vegur Bold';
+    src: url('../fonts/Vegur-Bold.ttf');
+}
+@font-face {
+    font-family: 'Vegur Light';
+    src: url('../fonts/Vegur-Light.ttf');
+}
+@font-face {
+    font-family: 'Vegur';
+    src: url('../fonts/Vegur-Regular.ttf');
+}
+
+.root{
+    -fx-font-family: 'Vegur';
+}
+
+.font-light{
+    -fx-font-family: 'Vegur Light'!important;
+}
+.font-bold{
+    -fx-font-family: 'Vegur Bold'!important;
+}
+/********* END =FONTS */
+
+

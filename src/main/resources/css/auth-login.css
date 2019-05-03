@@ -1,0 +1,98 @@
+.root{
+    -fx-background-color: #fff;
+    -fx-background-radius: 20 0 20 20;
+}
+
+/********* =LOGIN TYPE TOGGLE */
+.login-type-toggle .radio-button{
+    -fx-background-color: #f4f5fa;
+    -fx-text-fill: #d7dae3;
+    -fx-font-size: 10;
+    -fx-padding: 0 0 0 5;
+}
+.login-type-toggle .radio-button > .radio {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0px;
+    -fx-padding: 0.0em;
+}
+.login-type-toggle  .radio-button:selected > .radio > .dot {
+    -fx-background-color: transparent;
+}
+
+.login-type-toggle .radio-button.left{
+    -fx-background-radius: 10 0 0 10;
+}
+.login-type-toggle .radio-button.right{
+    -fx-background-radius: 0 10 10 0;
+}
+.login-type-toggle .radio-button:selected{
+    -fx-background-color: #fd5e1a;
+    -fx-text-fill: #d7dae3;
+    -fx-font-family: 'Vegur Bold';
+
+}
+/********* END =LOGIN TYPE TOGGLE */
+
+
+/********* =LOGIN-FORM  */
+.login-form .label{
+    -fx-font-size: 12.5;
+    -fx-text-fill: #a9acc9;
+    -fx-padding: 0 0 6 5;
+
+}
+.login-form .text-field{
+    -fx-background-color: #e3e5eb;
+    -fx-background-radius: 10;
+    -fx-text-fill: #82859c;
+    -fx-padding: 0 0 0 10;
+    -fx-font-size: 11;
+}
+.login-form .forgot-password-lbl, .login-form .remember-password-cb{
+    -fx-font-size: 12.5;
+
+}
+.login-form .remember-password-cb .box{
+    -fx-background-color: #e3e5eb;
+}
+.login-form .remember-password-cb{
+    -fx-text-fill: #bfc2c8;
+}
+.login-form .remember-password-cb:selected .box{
+    -fx-background-color: #fd5e1a;
+}
+.login-form .remember-password-cb:selected .mark{
+    -fx-background-color: transparent;
+}
+.login-form .forgot-password-lbl{
+    -fx-font-family: 'Vegur Bold';
+    -fx-text-fill: #909fe9;
+}
+.login-form .login-btn{
+    -fx-background-image: url("../images/auth-login/login-btn@2x.png");
+    -fx-background-color: transparent;
+    -fx-background-size: 190 47;
+}
+.login-form .login-btn:hover{
+    -fx-background-image: url("../images/auth-login/login-btn-hover@2x.png");
+}
+.login-form .login-btn:pressed{
+    -fx-background-image: url("../images/auth-login/login-btn-active@2x.png");
+}
+/********* END =LOGIN-FORM   */
+
+/********* =REGISTRATION CALLOUT BTN */
+.registration-btn{
+    -fx-background-color: #fff;
+    -fx-background-radius: 20 0 20 0;
+    -fx-text-fill: #fd5f19;
+    -fx-font-size: 16;
+
+}
+/********* END =REGISTRATION CALLOUT BTN */
+
+
+
+
+

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<<<<<<< HEAD
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -13,3 +14,41 @@
       </AnchorPane>
    </children>
 </AnchorPane>
+=======
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane maxHeight="729.0" maxWidth="1000.0" minHeight="729.0" minWidth="1000.0" prefHeight="729.0" prefWidth="1000.0" styleClass="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.wrappers.MainViewWrapper">
+   <center>
+      <AnchorPane fx:id="loadingPane" prefHeight="694.0" prefWidth="1000.0" BorderPane.alignment="CENTER" />
+   </center>
+   <stylesheets>
+      <URL value="@../../css/window.css" />
+      <URL value="@../../css/common.css" />
+   </stylesheets>
+   <top>
+      <HBox alignment="CENTER_RIGHT" onMouseDragged="#windowDragEnd" onMousePressed="#windowDragStart" prefHeight="35.0" prefWidth="996.0" styleClass="title-bar" BorderPane.alignment="CENTER">
+         <children>
+            <StackPane maxHeight="35.0" maxWidth="45.0" minHeight="35.0" minWidth="45.0" onMousePressed="#windowMinimize" prefHeight="35.0" prefWidth="45.0" styleClass="minimize-btn">
+               <children>
+                  <Button maxHeight="1.0" maxWidth="10.0" minHeight="1.0" minWidth="10.0" mnemonicParsing="false" prefHeight="1.0" prefWidth="10.0" />
+               </children>
+            </StackPane>
+            <StackPane maxHeight="35.0" maxWidth="45.0" minHeight="35.0" minWidth="45.0" onMousePressed="#windowClose" prefHeight="35.0" prefWidth="45.0" styleClass="close-btn">
+               <children>
+                  <Button maxHeight="10.0" maxWidth="10.0" minHeight="10.0" minWidth="10.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" />
+               </children>
+            </StackPane>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </top>
+</BorderPane>
+>>>>>>> master

@@ -1,0 +1,31 @@
+.root{
+    -fx-background-color: #3f4fa5;
+    -fx-background-radius: 20;
+    -fx-focus-color: transparent;
+}
+/********* =TITLE-BAR */
+.title-bar .button{
+    -fx-background-color: #fff;
+    -fx-focus-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-size: 10 10;
+}
+.title-bar .button:pressed, .title-bar .button:hover{
+    -fx-background-insets: 0;
+}
+.title-bar .close-btn .button{
+    -fx-shape: "M6.333,5.854 L10.464,10.001 C10.660,10.197 10.660,10.520 10.464,10.717 C10.366,10.815 10.239,10.863 10.109,10.863 C9.980,10.863 9.852,10.815 9.755,10.717 L5.623,6.567 L1.491,10.717 C1.394,10.815 1.266,10.863 1.137,10.863 C1.007,10.863 0.880,10.815 0.782,10.717 C0.586,10.520 0.586,10.197 0.782,10.001 L4.913,5.854 L0.782,1.706 C0.586,1.509 0.586,1.190 0.782,0.993 C0.978,0.797 1.296,0.797 1.491,0.993 L5.623,5.141 L9.755,0.993 C9.950,0.797 10.268,0.797 10.464,0.993 C10.660,1.190 10.660,1.509 10.464,1.706 L6.333,5.854 Z";
+}
+.title-bar .close-btn:hover{
+    -fx-background-color: #f52121;
+    -fx-background-radius: 0 20 0 0;
+}
+.title-bar .minimize-btn .button{
+    -fx-shape: "M0.412,0.476 L10.654,0.476 L10.654,1.410 L0.412,1.410 L0.412,0.476 Z";
+}
+.title-bar .minimize-btn:hover{
+    -fx-background-color: #223288;
+}
+/********* END =TITLE-BAR */
+
+
