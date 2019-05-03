@@ -5,16 +5,9 @@ import com.espressoshock.drinkle.models.Ingredient;
 import com.espressoshock.drinkle.models.IngredientCategory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -89,7 +82,8 @@ public class IngredientViewController implements Initializable {
     @FXML
     private void selectAddToFavorit() {
     }
-
+    private void changeScene(String fxmlFile) {
+    }
     @FXML
     private void selectCreate() {
     }
@@ -100,10 +94,10 @@ public class IngredientViewController implements Initializable {
         MenuItem selection = (MenuItem) e.getSource();
         if (selection.getText().equals("Account Scene")) {
             //TODO changeScene to AccountScene
-            changeScene("auth-login.fxml", e);//to check
+            changeScene("AccountScene.fxml");//to check
         } else {
             //TODO changeScene to RecipeScene
-            changeScene("auth-login.fxml", e);//to check
+            changeScene("RecipeScene.fxml");//to check
         }
     }//TODO add the right fxml file when ready
     @FXML
@@ -113,7 +107,6 @@ public class IngredientViewController implements Initializable {
         for (Ingredient x : ingredientsList) {
             if (text.length() != 0) {
                 if (x.getName().toLowerCase().contains(text)) {
-                    System.out.println(text);
                     Button button = new Button();
                     button.setOnAction(this::selectVboxButton);
                     button.setMinWidth(280);
@@ -121,7 +114,7 @@ public class IngredientViewController implements Initializable {
                     button.setText(x.getName());
                     vBoxIngredients.getChildren().add(button);
                 }
-            }else{
+            }else if(txtFieldProductName.getText().isEmpty()){
                 prgBarAlc.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
                 prgBarPrice.setProgress(ProgressBar.INDETERMINATE_PROGRESS);
             }
@@ -312,17 +305,5 @@ public class IngredientViewController implements Initializable {
         brandsList.add(Brand.SHERIDANS);
     }
 
-    private void changeScene(String sceneFile, ActionEvent event) {
-        try {
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(sceneFile));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
