@@ -1,11 +1,13 @@
 package com.espressoshock.drinkle.controllers;
 
+import com.espressoshock.drinkle.models.Action;
 import com.espressoshock.drinkle.models.Brand;
 import com.espressoshock.drinkle.models.Ingredient;
 import com.espressoshock.drinkle.models.IngredientCategory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -18,21 +20,22 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class IngredientViewController implements Initializable {
+public class IngredientViewController implements Initializable{
 
     private ArrayList<Brand> brandsList = new ArrayList<>();
     private ArrayList<IngredientCategory> typesList = new ArrayList<>();
     private ArrayList<Ingredient> ingredientsList = new ArrayList<>();
 
     @FXML
-    private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10, button11, button12, button13, button14, button15, button16, button17, button18, button19, button20, button21, button22, button23, button24, button25, button26,button35, button36,
-            button41, button42, button43, button44, button45, button46, button47, button48, btnCreate, btnAddToInventory, btnInvisibleOne, btnInvisibleTwo, btnInvisibleThree, btnSearch, button27, button28, button29, button30, button31, button32, button33, button34, button37, button38, button39, button40;
+    private VBox vBoxIngredients;
+    @FXML
+    private Button  btnCreate, btnAddToInventory, btnInvisibleOne, btnInvisibleTwo, btnInvisibleThree, btnSearch;
     @FXML
     private MenuButton menuButtonGOTO, menuButtonSelectBrand, menuButtonSelectType;
-    @FXML
+ /*   @FXML
     private MenuItem menuItemAccountScene, menuItemRecipe, menuItemBrand1, menuItemBrand2, menuItemBrand3, menuItemBrand4, menuItemBrand5, menuItemBrand6, menuItemBrand7, menuItemBrand8, menuItemBrand9, menuItemBrand10, menuItemBrand11, menuItemBrand12, menuItemBrand13, menuItemBrand14, menuItemBrand15, menuItemBrand16, menuItemBrand17, menuItemBrand18, menuItemBrand19, menuItemBrand20,
             menuItemVodka, menuItemGin, menuItemWhiskey, menuItemVermouth, menuItemLiqueur, menuItemRum, menuItemTequila, menuItemBitter, menuItemWine, menuItemBeer, menuItemBrandy, menuItemCider, menuItemWater, menuItemSyrup, menuItemuice, menuItemWarmDrink, menuItemIceType, menuItemFruit, menuItemGarnish, menuItemPowder, menuItemGlassware, menuItemDairyProducts;
-    @FXML
+  */  @FXML
     private CheckBox checkBoxAddFavorite, checkBoxLike;
     @FXML
     private TextArea txtAreaDescription;
@@ -43,19 +46,12 @@ public class IngredientViewController implements Initializable {
     @FXML
     private ProgressBar prgBarAlc, prgBarPrice;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         setBrandsList();
         setTypesList();
         setIngredientsList();
-        button1.setOnAction(e -> { selectVboxButton(e); });button2.setOnAction(e -> { selectVboxButton(e); });button3.setOnAction(e -> { selectVboxButton(e); });button4.setOnAction(e -> { selectVboxButton(e); });button5.setOnAction(e -> { selectVboxButton(e); });button6.setOnAction(e -> { selectVboxButton(e); });button7.setOnAction(e -> { selectVboxButton(e); });button8.setOnAction(e -> { selectVboxButton(e); });
-        button9.setOnAction(e -> { selectVboxButton(e); });button10.setOnAction(e -> { selectVboxButton(e); });button11.setOnAction(e -> { selectVboxButton(e); });button12.setOnAction(e -> { selectVboxButton(e); });button13.setOnAction(e -> { selectVboxButton(e); });
-        button14.setOnAction(e -> { selectVboxButton(e); });button15.setOnAction(e -> { selectVboxButton(e); });button16.setOnAction(e -> { selectVboxButton(e); });button17.setOnAction(e -> { selectVboxButton(e); });button18.setOnAction(e -> { selectVboxButton(e); });button19.setOnAction(e -> { selectVboxButton(e); });button20.setOnAction(e -> { selectVboxButton(e); });button21.setOnAction(e -> { selectVboxButton(e); });
-        button22.setOnAction(e -> { selectVboxButton(e); });button23.setOnAction(e -> { selectVboxButton(e); });button24.setOnAction(e -> { selectVboxButton(e); });button25.setOnAction(e -> { selectVboxButton(e); });button26.setOnAction(e -> { selectVboxButton(e); });button27.setOnAction(e -> { selectVboxButton(e); });button28.setOnAction(e -> { selectVboxButton(e); });button29.setOnAction(e -> {    });button30.setOnAction(e -> { selectVboxButton(e); });
-        button31.setOnAction(e -> { selectVboxButton(e); });button32.setOnAction(e -> { selectVboxButton(e); });button33.setOnAction(e -> { selectVboxButton(e); });button34.setOnAction(e -> { selectVboxButton(e); });button35.setOnAction(e -> { selectVboxButton(e); });button36.setOnAction(e -> { selectVboxButton(e); });button37.setOnAction(e -> { selectVboxButton(e); });button38.setOnAction(e -> { selectVboxButton(e); });button39.setOnAction(e -> { selectVboxButton(e); });
-        button40.setOnAction(e -> { selectVboxButton(e); });button41.setOnAction(e -> { selectVboxButton(e); });button42.setOnAction(e -> { selectVboxButton(e); });button43.setOnAction(e -> { selectVboxButton(e); });button44.setOnAction(e -> { selectVboxButton(e); });button45.setOnAction(e -> { selectVboxButton(e); });button46.setOnAction(e -> { selectVboxButton(e); });button47.setOnAction(e -> { selectVboxButton(e); });button48.setOnAction(e -> { selectVboxButton(e); });
 
         //Change Product with the one selected from the alternatives
         btnInvisibleOne.setOnAction(e -> {
@@ -89,11 +85,6 @@ public class IngredientViewController implements Initializable {
         btnSearch.setOnAction(e -> {
         });
 
-        //Will set the ingredient general display and the three alternatives// txtFieldSimilarWith.setOnAction(e->{});
-        button1.setOnAction(e -> {
-            selectVboxButton(e);
-        });
-
     }
 
     // TODO*********************Methods*************************************
@@ -123,8 +114,24 @@ public class IngredientViewController implements Initializable {
     }
 
     //TODO****************************************************************
+    @FXML
+    public void selectMenuItemType(ActionEvent e) {
+        MenuItem selection = (MenuItem) e.getSource();
+ //       System.out.println(selection.getText());
+        for (Brand x: brandsList){
+            if (selection.getText().equals(x.getBrandNAme())) {
+                Button button = new Button(x.getBrandNAme());
+                vBoxIngredients.getChildren();
+            }
+        }
+    }
+    @FXML
+    public void selectMenuItemBrand(){
 
-    private void selectVboxButton(ActionEvent e) {
+    }
+
+    @FXML
+    public void selectVboxButton(ActionEvent e) {
 
         Button selectedButton = (Button) e.getSource();
         txtFieldProductName.setText(selectedButton.getText());

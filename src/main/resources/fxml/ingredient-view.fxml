@@ -21,242 +21,242 @@
          <content>
             <VBox fx:id="vBoxIngredients" prefHeight="1560.0" prefWidth="282.0">
                <children>
-                  <Button fx:id="button1" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="Absolut Dry" textAlignment="CENTER">
+                  <Button fx:id="button1" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="Absolut Dry" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button2" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="Smirnoff lemon">
+                  <Button fx:id="button2" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="Jameson black">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button3" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="Grey Goose XO">
+                  <Button fx:id="button3" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="Grey Goose XO">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button4" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="Tito's Extra">
+                  <Button fx:id="button4" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="Smirnoff lemon">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button5" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button5" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button6" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button6" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button7" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="41.0" prefWidth="281.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button7" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="41.0" prefWidth="281.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button8" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button8" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button9" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button9" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button10" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button10" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button11" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button11" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button12" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button12" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button13" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button13" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button14" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button14" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button15" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button15" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button16" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button16" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button17" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button17" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button18" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button18" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button19" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button19" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button20" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button20" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button21" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button21" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button22" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button22" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button23" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button23" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button24" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button24" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button25" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button25" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button26" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button26" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button27" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button27" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button28" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button28" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button29" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button29" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button30" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button30" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button31" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button31" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button32" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button32" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button33" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button33" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button34" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button34" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button35" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button35" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button36" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button36" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button37" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button37" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button38" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button38" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button39" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button39" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button40" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button40" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button41" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button41" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button42" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button42" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button43" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button43" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button44" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button44" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button45" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button45" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button46" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button46" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button47" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button47" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button48" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button48" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#selectVboxButton" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -336,52 +336,52 @@
       </MenuButton>
       <MenuButton fx:id="menuButtonSelectType" layoutX="5.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" stylesheets="@../css/ingredient-view.css" text="Select Type">
         <items>
-            <MenuItem fx:id="menuItemVodka" mnemonicParsing="false" text="Vodka" />
-            <MenuItem fx:id="menuItemGin" mnemonicParsing="false" text="Gin" />
-            <MenuItem fx:id="menuItemWhiskey" mnemonicParsing="false" text="Whiskey" />
-            <MenuItem fx:id="menuItemVermouth" mnemonicParsing="false" text="Vermouth" />
-            <MenuItem fx:id="menuItemLiqueur" mnemonicParsing="false" text="Liqueur" />
-            <MenuItem fx:id="menuItemRum" mnemonicParsing="false" text="Rum" />
-            <MenuItem fx:id="menuItemTequila" mnemonicParsing="false" text="Tequila" />
-            <MenuItem fx:id="menuItemBitter" mnemonicParsing="false" text="Bitter" />
-          <MenuItem fx:id="menuItemWine" mnemonicParsing="false" text="Wine" />
-          <MenuItem fx:id="menuItemBeer" mnemonicParsing="false" text="Beer" />
-            <MenuItem fx:id="menuItemBrandy" mnemonicParsing="false" text="Brandy" />
-            <MenuItem fx:id="menuItemCider" mnemonicParsing="false" text="Cider" />
-            <MenuItem fx:id="menuItemWater" mnemonicParsing="false" text="Water" />
-            <MenuItem fx:id="menuItemSyrup" mnemonicParsing="false" text="Syrup" />
-            <MenuItem fx:id="menuItemJuice" mnemonicParsing="false" text="Juice" />
-            <MenuItem fx:id="menuItemWarmDrink" mnemonicParsing="false" text="Warm Drink" />
-            <MenuItem fx:id="menuItemIceType" mnemonicParsing="false" text="Ice Type" />
-            <MenuItem fx:id="menuItemFruit" mnemonicParsing="false" text="Fruits" />
-            <MenuItem fx:id="menuItemGarnish" mnemonicParsing="false" text="Garnish" />
-            <MenuItem fx:id="menuItemPowder" mnemonicParsing="false" text="Powder" />
-            <MenuItem fx:id="menuItemGlassware" mnemonicParsing="false" text="Glassware" />
-            <MenuItem fx:id="menuItemDairyProducts" mnemonicParsing="false" text="Dairy Products" />
+            <MenuItem fx:id="menuItemVodka" mnemonicParsing="false" onAction="#selectMenuItemType" text="Vodka" />
+            <MenuItem fx:id="menuItemGin" mnemonicParsing="false" onAction="#selectMenuItemType" text="Gin" />
+            <MenuItem fx:id="menuItemWhiskey" mnemonicParsing="false" onAction="#selectMenuItemType" text="Whiskey" />
+            <MenuItem fx:id="menuItemVermouth" mnemonicParsing="false" onAction="#selectMenuItemType" text="Vermouth" />
+            <MenuItem fx:id="menuItemLiqueur" mnemonicParsing="false" onAction="#selectMenuItemType" text="Liqueur" />
+            <MenuItem fx:id="menuItemRum" mnemonicParsing="false" onAction="#selectMenuItemType" text="Rum" />
+            <MenuItem fx:id="menuItemTequila" mnemonicParsing="false" onAction="#selectMenuItemType" text="Tequila" />
+            <MenuItem fx:id="menuItemBitter" mnemonicParsing="false" onAction="#selectMenuItemType" text="Bitter" />
+          <MenuItem fx:id="menuItemWine" mnemonicParsing="false" onAction="#selectMenuItemType" text="Wine" />
+          <MenuItem fx:id="menuItemBeer" mnemonicParsing="false" onAction="#selectMenuItemType" text="Beer" />
+            <MenuItem fx:id="menuItemBrandy" mnemonicParsing="false" onAction="#selectMenuItemType" text="Brandy" />
+            <MenuItem fx:id="menuItemCider" mnemonicParsing="false" onAction="#selectMenuItemType" text="Cider" />
+            <MenuItem fx:id="menuItemWater" mnemonicParsing="false" onAction="#selectMenuItemType" text="Water" />
+            <MenuItem fx:id="menuItemSyrup" mnemonicParsing="false" onAction="#selectMenuItemType" text="Syrup" />
+            <MenuItem fx:id="menuItemJuice" mnemonicParsing="false" onAction="#selectMenuItemType" text="Juice" />
+            <MenuItem fx:id="menuItemWarmDrink" mnemonicParsing="false" onAction="#selectMenuItemType" text="Warm Drink" />
+            <MenuItem fx:id="menuItemIceType" mnemonicParsing="false" onAction="#selectMenuItemType" text="Ice Type" />
+            <MenuItem fx:id="menuItemFruit" mnemonicParsing="false" onAction="#selectMenuItemType" text="Fruits" />
+            <MenuItem fx:id="menuItemGarnish" mnemonicParsing="false" onAction="#selectMenuItemType" text="Garnish" />
+            <MenuItem fx:id="menuItemPowder" mnemonicParsing="false" onAction="#selectMenuItemType" text="Powder" />
+            <MenuItem fx:id="menuItemGlassware" mnemonicParsing="false" onAction="#selectMenuItemType" text="Glassware" />
+            <MenuItem fx:id="menuItemDairyProducts" mnemonicParsing="false" onAction="#selectMenuItemType" text="Dairy Products" />
         </items>
       </MenuButton>
       <MenuButton fx:id="menuButtonSelectBrand" layoutX="157.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="141.0" stylesheets="@../css/ingredient-view.css" text="Select Brand">
         <items>
-          <MenuItem fx:id="menuItemBrand1" mnemonicParsing="false" />
-          <MenuItem fx:id="menuItemBrand2" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand3" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand4" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand5" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand6" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand7" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand8" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand9" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand10" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand11" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand12" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand13" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand14" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand15" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand16" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand17" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand18" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand19" mnemonicParsing="false" />
-            <MenuItem fx:id="menuItemBrand20" mnemonicParsing="false" />
+          <MenuItem fx:id="menuItemBrand1" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+          <MenuItem fx:id="menuItemBrand2" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand3" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand4" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand5" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand6" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand7" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand8" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand9" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand10" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand11" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand12" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand13" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand14" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand15" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand16" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand17" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand18" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand19" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
+            <MenuItem fx:id="menuItemBrand20" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
         </items>
       </MenuButton>
    </children>
