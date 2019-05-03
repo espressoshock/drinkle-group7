@@ -32,10 +32,7 @@ public class IngredientViewController implements Initializable{
     private Button  btnCreate, btnAddToInventory, btnInvisibleOne, btnInvisibleTwo, btnInvisibleThree, btnSearch;
     @FXML
     private MenuButton menuButtonGOTO, menuButtonSelectBrand, menuButtonSelectType;
- /*   @FXML
-    private MenuItem menuItemAccountScene, menuItemRecipe, menuItemBrand1, menuItemBrand2, menuItemBrand3, menuItemBrand4, menuItemBrand5, menuItemBrand6, menuItemBrand7, menuItemBrand8, menuItemBrand9, menuItemBrand10, menuItemBrand11, menuItemBrand12, menuItemBrand13, menuItemBrand14, menuItemBrand15, menuItemBrand16, menuItemBrand17, menuItemBrand18, menuItemBrand19, menuItemBrand20,
-            menuItemVodka, menuItemGin, menuItemWhiskey, menuItemVermouth, menuItemLiqueur, menuItemRum, menuItemTequila, menuItemBitter, menuItemWine, menuItemBeer, menuItemBrandy, menuItemCider, menuItemWater, menuItemSyrup, menuItemuice, menuItemWarmDrink, menuItemIceType, menuItemFruit, menuItemGarnish, menuItemPowder, menuItemGlassware, menuItemDairyProducts;
-  */  @FXML
+    @FXML
     private CheckBox checkBoxAddFavorite, checkBoxLike;
     @FXML
     private TextArea txtAreaDescription;
@@ -117,17 +114,26 @@ public class IngredientViewController implements Initializable{
     @FXML
     public void selectMenuItemType(ActionEvent e) {
         MenuItem selection = (MenuItem) e.getSource();
- //       System.out.println(selection.getText());
+        menuButtonSelectBrand.getItems().clear();
         for (Brand x: brandsList){
-            if (selection.getText().equals(x.getBrandNAme())) {
-                Button button = new Button(x.getBrandNAme());
-                vBoxIngredients.getChildren();
+            if (selection.getText().equals(x.getProductType().getName())) {
+                MenuItem button = new MenuItem();
+                button.setText(x.getBrandName());
+                button.setOnAction(this::selectMenuItemBrand);
+               menuButtonSelectBrand.getItems().add(button);
             }
         }
     }
     @FXML
-    public void selectMenuItemBrand(){
-
+    public void selectMenuItemBrand(ActionEvent e){
+        MenuItem selection = (MenuItem) e.getSource();
+        System.out.println(selection.getText());
+        for (Brand x: brandsList){
+            if (selection.getText().equals(x.getBrandName())) {
+                Button button = new Button(x.getBrandName());
+                vBoxIngredients.getChildren();
+            }
+        }
     }
 
     @FXML

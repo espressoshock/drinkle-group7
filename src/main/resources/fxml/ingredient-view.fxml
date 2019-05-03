@@ -360,29 +360,6 @@
             <MenuItem fx:id="menuItemDairyProducts" mnemonicParsing="false" onAction="#selectMenuItemType" text="Dairy Products" />
         </items>
       </MenuButton>
-      <MenuButton fx:id="menuButtonSelectBrand" layoutX="157.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="141.0" stylesheets="@../css/ingredient-view.css" text="Select Brand">
-        <items>
-          <MenuItem fx:id="menuItemBrand1" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-          <MenuItem fx:id="menuItemBrand2" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand3" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand4" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand5" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand6" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand7" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand8" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand9" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand10" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand11" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand12" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand13" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand14" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand15" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand16" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand17" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand18" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand19" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-            <MenuItem fx:id="menuItemBrand20" mnemonicParsing="false" onAction="#selectMenuItemBrand" />
-        </items>
-      </MenuButton>
+      <MenuButton fx:id="menuButtonSelectBrand" layoutX="157.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="141.0" stylesheets="@../css/ingredient-view.css" text="Select Brand" />
    </children>
 </AnchorPane>

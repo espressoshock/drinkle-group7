@@ -50,18 +50,18 @@ public enum Brand {
     PAULANER("Paulaner", "Beer", IngredientCategory.BEER),STELLA_ARTIOS("Stella Artios", "Beer", IngredientCategory.BEER),
     BIRRA_MORETTI("Birra Moretti", "Beer", IngredientCategory.BEER),SKOL("Skol", "Beer", IngredientCategory.BEER);
 
-    private final String brandNAme;
+    private final String brandName;
     private final String description;
     private final IngredientCategory productType;
 
     Brand(String brandNAme, String description, IngredientCategory productType) {
-        this.brandNAme = brandNAme;
+        this.brandName = brandNAme;
         this.description = description;
         this.productType = productType;
     }
 
-    public String getBrandNAme() {
-        return brandNAme;
+    public String getBrandName() {
+        return brandName;
     }
 
     public String getDescription() {
