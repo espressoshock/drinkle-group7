@@ -1,9 +1,12 @@
 package com.espressoshock.drinkle.models;
 
+import javafx.scene.image.Image;
+
 import java.sql.Timestamp;
 import java.util.List;
 
-public class Ingredient extends Blueprint{
+public class Ingredient{    //TODO  extends Blueprint{
+
     private String name;
     private String description;
     private String orderCode;
@@ -12,8 +15,21 @@ public class Ingredient extends Blueprint{
     private IngredientCategory category;
     private Package aPackage;
     private Brand brand;
+    private double price;
+    private double alcohol;
 
-    public Ingredient(String metadata, Timestamp ts, int blueprintId, List<Permission> permissions, AccessLevel accessLevel, Statistic statistic, String name, String description, String orderCode, float abv, String pictureURL, IngredientCategory category, Package aPackage, Brand brand) {
+
+    public Ingredient(String name, String description, IngredientCategory category, Brand brand, double price, double alcohol) {
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.brand = brand;
+        this.price = price;
+        this.alcohol = alcohol;
+    }
+
+/*    public Ingredient(String metadata, Timestamp ts, int blueprintId, List<Permission> permissions, AccessLevel accessLevel, Statistic statistic,
+                      String name, String description, String orderCode, float abv, String pictureURL, IngredientCategory category, Package aPackage, Brand brand) {
         super(metadata, ts, blueprintId, permissions, accessLevel, statistic);
         this.name = name;
         this.description = description;
@@ -23,6 +39,14 @@ public class Ingredient extends Blueprint{
         this.category = category;
         this.aPackage = aPackage;
         this.brand = brand;
+        }*/
+
+    public double getAlcohol() {
+        return alcohol;
+    }
+
+    public void setAlcohol(double alcohol) {
+        this.alcohol = alcohol;
     }
 
     public String getName() {
@@ -53,9 +77,7 @@ public class Ingredient extends Blueprint{
         return category;
     }
 
-    public Package getaPackage() {
-        return aPackage;
-    }
+    public Package getaPackage() {return aPackage;}
 
     public void setName(String name) {
         this.name = name;
@@ -81,11 +103,13 @@ public class Ingredient extends Blueprint{
         this.category = category;
     }
 
-    public void setaPackage(Package aPackage) {
-        this.aPackage = aPackage;
-    }
+    public void setaPackage(Package aPackage) {this.aPackage = aPackage;}
 
     public void setBrand(Brand brand) {
         this.brand = brand;
     }
+
+    public double getPrice() { return price; }
+
+    public void setPrice(double price) { this.price = price; }
 }

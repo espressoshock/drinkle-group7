@@ -21,22 +21,22 @@
          <content>
             <VBox fx:id="vBoxIngredients" prefHeight="1560.0" prefWidth="282.0">
                <children>
-                  <Button fx:id="button1" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button1" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="Absolut Dry" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button2" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button2" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="Smirnoff lemon">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button3" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button3" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="Grey Goose XO">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button4" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css">
+                  <Button fx:id="button4" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="280.0" stylesheets="@../css/ingredient-view.css" text="Tito's Extra">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -304,7 +304,10 @@
          </image>
       </ImageView>
       <Label layoutX="305.0" layoutY="414.0" prefHeight="26.0" prefWidth="76.0" text="Similar with" />
-      <TextField fx:id="txtFieldProductName" editable="false" layoutX="639.0" layoutY="50.0" prefHeight="39.0" prefWidth="296.0" promptText="Product  Name" />
+      <TextField fx:id="txtFieldProductName" alignment="CENTER" editable="false" layoutX="639.0" layoutY="50.0" prefHeight="57.0" prefWidth="296.0" promptText="Product  Name">
+         <font>
+            <Font name="Calibri Bold Italic" size="22.0" />
+         </font></TextField>
       <TextField fx:id="txtFieldLikes" editable="false" layoutX="905.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" promptText="No" />
       <TextField fx:id="txtFieldVisualisations" editable="false" layoutX="716.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" promptText="No" />
       <Label layoutX="864.0" layoutY="121.0" opacity="0.67" text="Likes" />

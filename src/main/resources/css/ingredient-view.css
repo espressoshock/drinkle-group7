@@ -7,6 +7,9 @@
 .text-field {
     -fx-background-color: invisible;
 }
+#txtFieldProductName{
+    -fx-text-fill: #4f0707;
+}
 #txtFieldSearchOptions{
     -fx-background-color: #ffb2b3;
     -fx-text-fill: black;
