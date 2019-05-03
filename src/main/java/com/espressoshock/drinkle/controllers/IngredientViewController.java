@@ -128,10 +128,17 @@ public class IngredientViewController implements Initializable{
     public void selectMenuItemBrand(ActionEvent e){
         MenuItem selection = (MenuItem) e.getSource();
         System.out.println(selection.getText());
-        for (Brand x: brandsList){
-            if (selection.getText().equals(x.getBrandName())) {
-                Button button = new Button(x.getBrandName());
-                vBoxIngredients.getChildren();
+        for(Ingredient x:ingredientsList){
+            System.out.println(x.getBrand().getBrandName());
+        }
+        for (Ingredient x: ingredientsList){
+            if (selection.getText().equals(x.getBrand().getBrandName())) {
+                Button button = new Button();
+                button.setOnAction(this::selectVboxButton);
+                button.setMinWidth(280);
+                button.setMinHeight(40);
+                button.setText(x.getName());
+                vBoxIngredients.getChildren().add(button);
             }
         }
     }

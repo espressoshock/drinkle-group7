@@ -2,7 +2,7 @@
     -fx-background-color: white;
     -fx-border-color: white;
     -fx-progress-color: white;
-    -fx-text-fill: #cbcbcb;
+    -fx-text-fill: black;
 }
 .text-field {
     -fx-background-color: invisible;
@@ -19,7 +19,9 @@
 .check-box{
     -fx-border-radius: 20;
 }
-
+#vBoxIngredients{
+    -fx-background-color: #fff7ee;
+}
 .menu-button{
     -fx-background-color: #ff7028;
     -fx-border-color: #ff7028;
