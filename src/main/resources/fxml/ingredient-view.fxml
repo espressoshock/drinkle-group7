@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPaneIngredients" prefHeight="700.0" prefWidth="950.0" stylesheets="@../css/ingredient-view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.IngredientViewController">
+<AnchorPane fx:id="anchorPaneIngredients" prefHeight="720.0" prefWidth="950.0" stylesheets="@../css/ingredient-view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.IngredientViewController">
    <children>
       <ScrollPane fx:id="scrollPaneIngredients" hbarPolicy="ALWAYS" layoutY="50.0" prefHeight="608.0" prefWidth="277.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="698.0" AnchorPane.topAnchor="50.0">
          <content>
@@ -29,14 +29,17 @@
          </image>
       </ImageView>
       <TextField fx:id="txtFieldSearchOptions" layoutX="305.0" layoutY="15.0" prefHeight="31.0" prefWidth="167.0" promptText="Search specific product" style="-fx-background-radius: 10;" stylesheets="@../css/ingredient-view.css" AnchorPane.bottomAnchor="685.0" AnchorPane.leftAnchor="302.0" AnchorPane.rightAnchor="528.0" AnchorPane.topAnchor="15.0" />
-      <Button fx:id="btnCreate" layoutX="41.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="217.0" stylesheets="@../css/ingredient-view.css" text="Create" />
+      <Button fx:id="btnCreate" layoutX="41.0" layoutY="672.0" mnemonicParsing="false" onAction="#selectCreate" prefHeight="50.0" prefWidth="217.0" stylesheets="@../css/ingredient-view.css" text="Create" />
       <Button fx:id="btnAddToInventory" layoutX="336.0" layoutY="672.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="217.0" stylesheets="@../css/ingredient-view.css" text="Add to my inventory" />
-      <TextField fx:id="txtFieldSimilarWith" editable="false" layoutX="380.0" layoutY="414.0" promptText="Product Name" />
+      <TextField fx:id="txtFieldSimilarWith" editable="false" layoutX="380.0" layoutY="414.0" promptText="Product Name">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font></TextField>
       <AnchorPane layoutX="305.0" layoutY="245.0" />
       <Label layoutX="307.0" layoutY="321.0" text="Alcohol " />
       <Label layoutX="309.0" layoutY="369.0" text="Price     " />
-      <ProgressBar fx:id="prgBarAlc" layoutX="366.0" layoutY="325.0" prefHeight="10.0" prefWidth="179.0" progress="0.51" stylesheets="@../css/ingredient-view.css" />
-      <ProgressBar fx:id="prgBarPrice" layoutX="366.0" layoutY="373.0" prefHeight="10.0" prefWidth="179.0" progress="0.5" stylesheets="@../css/ingredient-view.css" />
+      <ProgressBar fx:id="prgBarAlc" layoutX="366.0" layoutY="325.0" prefHeight="10.0" prefWidth="179.0" stylesheets="@../css/ingredient-view.css" />
+      <ProgressBar fx:id="prgBarPrice" layoutX="366.0" layoutY="373.0" prefHeight="10.0" prefWidth="179.0" stylesheets="@../css/ingredient-view.css" />
       <TextField fx:id="txtFieldAlcohol" editable="false" layoutX="547.0" layoutY="314.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="52.0" promptText="Alcoh">
          <font>
             <Font size="10.0" />
@@ -45,11 +48,6 @@
          <font>
             <Font size="10.0" />
          </font></TextField>
-      <ImageView fx:id="imgAlternativeThree" fitHeight="146.0" fitWidth="90.0" layoutX="521.0" layoutY="485.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="99.0">
-         <image>
-            <Image url="@../images/ingredientViewStartDisplay/ingredientMiseEnPlace.png" />
-         </image>
-      </ImageView>
       <ImageView fx:id="imgAlternativeTwo" fitHeight="147.0" fitWidth="105.0" layoutX="412.0" layoutY="501.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="101.375">
          <image>
             <Image url="@../images/ingredientViewStartDisplay/ingredientGarnish.png" />
@@ -69,23 +67,21 @@
       <TextField fx:id="txtFieldVisualisations" editable="false" layoutX="716.0" layoutY="117.0" prefHeight="20.0" prefWidth="40.0" promptText="No" />
       <Label layoutX="864.0" layoutY="121.0" opacity="0.67" text="Likes" />
       <Label layoutX="627.0" layoutY="121.0" opacity="0.67" text="Visualisations" />
-      <CheckBox fx:id="checkBoxLike" layoutX="711.0" layoutY="684.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="90.0" stylesheets="@../css/ingredient-view.css" text="Like it!" />
-      <CheckBox fx:id="checkBoxAddFavorite" layoutX="711.0" layoutY="648.0" mnemonicParsing="false" stylesheets="@../css/ingredient-view.css" text="Add to favorits" />
+      <CheckBox fx:id="checkBoxLike" layoutX="711.0" layoutY="684.0" mnemonicParsing="false" onAction="#selectLike" prefHeight="26.0" prefWidth="90.0" stylesheets="@../css/ingredient-view.css" text="Like it!" />
+      <CheckBox fx:id="checkBoxAddFavorite" layoutX="711.0" layoutY="648.0" mnemonicParsing="false" onAction="#selectAddToFavorit" stylesheets="@../css/ingredient-view.css" text="Add to favorits" />
       <Button fx:id="btnInvisibleOne" layoutX="308.0" layoutY="522.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="76.0" stylesheets="@../css/ingredient-view.css" />
-      <Button fx:id="btnInvisibleTwo" layoutX="430.0" layoutY="524.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="65.0" stylesheets="@../css/ingredient-view.css" />
-      <Button fx:id="btnInvisibleThree" layoutX="535.0" layoutY="520.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="65.0" stylesheets="@../css/ingredient-view.css" />
-      <ImageView fitHeight="50.0" fitWidth="55.0" layoutX="447.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="btnInvisibleTwo" layoutX="430.0" layoutY="524.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="76.0" stylesheets="@../css/ingredient-view.css" />
+      <ImageView fitHeight="43.0" fitWidth="52.0" layoutX="447.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ingredientViewStartDisplay/searchImage.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnSearch" layoutX="446.0" layoutY="15.0" minHeight="10.0" minWidth="52.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="54.0" stylesheets="@../css/ingredient-view.css" />
       <Label layoutX="597.0" layoutY="318.0" text="\%" />
       <Label layoutX="598.0" layoutY="364.0" text="\$" />
       <MenuButton fx:id="menuButtonGOTO" layoutX="880.0" layoutY="17.0" mnemonicParsing="false" stylesheets="@../css/ingredient-view.css" text="Go To">
         <items>
-          <MenuItem fx:id="menuItemAccountScene" mnemonicParsing="false" text="Account Scene" />
-          <MenuItem fx:id="menuItemRecipe" mnemonicParsing="false" text="Recipe Scene" />
+          <MenuItem fx:id="menuItemAccountScene" mnemonicParsing="false" onAction="#selectGoToMenuButton" text="Account Scene" />
+          <MenuItem fx:id="menuItemRecipe" mnemonicParsing="false" onAction="#selectGoToMenuButton" text="Recipe Scene" />
         </items>
          <font>
             <Font name="System Bold" size="12.0" />
@@ -118,5 +114,12 @@
         </items>
       </MenuButton>
       <MenuButton fx:id="menuButtonSelectBrand" layoutX="157.0" layoutY="16.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="141.0" stylesheets="@../css/ingredient-view.css" text="Select Brand" />
+      <ImageView fx:id="imgAlternativeThree" fitHeight="146.0" fitWidth="90.0" layoutX="533.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/ingredientViewStartDisplay/ingredientMiseEnPlace.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnInvisibleThree" layoutX="545.0" layoutY="522.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="70.0" stylesheets="@../css/ingredient-view.css" />
+      <Button fx:id="btnSearch" layoutX="446.0" layoutY="15.0" minHeight="10.0" minWidth="52.0" mnemonicParsing="false" onAction="#selectBtnSearch" prefHeight="31.0" prefWidth="54.0" stylesheets="@../css/ingredient-view.css" />
    </children>
 </AnchorPane>

@@ -26,8 +26,7 @@ public class Main extends Application {
 
         Scene mainScene = new Scene(root, windowWidth, windowHeight);
         mainScene.setFill(Color.TRANSPARENT);
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-
+        //TODO****primaryStage.initStyle(StageStyle.TRANSPARENT);
 
         primaryStage.setTitle("Drinkle");
         primaryStage.setResizable(false);

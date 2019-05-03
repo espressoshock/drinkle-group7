@@ -51,7 +51,7 @@ public enum Brand {
     BIRRA_MORETTI("Birra Moretti", "Beer", IngredientCategory.BEER),SKOL("Skol", "Beer", IngredientCategory.BEER);
 
     private final String brandName;
-    private final String description;//TODO*****probably not need it****
+    private final String description;
     private final IngredientCategory productType;
 
     Brand(String brandNAme, String description, IngredientCategory productType) {
@@ -64,7 +64,7 @@ public enum Brand {
         return brandName;
     }
 
-    public String getDescription() {//TODO****probably not need it******
+    public String getDescription() {
         return description;
     }
 

@@ -16,6 +16,9 @@
     -fx-background-radius: 5;
     -fx-border-radius: 5;
 }
+#txtFieldSimilarWith{
+    -fx-text-fill: #ff4c29;
+}
 .check-box{
     -fx-border-radius: 20;
 }

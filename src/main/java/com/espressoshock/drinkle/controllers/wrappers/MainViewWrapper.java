@@ -1,6 +1,5 @@
 package com.espressoshock.drinkle.controllers.wrappers;
 
-<<<<<<< HEAD
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,21 +8,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-=======
-import static com.espressoshock.drinkle.appState.UserState.loggedIn;
-import static com.espressoshock.drinkle.appState.UserState.loggedOut;
-
-import com.espressoshock.drinkle.appState.Current;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
->>>>>>> master
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import static com.espressoshock.drinkle.appState.UserState.loggedIn;
+import static com.espressoshock.drinkle.appState.UserState.loggedOut;
+import com.espressoshock.drinkle.appState.Current;
 
 import java.io.IOException;
 import java.net.URL;
@@ -84,18 +76,14 @@ public class MainViewWrapper implements Initializable {
     /********* =COMPONENT INJECTION FIELD */
     @FXML
     private AnchorPane loadingPane;
-<<<<<<< HEAD
     @FXML
     private Button buttonMoveToIngredientView;
-=======
     /********* END =COMPONENT INJECTION FIELD */
 
     /********* =TEMPORARY */
     private ViewLoader viewLoader;
     /********* =TEMPORARY */
->>>>>>> master
-
-    @FXML
+/***    @FXML
     public void initialize() throws IOException {
         viewLoader = new ViewLoader();
         ViewLoader.loadingWrapper = this.loadingPane;
@@ -109,9 +97,8 @@ public class MainViewWrapper implements Initializable {
             viewLoader.load(ViewPaths.AUTH_LOGIN);
 
         }
-    }
+    }*/
 
-<<<<<<< HEAD
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         buttonMoveToIngredientView.setOnAction(e->{
@@ -134,9 +121,6 @@ public class MainViewWrapper implements Initializable {
         }
     }
 
-=======
-
-
     /********* =WINDOW-CONTROLS */
     @FXML
     public void windowDragStart(MouseEvent event) {
@@ -156,5 +140,4 @@ public class MainViewWrapper implements Initializable {
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).setIconified(true);
     }
     /********* END =WINDOW-CONTROLS */
->>>>>>> master
 }
