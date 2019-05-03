@@ -44,49 +44,19 @@ public class IngredientViewController implements Initializable {
         setBrandsList();
         setTypesList();
         setIngredientsList();
-
-        //Change Product with the one selected from the alternatives
-        btnInvisibleOne.setOnAction(e -> {
-        });
-        btnInvisibleTwo.setOnAction(e -> {
-        });
-        btnInvisibleThree.setOnAction(e -> {
-        });
-
-        //Opens two scenes to chose from
-        menuButtonGOTO.setOnAction(e -> {
-        });
-
-        //Will change the scene with Recipe Scene
-        btnCreate.setOnAction(e -> {
-        });
-
-        //Will add the product to inventory
-        btnAddToInventory.setOnAction(e -> {
-        });
-
-        //Will set the content of menuButtonSelectBrand
-        menuButtonSelectType.setOnAction(e -> {
-        });
-
-        //Will set the content of the Vbox
-        menuButtonSelectBrand.setOnAction(e -> {
-        });
     }
 
     // TODO*********************Methods*************************************
     @FXML
-    private void selectLike() {
-    }
+    private void selectSimilarProductPicture(){}
+    @FXML
+    private void selectLike(){}
+    @FXML
+    private void selectAddToFavorit(){}
+    @FXML
+    private void selectCreate(){}
 
-    @FXML
-    private void selectAddToFavorit() {
-    }
-    private void changeScene(String fxmlFile) {
-    }
-    @FXML
-    private void selectCreate() {
-    }
+    private void changeScene(String fxmlFile){}
     //TODO****************************************************************End
 
     @FXML

@@ -69,8 +69,8 @@
       <Label layoutX="627.0" layoutY="121.0" opacity="0.67" text="Visualisations" />
       <CheckBox fx:id="checkBoxLike" layoutX="711.0" layoutY="684.0" mnemonicParsing="false" onAction="#selectLike" prefHeight="26.0" prefWidth="90.0" stylesheets="@../css/ingredient-view.css" text="Like it!" />
       <CheckBox fx:id="checkBoxAddFavorite" layoutX="711.0" layoutY="648.0" mnemonicParsing="false" onAction="#selectAddToFavorit" stylesheets="@../css/ingredient-view.css" text="Add to favorits" />
-      <Button fx:id="btnInvisibleOne" layoutX="308.0" layoutY="522.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="76.0" stylesheets="@../css/ingredient-view.css" />
-      <Button fx:id="btnInvisibleTwo" layoutX="430.0" layoutY="524.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="76.0" stylesheets="@../css/ingredient-view.css" />
+      <Button fx:id="btnInvisibleOne" layoutX="308.0" layoutY="522.0" mnemonicParsing="false" onAction="#selectSimilarProductPicture" prefHeight="100.0" prefWidth="76.0" stylesheets="@../css/ingredient-view.css" />
+      <Button fx:id="btnInvisibleTwo" layoutX="430.0" layoutY="524.0" mnemonicParsing="false" onAction="#selectSimilarProductPicture" prefHeight="100.0" prefWidth="76.0" stylesheets="@../css/ingredient-view.css" />
       <ImageView fitHeight="43.0" fitWidth="52.0" layoutX="447.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/ingredientViewStartDisplay/searchImage.png" />
@@ -119,7 +119,7 @@
             <Image url="@../images/ingredientViewStartDisplay/ingredientMiseEnPlace.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnInvisibleThree" layoutX="545.0" layoutY="522.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="70.0" stylesheets="@../css/ingredient-view.css" />
+      <Button fx:id="btnInvisibleThree" layoutX="545.0" layoutY="522.0" mnemonicParsing="false" onAction="#selectSimilarProductPicture" prefHeight="100.0" prefWidth="70.0" stylesheets="@../css/ingredient-view.css" />
       <Button fx:id="btnSearch" layoutX="446.0" layoutY="15.0" minHeight="10.0" minWidth="52.0" mnemonicParsing="false" onAction="#selectBtnSearch" prefHeight="31.0" prefWidth="54.0" stylesheets="@../css/ingredient-view.css" />
    </children>
 </AnchorPane>
