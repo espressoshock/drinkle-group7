@@ -17,20 +17,20 @@ public class Package {
         return volume;
     }
 
-    public Unit getUnit() {
-        return unit;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
     public void setVolume(double volume) {
         this.volume = volume;
     }
 
+    public Unit getUnit() {
+        return unit;
+    }
+
     public void setUnit(Unit unit) {
         this.unit = unit;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
     }
 
     public void setPrice(BigDecimal price) {

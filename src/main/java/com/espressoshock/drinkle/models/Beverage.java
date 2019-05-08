@@ -23,36 +23,36 @@ public class Beverage extends Blueprint {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public String getPictureURL() {
-        return pictureURL;
-    }
-
-    public double getPourCost() {
-        return pourCost;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
     }
 
+    public String getPictureURL() {
+        return pictureURL;
+    }
+
     public void setPictureURL(String pictureURL) {
         this.pictureURL = pictureURL;
+    }
+
+    public double getPourCost() {
+        return pourCost;
     }
 
     public void setPourCost(double pourCost) {

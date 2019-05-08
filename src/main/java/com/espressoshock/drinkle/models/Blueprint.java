@@ -7,7 +7,7 @@ public abstract class Blueprint {
     private String metadata;
     private Timestamp ts;
     private int blueprintId;
-    private List<Permission>permissions;
+    private List<Permission> permissions;
     private AccessLevel accessLevel;
     private Statistic statistic;
 
@@ -21,17 +21,17 @@ public abstract class Blueprint {
     }
 
     ////////////////***************** PERMISSION MNG-M
-    public void addPermissions(Permission ...permissions){
+    public void addPermissions(Permission... permissions) {
         for (Permission permission : permissions)
             this.addPermission(permission);
     }
 
-    public boolean addPermission(Permission permission){
+    public boolean addPermission(Permission permission) {
         //might wanna check if permission exists? -> wait for back-end implementation
         return this.permissions.add(permission);
     }
 
-    public boolean removePermission(Permission permission){
+    public boolean removePermission(Permission permission) {
         return this.permissions.remove(permission);
     }
 
@@ -39,7 +39,7 @@ public abstract class Blueprint {
         return this.permissions.remove(pos);
     }
 
-    public void clearPermission(){
+    public void clearPermission() {
         this.permissions.clear();
     }
 
@@ -47,6 +47,10 @@ public abstract class Blueprint {
 
     public String getMetadata() {
         return metadata;
+    }
+
+    public void setMetadata(String metadata) {
+        this.metadata = metadata;
     }
 
     public Timestamp getTs() {
@@ -61,24 +65,20 @@ public abstract class Blueprint {
         return permissions;
     }
 
-    public AccessLevel getAccessLevel() {
-        return accessLevel;
-    }
-
-    public Statistic getStatistic() {
-        return statistic;
-    }
-
-    public void setMetadata(String metadata) {
-        this.metadata = metadata;
-    }
-
     public void setPermissions(List<Permission> permissions) {
         this.permissions = permissions;
     }
 
+    public AccessLevel getAccessLevel() {
+        return accessLevel;
+    }
+
     public void setAccessLevel(AccessLevel accessLevel) {
         this.accessLevel = accessLevel;
+    }
+
+    public Statistic getStatistic() {
+        return statistic;
     }
 
     public void setStatistic(Statistic statistic) {

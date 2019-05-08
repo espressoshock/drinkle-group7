@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Statistic {
     private long views;
-    private List<Like>likes;
+    private List<Like> likes;
 
     public Statistic(long views, List<Like> likes) {
         this.views = views;

@@ -13,12 +13,12 @@ public class Permission {
         return permissionType;
     }
 
+    public void setPermissionType(PermissionType permissionType) {
+        this.permissionType = permissionType;
+    }
+
     public Account getAccount() {
         return account;
     }
 
-    public void setPermissionType(PermissionType permissionType) {
-        this.permissionType = permissionType;
-    }
-    
 }

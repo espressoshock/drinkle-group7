@@ -5,7 +5,7 @@ public enum PermissionType {
 
     private final String permissionTextual;
 
-    PermissionType(String permissionTextual){
+    PermissionType(String permissionTextual) {
         this.permissionTextual = permissionTextual;
     }
 

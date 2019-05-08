@@ -1,40 +1,60 @@
 package com.espressoshock.drinkle.models;
 
-public class Account implements IActionAccount{
+public class Account implements IActionAccount {
     private String accountID;
     private String accountName;
     private String accountPassword;
     private Person registered;
     private Blueprint blueprint;
 
-    public Account(String accountID, String accountName,String accountPassword,Person registered,
-    Blueprint blueprint){
-    this.accountID = accountID;
-    this.accountName = accountName;
-    this.accountPassword = accountPassword;
-    this.registered = registered;
-    this.blueprint = blueprint;
+    public Account(String accountID, String accountName, String accountPassword, Person registered,
+                   Blueprint blueprint) {
+        this.accountID = accountID;
+        this.accountName = accountName;
+        this.accountPassword = accountPassword;
+        this.registered = registered;
+        this.blueprint = blueprint;
     }
 
-    public String getAccountID(){return accountID;}
+    public String getAccountID() {
+        return accountID;
+    }
 
-    public String getAccountName(){return accountName;}
+    public void setAccountID(String accountID) {
+        this.accountID = accountID;
+    }
 
-    public String getAccountPassword(){return accountPassword;}
+    public String getAccountName() {
+        return accountName;
+    }
 
-    public Person getRegistered(){return registered;}
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
 
-    public Blueprint getBlueprint(){return blueprint;}
+    public String getAccountPassword() {
+        return accountPassword;
+    }
 
-    public void setAccountID(String accountID){this.accountID = accountID;}
+    public void setAccountPassword(String accountPassword) {
+        this.accountPassword = accountPassword;
+    }
 
-    public void setAccountName(String accountName){this.accountName = accountName;}
+    public Person getRegistered() {
+        return registered;
+    }
 
-    public void setAccountPassword(String accountPassword){this.accountPassword = accountPassword;}
+    public void setRegistered(Person registered) {
+        this.registered = registered;
+    }
 
-    public void setRegistered(Person registered){this.registered = registered;}
+    public Blueprint getBlueprint() {
+        return blueprint;
+    }
 
-    public void setBlueprint(Blueprint blueprint){this.blueprint = blueprint;}
+    public void setBlueprint(Blueprint blueprint) {
+        this.blueprint = blueprint;
+    }
 
     @Override
     public String toString() {

@@ -1,6 +1,6 @@
 package com.espressoshock.drinkle.models;
 
-public class PrivateAccount extends Account{
+public class PrivateAccount extends Account {
 
     private String email;
     private String username;
