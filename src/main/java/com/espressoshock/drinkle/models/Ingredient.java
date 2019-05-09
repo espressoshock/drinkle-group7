@@ -13,6 +13,7 @@ public class Ingredient extends Blueprint{
     private Package aPackage;
     private Brand brand;
 
+
     public Ingredient(String metadata, Timestamp ts, int blueprintId, List<Permission> permissions, AccessLevel accessLevel, Statistic statistic, String name, String description, String orderCode, float abv, String pictureURL, IngredientCategory category, Package aPackage, Brand brand) {
         super(metadata, ts, blueprintId, permissions, accessLevel, statistic);
         this.name = name;
