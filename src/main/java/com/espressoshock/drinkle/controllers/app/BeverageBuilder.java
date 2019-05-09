@@ -29,7 +29,9 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     Integer volumeSeparator = 0;
     Double progressSeparator = 0.0;
     String strDouble = null;
-    String cost = null;
+    String cost = "0.0";
+    double costIncrease = 0.0;
+    double slidervalueset = 0.0;
     Double volume = null;
     int index = 0;
     Random rand = new Random();
@@ -57,10 +59,10 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private void sliderProgressChange(){
         slider.valueProperty().addListener((arg0, arg1, arg2) -> {
             try {
-                strDouble = String.format("%.2f", slider.getValue());
-                volume = Double.parseDouble(strDouble) * 100;
-                cost = String.format("%.2f", Double.parseDouble(strDouble)*selected.getPrice()/10);
-                progressGlass.setProgress(Double.parseDouble(strDouble));
+                strDouble = String.format("%.2f", slider.getValue()-slidervalueset);
+                volume = Double.parseDouble(String.format("%.2f", slider.getValue())) * 100;
+                cost = String.format("%.2f", costIncrease + (Double.parseDouble(strDouble)*selected.getPrice()/10));
+                progressGlass.setProgress(Double.parseDouble(String.format("%.2f", slider.getValue())));
                 lblVolume.setText(String.valueOf(volume.intValue()));
                 lblCost.setText(cost);
             } catch(NumberFormatException ex) {
@@ -116,6 +118,8 @@ public void dummyIngredientCreate(){//for Test Purpose Only!!!!
 
 public void addIngredientWidget(){
         // Test purposes only
+    costIncrease = Double.parseDouble(cost);
+    slidervalueset = slider.getValue();
     double diff = slider.getValue() - slider.getMin();
     index = 1;
     Integer setVolume = volume.intValue() - volumeSeparator;
@@ -164,6 +168,7 @@ public void addIngredientWidget(){
     volumeSeparator = volume.intValue();
     progressSeparator = progressGlass.getProgress();
     slider.setMin(slider.getValue());
+    //cost = String.format("%.2f", Double.parseDouble(cost)+selected.getPrice()/10);
     index =+1;
 
 
