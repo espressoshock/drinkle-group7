@@ -3,7 +3,7 @@
 
 }
 #btnSearch{
-    -fx-background-color: invisible;
+    -fx-background-color: transparent;
     -fx-border-color: #4475ff;
     -fx-border-radius: 0 20 20 0;
 }
@@ -15,21 +15,21 @@
     -fx-border-color: #4475ff;
 }
 #btnChoose1, #btnChoose2{
-    -fx-background-color: invisible;
-    -fx-border-color: invisible;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
 }
 #menuButtonBrands{
     -fx-background-radius: 20 0 0 20;
     -fx-border-radius: 20 0 0 20;
 }
 #txtAreaDescription{
-    -fx-background-color: invisible;
-    -fx-border-color: invisible;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
     -fx-text-fill: #581616;
 }
 .text-field{
-    -fx-background-color: invisible;
-    -fx-border-color: invisible;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
  }
 #btnCreate,#btnAddToInventory{
     -fx-border-radius: 10;
