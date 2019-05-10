@@ -150,6 +150,7 @@ public void addIngredientWidget(){
 
     Group ingredient = new Group();
     ingredient.getChildren().addAll(ingredientName, ingredientVolume, addedIngredientPercentBar, overlay);
+    addedIng added = new addedIng(lblChosenName.getText(),setVolume,setProgress);
     overlay.setContextMenu(removeMenu);
     item1.setOnAction(new EventHandler<ActionEvent>() {
         @Override
@@ -157,7 +158,8 @@ public void addIngredientWidget(){
 
             slider.setMin(diff);
             slider.setValue(slider.getMin()-setProgress);
-            volumeSeparator = volumeSeparator-3;
+            volumeSeparator = volumeSeparator - added.getVolume();
+            progressSeparator = progressSeparator-added.getProgressBar();
             vBoxChosenIngredients.getChildren().remove(ingredient);
 
             /////////////////////////////
@@ -208,5 +210,28 @@ public void addIngredientWidget(){
 
     public Double getPrice() {
         return price;
+    }
+}
+class addedIng{
+    private String name;
+    private Integer Volume;
+    private Double progressBar;
+
+    public addedIng(String name, Integer volume, Double progressBar) {
+        this.name = name;
+        Volume = volume;
+        this.progressBar = progressBar;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Integer getVolume() {
+        return Volume;
+    }
+
+    public Double getProgressBar() {
+        return progressBar;
     }
 }
