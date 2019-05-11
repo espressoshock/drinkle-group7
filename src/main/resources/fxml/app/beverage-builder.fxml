@@ -182,16 +182,16 @@
       </ImageView>
       <Group id="radio buttons" layoutX="325.0" layoutY="630.0">
          <children>
-            <Group id="radio button" disable="true">
+            <Group id="radio button">
                <children>
-                  <RadioButton fx:id="btnGlassware" layoutX="15.0" layoutY="-3.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="btnGlassware" layoutX="15.0" layoutY="-3.0" mnemonicParsing="false" onAction="#dummyGlasswareAddToList" />
                   <Line fx:id="lineGlassware" accessibleRoleDescription="line" endX="38.0" layoutX="37.0" layoutY="8.0" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="23.0" text="Glassware" textAlignment="CENTER" />
                </children>
             </Group>
             <Group id="radio button" layoutX="60.0">
                <children>
-                  <RadioButton fx:id="btnIngredients" layoutX="15.0" layoutY="-3.0" mnemonicParsing="false" selected="true" />
+                  <RadioButton fx:id="btnIngredients" layoutX="15.0" layoutY="-3.0" mnemonicParsing="false" onAction="#dummyIngredientAddToList" />
                   <Line fx:id="lineIngredients" accessibleRoleDescription="line" endX="38.0" layoutX="37.0" layoutY="8.0" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="23.0" text="Ingredients" textAlignment="CENTER" />
                </children>
@@ -223,7 +223,7 @@
             <VBox fx:id="vBoxChosenIngredients" prefHeight="12.0" prefWidth="222.0" spacing="10.0" />
          </content>
       </ScrollPane>
-      <Button fx:id="btnExport" disable="true" layoutX="750.0" layoutY="540.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Export" />
+      <Button fx:id="btnExport" layoutX="750.0" layoutY="540.0" mnemonicParsing="false" onAction="#openPrintView" prefHeight="35.0" prefWidth="150.0" text="Export" />
       <Button fx:id="btnGenerate" layoutX="750.0" layoutY="588.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Generate" />
       <Button fx:id="btnManage" disable="true" layoutX="814.0" layoutY="298.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="103.0" text="Manage" />
       <Group layoutX="713.0" layoutY="298.0">
