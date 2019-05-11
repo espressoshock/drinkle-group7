@@ -6,9 +6,13 @@ import com.espressoshock.drinkle.models.IngredientCategory;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
 //import com.espressoshock.drinkle.viewLoader.ViewMetadata;
 //import javafx.event.ActionEvent;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 
@@ -55,6 +59,10 @@ public class IngredientList extends EventDispatcherAdapter {
     @FXML
     private void selectMenuItemCategory() {}
     private ArrayList<Ingredient> setIngredientsList(IngredientCategory selection){return null;}
+
+
+
+
 
 }
 
