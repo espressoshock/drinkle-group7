@@ -77,29 +77,44 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         primaryStage.setScene(print);
         primaryStage.show();
     }
-
-    private void sliderProgressChange() {
-        slider.valueProperty().addListener((arg0, arg1, arg2) -> {
-            try {
-                sliderDoubleValueAsString = String.format("%.2f", slider.getValue() - slidervalueset);
-                volume = Double.parseDouble(String.format("%.2f", slider.getValue())) * 100;
-                cost = String.format("%.2f", Double.parseDouble(sliderDoubleValueAsString) * selected.getPrice() / 10);
-                progressGlass.setProgress(Double.parseDouble(String.format("%.2f", slider.getValue())));
-                lblVolume.setText(String.valueOf(volume.intValue()));
-                lblCost.setText(cost);
-            } catch (NumberFormatException ex) {
-                //throws exception only on MacOS.
-                System.out.println(ex);
+    public void findSelected(){
+        Ing sel = null;
+        for(Ing e : choseIngredientsList){
+            if (e==selected){
+                sel = e;
             }
-        });
 
+        }
+        choseIngredientsList.remove(sel);
+    }
+    private void sliderProgressChange() {
+        if(selected==null){
+            slider.setDisable(true);
+        }else {
+            slider.valueProperty().addListener((arg0, arg1, arg2) -> {
+                try {
+                    sliderDoubleValueAsString = String.format("%.2f", slider.getValue() - slidervalueset);
+                    volume = Double.parseDouble(String.format("%.2f", slider.getValue())) * 100;
+                    cost = String.format("%.2f", Double.parseDouble(sliderDoubleValueAsString) * selected.getPrice() / 10);
+                    progressGlass.setProgress(Double.parseDouble(String.format("%.2f", slider.getValue())));
+                    lblVolume.setText(String.valueOf(volume.intValue()));
+                    lblCost.setText(cost);
+                } catch (NumberFormatException ex) {
+                    //throws exception only on MacOS.
+                    System.out.println(ex);
+                }
+            });
 
+        }
     }
 
     public void choseIngredient(Event event) {
+
         Label lbl = (Label) event.getSource();
         selected = (Ing) lbl.getUserData();
         lblChosenName.setText(lbl.getText() + " " + selected.getAlcoholPercentage());
+        sliderProgressChange();
+        slider.setDisable(false);
     }
 //------------Creating labels to be represented in the ingredient list------
     public void choseIngredientListElement(Ing object) {
@@ -228,7 +243,9 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
 
     public void addIngredientWidget() {
+        if (selected!=null){
         // Test purposes only
+
         //-------------------Setting new min values----------------
         double diff = slider.getValue() - slider.getMin(); // slider value difference Current value - min value
         Integer setVolume = volume.intValue() - volumeSeparator; // available volume after adding previous ingredient
@@ -280,8 +297,17 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         slider.setMin(slider.getValue());
         //cost = String.format("%.2f", Double.parseDouble(cost)+selected.getPrice()/10);
         alcoholPercent.setProgress(totalAlcoholPercentage);
+        findSelected();
+        dummyIngredientAddToList();
+        selected = null;
+        slider.setDisable(true);
+        lblChosenName.setText("null");
         index = +1;
-
+    } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please chose an ingredient");
+            alert.showAndWait();
+        }
 
     }
 
