@@ -45,7 +45,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     Random rand = new Random();
     DecimalFormat df = new DecimalFormat("#.##");
     boolean sliderIsDisabled= false;
-    Group ingredient = new Group();
+
     //------------------------End of Test variables------------------
     /* -> to be implemented when ingridient list is ready
     ArrayList<Ingredient> choseIngredientsList = new ArrayList<>();
@@ -337,6 +337,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             addedIngredientPercentBar.setPrefWidth(204);
             addedIngredientPercentBar.setPrefHeight(8);
             //--------------------------------
+            Group ingredient = new Group();
             ingredient.getChildren().addAll(ingredientName, ingredientVolume, addedIngredientPercentBar, overlay);
             addedIng added = new addedIng(lblChosenName.getText(), setVolume, setProgress);
             selected.setVolumeMagnitude(setVolume);
