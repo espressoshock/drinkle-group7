@@ -37,6 +37,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     String cost = "0.0"; //initial cost label text
     // double costIncrease = 0.0; <-- not sure what i used this for
     double slidervalueset = 0.0;
+    Double glassVolume = null;
     Double volume = null;
     int index = 0;
     Random rand = new Random();
@@ -52,6 +53,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     ObservableList<Glassware> observableListChoseGlassware = FXCollections.observableArrayList(choseGlasswareList);
     ArrayList<Garnish> choseGarnishList = new ArrayList<>();
     ArrayList<IceType> choseIceTypeList = new ArrayList<>();
+    ArrayList<Ing> addedIngredients = new ArrayList<>();
 
     Ing selected = null;// selected object of ingredient
     RingProgressIndicator alcoholPercent = new RingProgressIndicator();
@@ -67,8 +69,28 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     @FXML
     ProgressBar progressGlass;
 
+    public int countVolume() {
+        int totalVolume = 0;
+        for (Ing a : addedIngredients) {
+            totalVolume = totalVolume + a.getVolumeMagnitude();
 
-    public void openPrintView() throws Exception{
+        }
+        return totalVolume;
+    }
+
+    public int countPercentage() {
+        int totalVolume = 0;
+        int alcoholVolume = 0;
+        int totalAlcohol = 0;
+        for (Ing a : addedIngredients) {
+            totalVolume = totalVolume + a.getVolumeMagnitude();
+            alcoholVolume = alcoholVolume + (a.getVolumeMagnitude() * a.getAlcoholPercentage() / 100);
+        }
+        totalAlcohol = (alcoholVolume * 100) / totalVolume;
+        return totalAlcohol;
+    }
+
+    public void openPrintView() throws Exception {
         Stage primaryStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/app/print-layout.fxml"));
         Scene print = new Scene(root);
@@ -77,26 +99,28 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         primaryStage.setScene(print);
         primaryStage.show();
     }
-    public void findSelected(){
+
+    public void findSelected() {
         Ing sel = null;
-        for(Ing e : choseIngredientsList){
-            if (e==selected){
+        for (Ing e : choseIngredientsList) {
+            if (e == selected) {
                 sel = e;
             }
 
         }
         choseIngredientsList.remove(sel);
     }
+
     private void sliderProgressChange() {
-        if(selected==null){
+        if (selected == null) {
             slider.setDisable(true);
-        }else {
+        } else {
             slider.valueProperty().addListener((arg0, arg1, arg2) -> {
                 try {
                     sliderDoubleValueAsString = String.format("%.2f", slider.getValue() - slidervalueset);
-                    volume = Double.parseDouble(String.format("%.2f", slider.getValue())) * 100;
-                    cost = String.format("%.2f", Double.parseDouble(sliderDoubleValueAsString) * selected.getPrice() / 10);
-                    progressGlass.setProgress(Double.parseDouble(String.format("%.2f", slider.getValue())));
+                    volume = Double.parseDouble(String.format("%.2f", slider.getValue()));
+                    cost = String.format("%.2f", Double.parseDouble(sliderDoubleValueAsString) * selected.getPrice() / 1000);
+                    progressGlass.setProgress(Double.parseDouble(String.format("%.2f", slider.getValue() / (glassVolume / 100) / 100)));
                     lblVolume.setText(String.valueOf(volume.intValue()));
                     lblCost.setText(cost);
                 } catch (NumberFormatException ex) {
@@ -116,7 +140,8 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         sliderProgressChange();
         slider.setDisable(false);
     }
-//------------Creating labels to be represented in the ingredient list------
+
+    //------------Creating labels to be represented in the ingredient list------
     public void choseIngredientListElement(Ing object) {
         Ing obj = object;
 
@@ -137,6 +162,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         choseIngredientName.setUserData(obj);
         vBoxListOfIngredients.getChildren().add(choseIngredient);
     }
+
     public void choseGlasswareListElement(Glassware object) {
         Glassware obj = object;
 
@@ -148,7 +174,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         });
         choseGlasswareName.setCursor(Cursor.HAND);
         choseGlasswareVolume.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-        choseGlasswareVolume.setText(obj.getVolume().toString()+" ml");
+        choseGlasswareVolume.setText(obj.getVolume().toString() + " ml");
         choseGlasswareVolume.setLayoutX(205.0);
 
         Group choseIngredient = new Group();
@@ -157,7 +183,8 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         choseGlasswareName.setUserData(obj);
         vBoxListOfIngredients.getChildren().add(choseIngredient);
     }
-    public void choseGarnishListElement(Garnish object){
+
+    public void choseGarnishListElement(Garnish object) {
         Garnish obj = object;
 
         Label choseGarnishName = new Label();
@@ -171,7 +198,8 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         choseGarnishName.setUserData(obj);
         vBoxListOfIngredients.getChildren().add(choseIngredient);
     }
-    public void choseIceTypeListElement(IceType object){
+
+    public void choseIceTypeListElement(IceType object) {
         IceType obj = object;
 
         Label choseIceTypeName = new Label();
@@ -193,19 +221,22 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             choseIngredientListElement(a);
         }
     }
+
     public void dummyGlasswareAddToList() {
         vBoxListOfIngredients.getChildren().clear();
         for (Glassware a : choseGlasswareList) {
             choseGlasswareListElement(a);
         }
     }
-    public void dummyGarnishAddToList(){
+
+    public void dummyGarnishAddToList() {
         vBoxListOfIngredients.getChildren().clear();
         for (Garnish a : choseGarnishList) {
             choseGarnishListElement(a);
         }
     }
-    public void dummyIceTypeAddToList(){
+
+    public void dummyIceTypeAddToList() {
         vBoxListOfIngredients.getChildren().clear();
         for (IceType a : choseIceTypeList) {
             choseIceTypeListElement(a);
@@ -230,10 +261,10 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     public void dummyGlasswareCreate() {//for Test Purpose Only!!!!
         // To be replaced with observable list of Glassware objects
 
-        Glassware shot = new Glassware("Shot",44,"asd");
-        Glassware highball = new Glassware("Highball",270,"asd");
-        Glassware margarita = new Glassware("Margarita",350,"asd");
-        Glassware martini = new Glassware("Martini",250,"asd");
+        Glassware shot = new Glassware("Shot", 44, "asd");
+        Glassware highball = new Glassware("Highball", 270, "asd");
+        Glassware margarita = new Glassware("Margarita", 350, "asd");
+        Glassware martini = new Glassware("Martini", 250, "asd");
 
         choseGlasswareList.add(shot);
         choseGlasswareList.add(highball);
@@ -243,67 +274,74 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
 
     public void addIngredientWidget() {
-        if (selected!=null){
-        // Test purposes only
+        if (selected != null) {
+            // Test purposes only
 
-        //-------------------Setting new min values----------------
-        double diff = slider.getValue() - slider.getMin(); // slider value difference Current value - min value
-        Integer setVolume = volume.intValue() - volumeSeparator; // available volume after adding previous ingredient
-        Double setProgress = progressGlass.getProgress() - progressSeparator; // Progress bar in a glass/available volume
-        //-------------------Creating components----------------
-        Label ingredientName = new Label();
-        Label ingredientVolume = new Label();
-        ProgressBar addedIngredientPercentBar = new ProgressBar();
-        Button overlay = new Button();
-        ContextMenu removeMenu = new ContextMenu();
-        MenuItem removeItem = new MenuItem("Remove Ingredient");
-        //----------Adding functionality to components-----------
-        overlay.setText("");
-        overlay.setStyle("-fx-background-color: transparent");
-        overlay.setLayoutX(14.0);
-        overlay.setPrefHeight(36.0);
-        overlay.setPrefWidth(204.0);
-        removeMenu.getItems().add(removeItem);
-        //-------------------------------
-        ingredientName.setText(lblChosenName.getText());
-        ingredientName.setLayoutX(16.0);
-        ingredientVolume.setText(setVolume + "ml");
-        ingredientVolume.setLayoutX(195.0);
-        addedIngredientPercentBar.setLayoutX(14.0);
-        addedIngredientPercentBar.setLayoutY(29.0);
-        addedIngredientPercentBar.setProgress(setProgress);
-        addedIngredientPercentBar.setPrefWidth(204);
-        addedIngredientPercentBar.setPrefHeight(8);
-        //--------------------------------
-        Group ingredient = new Group();
-        ingredient.getChildren().addAll(ingredientName, ingredientVolume, addedIngredientPercentBar, overlay);
-        addedIng added = new addedIng(lblChosenName.getText(), setVolume, setProgress);
-        overlay.setContextMenu(removeMenu);
-        removeItem.setOnAction(new EventHandler<ActionEvent>() {// removig a widget
-            @Override
-            public void handle(ActionEvent event) {
+            //-------------------Setting new min values----------------
+            double diff = slider.getValue() - slider.getMin(); // slider value difference Current value - min value
+            Integer setVolume = volume.intValue() - volumeSeparator; // available volume after adding previous ingredient
+            Double setProgress = progressGlass.getProgress() - progressSeparator; // Progress bar in a glass/available volume
+            //-------------------Creating components----------------
+            Label ingredientName = new Label();
+            Label ingredientVolume = new Label();
+            ProgressBar addedIngredientPercentBar = new ProgressBar();
+            Button overlay = new Button();
+            ContextMenu removeMenu = new ContextMenu();
+            MenuItem removeItem = new MenuItem("Remove Ingredient");
+            //----------Adding functionality to components-----------
+            overlay.setText("");
+            overlay.setStyle("-fx-background-color: transparent");
+            overlay.setLayoutX(14.0);
+            overlay.setPrefHeight(36.0);
+            overlay.setPrefWidth(204.0);
+            removeMenu.getItems().add(removeItem);
+            //-------------------------------
+            ingredientName.setText(selected.getName());
+            ingredientName.setLayoutX(16.0);
+            ingredientVolume.setText(setVolume + "ml");
+            ingredientVolume.setLayoutX(195.0);
+            addedIngredientPercentBar.setLayoutX(14.0);
+            addedIngredientPercentBar.setLayoutY(29.0);
+            addedIngredientPercentBar.setProgress(setProgress);
+            addedIngredientPercentBar.setPrefWidth(204);
+            addedIngredientPercentBar.setPrefHeight(8);
+            //--------------------------------
+            Group ingredient = new Group();
+            ingredient.getChildren().addAll(ingredientName, ingredientVolume, addedIngredientPercentBar, overlay);
+            addedIng added = new addedIng(lblChosenName.getText(), setVolume, setProgress);
+            selected.setVolumeMagnitude(setVolume);
+            addedIngredients.add(selected);
+            overlay.setContextMenu(removeMenu);
+            overlay.setUserData(selected);
+            overlay.setOnMouseClicked(event -> {
+                selected = (Ing) overlay.getUserData();
+                lblChosenName.setText(selected.getName());
+            });
+            removeItem.setOnAction(new EventHandler<ActionEvent>() {// removig a widget
+                @Override
+                public void handle(ActionEvent event) {
+                    vBoxChosenIngredients.getChildren().remove(ingredient);
+                    addedIngredients.remove(selected);
+                    slider.setMin(countVolume());// adding back to volume removed ingredient value
+                    slider.setValue(slider.getMin() - setProgress);// adding back to slider removed ingredient value
+                    volumeSeparator = volumeSeparator - added.getVolume(); // adding to volume and progress separator
+                    progressSeparator = progressSeparator - added.getProgressBar();
+                    selected=null;
 
-                slider.setMin(diff);// adding back to volume removed ingredient value
-                slider.setValue(slider.getMin() - setProgress);// adding back to slider removed ingredient value
-                volumeSeparator = volumeSeparator - added.getVolume(); // adding to volume and progress separator
-                progressSeparator = progressSeparator - added.getProgressBar();
-                vBoxChosenIngredients.getChildren().remove(ingredient);
-            }
-        });
-        totalAlcoholPercentage = totalAlcoholPercentage + alcoholPercentage(selected, volume.intValue());
-        vBoxChosenIngredients.getChildren().add(ingredient);
-        volumeSeparator = volume.intValue();
-        progressSeparator = progressGlass.getProgress();
-        slider.setMin(slider.getValue());
-        //cost = String.format("%.2f", Double.parseDouble(cost)+selected.getPrice()/10);
-        alcoholPercent.setProgress(totalAlcoholPercentage);
-        findSelected();
-        dummyIngredientAddToList();
-        selected = null;
-        slider.setDisable(true);
-        lblChosenName.setText("null");
-        index = +1;
-    } else {
+                }
+            });
+            vBoxChosenIngredients.getChildren().add(ingredient);
+            volumeSeparator = volume.intValue();
+            progressSeparator = progressGlass.getProgress();
+            slider.setMin(countVolume());
+            //cost = String.format("%.2f", Double.parseDouble(cost)+selected.getPrice()/10);
+            alcoholPercent.setProgress(countPercentage());
+            findSelected();
+            dummyIngredientAddToList();
+            selected = null;
+            slider.setDisable(true);
+            lblChosenName.setText("null");
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please chose an ingredient");
             alert.showAndWait();
@@ -327,6 +365,8 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         dummyIngredientCreate();
         sliderProgressChange();
         lblTotalVolume.setText("100");
+        glassVolume = 120.0;
+        slider.setMax(120.0);
     }
 }
 
@@ -336,6 +376,7 @@ class Ing {
     private String name;
     private Integer alcoholPercentage;
     private Double price;
+    private int volumeMagnitude;
 
     public Ing(String name, Integer alcoholPercentage, Double price) {
         this.name = name;
@@ -353,6 +394,14 @@ class Ing {
 
     public Double getPrice() {
         return price;
+    }
+
+    public int getVolumeMagnitude() {
+        return volumeMagnitude;
+    }
+
+    public void setVolumeMagnitude(int volumeMagnitude) {
+        this.volumeMagnitude = volumeMagnitude;
     }
 }
 
@@ -404,7 +453,8 @@ class Glassware {
         return imageUrl;
     }
 }
-class Garnish{
+
+class Garnish {
     String name;
 
     public Garnish(String name) {
@@ -415,7 +465,8 @@ class Garnish{
         return name;
     }
 }
-class IceType{
+
+class IceType {
     String name;
 
     public IceType(String name) {
