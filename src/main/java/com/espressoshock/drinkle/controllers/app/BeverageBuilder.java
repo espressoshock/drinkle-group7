@@ -321,10 +321,10 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             MenuItem removeItem = new MenuItem("Remove Ingredient");
             //----------Adding functionality to components-----------
             overlay.setText("");
-            overlay.setStyle("-fx-background-color: transparent");
-            overlay.setLayoutX(14.0);
+            //overlay.setStyle("-fx-background-color: transparent");
+            overlay.setLayoutX(12.0);
             overlay.setPrefHeight(36.0);
-            overlay.setPrefWidth(204.0);
+            overlay.setPrefWidth(210.0);
             removeMenu.getItems().add(removeItem);
             //-------------------------------
             ingredientName.setText(selected.getName());

@@ -16,6 +16,17 @@
     -fx-padding: 4px;
 }
 /*---------------Right side css---------------------*/
+#addedIngredients #vBoxChosenIngredients .button{
+    -fx-fill: transparent;
+    -fx-background-color: transparent;
+}
+#addedIngredients #vBoxChosenIngredients .button:hover{
+    -fx-opacity: 0.08;
+    -fx-fill: linear-gradient(white,red );
+    -fx-background-color: linear-gradient(white,red );
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
 #alcoholPercentCircle, #pourCostCircle{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
