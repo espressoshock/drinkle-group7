@@ -155,12 +155,12 @@
       <TextField fx:id="txtFieldProductTwoName" alignment="CENTER" layoutX="496.0" layoutY="412.0" promptText="Product Name" stylesheets="@../../css/app/ingredient-list.css" />
       <Button fx:id="btnChoose1" alignment="BOTTOM_CENTER" layoutX="357.0" layoutY="473.0" mnemonicParsing="false" opacity="0.29" prefHeight="171.0" prefWidth="112.0" stylesheets="@../../css/app/ingredient-list.css" text="Choose">
          <font>
-            <Font size="24.0" />
+            <Font size="18.0" />
          </font>
       </Button>
       <Button fx:id="btnChoose2" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" layoutX="514.0" layoutY="473.0" mnemonicParsing="false" opacity="0.29" prefHeight="171.0" prefWidth="112.0" stylesheets="@../../css/app/ingredient-list.css" text="Choose">
          <font>
-            <Font size="24.0" />
+            <Font size="18.0" />
          </font>
       </Button>
 
