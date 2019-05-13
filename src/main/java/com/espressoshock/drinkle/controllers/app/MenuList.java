@@ -1,6 +1,11 @@
 package com.espressoshock.drinkle.controllers.app;
 
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class MenuList extends EventDispatcherAdapter {
     /**3.1.4 Menu
@@ -23,4 +28,14 @@ public class MenuList extends EventDispatcherAdapter {
      this.pictureURL = pictureURL;
      }*/
 
+    @FXML
+    public void openCreateMenuView() throws Exception {
+         Stage primaryStage = new Stage();
+         Parent root = FXMLLoader.load(getClass().getResource("/fxml/app/create-new-menu.fxml"));
+         Scene newMenu = new Scene(root);
+         primaryStage.setTitle("Drinkle - Create new Menu");
+         primaryStage.setResizable(false);
+         primaryStage.setScene(newMenu);
+         primaryStage.show();
+    }
      }

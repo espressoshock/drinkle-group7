@@ -28,13 +28,13 @@
       <TextField layoutX="142.0" layoutY="101.0" />
       <Button layoutX="186.0" layoutY="139.0" mnemonicParsing="false" text="Search" />
       <Label layoutX="158.0" layoutY="182.0" text="Menus search resultst" />
-      <ScrollPane layoutX="67.0" layoutY="197.0" prefHeight="485.0" prefWidth="286.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="67.0" layoutY="197.0" prefHeight="485.0" prefWidth="286.0">
          <content>
-            <VBox prefHeight="684.0" prefWidth="225.0" />
+            <VBox prefHeight="684.0" prefWidth="271.0" />
          </content>
       </ScrollPane>
       <Label layoutX="448.0" layoutY="98.0" text="Chosen Menu Beverages Content " />
-      <ScrollPane layoutX="382.0" layoutY="119.0" prefHeight="562.0" prefWidth="297.0">
+      <ScrollPane hbarPolicy="NEVER" layoutX="382.0" layoutY="119.0" prefHeight="562.0" prefWidth="297.0">
          <content>
             <VBox prefHeight="689.0" prefWidth="284.0" />
          </content>
@@ -44,15 +44,13 @@
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="709.0" layoutY="620.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="212.0" text="Create new menu" />
-      <Label layoutX="716.0" layoutY="124.0" prefHeight="31.0" prefWidth="65.0" text="Created By" />
-      <TextField layoutX="772.0" layoutY="127.0" />
-      <Label layoutX="726.0" layoutY="190.0" text="Date" />
-      <TextField layoutX="772.0" layoutY="186.0" />
-      <Label layoutX="724.0" layoutY="212.0" text="Views" />
-      <Label layoutX="726.0" layoutY="235.0" text="Likes" />
-      <TextField layoutX="772.0" layoutY="208.0" />
-      <TextField layoutX="772.0" layoutY="231.0" />
+      <Button layoutX="709.0" layoutY="620.0" mnemonicParsing="false" onAction="#openCreateMenuView" prefHeight="60.0" prefWidth="212.0" text="Create new menu" />
+      <Label layoutX="726.0" layoutY="61.0" text="Date" />
+      <TextField layoutX="762.0" layoutY="58.0" />
+      <Label layoutX="724.0" layoutY="83.0" text="Views" />
+      <Label layoutX="726.0" layoutY="106.0" text="Likes" />
+      <TextField layoutX="762.0" layoutY="80.0" />
+      <TextField layoutX="762.0" layoutY="103.0" />
       <CheckBox layoutX="703.0" layoutY="564.0" mnemonicParsing="false" text="Like !" />
       <Label layoutX="714.0" layoutY="319.0" text="Metadata" />
       <TextArea layoutX="707.0" layoutY="340.0" prefHeight="203.0" prefWidth="212.0" />
