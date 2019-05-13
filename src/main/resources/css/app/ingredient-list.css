@@ -1,6 +1,9 @@
 .button{
-    -fx-background-color: #4475ff;
+    -fx-background-color: #ebfffa;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
 }
+
 .button:hover{
     -fx-background-color: #6eafff;
 }
@@ -26,11 +29,7 @@
 #txtFieldSearchOption:hover{
     -fx-border-color: #ababab;
 }
-#btnChoose1, #btnChoose2{
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-}
-#menuButtonBrands,#menuButtonCategory{
+#menuButtonCategory{
     -fx-background-radius: 20 0 0 20;
     -fx-border-radius: 20 0 0 20;
 }
@@ -46,11 +45,4 @@
 #btnCreate,#btnAddToInventory{
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-}
-#progressBarAlcohol{
-    -fx-progress-color: red;
-}
-#imgViewProduct,#imgViewSimilarProduct1,#imgViewSimilarProduct2{
-    -fx-border-color: #8c8c8c;
-    -fx-border-radius: 10 0 0 0 ;
 }

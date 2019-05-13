@@ -11,9 +11,9 @@ public class Ingredient extends Blueprint{
     private String pictureURL;
     private IngredientCategory category;
     private Package aPackage;
-    private Brand brand;
+    private BrandsEnum brand;
 
-    public Ingredient(String metadata, Timestamp ts, int blueprintId, List<Permission> permissions, AccessLevel accessLevel, Statistic statistic, String name, String description, String orderCode, float abv, String pictureURL, IngredientCategory category, Package aPackage, Brand brand) {
+    public Ingredient(String metadata, Timestamp ts, int blueprintId, List<Permission> permissions, AccessLevel accessLevel, Statistic statistic, String name, String description, String orderCode, float abv, String pictureURL, IngredientCategory category, Package aPackage, BrandsEnum brand) {
         super(metadata, ts, blueprintId, permissions, accessLevel, statistic);
         this.name = name;
         this.description = description;
@@ -29,7 +29,7 @@ public class Ingredient extends Blueprint{
         return name;
     }
 
-    public Brand getBrand() {
+    public BrandsEnum getBrandsEnum() {
         return brand;
     }
 
@@ -85,7 +85,7 @@ public class Ingredient extends Blueprint{
         this.aPackage = aPackage;
     }
 
-    public void setBrand(Brand brand) {
+    public void setBrandsEnum(BrandsEnum brand) {
         this.brand = brand;
     }
 }
