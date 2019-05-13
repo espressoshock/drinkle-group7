@@ -84,28 +84,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <MenuButton fx:id="menuButtonBrands" layoutX="21.0" layoutY="27.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="125.0" stylesheets="@../../css/app/ingredient-list.css" text="Category">
-        <items>
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Whiskey" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Vodka" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Gin" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Bitter" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Rum" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Tequila" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Brandy" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Vermouth" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Liqueur" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Wine" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Cider" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Beer" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Warm Drink" />
-          <MenuItem fx:id="menuItemWater" mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Water" />
-          <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Dairy Product" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Juice" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Syrup" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Fruit" />
-            <MenuItem mnemonicParsing="false" onAction="#selectMenuItemCategory" text="Powder" />
-        </items>
+      <MenuButton fx:id="menuButtonCategory" layoutX="21.0" layoutY="27.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="125.0" stylesheets="@../../css/app/ingredient-list.css" text="Category">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -113,7 +92,7 @@
             <Reflection fraction="0.42" topOpacity="0.32" />
          </effect>
       </MenuButton>
-      <MenuButton fx:id="menuButtonProducts" layoutX="145.0" layoutY="27.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="119.0" stylesheets="@../../css/app/ingredient-list.css" text="Brand">
+      <MenuButton fx:id="menuButtonBrands" layoutX="145.0" layoutY="27.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="119.0" stylesheets="@../../css/app/ingredient-list.css" text="Brand">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />
           <MenuItem mnemonicParsing="false" text="Action 2" />
