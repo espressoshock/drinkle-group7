@@ -19,7 +19,6 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
 public class IngredientList extends EventDispatcherAdapter implements Initializable {
 
     private ArrayList<Ingredient> ingredientsList = new ArrayList<>();
