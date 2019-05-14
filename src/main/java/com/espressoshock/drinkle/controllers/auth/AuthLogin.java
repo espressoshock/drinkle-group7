@@ -1,5 +1,6 @@
 package com.espressoshock.drinkle.controllers.auth;
 
+import com.espressoshock.drinkle.appState.Current;
 import com.espressoshock.drinkle.daoLayer.JPADaoManager;
 import com.espressoshock.drinkle.models.PrivateAccount;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
@@ -26,7 +27,15 @@ public class AuthLogin extends EventDispatcherAdapter {
 
         public Boolean call(){
             JPADaoManager jpaDaoManager = new JPADaoManager();
-            if (jpaDaoManager.login(new PrivateAccount(email, password, null, null, null)) != null) {
+            if (jpaDaoManager.login(
+                Current.environment.currentUser =
+                    new PrivateAccount(
+                        email,
+                        password,
+                    null,
+                    null,
+                    null)) != null
+            ) {
                 //logged
                 return true;
             } else {

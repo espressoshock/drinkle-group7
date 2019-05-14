@@ -11,6 +11,7 @@ import com.espressoshock.drinkle.models.PrivateAccount;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.security.MessageDigest;
+import javax.xml.transform.Result;
 
 public class JPADaoManager {
     private static EntityManagerFactory EMF = Persistence.createEntityManagerFactory("drinklePU");
@@ -32,6 +33,14 @@ public class JPADaoManager {
 
 
         return null;
+    }
+
+    public boolean registerAccount(Account account) {
+        System.out.println(account.getEmail()+","+ account.getPassword());
+
+
+
+        return true;
     }
 
     private boolean compareMD5(String toEncode, String encoded){
