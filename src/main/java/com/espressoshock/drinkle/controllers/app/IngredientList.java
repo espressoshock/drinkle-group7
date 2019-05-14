@@ -5,10 +5,14 @@ import com.espressoshock.drinkle.models.Package;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -133,6 +137,17 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
                 }
             }
         }
+    }
+    @FXML
+    private void createNewIngredient(ActionEvent e)throws Exception{
+            Stage primaryStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/app/create-ingredient.fxml"));
+            Scene newMenu = new Scene(root);
+            primaryStage.setTitle("Drinkle - Create new Ingredient");
+            primaryStage.setResizable(false);
+            primaryStage.setScene(newMenu);
+            primaryStage.show();
+
     }
 
     private void createCategoryList() {

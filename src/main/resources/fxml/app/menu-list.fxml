@@ -39,7 +39,7 @@
             <VBox prefHeight="689.0" prefWidth="284.0" />
          </content>
       </ScrollPane>
-      <Label alignment="CENTER" layoutX="421.0" layoutY="45.0" prefHeight="31.0" prefWidth="219.0" text="Chosen Menu Name">
+      <Label alignment="CENTER" layoutX="382.0" layoutY="42.0" prefHeight="51.0" prefWidth="297.0" text="Chosen Menu Name">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>

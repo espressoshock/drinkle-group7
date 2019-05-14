@@ -77,7 +77,7 @@
          </font>
       </Label>
       <Button fx:id="btnChoose" layoutX="347.0" layoutY="423.0" mnemonicParsing="false" onAction="#selectButtonChoose" prefHeight="51.0" prefWidth="299.0" text="Choose" />
-      <Button fx:id="btnCreateIngredient" layoutX="32.0" layoutY="617.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="274.0" text="Create new Ingredient" />
+      <Button fx:id="btnCreateIngredient" layoutX="32.0" layoutY="617.0" mnemonicParsing="false" onAction="#createNewIngredient" prefHeight="51.0" prefWidth="274.0" text="Create new Ingredient" />
       <Button fx:id="btnAddIngredient" layoutX="627.0" layoutY="614.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="274.0" text="Add to my List " />
 
    </children>
