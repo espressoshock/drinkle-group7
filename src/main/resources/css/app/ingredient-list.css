@@ -1,18 +1,30 @@
 .button{
     -fx-background-color: #4475ff;
-
+}
+.button:hover{
+    -fx-background-color: #6eafff;
 }
 #btnSearch{
     -fx-background-color: transparent;
     -fx-border-color: #4475ff;
     -fx-border-radius: 0 20 20 0;
 }
+#btnSearch:hover{
+     -fx-border-color: #ababab;
+ }
 .menu-button{
     -fx-border-color: #4475ff;
     -fx-background-color: #ff6d33;
 }
+.menu-button:hover{
+    -fx-background-color: #ffa275;
+}
 #txtFieldSearchOption{
     -fx-border-color: #4475ff;
+    -fx-background-radius: 20 20 20 20;
+}
+#txtFieldSearchOption:hover{
+    -fx-border-color: #ababab;
 }
 #btnChoose1, #btnChoose2{
     -fx-background-color: transparent;
