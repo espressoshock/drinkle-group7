@@ -236,6 +236,7 @@ public class CreateIngredient extends EventDispatcherAdapter implements Initiali
         brandsList.add(BrandsEnum.KAHLUA);
         brandsList.add(BrandsEnum.SAMBUCA);
         brandsList.add(BrandsEnum.SHERIDANS);
+        brandsList.add(BrandsEnum.OTHER_BRAND);
 
     }
     private void populateCategoryMenu(ArrayList<IngredientCategory> categoriesData) {

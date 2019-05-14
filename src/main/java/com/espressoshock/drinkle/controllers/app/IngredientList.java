@@ -29,19 +29,17 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
     @FXML
     private VBox vBoxIngredients;
     @FXML
-    private Button btnCreateIngredient, btnAddIngredient,btnChoose, btnSearch;
-    @FXML
-    private CheckBox checkBoxAddToList, checkBoxLike;
+    private Button btnChoose, btnSearch;
+    /*    @FXML
+        private CheckBox checkBoxAddToList, checkBoxLike;*/
     @FXML
     private MenuButton menuButtonCategory, menuButtonBrands;
     @FXML
     private TextArea txtAreaDescription;
     @FXML
     private TextField txtFieldSearchOption, txtFieldProductName, txtFieldSimilarWithProduct;
-    @FXML
-    private ImageView imgViewProduct, imgViewSimilarProduct1;
 
-    public void changeView() {/*super.dispatchViewChangeRequest(ViewMetadata.)*/}
+//     public void changeView() {/*super.dispatchViewChangeRequest(ViewMetadata.)*/}
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,22 +51,39 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
         populateBrandsList();
     }
 
-    // TODO*********************Methods*************************************
-    @FXML
-    private void selectSimilarProductPicture() {
-    }
+    /******************TODO***Methods*** **************************************/
+
     @FXML
     private void selectLike() {
     }
+
     @FXML
     private void selectAddToFavorit() {
     }
+
+    /*************************************************************************/
+
     @FXML
-    private void selectCreate() {
+    private void selectBtnSearch(ActionEvent e) {
+        Button search = (Button) e.getSource();
+        vBoxIngredients.getChildren().clear();
+        String text = txtFieldSearchOption.getText().toLowerCase();
+        for (Ingredient x : ingredientsList) {
+            if (text.length() != 0) {
+                if (x.getName().toLowerCase().contains(text)) {
+                    Button button = new Button();
+                    button.setOnAction(this::selectVboxButton);
+                    button.setMinWidth(280);
+                    button.setMinHeight(40);
+                    button.setText(x.getName());
+                    vBoxIngredients.getChildren().add(button);
+                }
+            }
+        }
+        menuButtonBrands.setText("Brand");
+        menuButtonCategory.setText("Category");
     }
-    @FXML
-    private void selectBtnSearch() {
-    }
+
     @FXML
     private void selectCategory(ActionEvent e) {
         vBoxIngredients.getChildren().clear();
@@ -78,7 +93,7 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
         menuButtonBrands.getItems().clear();
 
         for (BrandsEnum brandsEnum : brandsList) {
-            if (selection.getText().equals(brandsEnum.getProductType().getName())){
+            if (selection.getText().equals(brandsEnum.getProductType().getName())) {
                 MenuItem button = new MenuItem();
                 button.setText(brandsEnum.getBrandName());
                 button.setOnAction(this::selectBrand);
@@ -86,12 +101,13 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
             }
         }
     }
+
     @FXML
-    private void selectBrand(ActionEvent e){
+    private void selectBrand(ActionEvent e) {
         MenuItem selection = (MenuItem) e.getSource();
         menuButtonBrands.setText(selection.getText());
         vBoxIngredients.getChildren().clear();
-        for(Ingredient x: ingredientsList){
+        for (Ingredient x : ingredientsList) {
             if (selection.getText().equals(x.getBrandsEnum().getBrandName())) {
                 Button button = new Button();
                 button.setOnAction(this::selectVboxButton);
@@ -102,17 +118,18 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
             }
         }
     }
+
     @FXML
     private void selectVboxButton(ActionEvent e) {
-        Button selection= (Button) e.getSource();
-        for (Ingredient x: ingredientsList) {
-            if(x.getName().equals(selection.getText())){
+        Button selection = (Button) e.getSource();
+        for (Ingredient x : ingredientsList) {
+            if (x.getName().equals(selection.getText())) {
                 txtAreaDescription.setText(x.getDescription());
                 txtFieldProductName.setText(x.getName());
                 txtFieldSimilarWithProduct.setText(x.getName());
-                for(Ingredient y: ingredientsList){
-                    if(x.getBrandsEnum().getBrandName().equals(y.getBrandsEnum().getBrandName())){
-                        if(!x.getName().equals(y.getName())){
+                for (Ingredient y : ingredientsList) {
+                    if (x.getBrandsEnum().getBrandName().equals(y.getBrandsEnum().getBrandName())) {
+                        if (!x.getName().equals(y.getName())) {
                             btnChoose.setText(y.getName());
                         }
                     }
@@ -120,17 +137,18 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
             }
         }
     }
+
     @FXML
-    private void selectButtonChoose(ActionEvent e){
-        Button alternative= (Button) e.getSource();
-        for (Ingredient x: ingredientsList) {
-            if(alternative.getText().equals(x.getName())){
+    private void selectButtonChoose(ActionEvent e) {
+        Button alternative = (Button) e.getSource();
+        for (Ingredient x : ingredientsList) {
+            if (alternative.getText().equals(x.getName())) {
                 txtFieldSimilarWithProduct.setText(x.getName());
                 txtAreaDescription.setText(x.getDescription());
                 txtFieldProductName.setText(x.getName());
-                for(Ingredient z: ingredientsList){
-                    if(x.getBrandsEnum().getBrandName().equals(z.getBrandsEnum().getBrandName())){
-                        if(!x.getName().equals(z.getName())){
+                for (Ingredient z : ingredientsList) {
+                    if (x.getBrandsEnum().getBrandName().equals(z.getBrandsEnum().getBrandName())) {
+                        if (!x.getName().equals(z.getName())) {
                             btnChoose.setText(z.getName());
                         }
                     }
@@ -138,15 +156,16 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
             }
         }
     }
+
     @FXML
-    private void createNewIngredient(ActionEvent e)throws Exception{
-            Stage primaryStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/app/create-ingredient.fxml"));
-            Scene newMenu = new Scene(root);
-            primaryStage.setTitle("Drinkle - Create new Ingredient");
-            primaryStage.setResizable(false);
-            primaryStage.setScene(newMenu);
-            primaryStage.show();
+    private void createNewIngredient(ActionEvent e) throws Exception {
+        Stage primaryStage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/app/create-ingredient.fxml"));
+        Scene newMenu = new Scene(root);
+        primaryStage.setTitle("Drinkle - Create new Ingredient");
+        primaryStage.setResizable(false);
+        primaryStage.setScene(newMenu);
+        primaryStage.show();
 
     }
 
@@ -177,6 +196,7 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
         categories.add(IngredientCategory.OTHER);
 
     }
+
     private void populateCategoryMenu(ArrayList<IngredientCategory> categoriesData) {
         menuButtonCategory.getItems().clear();
         for (IngredientCategory x : categoriesData) {
@@ -185,10 +205,11 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
             menuButtonCategory.getItems().add(category);
         }
     }
+
     private void createIngredientsList() {
         ingredientsList.add(new Ingredient(null, null, 1, null, AccessLevel.PUBLIC, null,
                 "Absolut Dry", "Absolute Dry description", null, 42, null,
-                IngredientCategory.VODKA, new Package(750,Unit.MILLILITER,new BigDecimal("0.03")), BrandsEnum.ABSOLUTE));
+                IngredientCategory.VODKA, new Package(750, Unit.MILLILITER, new BigDecimal("0.03")), BrandsEnum.ABSOLUTE));
         ingredientsList.add(new Ingredient(null, null, 2, null, AccessLevel.PUBLIC, null,
                 "Absolut Lemon", "Absolute Lemon description", null, 40, null,
                 IngredientCategory.VODKA, null, BrandsEnum.ABSOLUTE));
@@ -197,7 +218,7 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
                 IngredientCategory.VODKA, null, BrandsEnum.ABSOLUTE));
         ingredientsList.add(new Ingredient(null, null, 4, null, AccessLevel.PUBLIC, null,
                 "Jack Daniel's Black Label", "Jack Daniel's description", null, 42, null,
-                IngredientCategory.WHISKEY, null,BrandsEnum.JACK_DANIELS));
+                IngredientCategory.WHISKEY, null, BrandsEnum.JACK_DANIELS));
         ingredientsList.add(new Ingredient(null, null, 5, null, AccessLevel.PUBLIC, null,
                 "Jack Daniel's XO", "Jack Daniel's XO description", null, 42, null,
                 IngredientCategory.WHISKEY, null, BrandsEnum.JACK_DANIELS));
@@ -205,7 +226,8 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
                 "Jack Daniel's ABC", "Absolute Dry description", null, 42, null,
                 IngredientCategory.WHISKEY, null, BrandsEnum.JACK_DANIELS));
     }
-    private void populateBrandsList(){
+
+    private void populateBrandsList() {
         brandsList.add(BrandsEnum.ABSOLUTE);
         brandsList.add(BrandsEnum.GREY_GOOSE);
         brandsList.add(BrandsEnum.BLACK_COW);
@@ -300,6 +322,7 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
         brandsList.add(BrandsEnum.KAHLUA);
         brandsList.add(BrandsEnum.SAMBUCA);
         brandsList.add(BrandsEnum.SHERIDANS);
+        brandsList.add(BrandsEnum.OTHER_BRAND);
 
     }
 }

@@ -20,7 +20,7 @@
             <VBox fx:id="vBoxIngredients" prefHeight="803.0" prefWidth="284.0" stylesheets="@../../css/app/ingredient-list.css" />
          </content>
       </ScrollPane>
-      <Button fx:id="btnSearch" layoutX="421.0" layoutY="27.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="54.0" stylesheets="@../../css/app/ingredient-list.css" text="Search">
+      <Button fx:id="btnSearch" layoutX="421.0" layoutY="27.0" mnemonicParsing="false" onAction="#selectBtnSearch" prefHeight="32.0" prefWidth="54.0" stylesheets="@../../css/app/ingredient-list.css" text="Search">
          <effect>
             <Reflection fraction="0.42" topOpacity="0.32" />
          </effect>
