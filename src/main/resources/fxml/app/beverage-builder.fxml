@@ -23,14 +23,14 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.SVGPath?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="694.0" prefWidth="935.0" styleClass="view-white-bg, view-page" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.app.BeverageBuilder">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="694.0" prefWidth="935.0" styleClass="view-white-bg, view-page" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.app.BeverageBuilder">
 
     <stylesheets>
         <URL value="@../../css/app/beverage-builder.css" />
         <URL value="@../../css/common.css" />
     </stylesheets>
    <children>
-      <SVGPath fx:id="highlight" blendMode="DARKEN" content="M36.425,0.000 C106.950,0.000 177.475,0.000 248.000,0.000 C248.000,225.667 248.000,451.333 248.000,677.000 C248.000,686.389 240.680,694.000 231.651,694.000 C166.576,694.000 101.500,694.000 36.425,694.000 C-11.661,461.000 -12.622,232.000 36.425,0.000 Z" layoutX="687.0" strokeLineCap="BUTT" />
+      <SVGPath fx:id="highlight" blendMode="DARKEN" content="M46.380,7.500 C117.087,7.500 187.793,7.500 258.500,7.500 C258.500,232.167 258.500,456.833 258.500,681.500 C258.500,692.546 250.277,701.500 240.135,701.500 C175.550,701.500 110.965,701.500 46.380,701.500 C2.596,468.119 -12.939,237.371 46.380,7.500 Z" layoutX="678.0" layoutY="-7.0" scaleY="1.001" strokeLineCap="BUTT" />
       <Group id="Cetner graphics/data" layoutX="288.0" layoutY="89.0">
          <children>
             <Group id="Chosen Ingredient" layoutX="102.0" layoutY="-46.0">
@@ -63,7 +63,7 @@
                         <Label fx:id="lblVolName" text="Volume" />
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="26.0" prefWidth="69.0">
                            <children>
-                              <Label fx:id="lblVolume" text="25" />
+                              <Label fx:id="lblVolume" text="0" />
                               <Label fx:id="lblVolumeUnit" text="ml" />
                               <Pane prefHeight="27.0" prefWidth="12.0" />
                            </children>
@@ -75,7 +75,7 @@
                         <Label fx:id="lblPercentRName" text="\%/R" />
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="26.0" prefWidth="69.0">
                            <children>
-                              <Label fx:id="lblPercentR" text="60" />
+                              <Label fx:id="lblPercentR" text="0" />
                               <Label fx:id="lblPercentRPercent" text="\%" />
                               <Pane prefHeight="27.0" prefWidth="12.0" />
                            </children>
@@ -87,7 +87,7 @@
                         <Label fx:id="lblCostName" text="Cost" />
                         <HBox alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity">
                            <children>
-                              <Label fx:id="lblCost" text="3.15" textAlignment="CENTER">
+                              <Label fx:id="lblCost" text="0.0" textAlignment="CENTER">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin></Label>
@@ -182,16 +182,16 @@
       </ImageView>
       <Group id="radio buttons" layoutX="325.0" layoutY="630.0">
          <children>
-            <Group id="radio button" disable="true">
+            <Group id="radio button">
                <children>
-                  <RadioButton fx:id="btnGlassware" layoutX="15.0" layoutY="-3.0" mnemonicParsing="false" />
+                  <RadioButton fx:id="btnGlassware" layoutX="15.0" layoutY="-3.0" mnemonicParsing="false" onAction="#dummyGlasswareAddToList" />
                   <Line fx:id="lineGlassware" accessibleRoleDescription="line" endX="38.0" layoutX="37.0" layoutY="8.0" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1.0" layoutY="23.0" text="Glassware" textAlignment="CENTER" />
                </children>
             </Group>
             <Group id="radio button" layoutX="60.0">
                <children>
-                  <RadioButton fx:id="btnIngredients" layoutX="15.0" layoutY="-3.0" mnemonicParsing="false" selected="true" />
+                  <RadioButton fx:id="btnIngredients" layoutX="15.0" layoutY="-3.0" mnemonicParsing="false" onAction="#dummyIngredientAddToList" />
                   <Line fx:id="lineIngredients" accessibleRoleDescription="line" endX="38.0" layoutX="37.0" layoutY="8.0" />
                   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-1.0" layoutY="23.0" text="Ingredients" textAlignment="CENTER" />
                </children>
@@ -223,7 +223,7 @@
             <VBox fx:id="vBoxChosenIngredients" prefHeight="12.0" prefWidth="222.0" spacing="10.0" />
          </content>
       </ScrollPane>
-      <Button fx:id="btnExport" disable="true" layoutX="750.0" layoutY="540.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Export" />
+      <Button fx:id="btnExport" layoutX="750.0" layoutY="540.0" mnemonicParsing="false" onAction="#openPrintView" prefHeight="35.0" prefWidth="150.0" text="Export" />
       <Button fx:id="btnGenerate" layoutX="750.0" layoutY="588.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Generate" />
       <Button fx:id="btnManage" disable="true" layoutX="814.0" layoutY="298.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="103.0" text="Manage" />
       <Group layoutX="713.0" layoutY="298.0">
