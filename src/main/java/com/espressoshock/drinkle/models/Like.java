@@ -28,4 +28,5 @@ public class Like {
     public Account getAccount() {
         return account;
     }
+
 }

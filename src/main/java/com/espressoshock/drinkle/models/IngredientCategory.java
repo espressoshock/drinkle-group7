@@ -7,7 +7,8 @@ public enum IngredientCategory implements ICategory {
     WHISKEY("Whiskey"), VERMOUTH("Vermouth"),BITTER("Bitter"),GIN("Gin"),
     TEQUILA("Tequila"), RUM("Rum"), LIQUEUR("Liqueur"), BRANDY("Brandy"),
     CIDER("Cider"), WINE("Wine"), BEER("Beer"), JUICE("Juice"),
-    SYRUP("Syrup"), FRUIT("Fruit"),WARM_DRINK("Warm Drink"), POWDER("Powder");
+    SYRUP("Syrup"), FRUIT("Fruit"),WARM_DRINK("Warm Drink"), POWDER("Powder"),
+    OTHER("Other Category");
 
     private final String displayName;
 
