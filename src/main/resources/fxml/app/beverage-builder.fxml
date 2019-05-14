@@ -30,7 +30,7 @@
         <URL value="@../../css/common.css" />
     </stylesheets>
    <children>
-      <SVGPath fx:id="highlight" blendMode="DARKEN" content="M36.425,0.000 C106.950,0.000 177.475,0.000 248.000,0.000 C248.000,225.667 248.000,451.333 248.000,677.000 C248.000,686.389 240.680,694.000 231.651,694.000 C166.576,694.000 101.500,694.000 36.425,694.000 C-11.661,461.000 -12.622,232.000 36.425,0.000 Z" layoutX="687.0" strokeLineCap="BUTT" />
+      <SVGPath fx:id="highlight" blendMode="DARKEN" content="M46.380,7.500 C117.087,7.500 187.793,7.500 258.500,7.500 C258.500,232.167 258.500,456.833 258.500,681.500 C258.500,692.546 250.277,701.500 240.135,701.500 C175.550,701.500 110.965,701.500 46.380,701.500 C2.596,468.119 -12.939,237.371 46.380,7.500 Z" layoutX="678.0" layoutY="-7.0" scaleY="1.001" strokeLineCap="BUTT" />
       <Group id="Cetner graphics/data" layoutX="288.0" layoutY="89.0">
          <children>
             <Group id="Chosen Ingredient" layoutX="102.0" layoutY="-46.0">
