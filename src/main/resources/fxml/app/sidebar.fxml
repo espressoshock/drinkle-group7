@@ -22,26 +22,14 @@
         <URL value="@../../css/common.css" />
     </stylesheets>
    <children>
-      <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="65.0">
-         <children>
-            <ImageView fitHeight="59.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/app/sidebar/profile-thumb@2x.png" />
-               </image>
-            </ImageView>
-         </children>
-      </HBox>
+      <HBox alignment="TOP_CENTER" prefHeight="39.0" prefWidth="65.0" />
       <VBox layoutY="119.0" opacity="0.89" prefHeight="300.0" prefWidth="65.0" spacing="30.0" styleClass="ordered-menu">
          <children>
-            <RadioButton mnemonicParsing="false" prefHeight="40.0" prefWidth="68.0" styleClass="dashboard" toggleGroup="$sidebarMenu" userData="APP_DASHBOARD">
+            <RadioButton mnemonicParsing="false" prefHeight="40.0" prefWidth="68.0" styleClass="ingredient-list" userData="APP_INGREDIENT_LIST">
                <toggleGroup>
                   <ToggleGroup fx:id="sidebarMenu" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton mnemonicParsing="false" prefHeight="40.0" prefWidth="68.0" styleClass="ingredient-list" toggleGroup="$sidebarMenu" userData="APP_INGREDIENT_LIST" />
+               </toggleGroup></RadioButton>
             <RadioButton mnemonicParsing="false" prefHeight="40.0" prefWidth="68.0" styleClass="beverage-list" toggleGroup="$sidebarMenu" userData="APP_BEVERAGE_BUILDER" />
-            <RadioButton mnemonicParsing="false" prefHeight="40.0" prefWidth="68.0" styleClass="menu-list" toggleGroup="$sidebarMenu" userData="APP_MENU_LIST" />
-            <RadioButton mnemonicParsing="false" prefHeight="40.0" prefWidth="68.0" styleClass="team-list" toggleGroup="$sidebarMenu" userData="APP_TEAM_LIST" />
          </children>
       </VBox>
       <HBox alignment="CENTER" layoutY="640.0" prefHeight="40.0" prefWidth="65.0" styleClass="bottom-bar">

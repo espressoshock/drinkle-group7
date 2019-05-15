@@ -1,7 +1,6 @@
 package com.espressoshock.drinkle.controllers.app;
 
 import com.espressoshock.drinkle.models.*;
-import com.espressoshock.drinkle.models.Package;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,14 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.math.BigDecimal;
 import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class IngredientList extends EventDispatcherAdapter implements Initializable {
 
@@ -158,13 +154,12 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
 
     @FXML
     private void createNewIngredient(ActionEvent e) throws Exception {
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/app/create-ingredient.fxml"));
-        Scene newMenu = new Scene(root);
-        primaryStage.setTitle("Drinkle - Create new Ingredient");
-        primaryStage.setResizable(false);
-        primaryStage.setScene(newMenu);
-        primaryStage.show();
+//        Stage primaryStage = new Stage();
+//        Scene newMenu = new Scene(root);
+//        primaryStage.setTitle("Drinkle - Create new Ingredient");
+//        primaryStage.setResizable(false);
+//        primaryStage.setScene(newMenu);
+//        primaryStage.show();
 
     }
 
@@ -206,24 +201,24 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
     }
 
     private void createIngredientsList() {
-        ingredientsList.add(new Ingredient(null, null, 1, null, AccessLevel.PUBLIC, null,
-                "Absolut Dry", "Absolute Dry description", null, 42, null,
-                IngredientCategory.VODKA, new Package(750, Unit.MILLILITER, new BigDecimal("0.03")), BrandsEnum.ABSOLUTE));
-        ingredientsList.add(new Ingredient(null, null, 2, null, AccessLevel.PUBLIC, null,
-                "Absolut Lemon", "Absolute Lemon description", null, 40, null,
-                IngredientCategory.VODKA, null, BrandsEnum.ABSOLUTE));
-        ingredientsList.add(new Ingredient(null, null, 3, null, AccessLevel.PUBLIC, null,
-                "Absolut X", "Absolute X description", null, 45, null,
-                IngredientCategory.VODKA, null, BrandsEnum.ABSOLUTE));
-        ingredientsList.add(new Ingredient(null, null, 4, null, AccessLevel.PUBLIC, null,
-                "Jack Daniel's Black Label", "Jack Daniel's description", null, 42, null,
-                IngredientCategory.WHISKEY, null, BrandsEnum.JACK_DANIELS));
-        ingredientsList.add(new Ingredient(null, null, 5, null, AccessLevel.PUBLIC, null,
-                "Jack Daniel's XO", "Jack Daniel's XO description", null, 42, null,
-                IngredientCategory.WHISKEY, null, BrandsEnum.JACK_DANIELS));
-        ingredientsList.add(new Ingredient(null, null, 6, null, AccessLevel.PUBLIC, null,
-                "Jack Daniel's ABC", "Absolute Dry description", null, 42, null,
-                IngredientCategory.WHISKEY, null, BrandsEnum.JACK_DANIELS));
+//        ingredientsList.add(new Ingredient(null, null, 1, null, AccessLevel.PUBLIC, null,
+//                "Absolut Dry", "Absolute Dry description", null, 42, null,
+//                IngredientCategory.VODKA, new Package(750, Unit.MILLILITER, new BigDecimal("0.03")), BrandsEnum.ABSOLUTE));
+//        ingredientsList.add(new Ingredient(null, null, 2, null, AccessLevel.PUBLIC, null,
+//                "Absolut Lemon", "Absolute Lemon description", null, 40, null,
+//                IngredientCategory.VODKA, null, BrandsEnum.ABSOLUTE));
+//        ingredientsList.add(new Ingredient(null, null, 3, null, AccessLevel.PUBLIC, null,
+//                "Absolut X", "Absolute X description", null, 45, null,
+//                IngredientCategory.VODKA, null, BrandsEnum.ABSOLUTE));
+//        ingredientsList.add(new Ingredient(null, null, 4, null, AccessLevel.PUBLIC, null,
+//                "Jack Daniel's Black Label", "Jack Daniel's description", null, 42, null,
+//                IngredientCategory.WHISKEY, null, BrandsEnum.JACK_DANIELS));
+//        ingredientsList.add(new Ingredient(null, null, 5, null, AccessLevel.PUBLIC, null,
+//                "Jack Daniel's XO", "Jack Daniel's XO description", null, 42, null,
+//                IngredientCategory.WHISKEY, null, BrandsEnum.JACK_DANIELS));
+//        ingredientsList.add(new Ingredient(null, null, 6, null, AccessLevel.PUBLIC, null,
+//                "Jack Daniel's ABC", "Absolute Dry description", null, 42, null,
+//                IngredientCategory.WHISKEY, null, BrandsEnum.JACK_DANIELS));
     }
 
     private void populateBrandsList() {

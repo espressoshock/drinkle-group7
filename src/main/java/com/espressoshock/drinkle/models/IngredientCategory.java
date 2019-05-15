@@ -1,7 +1,7 @@
 package com.espressoshock.drinkle.models;
 
 
-public enum IngredientCategory implements ICategory {
+public enum IngredientCategory  {
     GLASSWARE("Glassware"), GARNISH("Garnish"), ICE_TYPE("Ice Type"),
     WATER("Water"), DAIRY_PRODUCT("Dairy Product"),VODKA("Vodka"),
     WHISKEY("Whiskey"), VERMOUTH("Vermouth"),BITTER("Bitter"),GIN("Gin"),

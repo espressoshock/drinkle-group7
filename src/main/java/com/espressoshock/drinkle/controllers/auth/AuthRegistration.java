@@ -1,11 +1,8 @@
 package com.espressoshock.drinkle.controllers.auth;
 
-import com.espressoshock.drinkle.models.Gender;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
 import com.espressoshock.drinkle.viewLoader.ViewLoader;
 import com.espressoshock.drinkle.viewLoader.ViewMetadata;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
@@ -25,9 +22,9 @@ public class AuthRegistration extends EventDispatcherAdapter {
   private void setupUI() { }
 
   private void setupComponents() {
-    genderComboBox.setItems(
-        FXCollections.observableArrayList(Gender.values())
-    );
+//    genderComboBox.setItems(
+//        FXCollections.observableArrayList()
+//    );
   }
 
   @FXML
