@@ -2,8 +2,6 @@ package com.espressoshock.drinkle.controllers.app;
 
 import com.espressoshock.drinkle.progressIndicator.RingProgressIndicator;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,7 +47,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     //------------------------End of Test variables------------------
     /* -> to be implemented when ingridient list is ready
     ArrayList<Ingredient> choseIngredientsList = new ArrayList<>();
-    ArrayList<Ingredient> addedIngredients = new ArrayList<>();
+    ArrayList<Ingredient> addedIngredientsList = new ArrayList<>();
     */
     ArrayList<Ing> choseIngredientsList = new ArrayList<>();
     ObservableList<Ing> observableListChoseIngredient = FXCollections.observableArrayList(choseIngredientsList);
@@ -57,7 +55,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     ObservableList<Glassware> observableListChoseGlassware = FXCollections.observableArrayList(choseGlasswareList);
     ArrayList<Garnish> choseGarnishList = new ArrayList<>();
     ArrayList<IceType> choseIceTypeList = new ArrayList<>();
-    ArrayList<Ing> addedIngredients = new ArrayList<>();
+    ArrayList<Ing> addedIngredientsList = new ArrayList<>();
 
     Ing selected = null;// selected object of ingredient
     RingProgressIndicator alcoholPercent = new RingProgressIndicator();
@@ -78,7 +76,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
     public int countVolume() {
         int totalVolume = 0;
-        for (Ing a : addedIngredients) {
+        for (Ing a : addedIngredientsList) {
             totalVolume = totalVolume + a.getVolumeMagnitude();
 
         }
@@ -89,7 +87,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         int totalVolume = 0;
         int alcoholVolume = 0;
         int totalAlcohol = 0;
-        for (Ing a : addedIngredients) {
+        for (Ing a : addedIngredientsList) {
             totalVolume = totalVolume + a.getVolumeMagnitude();
             alcoholVolume = alcoholVolume + (a.getVolumeMagnitude() * a.getAlcoholPercentage() / 100);
         }
@@ -298,7 +296,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     }
 
     public void addIngredientTOLIST(){
-       for (Ing a : addedIngredients){
+       for (Ing a : addedIngredientsList){
 
        }
     }
@@ -341,7 +339,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             ingredient.getChildren().addAll(ingredientName, ingredientVolume, addedIngredientPercentBar, overlay);
             addedIng added = new addedIng(lblChosenName.getText(), setVolume, setProgress);
             selected.setVolumeMagnitude(setVolume);
-            addedIngredients.add(selected);
+            addedIngredientsList.add(selected);
             overlay.setContextMenu(removeMenu);
             overlay.setUserData(selected);
             overlay.setOnMouseClicked(event -> {
@@ -355,7 +353,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                 @Override
                 public void handle(ActionEvent event) {
                     vBoxChosenIngredients.getChildren().remove(ingredient);
-                    addedIngredients.remove(selected);
+                    addedIngredientsList.remove(selected);
                     slider.setMin(countVolume());// adding back to volume removed ingredient value
                     slider.setValue(slider.getMin() - setProgress);// adding back to slider removed ingredient value
                     volumeSeparator = volumeSeparator - added.getVolume(); // adding to volume and progress separator
