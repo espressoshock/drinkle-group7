@@ -59,11 +59,10 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
     Ing selected = null;// selected object of ingredient
     RingProgressIndicator alcoholPercent = new RingProgressIndicator();
-    RingProgressIndicator pourCostPercent = new RingProgressIndicator();
     @FXML
     Label lblChosenName, lblVolume, lblCost, lblTotalVolume;
     @FXML
-    AnchorPane alcoholPercentCircle, pourCostCircle;
+    AnchorPane alcoholPercentCircle;
     @FXML
     VBox vBoxChosenIngredients, vBoxListOfIngredients;
     @FXML
@@ -342,12 +341,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             addedIngredientsList.add(selected);
             overlay.setContextMenu(removeMenu);
             overlay.setUserData(selected);
-            overlay.setOnMouseClicked(event -> {
-                slider.setDisable(false);
-                sliderIsDisabled=false;
-                selected = (Ing) overlay.getUserData();
-                lblChosenName.setText(selected.getName());
-            });
+
 
             removeItem.setOnAction(new EventHandler<ActionEvent>() {// removig a widget
                 @Override
@@ -395,9 +389,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         alcoholPercent.setProgress(totalAlcoholPercentage);  //for visual presentation only
-        pourCostPercent.setProgress(36);
         alcoholPercentCircle.getChildren().add(alcoholPercent);
-        pourCostCircle.getChildren().add(pourCostPercent);
         //dummyIngredientAddToList();// create generate and add to list mock ingredients
         dummyGlasswareCreate();
         dummyIngredientCreate();

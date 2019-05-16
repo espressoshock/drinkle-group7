@@ -27,7 +27,7 @@
     -fx-background-radius: 0;
     -fx-border-radius: 0;
 }
-#alcoholPercentCircle, #pourCostCircle{
+#alcoholPercentCircle{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-fill: transparent;
