@@ -19,5 +19,43 @@ public class Beverage {
     this.ingredients = ingredients;
   }
 
+  public String getName() {
+    return name;
+  }
 
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getAlcoholPercentage() {
+    return alcoholPercentage;
+  }
+
+  public void setAlcoholPercentage(int alcoholPercentage) {
+    this.alcoholPercentage = alcoholPercentage;
+  }
+
+  public int getCost() {
+    return cost;
+  }
+
+  public void setCost(int cost) {
+    this.cost = cost;
+  }
+
+  public int getVolumePerMililiter() {
+    return volumePerMililiter;
+  }
+
+  public void setVolumePerMililiter(int volumePerMililiter) {
+    this.volumePerMililiter = volumePerMililiter;
+  }
+
+  public ArrayList<Ingredient> getIngredients() {
+    return ingredients;
+  }
+
+  public void setIngredients(ArrayList<Ingredient> ingredients) {
+    this.ingredients = ingredients;
+  }
 }

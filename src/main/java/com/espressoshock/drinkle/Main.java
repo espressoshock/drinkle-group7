@@ -1,5 +1,7 @@
 package com.espressoshock.drinkle;
 import com.espressoshock.drinkle.appState.Current;
+import com.espressoshock.drinkle.models.Account;
+import com.espressoshock.drinkle.models.PrivateAccount;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -36,8 +38,30 @@ public class Main extends Application {
         primaryStage.show();
 
 
-        //TODO: User object.
-        //Current.environment.currentUser
+        /*
+        Example for getting, and setting beverages.
+         */
+        Current
+            .environment
+            .currentUser
+            .getBeverages();
+
+//        Current
+////            .environment
+////            .currentUser
+////            .setBeverages();
+
+        //date:
+        String date = Current
+            .environment
+            .currentDate;
+        //etc
+        Current
+            .environment
+            .currentUser
+            .getEmail();
+
+
 
 
        // shows current jdk used by the app itself.

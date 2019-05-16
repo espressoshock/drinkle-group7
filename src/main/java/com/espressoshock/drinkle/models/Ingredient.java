@@ -39,4 +39,51 @@ public class Ingredient {
         return name;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAlcoholPercentage() {
+        return alcoholPercentage;
+    }
+
+    public void setAlcoholPercentage(int alcoholPercentage) {
+        this.alcoholPercentage = alcoholPercentage;
+    }
+
+    public int getPricePerLiter() {
+        return pricePerLiter;
+    }
+
+    public void setPricePerLiter(int pricePerLiter) {
+        this.pricePerLiter = pricePerLiter;
+    }
+
+    public IngredientCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(IngredientCategory category) {
+        this.category = category;
+    }
+
+    public BrandsEnum getBrand() {
+        return brand;
+    }
+
+    public void setBrand(BrandsEnum brand) {
+        this.brand = brand;
+    }
+
+    public int getMagnituted() {
+        return magnituted;
+    }
+
+    public void setMagnituted(int magnituted) {
+        this.magnituted = magnituted;
+    }
 }
