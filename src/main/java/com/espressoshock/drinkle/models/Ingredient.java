@@ -11,17 +11,14 @@ public class Ingredient {
     private String name;
     private int alcoholPercentage;
     private int pricePerLiter;
-    private IngredientCategory category;
     private BrandsEnum brand;
     private int magnituted;
 
-    public Ingredient(String description, String name, int alcoholPercentage, int pricePerLiter,
-        IngredientCategory category, BrandsEnum brand, int magnituted) {
+    public Ingredient(String description, String name, int alcoholPercentage, int pricePerLiter, BrandsEnum brand, int magnituted) {
         this.description = description;
         this.name = name;
         this.alcoholPercentage = alcoholPercentage;
         this.pricePerLiter = pricePerLiter;
-        this.category = category;
         this.brand = brand;
         this.magnituted = magnituted;
     }
@@ -61,14 +58,6 @@ public class Ingredient {
 
     public void setPricePerLiter(int pricePerLiter) {
         this.pricePerLiter = pricePerLiter;
-    }
-
-    public IngredientCategory getCategory() {
-        return category;
-    }
-
-    public void setCategory(IngredientCategory category) {
-        this.category = category;
     }
 
     public BrandsEnum getBrand() {
