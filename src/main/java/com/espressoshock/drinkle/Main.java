@@ -38,10 +38,10 @@ public class Main extends Application {
         primaryStage.show();
 
 
-        /*
-        Example for getting, and setting beverages.
-         */
-        Current
+
+        //Example for getting, and setting beverages.
+
+    /*    Current
             .environment
             .currentUser
             .getBeverages();
@@ -61,7 +61,7 @@ public class Main extends Application {
             .currentUser
             .getEmail();
 
-
+*/
 
         //Test
 
