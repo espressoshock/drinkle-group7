@@ -12,4 +12,12 @@ public class BusinessAccount extends Account  {
         super(email, password, beverages);
         this.businessName = businessName;
     }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
 }
