@@ -124,24 +124,10 @@
             </Group>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="150.0" fitWidth="15.0" layoutX="893.0" layoutY="655.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/app/beverage-builder/settings.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <Group id="Alc%" layoutX="795.0" layoutY="145.0">
          <children>
             <Label layoutX="-1.0" text="Alcohol%" />
             <AnchorPane fx:id="alcoholPercentCircle" layoutX="-31.0" layoutY="17.0" prefHeight="112.0" prefWidth="114.0" />
-         </children>
-      </Group>
-      <Group id="Number of ingredients" layoutX="869.0" layoutY="85.0">
-         <children>
-            <Label text="N.I." />
-            <Label layoutX="2.0" layoutY="15.0" text="0" />
          </children>
       </Group>
       <Group id="Notes" layoutX="736.0" layoutY="83.0">
@@ -164,21 +150,13 @@
             <Label layoutX="9.0" layoutY="-3.0" text="Name" />
          </children>
       </Group>
-      <ImageView disable="true" fitHeight="150.0" fitWidth="30.0" layoutX="877.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/app/beverage-builder/folder.png" />
-         </image>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <ScrollPane fx:id="addedIngredients" hbarPolicy="NEVER" layoutX="710.0" layoutY="354.0" prefHeight="151.0" prefWidth="224.0">
          <content>
             <VBox fx:id="vBoxChosenIngredients" prefHeight="12.0" prefWidth="222.0" spacing="10.0" />
          </content>
       </ScrollPane>
       <Button fx:id="btnExport" layoutX="750.0" layoutY="540.0" mnemonicParsing="false" onAction="#openPrintView" prefHeight="35.0" prefWidth="150.0" text="Export" />
-      <Button fx:id="btnGenerate" layoutX="750.0" layoutY="588.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Generate" />
+      <Button fx:id="btnGenerate" layoutX="750.0" layoutY="588.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Save" />
       <Group layoutX="783.0" layoutY="299.0">
          <children>
             <Label text="Total volume" />
