@@ -1,12 +1,17 @@
 package com.espressoshock.drinkle.models;
 
-public class Account  {
+import java.util.ArrayList;
+
+public abstract class Account  {
 
     private String email;
     private String password;
+    private ArrayList<Beverage> beverages;
 
-    public Account(String email, String password) {
+    public Account(String email, String password,
+        ArrayList<Beverage> beverages) {
         this.email = email;
         this.password = password;
+        this.beverages = beverages;
     }
 }

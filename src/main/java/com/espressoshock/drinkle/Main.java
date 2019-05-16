@@ -1,4 +1,5 @@
 package com.espressoshock.drinkle;
+import com.espressoshock.drinkle.appState.Current;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,6 +34,11 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(mainScene);
         primaryStage.show();
+
+
+        //TODO: User object.
+        //Current.environment.currentUser
+
 
        // shows current jdk used by the app itself.
         System.out.println(System.getProperties());

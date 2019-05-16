@@ -1,14 +1,15 @@
 package com.espressoshock.drinkle.models;
 
 
+import java.util.ArrayList;
+
 public class BusinessAccount extends Account  {
 
-    private String vatID;
     private String businessName;
 
-    public BusinessAccount(String email, String password, String vatID, String businessName) {
-        super(email, password);
-        this.vatID = vatID;
+    public BusinessAccount(String email, String password,
+        ArrayList<Beverage> beverages, String businessName) {
+        super(email, password, beverages);
         this.businessName = businessName;
     }
 }
