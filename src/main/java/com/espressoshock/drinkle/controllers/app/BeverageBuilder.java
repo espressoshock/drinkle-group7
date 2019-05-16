@@ -86,12 +86,15 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         int totalVolume = 0;
         int alcoholVolume = 0;
         int totalAlcohol = 0;
-        for (Ing a : addedIngredientsList) {
-            totalVolume = totalVolume + a.getVolumeMagnitude();
-            alcoholVolume = alcoholVolume + (a.getVolumeMagnitude() * a.getAlcoholPercentage() / 100);
-        }
+        if (!addedIngredientsList.isEmpty()){
+            for (Ing a : addedIngredientsList) {
+                totalVolume = totalVolume + a.getVolumeMagnitude();
+                alcoholVolume = alcoholVolume + (a.getVolumeMagnitude() * a.getAlcoholPercentage() / 100);
+            }
         totalAlcohol = (alcoholVolume * 100) / totalVolume;
         return totalAlcohol;
+    } else
+            return 0;
     }
 
     public void openPrintView() throws Exception {
@@ -341,6 +344,10 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             addedIngredientsList.add(selected);
             overlay.setContextMenu(removeMenu);
             overlay.setUserData(selected);
+            overlay.setOnMouseClicked(event -> {
+                selected = (Ing) overlay.getUserData();
+                lblChosenName.setText(selected.getName());
+            });
 
 
             removeItem.setOnAction(new EventHandler<ActionEvent>() {// removig a widget
@@ -353,6 +360,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                     volumeSeparator = volumeSeparator - added.getVolume(); // adding to volume and progress separator
                     progressSeparator = progressSeparator - added.getProgressBar();
                     choseIngredientsList.add(selected);
+                    alcoholPercent.setProgress(countPercentage());
                     dummyIngredientAddToList();
                     selected = null;
                     lblChosenName.setText("Null");
