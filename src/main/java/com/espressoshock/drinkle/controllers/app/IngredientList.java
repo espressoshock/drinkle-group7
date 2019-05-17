@@ -135,9 +135,9 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
                 lblSelectedIngredientName.setText(x.getName());
                 txtSimilarWith.setText(x.getName());
                 lblAlcohol.setText(Integer.toString(x.getAlcoholPercentage()));
-                progressBarAlcohol.setProgress(x.getAlcoholPercentage()/100);
+                progressBarAlcohol.setProgress(Double.valueOf(x.getAlcoholPercentage())/100);
                 lblPrice.setText(Integer.toString(x.getPricePerLiter()));
-                progressBarPrice.setProgress(x.getPricePerLiter()/1000);
+                progressBarPrice.setProgress(Double.valueOf(x.getPricePerLiter())/1000);
                 lblIngredientBrand.setText(x.getBrand().getBrandName());
                 lblIngredientCategory.setText(x.getBrand().getProductType().getName());
                 for (Ingredient y : ingredientsList) {
@@ -151,6 +151,16 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
         }
     }
 
+    /*TODO****when account implemented****/
+    @FXML
+    private void selectAddIngredient(){}
+
+
+    /** Initialize methods
+     *
+     * The DB is queried when the view is initiated, and the collections are populated with corresponding objects
+     *
+     */
     private void createIngredientsList() {
         String [] names ={"Absolute Dry","Absolute Lemon","Absolute Dark","Smirnoff Ice","Grey Goose xo","Grey Goose Ice","Jack Daniel's XO"};
         int[] alcoholPercentage={40,36,42,41,43,41,42,};
