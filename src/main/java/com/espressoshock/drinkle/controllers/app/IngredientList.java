@@ -52,6 +52,7 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
         createCategoryList();
         populateNonAlcCategories();
         populateBrandsList();
+
     }
 
     @FXML
