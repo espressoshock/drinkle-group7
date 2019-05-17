@@ -334,7 +334,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             //--------------------------------
             Group ingredient = new Group();
             ingredient.getChildren().addAll(ingredientName, ingredientVolume, addedIngredientPercentBar, overlay);
-//            addedIng added = new addedIng(lblChosenName.getText(), setVolume, setProgress);
+           addedIng added = new addedIng(lblChosenName.getText(), setVolume, setProgress);
             selected.setVolumeMagnitude(setVolume);
             addedIngredientsList.add(selected);
             overlay.setContextMenu(removeMenu);
@@ -350,8 +350,8 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                 addedIngredientsList.remove(selected);
                 slider.setMin(countVolume());// adding back to volume removed ingredient value
                 slider.setValue(slider.getMin() - setProgress);// adding back to slider removed ingredient value
-//                volumeSeparator = volumeSeparator - added.getVolume(); // adding to volume and progress separator
-//                progressSeparator = progressSeparator - added.getProgressBar();
+                volumeSeparator = volumeSeparator - added.getVolume(); // adding to volume and progress separator
+               progressSeparator = progressSeparator - added.getProgressBar();
                 choseIngredientsList.add(selected);
                 alcoholPercent.setProgress(countPercentage());
                 dummyIngredientAddToList();
@@ -434,29 +434,29 @@ class Ing {
 
 }
 
-//class addedIng {
-////    private String name;
-//    private Integer Volume;
-//    private Double progressBar;
-//
-//    addedIng(String name, Integer volume, Double progressBar) {
-////        this.name = name;
-//        Volume = volume;
-//        this.progressBar = progressBar;
-//    }
+class addedIng {
+    private String name;
+    private Integer Volume;
+    private Double progressBar;
 
-//    String getName() {
-//        return name;
-//    }
-//
-//    Integer getVolume() {
-//        return Volume;
-//    }
-//
-//    Double getProgressBar() {
-//        return progressBar;
-//    }
-//}
+    addedIng(String name, Integer volume, Double progressBar) {
+        this.name = name;
+        Volume = volume;
+        this.progressBar = progressBar;
+    }
+
+    String getName() {
+        return name;
+    }
+
+    Integer getVolume() {
+        return Volume;
+    }
+
+    Double getProgressBar() {
+        return progressBar;
+    }
+}
 
 class Glassware {
 
