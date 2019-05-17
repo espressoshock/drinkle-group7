@@ -23,6 +23,7 @@ public class Ingredient {
         return name;
     }
 
+
     public void setName(String name) {
         this.name = name;
     }
@@ -51,11 +52,13 @@ public class Ingredient {
         this.brand = brand;
     }
 
+
     public int getMagnitude() {
         return magnitude;
     }
 
     public void setMagnitude(int magnitude) {
         this.magnitude = magnitude;
+
     }
 }
