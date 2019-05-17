@@ -9,6 +9,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 public class AuthLogin extends EventDispatcherAdapter {
+
+
 //    private static class AsyncCallable implements Callable<Boolean>{
 //        public static Boolean digestresult;
 //        private final String email;
@@ -53,8 +55,26 @@ public class AuthLogin extends EventDispatcherAdapter {
         super.dispatchViewChangeRequest(ViewMetadata.AUTH_REGISTRATION);
     }
 
+
+
+
     @FXML
     public void login(MouseEvent event)throws Exception {
+        showDialog();
+        AuthService loginService = new AuthService();
+        if (loginService.loginAsPrivateAccount(emailTf.getText(),passwordTf.getText())) {
+            hideDialog();
+            errorLbl.setVisible(false);
+            super.dispatchViewChangeRequest(ViewLoader.default_view);
+        } else {
+            hideDialog();
+            errorLbl.setVisible(true);
+        }
+
+
+
+
+
 //        /********* SHOW LOGIN MODAL DIALOG  */
 //        this.showDialog();
 //
@@ -88,16 +108,15 @@ public class AuthLogin extends EventDispatcherAdapter {
 //
 //
 
-        super.dispatchViewChangeRequest(ViewLoader.default_view);
     }
 
-//    private void showDialog(){
-//      this.dialogWindow.setVisible(true);
-//    }
-//
-//    private void hideDialog(){
-//        this.dialogWindow.setVisible(false);
-//    }
+    private void showDialog(){
+      this.dialogWindow.setVisible(true);
+    }
+
+    private void hideDialog(){
+        this.dialogWindow.setVisible(false);
+    }
 //
 //    public void SynchContinueApp(){
 //        super.dispatchViewChangeRequest(ViewLoader.default_view);

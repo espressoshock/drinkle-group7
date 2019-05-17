@@ -46,9 +46,6 @@ public class Main extends Application {
         primaryStage.show();
 
 
-
-
-
         // example: Retrieve Private Acc.
 
         try {
@@ -62,16 +59,17 @@ public class Main extends Application {
                 String address = resultSet.getString("email");
                 System.out.printf("id: %d, name:%s, email: %s\n", id, name, address);
             }
-
         } catch (SQLException ex) {
             System.out.println("Exception: ");
             System.out.println(ex);
+        } finally {
+            ConnectionLayer.cleanUp(statement, resultSet);
         }
+        connection.close();
+
 
         //shows current jdk used by the app itself.
         System.out.println(System.getProperties());
 
     }
-
-
 }
