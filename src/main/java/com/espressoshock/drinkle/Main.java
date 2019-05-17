@@ -1,7 +1,8 @@
 package com.espressoshock.drinkle;
-import com.espressoshock.drinkle.appState.Current;
-import com.espressoshock.drinkle.models.Account;
-import com.espressoshock.drinkle.models.PrivateAccount;
+import com.espressoshock.drinkle.databaseLayer.ConnectionLayer;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,12 @@ public class Main extends Application {
 
     private static final int windowWidth = 1000;
     private static final int windowHeight = 729;
+
+
+    private Connection connection = null;
+    private Statement statement = null;
+    private ResultSet resultSet = null;
+
 
 
     public static void main(String[] args) {
@@ -39,33 +46,17 @@ public class Main extends Application {
 
 
 
-        //Example for getting, and setting beverages.
 
-    /*    Current
-            .environment
-            .currentUser
-            .getBeverages();
+//        //example:
+//        connection = ConnectionLayer.getConnection();
+//        statement = connection.createStatement();
+//        resultSet = statement.executeQuery("SELECT *");
 
-//        Current
-////            .environment
-////            .currentUser
-////            .setBeverages();
 
-        //date:
-        String date = Current
-            .environment
-            .currentDate;
-        //etc
-        Current
-            .environment
-            .currentUser
-            .getEmail();
 
-*/
 
-        //Test
 
-       // shows current jdk used by the app itself.
+        //shows current jdk used by the app itself.
         System.out.println(System.getProperties());
 
     }
