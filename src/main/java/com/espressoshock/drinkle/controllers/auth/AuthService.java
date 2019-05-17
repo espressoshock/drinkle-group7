@@ -121,7 +121,7 @@ public class AuthService {
       connection = ConnectionLayer.getConnection();
 
       String sql;
-      
+
       if (accountType.equals(AccountType.Private)) {
         sql = "INSERT INTO `drinkleg7`.`private_account` (`name`, `email`, `password`) VALUES (?, ?, ?)";
       } else {
@@ -137,6 +137,15 @@ public class AuthService {
 
       int rowsAffected = preparedStatement.executeUpdate();
       if (rowsAffected >= 1) {
+
+        if (accountType.equals(AccountType.Private)) {
+          PrivateAccount newAccount = new PrivateAccount(email,password,null,name);
+          persistAccount(newAccount);
+        } else {
+          BusinessAccount newAccount = new BusinessAccount(email,password,null,name);
+          persistAccount(newAccount);
+        }
+
         return true;
       } else {
         return false;
