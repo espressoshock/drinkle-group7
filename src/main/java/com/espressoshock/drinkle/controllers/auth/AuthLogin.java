@@ -56,20 +56,42 @@ public class AuthLogin extends EventDispatcherAdapter {
     }
 
 
-
-
     @FXML
     public void login(MouseEvent event)throws Exception {
-        showDialog();
+
         AuthService loginService = new AuthService();
-        if (loginService.loginAsPrivateAccount(emailTf.getText(),passwordTf.getText())) {
+
+        RadioButton selectedRadioButton = (RadioButton) loginType.getSelectedToggle();
+        String toogleValue = selectedRadioButton.getText();
+
+        //this.showDialog();
+
+        String companyAccString = "Company";
+        String privateAccString = "Individual";
+
+        if (toogleValue.equals(companyAccString)) {
+            if (loginService.loginAsCompanyAccount(emailTf.getText(),passwordTf.getText())) {
+                errorLbl.setVisible(false);
+              //  this.hideDialog();
+                super.dispatchViewChangeRequest(ViewLoader.default_view);
+            } else {
+                errorLbl.setVisible(true);
+                hideDialog();
+            }
+            System.out.println("Company log-in");
             hideDialog();
-            errorLbl.setVisible(false);
-            super.dispatchViewChangeRequest(ViewLoader.default_view);
-        } else {
-            hideDialog();
-            errorLbl.setVisible(true);
+        } else if (toogleValue.equals(privateAccString)){
+            if (loginService.loginAsPrivateAccount(emailTf.getText(),passwordTf.getText())) {
+                errorLbl.setVisible(false);
+              //  this.hideDialog();
+                super.dispatchViewChangeRequest(ViewLoader.default_view);
+            } else {
+                errorLbl.setVisible(true);
+                hideDialog();
+            }
         }
+
+
 
 
 
