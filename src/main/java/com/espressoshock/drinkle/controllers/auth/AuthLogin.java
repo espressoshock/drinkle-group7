@@ -9,6 +9,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 public class AuthLogin extends EventDispatcherAdapter {
+
+
 //    private static class AsyncCallable implements Callable<Boolean>{
 //        public static Boolean digestresult;
 //        private final String email;
@@ -55,6 +57,12 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     @FXML
     public void login(MouseEvent event)throws Exception {
+
+
+
+
+
+
 //        /********* SHOW LOGIN MODAL DIALOG  */
 //        this.showDialog();
 //

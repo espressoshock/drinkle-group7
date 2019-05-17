@@ -12,6 +12,27 @@ public class AuthService {
   /*
   NOTE: Validation will be done based on the response from the db.
    */
+
+
+
+
+
+
+  static PrivateAccount loginAsPrivateAccount() {
+
+
+
+
+    return null;
+  }
+
+
+  static BusinessAccount loginAsCompanyAccount() {
+    return null;
+  }
+
+
+
   static void registerAsPrivateAccount(PrivateAccount account) {
     System.out.println("Create private acc");
     AppStatePersistence.saveObject(account, AppStatePersistence.userFilename);
