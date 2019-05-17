@@ -56,20 +56,42 @@ public class AuthLogin extends EventDispatcherAdapter {
     }
 
 
-
-
     @FXML
     public void login(MouseEvent event)throws Exception {
-        showDialog();
+
         AuthService loginService = new AuthService();
-        if (loginService.loginAsPrivateAccount(emailTf.getText(),passwordTf.getText())) {
-            hideDialog();
-            errorLbl.setVisible(false);
-            super.dispatchViewChangeRequest(ViewLoader.default_view);
-        } else {
-            hideDialog();
-            errorLbl.setVisible(true);
+
+        RadioButton selectedRadioButton = (RadioButton) loginType.getSelectedToggle();
+        String toggleValue = selectedRadioButton.getText();
+
+        //this.showDialog();
+
+        String companyAccString = "Company";
+        String privateAccString = "Individual";
+
+        if (toggleValue.equals(companyAccString)) {
+            if (loginService.loginAsCompanyAccount(emailTf.getText(),passwordTf.getText())) {
+                errorLbl.setVisible(false);
+              //  this.hideDialog();
+                super.dispatchViewChangeRequest(ViewLoader.default_view);
+            } else {
+                errorLbl.setVisible(true);
+            //    hideDialog();
+            }
+            System.out.println("Company log-in");
+           // hideDialog();
+        } else if (toggleValue.equals(privateAccString)){
+            if (loginService.loginAsPrivateAccount(emailTf.getText(),passwordTf.getText())) {
+                errorLbl.setVisible(false);
+              //  this.hideDialog();
+                super.dispatchViewChangeRequest(ViewLoader.default_view);
+            } else {
+                errorLbl.setVisible(true);
+            //    hideDialog();
+            }
         }
+
+
 
 
 
@@ -110,13 +132,13 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     }
 
-    private void showDialog(){
-      this.dialogWindow.setVisible(true);
-    }
-
-    private void hideDialog(){
-        this.dialogWindow.setVisible(false);
-    }
+//    private void showDialog(){
+//      this.dialogWindow.setVisible(true);
+//    }
+//
+//    private void hideDialog(){
+//        this.dialogWindow.setVisible(false);
+//    }
 //
 //    public void SynchContinueApp(){
 //        super.dispatchViewChangeRequest(ViewLoader.default_view);

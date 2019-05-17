@@ -30,16 +30,12 @@
             </HBox>
             <VBox layoutX="46.0" layoutY="260.0" prefHeight="270.0" prefWidth="349.0" styleClass="login-form">
                <children>
-                  <Label text="Full Name:" />
-                  <TextField prefHeight="34.0" prefWidth="353.0" />
+                  <Label text="Name:" />
+                  <TextField fx:id="nameTextField" prefHeight="34.0" prefWidth="353.0" />
                   <Label text="Email:" />
-                  <TextField prefHeight="34.0" prefWidth="353.0" />
-                  <Label text="Date of Birth:" />
-                  <TextField prefHeight="34.0" prefWidth="353.0" />
-                  <Label text="Gender:" />
-                  <ComboBox fx:id="genderComboBox" prefHeight="30.0" prefWidth="160.0" />
+                  <TextField fx:id="emailTextField" prefHeight="34.0" prefWidth="353.0" />
                   <Label text="Password:" />
-                  <TextField prefHeight="34.0" prefWidth="353.0" />
+                  <TextField fx:id="passwordTextField" prefHeight="34.0" prefWidth="353.0" />
                   <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="349.0" spacing="120.0">
                      <VBox.margin>
                         <Insets bottom="45.0" />
