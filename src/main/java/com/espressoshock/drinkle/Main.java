@@ -2,6 +2,7 @@ package com.espressoshock.drinkle;
 import com.espressoshock.drinkle.databaseLayer.ConnectionLayer;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -47,14 +48,25 @@ public class Main extends Application {
 
 
 
-//        //example:
-//        connection = ConnectionLayer.getConnection();
-//        statement = connection.createStatement();
-//        resultSet = statement.executeQuery("SELECT *");
 
+        // example: Retrieve Private Acc.
 
+        try {
+            connection = ConnectionLayer.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM drinkleg7.private_account");
 
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String address = resultSet.getString("email");
+                System.out.printf("id: %d, name:%s, email: %s\n", id, name, address);
+            }
 
+        } catch (SQLException ex) {
+            System.out.println("Exception: ");
+            System.out.println(ex);
+        }
 
         //shows current jdk used by the app itself.
         System.out.println(System.getProperties());
