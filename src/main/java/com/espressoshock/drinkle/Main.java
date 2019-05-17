@@ -67,7 +67,7 @@ public class Main extends Application {
         }
         connection.close();
 
-        
+
         //shows current jdk used by the app itself.
         System.out.println(System.getProperties());
 
