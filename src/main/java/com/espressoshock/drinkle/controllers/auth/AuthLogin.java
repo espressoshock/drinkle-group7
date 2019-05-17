@@ -62,32 +62,32 @@ public class AuthLogin extends EventDispatcherAdapter {
         AuthService loginService = new AuthService();
 
         RadioButton selectedRadioButton = (RadioButton) loginType.getSelectedToggle();
-        String toogleValue = selectedRadioButton.getText();
+        String toggleValue = selectedRadioButton.getText();
 
         //this.showDialog();
 
         String companyAccString = "Company";
         String privateAccString = "Individual";
 
-        if (toogleValue.equals(companyAccString)) {
+        if (toggleValue.equals(companyAccString)) {
             if (loginService.loginAsCompanyAccount(emailTf.getText(),passwordTf.getText())) {
                 errorLbl.setVisible(false);
               //  this.hideDialog();
                 super.dispatchViewChangeRequest(ViewLoader.default_view);
             } else {
                 errorLbl.setVisible(true);
-                hideDialog();
+            //    hideDialog();
             }
             System.out.println("Company log-in");
-            hideDialog();
-        } else if (toogleValue.equals(privateAccString)){
+           // hideDialog();
+        } else if (toggleValue.equals(privateAccString)){
             if (loginService.loginAsPrivateAccount(emailTf.getText(),passwordTf.getText())) {
                 errorLbl.setVisible(false);
               //  this.hideDialog();
                 super.dispatchViewChangeRequest(ViewLoader.default_view);
             } else {
                 errorLbl.setVisible(true);
-                hideDialog();
+            //    hideDialog();
             }
         }
 
@@ -132,13 +132,13 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     }
 
-    private void showDialog(){
-      this.dialogWindow.setVisible(true);
-    }
-
-    private void hideDialog(){
-        this.dialogWindow.setVisible(false);
-    }
+//    private void showDialog(){
+//      this.dialogWindow.setVisible(true);
+//    }
+//
+//    private void hideDialog(){
+//        this.dialogWindow.setVisible(false);
+//    }
 //
 //    public void SynchContinueApp(){
 //        super.dispatchViewChangeRequest(ViewLoader.default_view);

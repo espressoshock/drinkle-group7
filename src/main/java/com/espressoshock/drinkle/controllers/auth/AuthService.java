@@ -7,6 +7,7 @@ import com.espressoshock.drinkle.models.Account;
 import com.espressoshock.drinkle.models.BusinessAccount;
 import com.espressoshock.drinkle.models.PrivateAccount;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -38,10 +39,14 @@ public class AuthService {
               .environment
               .currentUser = newAccount;
 
+          AppStatePersistence.saveObject(newAccount, AppStatePersistence.userFilename);
 
           System.out.printf("id: %d, name:%s, email: %s\n", id, nameFromDB, emailFromDB);
           System.out.println("Current user:");
           System.out.println(Current.environment.currentUser.toString());
+
+
+          persistAccount(newAccount);
 
           return true;
         } else {
@@ -74,14 +79,7 @@ public class AuthService {
         if (email.equals(emailFromDB) && password.equals(passwordFromDB)) {
           BusinessAccount newAccount = new BusinessAccount(emailFromDB,passwordFromDB,null,nameFromDB);
 
-          Current
-              .environment
-              .currentUser = newAccount;
-
-
-          System.out.printf("id: %d, name:%s, email: %s\n", id, nameFromDB, emailFromDB);
-          System.out.println("Current user:");
-          System.out.println(Current.environment.currentUser.toString());
+          persistAccount(newAccount);
 
           return true;
         } else {
@@ -100,17 +98,55 @@ public class AuthService {
 
 
 
+  private void persistAccount(Account acc) {
+    Current
+        .environment
+        .currentUser = acc;
 
-  //TODO: Implement.
+    AppStatePersistence.saveObject(acc, AppStatePersistence.userFilename);
 
-  static void registerAsPrivateAccount(PrivateAccount account) {
-    System.out.println("Create private acc");
-    AppStatePersistence.saveObject(account, AppStatePersistence.userFilename);
+    System.out.println("Current user:");
+    System.out.println(acc.toString());
+    System.out.println(Current.environment.currentUser.toString());
   }
 
-  static void registerAsCompanyAccount(BusinessAccount account) {
-    System.out.println("Create company acc");
-    AppStatePersistence.saveObject(account, AppStatePersistence.userFilename);
-  }
 
+
+
+  public enum AccountType {Company, Private}
+
+  boolean registerAccount(String email, String password, String name, AccountType accountType) {
+    System.out.println("Register Called");
+    try {
+      connection = ConnectionLayer.getConnection();
+
+      String sql;
+      
+      if (accountType.equals(AccountType.Private)) {
+        sql = "INSERT INTO `drinkleg7`.`private_account` (`name`, `email`, `password`) VALUES (?, ?, ?)";
+      } else {
+        sql = "INSERT INTO `drinkleg7`.`company_account` (`name`, `email`, `password`) VALUES (?, ?, ?)";
+      }
+
+      PreparedStatement preparedStatement = connection.prepareStatement(sql,
+          Statement.RETURN_GENERATED_KEYS);
+
+      preparedStatement.setString(1,name);
+      preparedStatement.setString(2,email);
+      preparedStatement.setString(3,password);
+
+      int rowsAffected = preparedStatement.executeUpdate();
+      if (rowsAffected >= 1) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (SQLException ex) {
+      System.out.println("Registration exception: ");
+      System.out.println(ex);
+      return false;
+    } finally {
+      ConnectionLayer.cleanUp(statement, resultSet);
+    }
+  }
 }
