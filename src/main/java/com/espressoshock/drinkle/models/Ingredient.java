@@ -4,44 +4,25 @@ package com.espressoshock.drinkle.models;
 
 public class Ingredient {
 
-    //TODO: Remove
-    private String description;
-
-
     private String name;
     private int alcoholPercentage;
     private int pricePerLiter;
-    private IngredientCategory category;
     private BrandsEnum brand;
-    private int magnituted;
+    private int magnitude;
 
-    public Ingredient(String description, String name, int alcoholPercentage, int pricePerLiter,
-        IngredientCategory category, BrandsEnum brand, int magnituted) {
-        this.description = description;
+    public Ingredient(String name, int alcoholPercentage, int pricePerLiter, BrandsEnum brand, int magnitude) {
+
         this.name = name;
         this.alcoholPercentage = alcoholPercentage;
         this.pricePerLiter = pricePerLiter;
-        this.category = category;
         this.brand = brand;
-        this.magnituted = magnituted;
-    }
-
-
-    public BrandsEnum getBrandsEnum() {
-        return brand;
-    }
-
-    public String getDescription() {
-        return description;
+        this.magnitude = magnitude;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public void setName(String name) {
         this.name = name;
@@ -63,14 +44,6 @@ public class Ingredient {
         this.pricePerLiter = pricePerLiter;
     }
 
-    public IngredientCategory getCategory() {
-        return category;
-    }
-
-    public void setCategory(IngredientCategory category) {
-        this.category = category;
-    }
-
     public BrandsEnum getBrand() {
         return brand;
     }
@@ -79,11 +52,13 @@ public class Ingredient {
         this.brand = brand;
     }
 
-    public int getMagnituted() {
-        return magnituted;
+
+    public int getMagnitude() {
+        return magnitude;
     }
 
-    public void setMagnituted(int magnituted) {
-        this.magnituted = magnituted;
+    public void setMagnitude(int magnitude) {
+        this.magnitude = magnitude;
+
     }
 }

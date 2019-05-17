@@ -1,7 +1,9 @@
 package com.espressoshock.drinkle;
-import com.espressoshock.drinkle.appState.Current;
-import com.espressoshock.drinkle.models.Account;
-import com.espressoshock.drinkle.models.PrivateAccount;
+import com.espressoshock.drinkle.databaseLayer.ConnectionLayer;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +18,12 @@ public class Main extends Application {
 
     private static final int windowWidth = 1000;
     private static final int windowHeight = 729;
+
+
+    private Connection connection = null;
+    private Statement statement = null;
+    private ResultSet resultSet = null;
+
 
 
     public static void main(String[] args) {
@@ -38,37 +46,30 @@ public class Main extends Application {
         primaryStage.show();
 
 
+        // example: Retrieve Private Acc.
 
-        //Example for getting, and setting beverages.
+        try {
+            connection = ConnectionLayer.getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM drinkleg7.private_account");
 
-    /*    Current
-            .environment
-            .currentUser
-            .getBeverages();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String address = resultSet.getString("email");
+                System.out.printf("id: %d, name:%s, email: %s\n", id, name, address);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Exception: ");
+            System.out.println(ex);
+        } finally {
+            ConnectionLayer.cleanUp(statement, resultSet);
+        }
+        connection.close();
 
-//        Current
-////            .environment
-////            .currentUser
-////            .setBeverages();
 
-        //date:
-        String date = Current
-            .environment
-            .currentDate;
-        //etc
-        Current
-            .environment
-            .currentUser
-            .getEmail();
-
-*/
-
-        //Test
-
-       // shows current jdk used by the app itself.
+        //shows current jdk used by the app itself.
         System.out.println(System.getProperties());
 
     }
-
-
 }

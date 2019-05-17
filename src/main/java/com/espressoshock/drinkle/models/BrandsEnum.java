@@ -15,7 +15,7 @@ public enum BrandsEnum {
     BACARDI("Bacardi",  IngredientCategory.RUM),HAVANA_CLUB("Havana Club", IngredientCategory.RUM),
     SAINT_JAMES("Saint James",  IngredientCategory.RUM),GREEN_ISLAND("Green Island", IngredientCategory.RUM),
     COGNAC("Cognac", IngredientCategory.BRANDY),ARMAGNAC( "Armagnac", IngredientCategory.BRANDY),
-    AMARETTO("Amaretto",  IngredientCategory.LIQUEUR),BAILEYS("Bailey's",  IngredientCategory.LIQUEUR),
+    AMARETTO("Amaretto",  IngredientCategory.LIQUEUR),BAILEYS("Baileys",  IngredientCategory.LIQUEUR),
     COINTREAU("Cointreau",  IngredientCategory.LIQUEUR),KAHLUA("Kahlua",  IngredientCategory.LIQUEUR),
     SAMBUCA("Sambuca", IngredientCategory.LIQUEUR),SHERIDANS("Sheridan's",  IngredientCategory.LIQUEUR),
     TIA_MARIA("Tia Maria", IngredientCategory.LIQUEUR),MIDNIGHT_ESPRESSO("Midnight Espresso",  IngredientCategory.LIQUEUR),
