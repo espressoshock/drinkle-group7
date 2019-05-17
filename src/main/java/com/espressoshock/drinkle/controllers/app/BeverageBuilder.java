@@ -2,9 +2,6 @@ package com.espressoshock.drinkle.controllers.app;
 
 import com.espressoshock.drinkle.progressIndicator.RingProgressIndicator;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,50 +27,45 @@ import java.util.ResourceBundle;
 public class BeverageBuilder extends EventDispatcherAdapter implements Initializable {
     //-------------------------Test variables only!!!----------------
 
-    Integer volumeSeparator = 0; // Value has been set to current slider value when ingredient is added
-    Double progressSeparator = 0.0; // Value has been set to current progress bar value when ingredient is added
-    String sliderDoubleValueAsString = null;
-    Integer totalAlcoholPercentage = 0;
-    String cost = "0.0"; //initial cost label text
+    private Integer volumeSeparator = 0; // Value has been set to current slider value when ingredient is added
+    private Double progressSeparator = 0.0; // Value has been set to current progress bar value when ingredient is added
+    private String sliderDoubleValueAsString = null;
+    private String cost = "0.0"; //initial cost label text
     // double costIncrease = 0.0; <-- not sure what i used this for
-    double slidervalueset = 0.0;
-    Double glassVolume = null;
-    Double volume = null;
-    int index = 0;
-    Random rand = new Random();
-    DecimalFormat df = new DecimalFormat("#.##");
-    boolean sliderIsDisabled= false;
+    private double slidervalueset = 0.0;
+    private Double glassVolume = null;
+    private Double volume = null;
+    private Random rand = new Random();
+
 
     //------------------------End of Test variables------------------
     /* -> to be implemented when ingridient list is ready
     ArrayList<Ingredient> choseIngredientsList = new ArrayList<>();
     ArrayList<Ingredient> addedIngredientsList = new ArrayList<>();
     */
-    ArrayList<Ing> choseIngredientsList = new ArrayList<>();
-    ObservableList<Ing> observableListChoseIngredient = FXCollections.observableArrayList(choseIngredientsList);
-    ArrayList<Glassware> choseGlasswareList = new ArrayList<>();
-    ObservableList<Glassware> observableListChoseGlassware = FXCollections.observableArrayList(choseGlasswareList);
-    ArrayList<Garnish> choseGarnishList = new ArrayList<>();
-    ArrayList<IceType> choseIceTypeList = new ArrayList<>();
-    ArrayList<Ing> addedIngredientsList = new ArrayList<>();
+    private ArrayList<Ing> choseIngredientsList = new ArrayList<>();
+    private ArrayList<Glassware> choseGlasswareList = new ArrayList<>();
+//    private ArrayList<Garnish> choseGarnishList = new ArrayList<>();
+//    private ArrayList<IceType> choseIceTypeList = new ArrayList<>();
+    private ArrayList<Ing> addedIngredientsList = new ArrayList<>();
 
-    Ing selected = null;// selected object of ingredient
-    RingProgressIndicator alcoholPercent = new RingProgressIndicator();
+    private Ing selected = null;// selected object of ingredient
+    private RingProgressIndicator alcoholPercent = new RingProgressIndicator();
     @FXML
-    Label lblChosenName, lblVolume, lblCost, lblTotalVolume;
+    private Label lblChosenName, lblVolume, lblCost, lblTotalVolume;
     @FXML
-    AnchorPane alcoholPercentCircle;
+    private AnchorPane alcoholPercentCircle;
     @FXML
-    VBox vBoxChosenIngredients, vBoxListOfIngredients;
+    private VBox vBoxChosenIngredients, vBoxListOfIngredients;
     @FXML
-    Slider slider;
+    private Slider slider;
     @FXML
-    ProgressBar progressGlass;
+    private ProgressBar progressGlass;
     @FXML
-    Button btnAddIngredient;
+    private Button btnAddIngredient;
 
 
-    public int countVolume() {
+    private int countVolume() {
         int totalVolume = 0;
         for (Ing a : addedIngredientsList) {
             totalVolume = totalVolume + a.getVolumeMagnitude();
@@ -82,18 +74,23 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         return totalVolume;
     }
 
-    public int countPercentage() {
+    private int countPercentage() {
+        double preciseValueAlc;
+        double preciseVolumeAlc = 0.0;
         int totalVolume = 0;
-        int alcoholVolume = 0;
-        int totalAlcohol = 0;
-        if (!addedIngredientsList.isEmpty()){
+
+        int totalAlcohol;
+        if (!addedIngredientsList.isEmpty()) {
             for (Ing a : addedIngredientsList) {
                 totalVolume = totalVolume + a.getVolumeMagnitude();
-                alcoholVolume = alcoholVolume + (a.getVolumeMagnitude() * a.getAlcoholPercentage() / 100);
+                preciseVolumeAlc = preciseVolumeAlc + (a.getVolumeMagnitude() * a.getAlcoholPercentage() / 100);
             }
-        totalAlcohol = (alcoholVolume * 100) / totalVolume;
-        return totalAlcohol;
-    } else
+            preciseValueAlc = ((preciseVolumeAlc * 100) / totalVolume);
+//            preciseValueAlc = Math.round(preciseValueAlc);
+            totalAlcohol = (int) preciseValueAlc;
+
+            return totalAlcohol;
+        } else
             return 0;
     }
 
@@ -107,7 +104,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         primaryStage.show();
     }
 
-    public void findSelected() {
+    private void findSelected() {
         Ing sel = null;
         for (Ing e : choseIngredientsList) {
             if (e == selected) {
@@ -121,7 +118,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private void sliderProgressChange() {
         if (selected == null) {
             slider.setDisable(true);
-            sliderIsDisabled = true;
+
         } else {
             slider.valueProperty().addListener((arg0, arg1, arg2) -> {
                 try {
@@ -133,30 +130,32 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                     lblCost.setText(cost);
                     if (slider.getValue() == slider.getMin()) {
                         btnAddIngredient.setDisable(true);
-                    }else {
+                    } else {
                         btnAddIngredient.setDisable(false);
                     }
                 } catch (NumberFormatException ex) {
                     //throws exception only on MacOS.
-                    System.out.println(ex);
+                    ex.printStackTrace();
                 }
             });
 
         }
     }
-    public void disbleAdd(){
+
+    private void disbleAdd() {
         slider.valueProperty().addListener((arg0, arg1, arg2) -> {
             if (slider.getValue() == slider.getMin()) {
                 btnAddIngredient.setDisable(true);
             }
         });
-        if (selected == null){
+        if (selected == null) {
             btnAddIngredient.setDisable(true);
         }
     }
-    public void choseIngredient(Event event) {
+
+    private void choseIngredient(Event event) {
         slider.setDisable(false);
-        sliderIsDisabled=false;
+
         Label lbl = (Label) event.getSource();
         selected = (Ing) lbl.getUserData();
         lblChosenName.setText(lbl.getText() + " " + selected.getAlcoholPercentage());
@@ -165,82 +164,75 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     }
 
     //------------Creating labels to be represented in the ingredient list------
-    public void choseIngredientListElement(Ing object) {
-        Ing obj = object;
+    private void choseIngredientListElement(Ing object) {
 
         Label choseIngredientName = new Label();
         Label choseIngredientPrice = new Label();
-        Tooltip percentage = new Tooltip("Alcohol: " + obj.getAlcoholPercentage() + "%");
-        choseIngredientName.setText(obj.getName());
-        choseIngredientName.setOnMouseClicked((Event event) -> {
-            choseIngredient(event);
-        });
+        Tooltip percentage = new Tooltip("Alcohol: " + object.getAlcoholPercentage() + "%");
+        choseIngredientName.setText(object.getName());
+        choseIngredientName.setOnMouseClicked((EventHandler<Event>) this::choseIngredient);
         choseIngredientName.setCursor(Cursor.HAND);
         choseIngredientName.setTooltip(percentage);
         choseIngredientPrice.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-        choseIngredientPrice.setText(String.format("%.2f", obj.getPrice()) + " \u20ac" + "/l");
+        choseIngredientPrice.setText(String.format("%.2f", object.getPrice()) + " \u20ac" + "/l");
         choseIngredientPrice.setLayoutX(205.0);
 
         Group choseIngredient = new Group();
         choseIngredient.getChildren().add(choseIngredientName);
         choseIngredient.getChildren().add(choseIngredientPrice);
-        choseIngredientName.setUserData(obj);
+        choseIngredientName.setUserData(object);
         vBoxListOfIngredients.getChildren().add(choseIngredient);
     }
 
-    public void choseGlasswareListElement(Glassware object) {
-        Glassware obj = object;
+    private void choseGlasswareListElement(Glassware object) {
 
         Label choseGlasswareName = new Label();
         Label choseGlasswareVolume = new Label();
-        choseGlasswareName.setText(obj.getName());
+        choseGlasswareName.setText(object.getName());
         choseGlasswareName.setOnMouseClicked((Event event) -> {
 
         });
         choseGlasswareName.setCursor(Cursor.HAND);
         choseGlasswareVolume.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-        choseGlasswareVolume.setText(obj.getVolume().toString() + " ml");
+        choseGlasswareVolume.setText(object.getVolume().toString() + " ml");
         choseGlasswareVolume.setLayoutX(205.0);
 
         Group choseIngredient = new Group();
         choseIngredient.getChildren().add(choseGlasswareName);
         choseIngredient.getChildren().add(choseGlasswareVolume);
-        choseGlasswareName.setUserData(obj);
+        choseGlasswareName.setUserData(object);
         vBoxListOfIngredients.getChildren().add(choseIngredient);
     }
 
-    public void choseGarnishListElement(Garnish object) {
-        Garnish obj = object;
-
-        Label choseGarnishName = new Label();
-        choseGarnishName.setText(obj.getName());
-        choseGarnishName.setOnMouseClicked((Event event) -> {
-
-        });
-        choseGarnishName.setCursor(Cursor.HAND);
-        Group choseIngredient = new Group();
-        choseIngredient.getChildren().add(choseGarnishName);
-        choseGarnishName.setUserData(obj);
-        vBoxListOfIngredients.getChildren().add(choseIngredient);
-    }
-
-    public void choseIceTypeListElement(IceType object) {
-        IceType obj = object;
-
-        Label choseIceTypeName = new Label();
-        choseIceTypeName.setText(obj.getName());
-        choseIceTypeName.setOnMouseClicked((Event event) -> {
-
-        });
-        choseIceTypeName.setCursor(Cursor.HAND);
-        Group choseIngredient = new Group();
-        choseIngredient.getChildren().add(choseIceTypeName);
-        choseIceTypeName.setUserData(obj);
-        vBoxListOfIngredients.getChildren().add(choseIngredient);
-    }
+    //    private void choseGarnishListElement(Garnish object) {
+//
+//        Label choseGarnishName = new Label();
+//        choseGarnishName.setText(object.getName());
+////        choseGarnishName.setOnMouseClicked((Event event) -> {
+////
+////        });
+////        choseGarnishName.setCursor(Cursor.HAND);
+////        Group choseIngredient = new Group();
+////        choseIngredient.getChildren().add(choseGarnishName);
+////        choseGarnishName.setUserData(object);
+////        vBoxListOfIngredients.getChildren().add(choseIngredient);
+//    }
+//
+//    private void choseIceTypeListElement(IceType object) {
+//        Label choseIceTypeName = new Label();
+//        choseIceTypeName.setText(object.getName());
+////        choseIceTypeName.setOnMouseClicked((Event event) -> {
+////
+////        });
+////        choseIceTypeName.setCursor(Cursor.HAND);
+////        Group choseIngredient = new Group();
+////        choseIngredient.getChildren().add(choseIceTypeName);
+////        choseIceTypeName.setUserData(object);
+////        vBoxListOfIngredients.getChildren().add(choseIngredient);
+//    }
     //------------Adding from array list to vBox (display)------
-
-    public void dummyIngredientAddToList() {
+    @FXML
+    private void dummyIngredientAddToList() {
         vBoxListOfIngredients.getChildren().clear();
         for (Ing a : choseIngredientsList) {
             choseIngredientListElement(a);
@@ -254,22 +246,23 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         }
     }
 
-    public void dummyGarnishAddToList() {
-        vBoxListOfIngredients.getChildren().clear();
-        for (Garnish a : choseGarnishList) {
-            choseGarnishListElement(a);
-        }
-    }
-
-    public void dummyIceTypeAddToList() {
-        vBoxListOfIngredients.getChildren().clear();
-        for (IceType a : choseIceTypeList) {
-            choseIceTypeListElement(a);
-        }
-    }
+//    private void dummyGarnishAddToList() {
+//        vBoxListOfIngredients.getChildren().clear();
+//        for (Garnish a : choseGarnishList) {
+//            choseGarnishListElement(a);
+//        }
+//    }
+//
+//    private void dummyIceTypeAddToList() {
+//        vBoxListOfIngredients.getChildren().clear();
+//        for (IceType a : choseIceTypeList) {
+//            choseIceTypeListElement(a);
+//        }
+//    }
 
     //-----------Creating objects-------------------------------
-    public void dummyIngredientCreate() {//for Test Purpose Only!!!!
+    @FXML
+    private void dummyIngredientCreate() {//for Test Purpose Only!!!!
         // To be replaced with observable list of ingredient objects
 
         String[] names = new String[]{"Juice", "Vodka", "Whiskey", "Gin", "Beer", "Brandy", "Some other ingredient", "Water"};
@@ -283,7 +276,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         }
     }
 
-    public void dummyGlasswareCreate() {//for Test Purpose Only!!!!
+    private void dummyGlasswareCreate() {//for Test Purpose Only!!!!
         // To be replaced with observable list of Glassware objects
 
         Glassware shot = new Glassware("Shot", 44, "asd");
@@ -297,21 +290,23 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         choseGlasswareList.add(martini);
     }
 
-    public void addIngredientTOLIST(){
-       for (Ing a : addedIngredientsList){
+//    private void addIngredientTOLIST() {
+//        for (Ing a : addedIngredientsList) {
+//
+//        }
+//    }
 
-       }
-    }
-    public void addIngredientWidget() {
+    @FXML
+    private void addIngredientWidget() {
 
         if (selected != null) {
 
             // Test purposes only
             btnAddIngredient.setDisable(true);
             //-------------------Setting new min values----------------
-            double diff = slider.getValue() - slider.getMin(); // slider value difference Current value - min value
-            Integer setVolume = volume.intValue() - volumeSeparator; // available volume after adding previous ingredient
-            Double setProgress = progressGlass.getProgress() - progressSeparator; // Progress bar in a glass/available volume
+//            double diff = slider.getValue() - slider.getMin(); // slider value difference Current value - min value
+            int setVolume = volume.intValue() - volumeSeparator; // available volume after adding previous ingredient
+            double setProgress = progressGlass.getProgress() - progressSeparator; // Progress bar in a glass/available volume
             //-------------------Creating components----------------
             Label ingredientName = new Label();
             Label ingredientVolume = new Label();
@@ -339,7 +334,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             //--------------------------------
             Group ingredient = new Group();
             ingredient.getChildren().addAll(ingredientName, ingredientVolume, addedIngredientPercentBar, overlay);
-            addedIng added = new addedIng(lblChosenName.getText(), setVolume, setProgress);
+//            addedIng added = new addedIng(lblChosenName.getText(), setVolume, setProgress);
             selected.setVolumeMagnitude(setVolume);
             addedIngredientsList.add(selected);
             overlay.setContextMenu(removeMenu);
@@ -350,23 +345,20 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             });
 
 
-            removeItem.setOnAction(new EventHandler<ActionEvent>() {// removig a widget
-                @Override
-                public void handle(ActionEvent event) {
-                    vBoxChosenIngredients.getChildren().remove(ingredient);
-                    addedIngredientsList.remove(selected);
-                    slider.setMin(countVolume());// adding back to volume removed ingredient value
-                    slider.setValue(slider.getMin() - setProgress);// adding back to slider removed ingredient value
-                    volumeSeparator = volumeSeparator - added.getVolume(); // adding to volume and progress separator
-                    progressSeparator = progressSeparator - added.getProgressBar();
-                    choseIngredientsList.add(selected);
-                    alcoholPercent.setProgress(countPercentage());
-                    dummyIngredientAddToList();
-                    selected = null;
-                    lblChosenName.setText("Null");
+            removeItem.setOnAction(event -> {// removig a widget
+                vBoxChosenIngredients.getChildren().remove(ingredient);
+                addedIngredientsList.remove(selected);
+                slider.setMin(countVolume());// adding back to volume removed ingredient value
+                slider.setValue(slider.getMin() - setProgress);// adding back to slider removed ingredient value
+//                volumeSeparator = volumeSeparator - added.getVolume(); // adding to volume and progress separator
+//                progressSeparator = progressSeparator - added.getProgressBar();
+                choseIngredientsList.add(selected);
+                alcoholPercent.setProgress(countPercentage());
+                dummyIngredientAddToList();
+                selected = null;
+                lblChosenName.setText("Null");
 
 
-                }
             });
             vBoxChosenIngredients.getChildren().add(ingredient);
             volumeSeparator = volume.intValue();
@@ -377,7 +369,6 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             dummyIngredientAddToList();
             selected = null;
             slider.setDisable(true);
-            sliderIsDisabled = true;
             lblChosenName.setText("null");
 
         } else {
@@ -388,14 +379,10 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
     }
 
-    public int alcoholPercentage(Ing ingredient, int Volume) {
-        int alcoholInMililiters = (ingredient.getAlcoholPercentage() * Volume) / 100;
-        return alcoholInMililiters;
-    }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        int totalAlcoholPercentage = 0;
         alcoholPercent.setProgress(totalAlcoholPercentage);  //for visual presentation only
         alcoholPercentCircle.getChildren().add(alcoholPercent);
         //dummyIngredientAddToList();// create generate and add to list mock ingredients
@@ -419,56 +406,57 @@ class Ing {
     private Double price;
     private int volumeMagnitude;
 
-    public Ing(String name, Integer alcoholPercentage, Double price) {
+    Ing(String name, Integer alcoholPercentage, Double price) {
         this.name = name;
         this.alcoholPercentage = alcoholPercentage;
         this.price = price;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public Integer getAlcoholPercentage() {
+    Integer getAlcoholPercentage() {
         return alcoholPercentage;
     }
 
-    public Double getPrice() {
+    Double getPrice() {
         return price;
     }
 
-    public int getVolumeMagnitude() {
+    int getVolumeMagnitude() {
         return volumeMagnitude;
     }
 
-    public void setVolumeMagnitude(int volumeMagnitude) {
+    void setVolumeMagnitude(int volumeMagnitude) {
         this.volumeMagnitude = volumeMagnitude;
     }
+
 }
 
-class addedIng {
-    private String name;
-    private Integer Volume;
-    private Double progressBar;
+//class addedIng {
+////    private String name;
+//    private Integer Volume;
+//    private Double progressBar;
+//
+//    addedIng(String name, Integer volume, Double progressBar) {
+////        this.name = name;
+//        Volume = volume;
+//        this.progressBar = progressBar;
+//    }
 
-    public addedIng(String name, Integer volume, Double progressBar) {
-        this.name = name;
-        Volume = volume;
-        this.progressBar = progressBar;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getVolume() {
-        return Volume;
-    }
-
-    public Double getProgressBar() {
-        return progressBar;
-    }
-}
+//    String getName() {
+//        return name;
+//    }
+//
+//    Integer getVolume() {
+//        return Volume;
+//    }
+//
+//    Double getProgressBar() {
+//        return progressBar;
+//    }
+//}
 
 class Glassware {
 
@@ -476,45 +464,45 @@ class Glassware {
     private Integer volume;
     private String imageUrl;
 
-    public Glassware(String name, Integer volume, String imageUrl) {
+    Glassware(String name, Integer volume, String imageUrl) {
         this.name = name;
         this.volume = volume;
         this.imageUrl = imageUrl;
     }
 
-    public String getName() {
+    String getName() {
         return name;
     }
 
-    public Integer getVolume() {
+    Integer getVolume() {
         return volume;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+//    String getImageUrl() {
+//        return imageUrl;
+//    }
 }
 
-class Garnish {
-    String name;
+//class Garnish {
+//    String name;
+//
+//    Garnish(String name) {
+//        this.name = name;
+//    }
+//
+////    String getName() {
+////        return name;
+////    }
+//}
 
-    public Garnish(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-}
-
-class IceType {
-    String name;
-
-    public IceType(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-}
+//class IceType {
+//    String name;
+//
+//    IceType(String name) {
+//        this.name = name;
+//    }
+//
+////    String getName() {
+////        return name;
+////    }
+//}
