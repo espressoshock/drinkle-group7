@@ -86,6 +86,8 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
             populateCategoryMenu((categoryNonAlc));
             menuBtnCategory.setText("Categories");
             menuBtnBrand.setText("Brand");
+            menuBtnBrand.getItems().clear();
+            vBoxIngredients.getChildren().clear();
         }
     }
 
