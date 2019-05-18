@@ -8,6 +8,16 @@ public class Beverage {
   private int alcoholPercentage;
   private double cost;
   private int volumePerMililiter;
+  private String notes;
+
+  public String getNotes() {
+    return notes;
+  }
+
+  public void setNotes(String notes) {
+    this.notes = notes;
+  }
+
   private ArrayList<Ingredient> ingredients;
 
   public Beverage(String name, int alcoholPercentage, double cost, int volumePerMililiter,

@@ -5,6 +5,8 @@ import com.espressoshock.drinkle.models.Beverage;
 import com.espressoshock.drinkle.models.Ingredient;
 import com.espressoshock.drinkle.progressIndicator.RingProgressIndicator;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -43,12 +45,13 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private Double volume = null;
     private double totalCost = 0.0;
     private double costTOTALLE= 0.0;
+    public static Beverage bvg = null;
 
 
     //------------------------End of Test variables------------------
     // -> to be implemented when ingridient list is ready
     private ArrayList<Ingredient> choseIngredientsList2 = new ArrayList<>();
-    private ArrayList<Ingredient> addedIngredientsList2 = new ArrayList<>();
+    public static ArrayList<Ingredient> addedIngredientsList2 = new ArrayList<>();
 
     //private ArrayList<Ing> choseIngredientsList = new ArrayList<>();
     private ArrayList<Glassware> choseGlasswareList = new ArrayList<>();
@@ -70,6 +73,11 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private ProgressBar progressGlass;
     @FXML
     private Button btnAddIngredient;
+    @FXML
+    TextField txtFieldBeverageName;
+    @FXML
+    TextArea txtAreaNotes;
+
 
     private double countCost() {
         double countedCost = 0.0;
@@ -94,7 +102,9 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     }
 
     public Beverage createObject() {
-        Beverage a = new Beverage("Test", countPercentage(), countCost(), countVolume(), addedIngredientsList2);
+        Beverage a = new Beverage(txtFieldBeverageName.getText(), countPercentage(), Double.valueOf(cost), countVolume(), addedIngredientsList2);
+        a.setNotes(txtAreaNotes.getText());
+        bvg = a;
         return a;
     }
 
@@ -208,6 +218,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     }
 
     public void openPrintView() throws Exception {
+        createObject();
         Stage primaryStage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/app/print-layout.fxml"));
         Scene print = new Scene(root);
@@ -484,6 +495,17 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         }
 
     }
+    private static void limitText(TextField tf, int maxLength){
+        tf.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+                if (tf.getText().length() > maxLength) {
+                    String s = tf.getText().substring(0, maxLength);
+                    tf.setText(s);
+                }
+            }
+        });
+    }
 
 
     @Override
@@ -498,6 +520,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         lblTotalVolume.setText("100");
         glassVolume = 120.0;
         slider.setMax(120.0);
+        limitText(txtFieldBeverageName,45);// <--- limit name to varchar(45)
         disbleAdd();
         try {
             loadIngredientsFromDB();
