@@ -1,6 +1,7 @@
 package com.espressoshock.drinkle.controllers.app;
 
 import com.espressoshock.drinkle.databaseLayer.ConnectionLayer;
+import com.espressoshock.drinkle.models.Beverage;
 import com.espressoshock.drinkle.models.Ingredient;
 import com.espressoshock.drinkle.progressIndicator.RingProgressIndicator;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
@@ -20,16 +21,14 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
 public class BeverageBuilder extends EventDispatcherAdapter implements Initializable {
     private Connection connection = null;
+    private PreparedStatement prepStatement = null;
     private Statement statement = null;
     private ResultSet resultSet = null;
     //-------------------------Test variables only!!!----------------
@@ -41,6 +40,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private double slidervalueset = 0.0;
     private Double glassVolume = null;
     private Double volume = null;
+    private double totalCost = 0.0;
 
 
     //------------------------End of Test variables------------------
@@ -68,14 +68,68 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private ProgressBar progressGlass;
     @FXML
     private Button btnAddIngredient;
+    private double countCost(){
+        double countedCost = 0.0;
+        for(Ingredient a : addedIngredientsList2){
+            countedCost = countedCost + a.getMagnitude()*a.getPricePerLiter()/1000.00;
+        }
 
+        return countedCost;
+    }
     private void printTest() {
         for (Ingredient a : choseIngredientsList2) {
             System.out.println(a);
         }
     }
+    @FXML
+    private void saveBeverageToDB() throws Exception{
+        Beverage d = createObject();
+        Thread.sleep(2000);
+        createBeverage(d);
+    }
+    public Beverage createObject(){
+        Beverage a = new Beverage("Test",countPercentage(), countCost() ,countVolume(),addedIngredientsList2);
+        return a;
+    }
+    @FXML
+    private void createBeverage(Beverage beverage) throws SQLException {
 
-    private void dbTest() throws Exception {
+
+
+        try {
+            connection = ConnectionLayer.getConnection();
+            statement = connection.createStatement();
+            //resultSet = statement.executeQuery("SELECT ingredient.id,ingredient.name,ingredient.alcohol,ingredient.price_per_litre,ingredient.brand_id,brand.name " +
+            //"FROM ingredient,brand WHERE ingredient.brand_id=brand.id");
+            prepStatement = connection.prepareStatement("INSERT INTO beverage (name, alcohol, cost, notes) VALUES (?, ?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
+            prepStatement.setString(1, beverage.getName());
+            prepStatement.setInt(2, beverage.getAlcoholPercentage());
+            prepStatement.setDouble(3,beverage.getCost());
+            prepStatement.setString(4,"NOTES TEST");
+
+
+            int rowAffected = prepStatement.executeUpdate();
+            if(rowAffected == 1)
+            {
+                System.out.println("Beverage successfully added");
+            }
+            int beverage_id = 0;
+            resultSet = prepStatement.getGeneratedKeys();
+            if(resultSet.next()){
+                beverage_id = resultSet.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Exception: ");
+            ex.printStackTrace();
+        } finally {
+            ConnectionLayer.cleanUp(statement, resultSet);
+        }
+        connection.close();
+    }
+
+    private void loadIngredientsFromDB() throws SQLException {
         int id_ing;
         String name;
         int alcohol;
@@ -434,7 +488,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         slider.setMax(120.0);
         disbleAdd();
         try {
-            dbTest();
+            loadIngredientsFromDB();
         } catch (Exception e) {
             e.printStackTrace();
         }

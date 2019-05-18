@@ -6,11 +6,11 @@ public class Beverage {
 
   private String name;
   private int alcoholPercentage;
-  private int cost;
+  private double cost;
   private int volumePerMililiter;
   private ArrayList<Ingredient> ingredients;
 
-  public Beverage(String name, int alcoholPercentage, int cost, int volumePerMililiter,
+  public Beverage(String name, int alcoholPercentage, double cost, int volumePerMililiter,
       ArrayList<Ingredient> ingredients) {
     this.name = name;
     this.alcoholPercentage = alcoholPercentage;
@@ -35,11 +35,11 @@ public class Beverage {
     this.alcoholPercentage = alcoholPercentage;
   }
 
-  public int getCost() {
+  public double getCost() {
     return cost;
   }
 
-  public void setCost(int cost) {
+  public void setCost(double cost) {
     this.cost = cost;
   }
 
