@@ -156,7 +156,7 @@
          </content>
       </ScrollPane>
       <Button fx:id="btnExport" layoutX="750.0" layoutY="540.0" mnemonicParsing="false" onAction="#openPrintView" prefHeight="35.0" prefWidth="150.0" text="Export" />
-      <Button fx:id="btnGenerate" layoutX="750.0" layoutY="588.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" text="Save" />
+      <Button fx:id="btnGenerate" layoutX="750.0" layoutY="588.0" mnemonicParsing="false"  prefHeight="35.0" prefWidth="150.0" text="Save" />
       <Group layoutX="783.0" layoutY="299.0">
          <children>
             <Label text="Total volume" />

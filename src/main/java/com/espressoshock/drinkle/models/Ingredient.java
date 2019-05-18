@@ -8,7 +8,16 @@ public class Ingredient {
     private int alcoholPercentage;
     private int pricePerLiter;
     private BrandsEnum brand;
+    private String brand2;
     private int magnitude;
+
+    public Ingredient(String name, int alcoholPercentage, int pricePerLiter, String brand2, int magnitude) {
+        this.name = name;
+        this.alcoholPercentage = alcoholPercentage;
+        this.pricePerLiter = pricePerLiter;
+        this.brand2 = brand2;
+        this.magnitude = magnitude;
+    }
 
     public Ingredient(String name, int alcoholPercentage, int pricePerLiter, BrandsEnum brand, int magnitude) {
 
