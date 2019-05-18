@@ -8,7 +8,7 @@ public abstract class Account  {
     private String password;
     private ArrayList<Beverage> beverages;
 
-    public Account(String email, String password,
+    Account(String email, String password,
         ArrayList<Beverage> beverages) {
         this.email = email;
         this.password = password;
@@ -16,9 +16,7 @@ public abstract class Account  {
     }
 
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail(){return email;}
 
     public void setEmail(String email) {
         this.email = email;
