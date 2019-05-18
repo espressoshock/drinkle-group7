@@ -20,7 +20,6 @@ public class Environment {
   public Account currentUser = (Account) AppStatePersistence.retrieveObject(AppStatePersistence.userFilename);
 
 
-
   private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
   private Date date = new Date();
 

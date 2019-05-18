@@ -9,6 +9,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 public class AuthLogin extends EventDispatcherAdapter {
+
+
 //    private static class AsyncCallable implements Callable<Boolean>{
 //        public static Boolean digestresult;
 //        private final String email;
@@ -53,8 +55,48 @@ public class AuthLogin extends EventDispatcherAdapter {
         super.dispatchViewChangeRequest(ViewMetadata.AUTH_REGISTRATION);
     }
 
+
     @FXML
     public void login(MouseEvent event)throws Exception {
+
+        AuthService loginService = new AuthService();
+
+        RadioButton selectedRadioButton = (RadioButton) loginType.getSelectedToggle();
+        String toggleValue = selectedRadioButton.getText();
+
+        //this.showDialog();
+
+        String companyAccString = "Company";
+        String privateAccString = "Individual";
+
+        if (toggleValue.equals(companyAccString)) {
+            if (loginService.loginAsCompanyAccount(emailTf.getText(),passwordTf.getText())) {
+                errorLbl.setVisible(false);
+              //  this.hideDialog();
+                super.dispatchViewChangeRequest(ViewLoader.default_view);
+            } else {
+                errorLbl.setVisible(true);
+            //    hideDialog();
+            }
+            System.out.println("Company log-in");
+           // hideDialog();
+        } else if (toggleValue.equals(privateAccString)){
+            if (loginService.loginAsPrivateAccount(emailTf.getText(),passwordTf.getText())) {
+                errorLbl.setVisible(false);
+              //  this.hideDialog();
+                super.dispatchViewChangeRequest(ViewLoader.default_view);
+            } else {
+                errorLbl.setVisible(true);
+            //    hideDialog();
+            }
+        }
+
+
+
+
+
+
+
 //        /********* SHOW LOGIN MODAL DIALOG  */
 //        this.showDialog();
 //
@@ -88,7 +130,6 @@ public class AuthLogin extends EventDispatcherAdapter {
 //
 //
 
-        super.dispatchViewChangeRequest(ViewLoader.default_view);
     }
 
 //    private void showDialog(){
