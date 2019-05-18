@@ -7,11 +7,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-
 import java.net.URL;
+import com.espressoshock.drinkle.progressIndicator.RingProgressIndicator;   /**databaseLayer.ConnectionLayer **** TODO ? */;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
 
 public class IngredientList extends EventDispatcherAdapter implements Initializable {
+
+    private Connection connection = null;
+    private Statement statement = null;
+    private ResultSet resultSet = null;
 
     private ArrayList<Ingredient> ingredientsList = new ArrayList<>();
     private ArrayList<IngredientCategory> categoriesAlc = new ArrayList<>();
@@ -130,26 +138,32 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
 
     @FXML
     private void selectVboxButton(ActionEvent e) {
-        Button selection = (Button) e.getSource();
-        for (Ingredient x : ingredientsList) {
-            if (x.getName().equals(selection.getText())) {
-                lblSelectedIngredientName.setText(x.getName());
-                txtSimilarWith.setText(x.getName());
-                lblAlcohol.setText(Integer.toString(x.getAlcoholPercentage()));
-                progressBarAlcohol.setProgress(Double.valueOf(x.getAlcoholPercentage())/100);
-                lblPrice.setText(Integer.toString(x.getPricePerLiter()));
-                progressBarPrice.setProgress(Double.valueOf(x.getPricePerLiter())/1000);
-                lblIngredientBrand.setText(x.getBrand().getBrandName());
-                lblIngredientCategory.setText(x.getBrand().getProductType().getName());
-                for (Ingredient y : ingredientsList) {
-                    if (x.getBrand().getBrandName().equals(y.getBrand().getBrandName())) {
-                        if (!x.getName().equals(y.getName())) {
-                            btnSimilarProduct.setText(y.getName());
-                        }
-                    }
-                }
-            }
+       try{
+           Button selection = (Button) e.getSource();
+           for (Ingredient x : ingredientsList) {
+               if (x.getName().equals(selection.getText())) {
+                   lblSelectedIngredientName.setText(x.getName());
+                   txtSimilarWith.setText(x.getName());
+                   lblAlcohol.setText(Integer.toString(x.getAlcoholPercentage()));
+                   progressBarAlcohol.setProgress(Double.valueOf(x.getAlcoholPercentage()) / 100);
+                   lblPrice.setText(Integer.toString(x.getPricePerLiter()));
+                   progressBarPrice.setProgress(Double.valueOf(x.getPricePerLiter()) / 1000);
+                   lblIngredientBrand.setText(x.getBrand().getBrandName());
+                   lblIngredientCategory.setText(x.getBrand().getProductType().getName());
+                   for (Ingredient y : ingredientsList) {
+                       if (x.getBrand().getBrandName().equals(y.getBrand().getBrandName())) {
+                           if (!x.getName().equals(y.getName())) {
+                               btnSimilarProduct.setText(y.getName());
+                           }
+                       }
+                   }
+               }
+           }
+           selection.setDisable(false);
+       }catch(Exception exc){
+           exc.printStackTrace();
         }
+
     }
 
     /*TODO****when account implemented****/
@@ -207,4 +221,90 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
                 IngredientCategory.DAIRY_PRODUCT, IngredientCategory.JUICE, IngredientCategory.SYRUP, IngredientCategory.FRUIT, IngredientCategory.WARM_DRINK};
         Collections.addAll(categoryNonAlc, nonAlcCategories);
     }
+
+    public void retrieveDataFromDB()throws Exception{
+       /*   {
+
+            //int id_ing;
+
+            String name;
+
+            int alcohol;
+
+            int price_per_litre;
+
+            //int brand_id;
+
+            String brand;
+
+            String category;
+
+            try {
+
+                connection = ConnectionLayer.getConnection();
+
+                statement = connection.createStatement();
+
+                resultSet = statement.executeQuery("SELECT ingredient.id,ingredient.name,ingredient.alcohol,ingredient.price_per_litre,ingredient.brand_id,brand.name " +
+
+                        "FROM ingredient,brand WHERE ingredient.brand_id=brand.id");
+
+
+
+
+
+                while (resultSet.next()) {
+
+                    id_ing = resultSet.getInt(1);
+
+                    name = resultSet.getString(2);
+
+                    alcohol = resultSet.getInt(3);
+
+                    price_per_litre = resultSet.getInt(4);
+
+                    brand = resultSet.getString(6);
+
+
+
+//            System.out.println(resultSet.getString("id") +
+
+//                    resultSet.getString("name")+
+
+//                    resultSet.getString("alcohol")+
+
+//                    resultSet.getString("price_per_litre"));
+
+                    //System.out.printf("id: %d, name: %s, alcohol: %d, price: %d\n", id, name, alcohol, price_per_litre);
+
+                    Ingredient i = new Ingredient(name, alcohol, price_per_litre / 10, brand, 0);
+
+                    //System.out.println(i);
+
+                    choseIngredientsList2.add(i);
+
+                }
+
+            } catch (SQLException ex) {
+
+                System.out.println("Exception: ");
+
+                ex.printStackTrace();
+
+            } finally {
+
+                ConnectionLayer.cleanUp(statement, resultSet);
+
+            }
+
+            connection.close();
+            }
+
+*/
+
+        }
+
+
+
+
 }
