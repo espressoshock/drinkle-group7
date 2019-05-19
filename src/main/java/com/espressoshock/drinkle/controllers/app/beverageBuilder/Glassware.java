@@ -20,6 +20,9 @@ public class Glassware {
         return volume;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
 //    String getImageUrl() {
 //        return imageUrl;
 //    }

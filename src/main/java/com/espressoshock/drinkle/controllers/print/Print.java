@@ -12,6 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -30,6 +32,8 @@ public class Print implements Initializable {
     TextArea notesTextArea;
     @FXML
     Label costLabel, bvgName;
+    @FXML
+    ImageView glassImagePrint;
     private void addIngredientWidget2(Ingredient selected){
         Label ingredientName = new Label();
         Label ingredientVolume = new Label();
@@ -92,6 +96,8 @@ public class Print implements Initializable {
         notesTextArea.setText(bvg.getNotes());
         costLabel.setText(String.valueOf(bvg.getCost())+ " $");
         bvgName.setText(bvg.getName());
+        Image img = new Image(glass.getImageUrl());
+        glassImagePrint.setImage(img);
     }
 }
 

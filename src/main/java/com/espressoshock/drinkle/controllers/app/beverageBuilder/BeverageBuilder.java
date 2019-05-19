@@ -19,10 +19,12 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
@@ -65,7 +67,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private Ingredient selected = null;// selected object of ingredient
     private RingProgressIndicator alcoholPercent = new RingProgressIndicator();
     @FXML
-    private Label lblChosenName, lblVolume, lblCost, lblTotalVolume;
+    private Label lblChosenName, lblVolume, lblCost, lblTotalVolume, lblChosenGlass;
     @FXML
     private AnchorPane alcoholPercentCircle;
     @FXML
@@ -75,11 +77,13 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     @FXML
     private ProgressBar progressGlass;
     @FXML
-    private Button btnAddIngredient, btnIngredients;
+    private Button btnAddIngredient;
     @FXML
     TextField txtFieldBeverageName;
     @FXML
     TextArea txtAreaNotes;
+    @FXML
+    ImageView glassImage;
 
 
 //    private double countCost() {
@@ -110,7 +114,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
     public Beverage createObject() {
         Beverage a = new Beverage(txtFieldBeverageName.getText(), countPercentage(), Double.valueOf(cost), countVolume(), addedIngredientsList2);
-        a.setNotes(txtAreaNotes.getText());
+        a.setNotes("Glassware: "+ glass.getName()+"\n" +"Glassware volume: " + glass.getVolume()+"\n"+txtAreaNotes.getText());
         bvg = a;
         return a;
     }
@@ -244,7 +248,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             }
             preciseValueAlc = ((preciseVolumeAlc * 100) / totalVolume);
 //            preciseValueAlc = Math.round(preciseValueAlc);
-            if (preciseValueAlc - (int) preciseValueAlc > 0) {
+            if (preciseValueAlc - (int) preciseValueAlc > 0.5) {
                 totalAlcohol = (int) preciseValueAlc + 1;
             } else
                 totalAlcohol = (int) preciseValueAlc;
@@ -334,11 +338,12 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
         Label lbl = (Label) event.getSource();
         glass = (Glassware) lbl.getUserData();
+        lblChosenGlass.setText(glass.getName());
         lblTotalVolume.setText(String.valueOf(glass.getVolume()));
         slider.setMax(glass.getVolume());
-        btnIngredients.setDisable(false);
-
-
+        Image image = new Image(glass.getImageUrl());
+        glassImage.setImage(image);
+        dummyIngredientAddToList();
     }
 
     //------------Creating labels to be represented in the ingredient list------
@@ -346,6 +351,11 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
         Label choseIngName = new Label();
         Label choseIngPrice = new Label();
+        choseIngPrice.setTextAlignment(TextAlignment.JUSTIFY);
+        choseIngPrice.setContentDisplay(ContentDisplay.RIGHT);
+        choseIngPrice.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+        
+        choseIngPrice.setMnemonicParsing(true);
         Tooltip percentage = new Tooltip("Alcohol: " + object.getAlcoholPercentage() + "%");
         choseIngName.setText(object.getName());
         choseIngName.setOnMouseClicked((EventHandler<Event>) this::choseIngredient);
@@ -366,7 +376,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
         Label choseGlasswareName = new Label();
         Label choseGlasswareVolume = new Label();
-
+        choseGlasswareVolume.setTextAlignment(TextAlignment.RIGHT);
         choseGlasswareName.setText(object.getName());
         choseGlasswareName.setOnMouseClicked((EventHandler<Event>) this::choseGlassware);
         choseGlasswareName.setCursor(Cursor.HAND);
@@ -419,7 +429,6 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
     public void dummyGlasswareAddToList() {
         vBoxListOfIngredients.getChildren().clear();
-        btnIngredients.setDisable(true);
         selected = null;
         for (Glassware a : choseGlasswareList) {
             choseGlasswareListElement(a);
@@ -443,18 +452,32 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     //-----------Creating objects-------------------------------
 
 
-    private void dummyGlasswareCreate() {//for Test Purpose Only!!!!
+    private void GlasswareCreate() {//for Test Purpose Only!!!!
         // To be replaced with observable list of Glassware objects
 
-        Glassware shot = new Glassware("Shot", 44, "asd");
-        Glassware highball = new Glassware("Highball", 270, "asd");
-        Glassware margarita = new Glassware("Margarita", 350, "asd");
-        Glassware martini = new Glassware("Martini", 250, "asd");
+        Glassware shot = new Glassware("Shot", 57, "images/app/beverage-builder/glasses/shot-34.png");
+        Glassware highball = new Glassware("Highball", 350, "images/app/beverage-builder/glasses/highball-350.png");
+        Glassware margarita = new Glassware("Margarita", 340, "images/app/beverage-builder/glasses/margarita-340.png");
+        Glassware martini = new Glassware("Martini", 260, "images/app/beverage-builder/glasses/martini-260.png");
+        Glassware brandy = new Glassware("Brandy", 395,"images/app/beverage-builder/glasses/brandy-395.png");
+        Glassware cordial = new Glassware("Cordial", 115, "images/app/beverage-builder/glasses/cordial-115.png");
+        Glassware hurricane = new Glassware("Hurricane", 440,"images/app/beverage-builder/glasses/hurricane-440.png");
+        Glassware oldFashioned = new Glassware("Old fashioned", 200, "images/app/beverage-builder/glasses/old-fashioned-200.png");
+        Glassware redWine = new Glassware("Red wine",400,"images/app/beverage-builder/glasses/red-wine-400.png");
+        Glassware whiteWine = new Glassware("White wine", 360,"images/app/beverage-builder/glasses/white-wine-360.png");
+
 
         choseGlasswareList.add(shot);
         choseGlasswareList.add(highball);
         choseGlasswareList.add(margarita);
         choseGlasswareList.add(martini);
+        choseGlasswareList.add(brandy);
+        choseGlasswareList.add(cordial);
+        choseGlasswareList.add(hurricane);
+        choseGlasswareList.add(oldFashioned);
+        choseGlasswareList.add(redWine);
+        choseGlasswareList.add(whiteWine);
+
     }
 
 //    private void addIngredientTOLIST() {
@@ -526,9 +549,16 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                 choseIngredientsList2.add(selected);
                 alcoholPercent.setProgress(countPercentage());
                 dummyIngredientAddToList();
+                if(addedIngredientsList2.isEmpty()){
+                    slider.setMin(0);
+                    volumeSeparator = 0;
+                    progressSeparator = 0.0;
+                    costSerparator = 0;
+                }
                 selected = null;
                 lblChosenName.setText("Null");
                 lblCost.setText(String.format("%.2f", costSerparator));
+
 
 
             });
@@ -569,12 +599,12 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         alcoholPercent.setProgress(totalAlcoholPercentage);  //for visual presentation only
         alcoholPercentCircle.getChildren().add(alcoholPercent);
         //dummyIngredientAddToList();// create generate and add to list mock ingredients
-        dummyGlasswareCreate();
+        GlasswareCreate();
         //dummyIngredientCreate();
         sliderProgressChange();
         lblTotalVolume.setText("100");
-        btnIngredients.setDisable(true);
         slider.setBlockIncrement(1);
+        dummyGlasswareAddToList();
 //        progressGlass.setStyle("-fx-accent: )");
         limitText(txtFieldBeverageName,45);// <--- limit name to varchar(45)
         disableAdd();
