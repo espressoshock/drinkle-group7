@@ -33,7 +33,8 @@ public class AuthService {
         String passwordFromDB = resultSet.getString("password");
 
         if (email.equals(emailFromDB) && password.equals(passwordFromDB)) {
-          PrivateAccount newAccount = new PrivateAccount(emailFromDB,passwordFromDB,null,null);
+          //PrivateAccount newAccount = new PrivateAccount(emailFromDB,passwordFromDB,null,null);
+          PrivateAccount newAccount = new PrivateAccount(id,emailFromDB,passwordFromDB,null,nameFromDB);
 
           Current
               .environment
@@ -77,15 +78,12 @@ public class AuthService {
         String passwordFromDB = resultSet.getString("password");
 
         if (email.equals(emailFromDB) && password.equals(passwordFromDB)) {
-          BusinessAccount newAccount = new BusinessAccount(emailFromDB,passwordFromDB,null,nameFromDB);
+          BusinessAccount newAccount = new BusinessAccount(id,emailFromDB,passwordFromDB,null,nameFromDB);
 
           persistAccount(newAccount);
 
           return true;
-        } else {
-          return false;
         }
-
       }
     } catch (SQLException ex) {
       System.out.println("Login exception: ");
@@ -109,7 +107,6 @@ public class AuthService {
     System.out.println(acc.toString());
     System.out.println(Current.environment.currentUser.toString());
   }
-
 
 
 
@@ -139,16 +136,14 @@ public class AuthService {
       if (rowsAffected >= 1) {
 
         if (accountType.equals(AccountType.Private)) {
-          PrivateAccount newAccount = new PrivateAccount(email,password,null,name);
+          PrivateAccount newAccount = new PrivateAccount(null,email,password,null,name);
           persistAccount(newAccount);
         } else {
-          BusinessAccount newAccount = new BusinessAccount(email,password,null,name);
+          BusinessAccount newAccount = new BusinessAccount(null,email,password,null,name);
           persistAccount(newAccount);
         }
 
         return true;
-      } else {
-        return false;
       }
     } catch (SQLException ex) {
       System.out.println("Registration exception: ");
@@ -157,5 +152,6 @@ public class AuthService {
     } finally {
       ConnectionLayer.cleanUp(statement, resultSet);
     }
+    return false;
   }
 }
