@@ -1,7 +1,6 @@
 package com.espressoshock.drinkle.controllers.print;
 
 
-import com.espressoshock.drinkle.controllers.app.BeverageBuilder;
 import com.espressoshock.drinkle.models.Ingredient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,8 +19,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.espressoshock.drinkle.controllers.app.BeverageBuilder.addedIngredientsList2;
-import static com.espressoshock.drinkle.controllers.app.BeverageBuilder.bvg;
+import static com.espressoshock.drinkle.controllers.app.beverageBuilder.BeverageBuilder.*;
 
 public class Print implements Initializable {
     @FXML
@@ -45,8 +43,8 @@ public class Print implements Initializable {
         addedIngredientPercentBar.setLayoutY(29.0);
         addedIngredientPercentBar.setPrefWidth(163);
         addedIngredientPercentBar.setPrefHeight(8);
-        addedIngredientPercentBar.setProgress((selected.getMagnitude()/1.2)/100.00);//<-- 1.2 is glass volume/100
-        System.out.println((selected.getMagnitude()/1.2)/100.00);
+        addedIngredientPercentBar.setProgress((selected.getMagnitude()/(glass.getVolume()/100.00))/100.00);//<-- 1.2 is glass volume/100
+        System.out.println((selected.getMagnitude()/(glass.getVolume()/100.00))/100.00);
         Group ingredient = new Group();
         ingredient.getChildren().addAll(ingredientName, ingredientVolume, addedIngredientPercentBar);
         ingredientsList.getChildren().add(ingredient);
@@ -89,6 +87,7 @@ public class Print implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         populateVbox();
         notesTextArea.setText(bvg.getNotes());
         costLabel.setText(String.valueOf(bvg.getCost())+ " $");

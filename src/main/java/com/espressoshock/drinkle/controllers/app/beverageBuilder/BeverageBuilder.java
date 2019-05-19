@@ -1,7 +1,8 @@
-package com.espressoshock.drinkle.controllers.app;
+package com.espressoshock.drinkle.controllers.app.beverageBuilder;
 
 import com.espressoshock.drinkle.databaseLayer.ConnectionLayer;
 import com.espressoshock.drinkle.models.Beverage;
+import com.espressoshock.drinkle.models.BrandsEnum;
 import com.espressoshock.drinkle.models.Ingredient;
 import com.espressoshock.drinkle.progressIndicator.RingProgressIndicator;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
@@ -25,6 +26,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 
@@ -47,7 +49,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private double costTOTALLE= 0.0;
     public static Beverage bvg = null;
     int beverage_id = 0;
-    Glassware glass = null;
+    public static Glassware glass = null;
 
     //------------------------End of Test variables------------------
     // -> to be implemented when ingridient list is ready
@@ -197,12 +199,14 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                 price_per_litre = resultSet.getInt(4);
                 brand = resultSet.getString(6);
 
+                BrandsEnum brandEnum = BrandsEnum.fromString(brand);
+
 //            System.out.println(resultSet.getString("id") +
 //                    resultSet.getString("name")+
 //                    resultSet.getString("alcohol")+
 //                    resultSet.getString("price_per_litre"));
                 //System.out.printf("id: %d, name: %s, alcohol: %d, price: %d\n", id, name, alcohol, price_per_litre);
-                Ingredient i = new Ingredient(name, alcohol, price_per_litre / 10, brand, 0);
+                Ingredient i = new Ingredient(name, alcohol, price_per_litre / 10, brandEnum, 0);
                 i.setId(id_ing);
                 //System.out.println(i);
                 choseIngredientsList2.add(i);
@@ -407,6 +411,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     @FXML
     private void dummyIngredientAddToList() {
         vBoxListOfIngredients.getChildren().clear();
+        Collections.sort(choseIngredientsList2, Ingredient.IngredientNameComparator);
         for (Ingredient a : choseIngredientsList2) {
             choseIngredientListElement(a);
         }
@@ -570,7 +575,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         lblTotalVolume.setText("100");
         btnIngredients.setDisable(true);
         slider.setBlockIncrement(1);
-
+//        progressGlass.setStyle("-fx-accent: )");
         limitText(txtFieldBeverageName,45);// <--- limit name to varchar(45)
         disableAdd();
         try {
@@ -587,30 +592,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
 ////////////////////simplified classes to test view -> to be deleted when Ingredients are available from database
 
-class Glassware {
 
-    private String name;
-    private Integer volume;
-    private String imageUrl;
-
-    Glassware(String name, Integer volume, String imageUrl) {
-        this.name = name;
-        this.volume = volume;
-        this.imageUrl = imageUrl;
-    }
-
-    String getName() {
-        return name;
-    }
-
-    Integer getVolume() {
-        return volume;
-    }
-
-//    String getImageUrl() {
-//        return imageUrl;
-//    }
-}
 
 //class Garnish {
 //    String name;

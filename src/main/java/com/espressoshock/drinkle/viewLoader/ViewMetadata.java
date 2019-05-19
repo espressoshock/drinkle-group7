@@ -1,6 +1,7 @@
 package com.espressoshock.drinkle.viewLoader;
 
 import com.espressoshock.drinkle.controllers.app.*;
+import com.espressoshock.drinkle.controllers.app.beverageBuilder.BeverageBuilder;
 import com.espressoshock.drinkle.controllers.auth.*;
 
 public enum ViewMetadata {

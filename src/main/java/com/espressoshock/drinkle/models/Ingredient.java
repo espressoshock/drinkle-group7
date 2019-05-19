@@ -1,8 +1,9 @@
 package com.espressoshock.drinkle.models;
 
 
+import java.util.Comparator;
 
-public class Ingredient {
+public class Ingredient{
 
     private int id;
 
@@ -18,19 +19,10 @@ public class Ingredient {
     private int alcoholPercentage;
     private int pricePerLiter;
     private BrandsEnum brand;
-    private String brand2;
     private int magnitude;
 
-    public Ingredient(String name, int alcoholPercentage, int pricePerLiter, String brand2, int magnitude) {
-        this.name = name;
-        this.alcoholPercentage = alcoholPercentage;
-        this.pricePerLiter = pricePerLiter;
-        this.brand2 = brand2;
-        this.magnitude = magnitude;
-    }
 
     public Ingredient(String name, int alcoholPercentage, int pricePerLiter, BrandsEnum brand, int magnitude) {
-
         this.name = name;
         this.alcoholPercentage = alcoholPercentage;
         this.pricePerLiter = pricePerLiter;
@@ -80,4 +72,17 @@ public class Ingredient {
         this.magnitude = magnitude;
 
     }
+
+    public static Comparator<Ingredient> IngredientNameComparator = new Comparator<Ingredient>() {
+
+        public int compare(Ingredient Ing1, Ingredient Ing2) {
+            String Ingredient1 = Ing1.getName().toUpperCase();
+            String Ingredient2 = Ing2.getName().toUpperCase();
+
+            //ascending order
+            return Ingredient1.compareTo(Ingredient2);
+
+            //descending order
+            //return Ingredient2.compareTo(Ingredient1);
+        }};
 }

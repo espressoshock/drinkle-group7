@@ -52,6 +52,12 @@
     -fx-background-color: transparent;
 }
 
+.progress-bar .bar {
+    -fx-background-color:
+            linear-gradient(to right, orange,white);
+}
+
+
 
 .progress-indicator .percentage {
     -fx-fill:null;
