@@ -46,7 +46,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private double totalCost = 0.0;
     private double costTOTALLE= 0.0;
     public static Beverage bvg = null;
-
+    int beverage_id = 0;
 
     //------------------------End of Test variables------------------
     // -> to be implemented when ingridient list is ready
@@ -97,8 +97,12 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     @FXML
     private void saveBeverageToDB() throws Exception {
         Beverage d = createObject();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         createBeverage(d);
+        Thread.sleep(1000);
+        for (Ingredient a : d.getIngredients()){
+            createBeverageHasIngredients(a);
+        }
     }
 
     public Beverage createObject() {
@@ -129,7 +133,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             if (rowAffected == 1) {
                 System.out.println("Beverage successfully added");
             }
-            int beverage_id = 0;
+
             resultSet = prepStatement.getGeneratedKeys();
             if (resultSet.next()) {
                 beverage_id = resultSet.getInt(1);
@@ -143,7 +147,34 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         }
         connection.close();
     }
+    @FXML
+    private void createBeverageHasIngredients(Ingredient ing) throws SQLException{
+        try {
+            connection = ConnectionLayer.getConnection();
+            statement = connection.createStatement();
+            //resultSet = statement.executeQuery("SELECT ingredient.id,ingredient.name,ingredient.alcohol,ingredient.price_per_litre,ingredient.brand_id,brand.name " +
+            //"FROM ingredient,brand WHERE ingredient.brand_id=brand.id");
+            prepStatement = connection.prepareStatement("INSERT INTO beverage_has_ingredient (beverage_id, ingredient_id, magnitude) VALUES (?, ?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
+            prepStatement.setInt(1, beverage_id);
+            prepStatement.setInt(2, ing.getId());
+            prepStatement.setInt(3, ing.getMagnitude());
 
+
+            int rowAffected = prepStatement.executeUpdate();
+            if (rowAffected == 1) {
+                System.out.println("Ingredient successfully added to beverage");
+            }
+
+
+        } catch (SQLException ex) {
+            System.out.println("Exception: ");
+            ex.printStackTrace();
+        } finally {
+            ConnectionLayer.cleanUp(statement, resultSet);
+        }
+        connection.close();
+    }
     private void loadIngredientsFromDB() throws SQLException {
         int id_ing;
         String name;
@@ -171,6 +202,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 //                    resultSet.getString("price_per_litre"));
                 //System.out.printf("id: %d, name: %s, alcohol: %d, price: %d\n", id, name, alcohol, price_per_litre);
                 Ingredient i = new Ingredient(name, alcohol, price_per_litre / 10, brand, 0);
+                i.setId(id_ing);
                 //System.out.println(i);
                 choseIngredientsList2.add(i);
             }

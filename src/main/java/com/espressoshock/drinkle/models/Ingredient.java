@@ -4,6 +4,16 @@ package com.espressoshock.drinkle.models;
 
 public class Ingredient {
 
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private String name;
     private int alcoholPercentage;
     private int pricePerLiter;
