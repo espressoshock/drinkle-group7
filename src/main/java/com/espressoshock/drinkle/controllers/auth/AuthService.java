@@ -50,8 +50,6 @@ public class AuthService {
           persistAccount(newAccount);
 
           return true;
-        } else {
-          return true;/// NEMANJA
         }
 
       }
