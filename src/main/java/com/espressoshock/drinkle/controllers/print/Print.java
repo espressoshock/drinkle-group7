@@ -34,7 +34,8 @@ public class Print implements Initializable {
     Label costLabel, bvgName;
     @FXML
     ImageView glassImagePrint;
-    private void addIngredientWidget2(Ingredient selected){
+
+    private void addIngredientWidget2(Ingredient selected) {
         Label ingredientName = new Label();
         Label ingredientVolume = new Label();
         ProgressBar addedIngredientPercentBar = new ProgressBar();
@@ -47,18 +48,20 @@ public class Print implements Initializable {
         addedIngredientPercentBar.setLayoutY(29.0);
         addedIngredientPercentBar.setPrefWidth(163);
         addedIngredientPercentBar.setPrefHeight(8);
-        addedIngredientPercentBar.setProgress((selected.getMagnitude()/(glass.getVolume()/100.00))/100.00);//<-- 1.2 is glass volume/100
-        System.out.println((selected.getMagnitude()/(glass.getVolume()/100.00))/100.00);
+        addedIngredientPercentBar.setProgress((selected.getMagnitude() / (glass.getVolume() / 100.00)) / 100.00);//<-- 1.2 is glass volume/100
+        System.out.println((selected.getMagnitude() / (glass.getVolume() / 100.00)) / 100.00);
         Group ingredient = new Group();
         ingredient.getChildren().addAll(ingredientName, ingredientVolume, addedIngredientPercentBar);
         ingredientsList.getChildren().add(ingredient);
     }
+
     @FXML
-    private void populateVbox(){
-        for(Ingredient a : addedIngredientsList2){
+    private void populateVbox() {
+        for (Ingredient a : addedIngredientsList2) {
             addIngredientWidget2(a);
         }
     }
+
     public void buttonPrint(ActionEvent event) {
         Button btn = (Button) event.getSource();
         Stage stage = (Stage) btn.getScene().getWindow();
@@ -94,7 +97,7 @@ public class Print implements Initializable {
 
         populateVbox();
         notesTextArea.setText(bvg.getNotes());
-        costLabel.setText(String.valueOf(bvg.getCost())+ " $");
+        costLabel.setText(String.valueOf(bvg.getCost()) + " $");
         bvgName.setText(bvg.getName());
         Image img = new Image(glass.getImageUrl());
         glassImagePrint.setImage(img);

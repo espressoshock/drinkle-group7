@@ -6,8 +6,6 @@ import com.espressoshock.drinkle.models.BrandsEnum;
 import com.espressoshock.drinkle.models.Ingredient;
 import com.espressoshock.drinkle.progressIndicator.RingProgressIndicator;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -55,6 +53,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     //------------------------------------------------------
     private ArrayList<Ingredient> choseIngredientsList2 = new ArrayList<>();
     public static ArrayList<Ingredient> addedIngredientsList2 = new ArrayList<>();
+    private ArrayList<Ingredient> searchList = new ArrayList<>();
     private ArrayList<Glassware> choseGlasswareList = new ArrayList<>();
     private Ingredient selected = null;// selected object of ingredient
     private RingProgressIndicator alcoholPercent = new RingProgressIndicator();
@@ -71,9 +70,9 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     @FXML
     private ProgressBar progressGlass;
     @FXML
-    private Button btnAddIngredient,btnExport,btnSave;
+    private Button btnAddIngredient, btnExport, btnSave;
     @FXML
-    TextField txtFieldBeverageName;
+    TextField txtFieldBeverageName,searchField;
     @FXML
     TextArea txtAreaNotes;
     @FXML
@@ -85,7 +84,19 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             System.out.println(a);
         }
     }
+    public void search(String string){
+        searchList.clear();
+        vBoxListOfIngredients.getChildren().removeAll();
 
+        for(Ingredient i : choseIngredientsList2){
+            if(i.getName() != null && i.getName().toLowerCase().startsWith(string)){
+                searchList.add(i);
+            }
+
+            //something here
+        }
+        IngredientAddToList(searchList);
+    }
     @FXML
     private void saveBeverageToDB() throws Exception {
         Beverage d = createObject();
@@ -331,7 +342,8 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         slider.setMax(glass.getVolume());
         Image image = new Image(glass.getImageUrl());
         glassImage.setImage(image);
-        dummyIngredientAddToList();
+        IngredientAddToList(choseIngredientsList2);
+        searchField.setDisable(false);
     }
 
     //------------Creating labels to be represented in the ingredient list------
@@ -407,15 +419,16 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 //    }
     //------------Adding from array list to vBox (display)------
     @FXML
-    private void dummyIngredientAddToList() {
+    public void IngredientAddToList(ArrayList<Ingredient> list) {
         vBoxListOfIngredients.getChildren().clear();
-        Collections.sort(choseIngredientsList2, Ingredient.IngredientNameComparator);
-        for (Ingredient a : choseIngredientsList2) {
+        Collections.sort(list, Ingredient.IngredientNameComparator);
+        for (Ingredient a : list) {
             choseIngredientListElement(a);
         }
     }
 
-    public void dummyGlasswareAddToList() {
+    public void GlasswareAddToList() {
+        searchField.setDisable(true);
         vBoxListOfIngredients.getChildren().clear();
         selected = null;
         for (Glassware a : choseGlasswareList) {
@@ -478,7 +491,6 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private void addIngredientWidget() {
         if (selected != null) {
             costSeparator = Double.valueOf(cost);
-            System.out.println(costSeparator);
             // Test purposes only
             btnAddIngredient.setDisable(true);
             //-------------------Setting new min values----------------
@@ -534,10 +546,9 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                 volumeSeparator = volumeSeparator - selected.getMagnitude(); // adding to volume and progress separator
                 progressSeparator = progressSeparator - (120 / selected.getMagnitude());
                 costSeparator = costSeparator - (selected.getPricePerLiter() * selected.getMagnitude() / 1000.00);
-                System.out.println(costSeparator);
                 choseIngredientsList2.add(selected);
                 alcoholPercent.setProgress(countPercentage());
-                dummyIngredientAddToList();
+                IngredientAddToList(choseIngredientsList2);
                 btnExport.setDisable(disableExport());
                 if (addedIngredientsList2.isEmpty()) {
                     slider.setMin(0);
@@ -557,7 +568,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             slider.setMin(countVolume());
             alcoholPercent.setProgress(countPercentage());
             findSelected();
-            dummyIngredientAddToList();
+            IngredientAddToList(choseIngredientsList2);
             selected = null;
             slider.setDisable(true);
             lblChosenName.setText("null");
@@ -569,6 +580,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         }
 
     }
+
     private static void limitText(TextInputControl textInput, int maxLength) {
         textInput.textProperty().addListener((ov, oldValue, newValue) -> {
             if (textInput.getText().length() > maxLength) {
@@ -577,34 +589,53 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             }
         });
     }
-public void checkText(){
-    txtFieldBeverageName.textProperty().addListener((observable, oldValue, newValue) -> {
-        btnExport.setDisable(disableExport());
-    });
-}
-    public boolean disableExport(){
+    @FXML
+    private void checkSearch() {
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            search(newValue);
+
+        });
+    }
+    @FXML
+    private void checkText() {
+        txtFieldBeverageName.textProperty().addListener((observable, oldValue, newValue) -> {
+            btnExport.setDisable(disableExport());
+            btnSave.setDisable(disableExport());
+        });
+    }
+
+    private boolean disableExport() {
         if (addedIngredientsList2.isEmpty() || txtFieldBeverageName.getText() == null || txtFieldBeverageName.getText().trim().isEmpty()
-        ){
+        ) {
             return true;
-        }else return false;
+        } else return false;
+    }
+    private void toLowerCase(){
+        searchField.textProperty().addListener((ov, oldValue, newValue) -> {
+            searchField.setText(newValue.toLowerCase());
+        });
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        searchField.setDisable(true);
+        toLowerCase();
+        checkSearch();
         checkText();
         int totalAlcoholPercentage = 0;
         alcoholPercent.setProgress(totalAlcoholPercentage);  //for visual presentation only
         alcoholPercentCircle.getChildren().add(alcoholPercent);
-        //dummyIngredientAddToList();// create generate and add to list mock ingredients
+        //IngredientAddToList();// create generate and add to list mock ingredients
         GlasswareCreate();
         //dummyIngredientCreate();
         sliderProgressChange();
         lblTotalVolume.setText("100");
         slider.setBlockIncrement(1);
-        dummyGlasswareAddToList();
+        GlasswareAddToList();
         btnExport.setDisable(disableExport());
+        btnSave.setDisable(disableExport());
 //        progressGlass.setStyle("-fx-accent: )");
         limitText(txtFieldBeverageName, 45);// <--- limit name to varchar(45)
-        limitText(txtAreaNotes,400);// <--- limit notes to 400 characters
+        limitText(txtAreaNotes, 400);// <--- limit notes to 400 characters
         disableAdd();
         try {
             loadIngredientsFromDB();
