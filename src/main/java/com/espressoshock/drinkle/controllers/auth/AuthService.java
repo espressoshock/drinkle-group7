@@ -33,7 +33,8 @@ public class AuthService {
         String passwordFromDB = resultSet.getString("password");
 
         if (email.equals(emailFromDB) && password.equals(passwordFromDB)) {
-          PrivateAccount newAccount = new PrivateAccount(emailFromDB,passwordFromDB,null,null);
+          //PrivateAccount newAccount = new PrivateAccount(emailFromDB,passwordFromDB,null,null);
+          PrivateAccount newAccount = new PrivateAccount(id,emailFromDB,passwordFromDB,null,nameFromDB);
 
           Current
               .environment
@@ -77,7 +78,7 @@ public class AuthService {
         String passwordFromDB = resultSet.getString("password");
 
         if (email.equals(emailFromDB) && password.equals(passwordFromDB)) {
-          BusinessAccount newAccount = new BusinessAccount(emailFromDB,passwordFromDB,null,nameFromDB);
+          BusinessAccount newAccount = new BusinessAccount(id,emailFromDB,passwordFromDB,null,nameFromDB);
 
           persistAccount(newAccount);
 
@@ -109,7 +110,6 @@ public class AuthService {
 
 
 
-
   public enum AccountType {Company, Private}
 
   boolean registerAccount(String email, String password, String name, AccountType accountType) {
@@ -136,10 +136,10 @@ public class AuthService {
       if (rowsAffected >= 1) {
 
         if (accountType.equals(AccountType.Private)) {
-          PrivateAccount newAccount = new PrivateAccount(email,password,null,name);
+          PrivateAccount newAccount = new PrivateAccount(null,email,password,null,name);
           persistAccount(newAccount);
         } else {
-          BusinessAccount newAccount = new BusinessAccount(email,password,null,name);
+          BusinessAccount newAccount = new BusinessAccount(null,email,password,null,name);
           persistAccount(newAccount);
         }
 
