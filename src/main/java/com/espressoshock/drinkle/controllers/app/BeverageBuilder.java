@@ -47,6 +47,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private double costTOTALLE= 0.0;
     public static Beverage bvg = null;
     int beverage_id = 0;
+    Glassware glass = null;
 
     //------------------------End of Test variables------------------
     // -> to be implemented when ingridient list is ready
@@ -72,21 +73,21 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     @FXML
     private ProgressBar progressGlass;
     @FXML
-    private Button btnAddIngredient;
+    private Button btnAddIngredient, btnIngredients;
     @FXML
     TextField txtFieldBeverageName;
     @FXML
     TextArea txtAreaNotes;
 
 
-    private double countCost() {
-        double countedCost = 0.0;
-        for (Ingredient a : addedIngredientsList2) {
-            countedCost = countedCost + a.getMagnitude() * a.getPricePerLiter() / 1000.00;
-        }
-
-        return countedCost;
-    }
+//    private double countCost() {
+//        double countedCost = 0.0;
+//        for (Ingredient a : addedIngredientsList2) {
+//            countedCost = countedCost + a.getMagnitude() * a.getPricePerLiter() / 1000.00;
+//        }
+//
+//        return countedCost;
+//    }
 
     private void printTest() {
         for (Ingredient a : choseIngredientsList2) {
@@ -276,14 +277,17 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             slider.setDisable(true);
 
         } else {
+
+
             slider.valueProperty().addListener((arg0, arg1, arg2) -> {
                 try {
+                    slider.setValue(Math.round(arg2.doubleValue()));
                     sliderDoubleValueAsString = String.format("%.2f", slider.getValue() - slidervalueset);
                     volume = Double.parseDouble(String.format("%.2f", slider.getValue()));
 
                     cost = String.format("%.2f", ((Double.parseDouble(sliderDoubleValueAsString)-slider.getMin())* selected.getPricePerLiter() / 1000.00)+costSerparator);
 
-                    progressGlass.setProgress(Double.parseDouble(String.format("%.2f", slider.getValue() / (glassVolume / 100) / 100)));
+                    progressGlass.setProgress(Double.parseDouble(String.format("%.2f", slider.getValue() / (glass.getVolume() / 100.00) / 100.00)));
                     lblVolume.setText(String.valueOf(volume.intValue()));
                     lblCost.setText(cost);
                     if (slider.getValue() == slider.getMin()) {
@@ -300,7 +304,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         }
     }
 
-    private void disbleAdd() {
+    private void disableAdd() {
         slider.valueProperty().addListener((arg0, arg1, arg2) -> {
             if (slider.getValue() == slider.getMin()) {
                 btnAddIngredient.setDisable(true);
@@ -313,12 +317,24 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
     private void choseIngredient(Event event) {
         slider.setDisable(false);
-
+        if(slider.getValue()>slider.getMin()) {
+            slider.setValue(slider.getMin());
+        }
         Label lbl = (Label) event.getSource();
         selected = (Ingredient) lbl.getUserData();
         lblChosenName.setText(lbl.getText() + " " + selected.getAlcoholPercentage());
         sliderProgressChange();
-        disbleAdd();
+        disableAdd();
+    }
+    private void choseGlassware(Event event) {
+
+        Label lbl = (Label) event.getSource();
+        glass = (Glassware) lbl.getUserData();
+        lblTotalVolume.setText(String.valueOf(glass.getVolume()));
+        slider.setMax(glass.getVolume());
+        btnIngredients.setDisable(false);
+
+
     }
 
     //------------Creating labels to be represented in the ingredient list------
@@ -348,7 +364,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         Label choseGlasswareVolume = new Label();
 
         choseGlasswareName.setText(object.getName());
-        choseGlasswareName.setOnMouseClicked((EventHandler<Event>) this::choseIngredient);
+        choseGlasswareName.setOnMouseClicked((EventHandler<Event>) this::choseGlassware);
         choseGlasswareName.setCursor(Cursor.HAND);
         choseGlasswareVolume.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
         choseGlasswareVolume.setText(String.valueOf(object.getVolume()));
@@ -398,6 +414,8 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
     public void dummyGlasswareAddToList() {
         vBoxListOfIngredients.getChildren().clear();
+        btnIngredients.setDisable(true);
+        selected = null;
         for (Glassware a : choseGlasswareList) {
             choseGlasswareListElement(a);
         }
@@ -550,10 +568,11 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         //dummyIngredientCreate();
         sliderProgressChange();
         lblTotalVolume.setText("100");
-        glassVolume = 120.0;
-        slider.setMax(120.0);
+        btnIngredients.setDisable(true);
+        slider.setBlockIncrement(1);
+
         limitText(txtFieldBeverageName,45);// <--- limit name to varchar(45)
-        disbleAdd();
+        disableAdd();
         try {
             loadIngredientsFromDB();
         } catch (Exception e) {
