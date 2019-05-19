@@ -14,7 +14,7 @@
          <children>
             <ImageView fx:id="glassImagePrint" fitHeight="244.0" fitWidth="150.0" layoutX="63.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
             <VBox fx:id="ingredientsList" layoutX="63.0" layoutY="280.0" prefHeight="359.0" prefWidth="170.0" />
-            <TextArea fx:id="notesTextArea" layoutX="257.0" layoutY="72.0" prefHeight="290.0" prefWidth="195.0" style="-fx-background-color: pink;" wrapText="true" />
+            <TextArea fx:id="notesTextArea" layoutX="257.0" layoutY="110.0" prefHeight="252.0" prefWidth="195.0" style="-fx-background-color: pink;" wrapText="true" />
             <Label fx:id="costLabel" layoutX="319.0" layoutY="392.0" text="Cost">
                <font>
                   <Font size="36.0" />
@@ -24,6 +24,10 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <Label layoutX="260.0" layoutY="63.0" text="Glass:" />
+            <Label layoutX="260.0" layoutY="80.0" text="Glass volume:" />
+            <Label fx:id="lblGlassName" layoutX="298.0" layoutY="63.0" />
+            <Label fx:id="lblGlassVolume" layoutX="342.0" layoutY="80.0" />
          </children>
       </AnchorPane>
       <Button mnemonicParsing="false" onAction="#buttonPrint" prefHeight="25.0" prefWidth="520.0" text="PRINT" />

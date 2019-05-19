@@ -31,7 +31,7 @@ public class Print implements Initializable {
     @FXML
     TextArea notesTextArea;
     @FXML
-    Label costLabel, bvgName;
+    Label costLabel, bvgName, lblGlassName, lblGlassVolume;
     @FXML
     ImageView glassImagePrint;
 
@@ -101,6 +101,8 @@ public class Print implements Initializable {
         bvgName.setText(bvg.getName());
         Image img = new Image(glass.getImageUrl());
         glassImagePrint.setImage(img);
+        lblGlassName.setText(glass.getName());
+        lblGlassVolume.setText(String.valueOf(glass.getVolume())+" ml");
     }
 }
 

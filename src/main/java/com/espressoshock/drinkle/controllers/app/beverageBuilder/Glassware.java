@@ -12,7 +12,7 @@ public class Glassware {
         this.imageUrl = imageUrl;
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
@@ -23,7 +23,5 @@ public class Glassware {
     public String getImageUrl() {
         return imageUrl;
     }
-//    String getImageUrl() {
-//        return imageUrl;
-//    }
+
 }
