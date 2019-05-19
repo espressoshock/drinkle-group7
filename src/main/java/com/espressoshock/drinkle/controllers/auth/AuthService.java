@@ -82,10 +82,7 @@ public class AuthService {
           persistAccount(newAccount);
 
           return true;
-        } else {
-          return false;
         }
-
       }
     } catch (SQLException ex) {
       System.out.println("Login exception: ");
@@ -147,8 +144,6 @@ public class AuthService {
         }
 
         return true;
-      } else {
-        return false;
       }
     } catch (SQLException ex) {
       System.out.println("Registration exception: ");
@@ -157,5 +152,6 @@ public class AuthService {
     } finally {
       ConnectionLayer.cleanUp(statement, resultSet);
     }
+    return false;
   }
 }
