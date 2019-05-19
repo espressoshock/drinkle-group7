@@ -33,25 +33,24 @@ import java.util.ResourceBundle;
 
 
 public class BeverageBuilder extends EventDispatcherAdapter implements Initializable {
+    //-----------------DB variables-----------------------------
     private Connection connection = null;
     private PreparedStatement prepStatement = null;
     private Statement statement = null;
     private ResultSet resultSet = null;
+    //----------end of DB variables-----------------------------
     //-------------------------Test variables only!!!----------------
 
     private Integer volumeSeparator = 0; // Value has been set to current slider value when ingredient is added
     private Double progressSeparator = 0.0; // Value has been set to current progress bar value when ingredient is added
-    private double costSerparator = 0.0;
+    private double costSeparator = 0.0;  // Value has been set to current cost value when ingredient is added
     private String sliderDoubleValueAsString = null;
     private String cost = "0.0"; //initial cost label text
     private double slidervalueset = 0.0;
-    private Double glassVolume = null;
     private Double volume = null;
-    private double totalCost = 0.0;
-    private double costTOTALLE= 0.0;
-    public static Beverage bvg = null;
-    int beverage_id = 0;
-    public static Glassware glass = null;
+    public static Beverage bvg = null; // declared public static so that print can access it
+    private int beverage_id = 0;
+    public static Glassware glass = null; // declared public static so that print can access it
 
     //------------------------End of Test variables------------------
     // -> to be implemented when ingridient list is ready
@@ -293,7 +292,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                     sliderDoubleValueAsString = String.format("%.2f", slider.getValue() - slidervalueset);
                     volume = Double.parseDouble(String.format("%.2f", slider.getValue()));
 
-                    cost = String.format("%.2f", ((Double.parseDouble(sliderDoubleValueAsString)-slider.getMin())* selected.getPricePerLiter() / 1000.00)+costSerparator);
+                    cost = String.format("%.2f", ((Double.parseDouble(sliderDoubleValueAsString)-slider.getMin())* selected.getPricePerLiter() / 1000.00)+ costSeparator);
 
                     progressGlass.setProgress(Double.parseDouble(String.format("%.2f", slider.getValue() / (glass.getVolume() / 100.00) / 100.00)));
                     lblVolume.setText(String.valueOf(volume.intValue()));
@@ -354,7 +353,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         choseIngPrice.setTextAlignment(TextAlignment.JUSTIFY);
         choseIngPrice.setContentDisplay(ContentDisplay.RIGHT);
         choseIngPrice.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-        
+
         choseIngPrice.setMnemonicParsing(true);
         Tooltip percentage = new Tooltip("Alcohol: " + object.getAlcoholPercentage() + "%");
         choseIngName.setText(object.getName());
@@ -490,15 +489,15 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private void addIngredientWidget() {
 
         if (selected != null) {
-            costSerparator=Double.valueOf(cost);
-            System.out.println(costSerparator);
+            costSeparator =Double.valueOf(cost);
+            System.out.println(costSeparator);
             // Test purposes only
             btnAddIngredient.setDisable(true);
             //-------------------Setting new min values----------------
 //            double diff = slider.getValue() - slider.getMin(); // slider value difference Current value - min value
             int setVolume = volume.intValue() - volumeSeparator; // available volume after adding previous ingredient
             double setProgress = progressGlass.getProgress() - progressSeparator; // Progress bar in a glass/available volume
-            double setCost = Double.valueOf(cost) - costSerparator;
+            double setCost = Double.valueOf(cost) - costSeparator;
             //-------------------Creating components----------------
             Label ingredientName = new Label();
             Label ingredientVolume = new Label();
@@ -544,8 +543,8 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                 slider.setValue(slider.getMin() - setProgress);// adding back to slider removed ingredient value
                 volumeSeparator = volumeSeparator - selected.getMagnitude(); // adding to volume and progress separator
                 progressSeparator = progressSeparator - (120 / selected.getMagnitude());
-                costSerparator = costSerparator - (selected.getPricePerLiter() * selected.getMagnitude()/1000.00);
-                System.out.println(costSerparator);
+                costSeparator = costSeparator - (selected.getPricePerLiter() * selected.getMagnitude()/1000.00);
+                System.out.println(costSeparator);
                 choseIngredientsList2.add(selected);
                 alcoholPercent.setProgress(countPercentage());
                 dummyIngredientAddToList();
@@ -553,11 +552,11 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                     slider.setMin(0);
                     volumeSeparator = 0;
                     progressSeparator = 0.0;
-                    costSerparator = 0;
+                    costSeparator = 0;
                 }
                 selected = null;
                 lblChosenName.setText("Null");
-                lblCost.setText(String.format("%.2f", costSerparator));
+                lblCost.setText(String.format("%.2f", costSeparator));
 
 
 
