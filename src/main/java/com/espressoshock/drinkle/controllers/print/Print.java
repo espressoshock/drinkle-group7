@@ -1,6 +1,8 @@
 package com.espressoshock.drinkle.controllers.print;
 
 
+import com.espressoshock.drinkle.controllers.app.beverageBuilder.Glassware;
+import com.espressoshock.drinkle.models.Beverage;
 import com.espressoshock.drinkle.models.Ingredient;
 import com.espressoshock.drinkle.progressIndicator.RingProgressIndicator;
 import javafx.event.ActionEvent;
@@ -22,6 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static com.espressoshock.drinkle.controllers.app.beverageBuilder.BeverageBuilder.*;
@@ -37,9 +40,38 @@ public class Print implements Initializable {
     Label costLabel, bvgName, lblGlassName, lblGlassVolume;
     @FXML
     ImageView glassImagePrint;
+    private Beverage printBeverage;
+    private Glassware printGlass;
+    private RingProgressIndicator aclPercent = new RingProgressIndicator();
+    private ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-    RingProgressIndicator aclPercent = new RingProgressIndicator();
+    public void loadBeverage(Beverage beverage){
+        printBeverage = beverage;
+        notesTextArea.setText(printBeverage.getNotes());
+        costLabel.setText(printBeverage.getCost() + " $");
+        bvgName.setText(printBeverage.getName());
+    }
+    public void loadGlass(Glassware glass){
+        printGlass = glass;
+        Image img = new Image(printGlass.getImageUrl());
+        Bloom bloom = new Bloom();
+        bloom.setThreshold(0.2);
+        glassImagePrint.setImage(img);
+        glassImagePrint.setEffect(bloom);
+        lblGlassName.setText(printGlass.getName());
+        lblGlassVolume.setText(printGlass.getVolume() + " ml");
+    }
+    public void loadAlcoholRing(RingProgressIndicator alcoholRing){
+        aclPercent.setProgress(alcoholRing.getProgress());
+        aclPercent.setLayoutX(40);
+        aclPercent.setLayoutY(45);
+        alcPercentageCircle.getChildren().add(aclPercent);
+    }
 
+    public void loadIngredientList(ArrayList<Ingredient> list){
+        ingredients = list;
+        populateVbox();
+    }
     private void addIngredientWidget2(Ingredient selected) {
         Label ingredientName = new Label();
         Label ingredientVolume = new Label();
@@ -62,7 +94,7 @@ public class Print implements Initializable {
 
     @FXML
     private void populateVbox() {
-        for (Ingredient a : addedIngredientsList2) {
+        for (Ingredient a : ingredients) {
             addIngredientWidget2(a);
         }
     }
@@ -100,21 +132,10 @@ public class Print implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        populateVbox();
-        notesTextArea.setText(bvg.getNotes());
-        costLabel.setText(String.valueOf(bvg.getCost()) + " $");
-        bvgName.setText(bvg.getName());
-        aclPercent.setProgress(alcoholPercent.getProgress());
-        aclPercent.setLayoutX(40);
-        aclPercent.setLayoutY(45);
-        alcPercentageCircle.getChildren().add(aclPercent);
-        Image img = new Image(glass.getImageUrl());
-        Bloom bloom = new Bloom();
-        bloom.setThreshold(0.2);
-        glassImagePrint.setImage(img);
-        glassImagePrint.setEffect(bloom);
-        lblGlassName.setText(glass.getName());
-        lblGlassVolume.setText(String.valueOf(glass.getVolume()) + " ml");
+
+
+
+
     }
 }
 
