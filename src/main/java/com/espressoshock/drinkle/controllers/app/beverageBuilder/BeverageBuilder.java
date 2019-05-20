@@ -24,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -65,7 +66,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     @FXML
     private Label lblChosenName, lblVolume, lblCost, lblTotalVolume, lblChosenGlass, lblChosenAlcohol;
     @FXML
-    private AnchorPane alcoholPercentCircle;
+    private AnchorPane alcoholPercentCircle, rootPane;
     @FXML
     private VBox vBoxChosenIngredients, vBoxListOfIngredients;
     @FXML
@@ -278,11 +279,14 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     }
 
     @FXML
-    private void openPrintView() throws Exception {
+    private void openPrintView(Event e) throws Exception {
         createBeverageObject();
+        Button b = (Button)e.getSource();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/app/print-layout.fxml"));
         Stage primaryStage = new Stage();
+        primaryStage.initModality(Modality.APPLICATION_MODAL);
+        primaryStage.initOwner(b.getScene().getWindow()); //<-- Parent blocked until printView is closed
         Parent root = loader.load();
         //-------Passing data to another view-------------
         Print printController = loader.getController();
