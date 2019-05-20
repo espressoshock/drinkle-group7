@@ -440,15 +440,16 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         ImageView imageView = new ImageView(image);
         Tooltip tooltip = new Tooltip();
         tooltip.setGraphic(imageView);
-        tooltip.setStyle("-fx-background-color: transparent");
+        tooltip.setText(choseGlasswareName.getText()+" "+choseGlasswareVolume.getText());
+        tooltip.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7);");
 
         choseGlasswareName.setTooltip(tooltip);
         choseGlasswareName.getTooltip().setOnShowing(s -> {
 
             //Get button current bounds on computer screen
             Bounds bounds = choseGlasswareName.localToScreen(choseGlasswareName.getBoundsInLocal());
-            choseGlasswareName.getTooltip().setX(bounds.getMaxX() + 40);
-            choseGlasswareName.getTooltip().setY(bounds.getMinY() + 40);
+            choseGlasswareName.getTooltip().setX(bounds.getMaxX() + 100);
+            choseGlasswareName.getTooltip().setY(bounds.getMinY() + -40);
 
         });
 
