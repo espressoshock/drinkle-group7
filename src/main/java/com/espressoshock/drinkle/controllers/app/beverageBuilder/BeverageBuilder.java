@@ -414,7 +414,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         choseIngName.setCursor(Cursor.HAND);
         choseIngName.setTooltip(percentage);
         choseIngPrice.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-        choseIngPrice.setText(object.getPricePerLiter() + " \u20ac" + "/l");
+        choseIngPrice.setText(object.getPricePerLiter() + " \u20ac" + "/l");//<--- " \u20ac" is EUR symbol
         choseIngPrice.setLayoutX(205.0);
 
         Group choseIngredient = new Group();
@@ -776,25 +776,6 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                         "In order to save or print your recipe, you must assign a name to your drink.\n" +
                         " -You will find the text field in the top right corner with some prompt text to \"Enter name for beverage\"\n" +
                         " -If you followed all the steps correctly, buttons Print and Save to Database should be enabled.");
-        System.out.println("Step 1: \n" +
-                "Chose glassware by clicking on the item from the list to the left.\n" +
-                " -By choosing the glass, list of the ingredients is loaded to the same list where you chose your glass\n" +
-                "Step 2: \n" +
-                "Click on the name of the ingredient fro the list that you want to add to your drink.\n" +
-                " -Now you should see on the middle top, the name of your chosen ingredient.\n" +
-                " -The slider is now enabled\n" +
-                "Step 3: \n" +
-                "Adjust ingredient magnitude by moving the slider.\n" +
-                " -When you are satisfied with the magnitude you chose, press Add ingredient button " +
-                "to add chosen ingredient to the list of added ingredients\n" +
-                " -If you followed all the steps correctly, there should be a \"widget\" " +
-                "with the ingredient name, magnitude and a bar that visualizes " +
-                "the amount of the ingredient that you added to the glass on the down left side of the window\n" +
-                "Repeat step 2 and 3 until you are satisfied wit ingredient list or until glass is full\n" +
-                "Step 4: \n" +
-                "In order to save or print your recipe, you must assign a name to your drink.\n" +
-                " -You will find the text field in the top right corner with some prompt text to \"Enter name for beverage\"\n" +
-                " -If you followed all the steps correctly, buttons Print and Save to Database should be enabled.");
         help.show();
     }
 

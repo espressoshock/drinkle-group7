@@ -48,7 +48,7 @@ public class Print implements Initializable {
     public void loadBeverage(Beverage beverage){
         printBeverage = beverage;
         notesTextArea.setText(printBeverage.getNotes());
-        costLabel.setText(printBeverage.getCost() + " $");
+        costLabel.setText(printBeverage.getCost() + "\u20ac"); //<--- "\u20ac" is EUR symbol
         bvgName.setText(printBeverage.getName());
     }
     public void loadGlass(Glassware glass){
