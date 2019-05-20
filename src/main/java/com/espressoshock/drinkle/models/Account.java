@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public abstract class Account  {
 
-    private int id;
+    private Integer id;
     private String email;
     private String password;
     private ArrayList<Beverage> beverages;
 
-    public Account(int id, String email, String password,
+    public Account(Integer id, String email, String password,
         ArrayList<Beverage> beverages) {
         this.id = id;
         this.email = email;
