@@ -38,7 +38,7 @@ public class Print implements Initializable {
     @FXML
     ImageView glassImagePrint;
 
-    RingProgressIndicator aclPercent = alcoholPercent;
+    RingProgressIndicator aclPercent = new RingProgressIndicator();
 
     private void addIngredientWidget2(Ingredient selected) {
         Label ingredientName = new Label();
@@ -104,9 +104,9 @@ public class Print implements Initializable {
         notesTextArea.setText(bvg.getNotes());
         costLabel.setText(String.valueOf(bvg.getCost()) + " $");
         bvgName.setText(bvg.getName());
+        aclPercent.setProgress(alcoholPercent.getProgress());
         aclPercent.setLayoutX(40);
         aclPercent.setLayoutY(45);
-        alcoholPercent.setPrefWidth(200);
         alcPercentageCircle.getChildren().add(aclPercent);
         Image img = new Image(glass.getImageUrl());
         Bloom bloom = new Bloom();
