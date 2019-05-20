@@ -51,7 +51,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private Double volume = null;
     private Beverage bvg = null; // declared public static so that print can access it
     private int beverage_id = 0;
-    public static Glassware glass = null; // declared public static so that print can access it
+    private Glassware glass = null; // declared public static so that print can access it
 
     //------------------------------------------------------
     private ArrayList<Ingredient> choseIngredientsList2 = new ArrayList<>();
