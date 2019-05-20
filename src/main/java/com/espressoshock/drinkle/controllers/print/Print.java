@@ -2,6 +2,7 @@ package com.espressoshock.drinkle.controllers.print;
 
 
 import com.espressoshock.drinkle.models.Ingredient;
+import com.espressoshock.drinkle.progressIndicator.RingProgressIndicator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.effect.Bloom;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -25,7 +28,7 @@ import static com.espressoshock.drinkle.controllers.app.beverageBuilder.Beverage
 
 public class Print implements Initializable {
     @FXML
-    AnchorPane printView;
+    AnchorPane printView,alcPercentageCircle;
     @FXML
     VBox ingredientsList;
     @FXML
@@ -34,6 +37,8 @@ public class Print implements Initializable {
     Label costLabel, bvgName, lblGlassName, lblGlassVolume;
     @FXML
     ImageView glassImagePrint;
+
+    RingProgressIndicator aclPercent = alcoholPercent;
 
     private void addIngredientWidget2(Ingredient selected) {
         Label ingredientName = new Label();
@@ -99,10 +104,17 @@ public class Print implements Initializable {
         notesTextArea.setText(bvg.getNotes());
         costLabel.setText(String.valueOf(bvg.getCost()) + " $");
         bvgName.setText(bvg.getName());
+        aclPercent.setLayoutX(40);
+        aclPercent.setLayoutY(45);
+        alcoholPercent.setPrefWidth(200);
+        alcPercentageCircle.getChildren().add(aclPercent);
         Image img = new Image(glass.getImageUrl());
+        Bloom bloom = new Bloom();
+        bloom.setThreshold(0.2);
         glassImagePrint.setImage(img);
+        glassImagePrint.setEffect(bloom);
         lblGlassName.setText(glass.getName());
-        lblGlassVolume.setText(String.valueOf(glass.getVolume())+" ml");
+        lblGlassVolume.setText(String.valueOf(glass.getVolume()) + " ml");
     }
 }
 

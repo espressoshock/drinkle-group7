@@ -11,22 +11,35 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Bounds;
 import javafx.geometry.NodeOrientation;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 
 public class BeverageBuilder extends EventDispatcherAdapter implements Initializable {
@@ -42,7 +55,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private double costSeparator = 0.0;  // Value has been set to current cost value when ingredient is added
     private String sliderDoubleValueAsString = null;
     private String cost = "0.0"; //initial cost label text
-    private double slidervalueset = 0.0;
+    private double sliderValueSet = 0.0;
     private Double volume = null;
     public static Beverage bvg = null; // declared public static so that print can access it
     private int beverage_id = 0;
@@ -54,11 +67,11 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private ArrayList<Ingredient> searchList = new ArrayList<>();
     private ArrayList<Glassware> choseGlasswareList = new ArrayList<>();
     private Ingredient selected = null;// selected object of ingredient
-    private RingProgressIndicator alcoholPercent = new RingProgressIndicator();
+    public static RingProgressIndicator alcoholPercent = new RingProgressIndicator();// <-- to be accessed in print
     private ArrayList<String> brands = new ArrayList<>();
     //------------------ @FXML ------------------------------
     @FXML
-    private Label lblChosenName, lblVolume, lblCost, lblTotalVolume, lblChosenGlass;
+    private Label lblChosenName, lblVolume, lblCost, lblTotalVolume, lblChosenGlass, lblChosenAlcohol;
     @FXML
     private AnchorPane alcoholPercentCircle;
     @FXML
@@ -70,7 +83,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     @FXML
     private Button btnAddIngredient, btnExport, btnSave;
     @FXML
-    TextField txtFieldBeverageName,searchField;
+    TextField txtFieldBeverageName, searchField;
     @FXML
     TextArea txtAreaNotes;
     @FXML
@@ -84,8 +97,9 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             System.out.println(a);
         }
     }
-    public void addBrandsToSearch(){
-        for(BrandsEnum a : BrandsEnum.values()) {
+
+    public void addBrandsToSearch() {
+        for (BrandsEnum a : BrandsEnum.values()) {
             System.out.println(a.getBrandName());
             brands.add(a.getBrandName());
 
@@ -94,18 +108,19 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         MenuItem m = new MenuItem("All");
         m.setOnAction(event -> brandsList.setText(m.getText()));
         brandsList.getItems().add(m);
-        for(String s : brands){
+        for (String s : brands) {
             MenuItem a = new MenuItem(s);
             a.setOnAction(event -> brandsList.setText(a.getText()));
             brandsList.getItems().add(a);
         }
     }
-    public void search(String string){
+
+    public void search(String string) {
         searchList.clear();
         vBoxListOfIngredients.getChildren().removeAll();
 
-        for(Ingredient i : choseIngredientsList2){
-            if(i.getName() != null && i.getName().toLowerCase().startsWith(string)){
+        for (Ingredient i : choseIngredientsList2) {
+            if (i.getName() != null && i.getName().toLowerCase().startsWith(string)) {
                 searchList.add(i);
             }
 
@@ -113,6 +128,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         }
         IngredientAddToList(searchList);
     }
+
     @FXML
     private void saveBeverageToDB() throws Exception {
         Beverage d = createBeverageObject();
@@ -126,8 +142,8 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
     public Beverage createBeverageObject() {
         Beverage a = new Beverage(txtFieldBeverageName.getText(), countPercentage(), Double.valueOf(cost), countVolume(), addedIngredientsList2);
-        a.setNotes("Glassware: " + glass.getName() + "\n" + "Glassware volume: " + glass.getVolume() + "\n"
-                        +"-------------------------------------"+ "\n" + txtAreaNotes.getText());
+        a.setNotes("Here you can read and add some notes" + "\n"
+                + "-------------------------------------\n" + txtAreaNotes.getText()+"\n");
         bvg = a;
         return a;
 
@@ -306,18 +322,18 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             slider.valueProperty().addListener((arg0, arg1, arg2) -> {
                 try {
                     slider.setValue(Math.round(arg2.doubleValue()));
-                    sliderDoubleValueAsString = String.format("%.2f", slider.getValue() - slidervalueset);
+                    sliderDoubleValueAsString = String.format("%.2f", slider.getValue() - sliderValueSet);
                     volume = Double.parseDouble(String.format("%.2f", slider.getValue()));
-                    if (slider.getValue() >= slider.getMin()){
+                    if (slider.getValue() >= slider.getMin()) {
                         if (selected != null) {
                             cost = String.format("%.2f", ((Double.parseDouble(sliderDoubleValueAsString) - slider.getMin())
                                     * selected.getPricePerLiter() / 1000.00) + costSeparator);
-                        }else {
+                        } else {
                             cost = "0.0";
                         }
 
                         progressGlass.setProgress(Double.parseDouble(String.format("%.2f", slider.getValue() / (glass.getVolume() / 100.00) / 100.00)));
-                        }else {
+                    } else {
                         progressGlass.setProgress(0.0);
                     }
                     lblVolume.setText(String.valueOf(volume.intValue()));
@@ -349,12 +365,13 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
     private void choseIngredient(Event event) {
         if (slider.getValue() > slider.getMin()) {
-                slider.setValue(slider.getMin());
+            slider.setValue(slider.getMin());
         }
         slider.setDisable(false);
         Label lbl = (Label) event.getSource();
         selected = (Ingredient) lbl.getUserData();
-        lblChosenName.setText(lbl.getText() + " " + selected.getAlcoholPercentage());
+        lblChosenName.setText(lbl.getText());
+        lblChosenAlcohol.setText(selected.getAlcoholPercentage()+"%");
         sliderProgressChange();
         disableAdd();
     }
@@ -363,23 +380,23 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
         Label lbl = (Label) event.getSource();
         Glassware gls = (Glassware) lbl.getUserData();
-        if (gls.getVolume() > slider.getMin()){
+        if (gls.getVolume() > slider.getMin()) {
             glass = (Glassware) lbl.getUserData();
-        lblChosenGlass.setText(glass.getName());
-        lblTotalVolume.setText(String.valueOf(glass.getVolume()));
+            lblChosenGlass.setText(glass.getName());
+            lblTotalVolume.setText(String.valueOf(glass.getVolume()));
 
-        slider.setMax(glass.getVolume());
+            slider.setMax(glass.getVolume());
 
 
-        Image image = new Image(glass.getImageUrl());
-        glassImage.setImage(image);
-        IngredientAddToList(choseIngredientsList2);
-        searchField.setDisable(false);
-    } else {
+            Image image = new Image(glass.getImageUrl());
+            glassImage.setImage(image);
+            IngredientAddToList(choseIngredientsList2);
+            searchField.setDisable(false);
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText("Error");
             alert.setContentText("Glass that you are trying to chose has a smaller volume than added ingredients magnitude \n" +
-                                 "Please remove some ingredients!");
+                    "Please remove some ingredients!");
             alert.showAndWait();
         }
     }
@@ -421,6 +438,22 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         choseGlasswareVolume.setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
         choseGlasswareVolume.setText(String.valueOf(object.getVolume()));
         choseGlasswareVolume.setLayoutX(205.0);
+
+        Image image = new Image(object.getImageUrl());
+        ImageView imageView = new ImageView(image);
+        Tooltip tooltip = new Tooltip();
+        tooltip.setGraphic(imageView);
+        tooltip.setStyle("-fx-background-color: transparent");
+
+        choseGlasswareName.setTooltip(tooltip);
+        choseGlasswareName.getTooltip().setOnShowing(s->{
+
+            //Get button current bounds on computer screen
+            Bounds bounds = choseGlasswareName.localToScreen(choseGlasswareName.getBoundsInLocal());
+            choseGlasswareName.getTooltip().setX(bounds.getMaxX()+40);
+            choseGlasswareName.getTooltip().setY(bounds.getMinY()+40);
+
+        });
 
         Group choseIngredient = new Group();
         choseIngredient.getChildren().add(choseGlasswareName);
@@ -464,7 +497,8 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             choseIngredientListElement(a);
         }
     }
-    public void changeGlassware(){
+
+    public void changeGlassware() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
         alert.setHeaderText("Changing the glass will reset current progress and " +
@@ -472,18 +506,19 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         alert.setContentText("Are you sure you want to proceed?");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
+        if (result.get() == ButtonType.OK) {
             selected = null;
             glass = null;
+            alcoholPercent.setProgress(0);
             vBoxChosenIngredients.getChildren().clear();
             addedIngredientsList2.clear();
             slider.setMin(0.0);
             lblCost.setText("0.0");
             lblVolume.setText("0");
             progressGlass.setProgress(0.0);
-            progressSeparator=0.0;
-            volumeSeparator=0;
-            costSeparator=0;
+            progressSeparator = 0.0;
+            volumeSeparator = 0;
+            costSeparator = 0;
             lblChosenGlass.setText("");
             lblTotalVolume.setText("");
             glassImage.setImage(null);
@@ -492,6 +527,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             alert.close();
         }
     }
+
     public void GlasswareAddToList() {
 
         searchField.setDisable(true);
@@ -600,6 +636,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             overlay.setOnMouseClicked(event -> {
                 selected = (Ingredient) overlay.getUserData();
                 lblChosenName.setText(selected.getName());
+                lblChosenAlcohol.setText((selected.getAlcoholPercentage()+"%"));
             });
 
             slider.setDisable(true);
@@ -613,7 +650,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                 double a = selected.getMagnitude();
                 Double b = new Double(glass.getVolume());
                 //System.out.println(selected.getMagnitude()+"/"+glass.getVolume()+"="+a/b);
-                progressSeparator -= a/b;
+                progressSeparator -= a / b;
                 costSeparator = costSeparator - (selected.getPricePerLiter() * selected.getMagnitude() / 1000.00);
                 choseIngredientsList2.add(selected);
                 alcoholPercent.setProgress(countPercentage());
@@ -626,7 +663,8 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
                     costSeparator = 0;
                 }
                 selected = null;
-                lblChosenName.setText("Null");
+                lblChosenName.setText("None");
+                lblChosenAlcohol.setText("0%");
                 lblCost.setText(String.format("%.2f", costSeparator));
 
 
@@ -640,7 +678,8 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             IngredientAddToList(choseIngredientsList2);
             selected = null;
 
-            lblChosenName.setText("null");
+            lblChosenName.setText("None");
+            lblChosenAlcohol.setText("0%");
             searchField.setText("");
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -658,6 +697,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             }
         });
     }
+
     @FXML
     private void checkSearch() {
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -665,6 +705,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
 
         });
     }
+
     @FXML
     private void checkText() {
         txtFieldBeverageName.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -679,13 +720,68 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             return true;
         } else return false;
     }
-    private void toLowerCase(){
+
+    private void toLowerCase() {
         searchField.textProperty().addListener((ov, oldValue, newValue) -> {
             searchField.setText(newValue.toLowerCase());
         });
     }
+
+    private void helpDialog() {
+        Alert help = new Alert(Alert.AlertType.INFORMATION);
+        help.setResizable(true);
+        help.getDialogPane().setMinWidth(500);
+
+
+        help.setHeaderText("Here is how to use beverage builder:");
+
+
+
+        help.setContentText(
+                "Step 1: \n" +
+                "Chose glassware by clicking on the item from the list to the left.\n" +
+                " -By choosing the glass, list of the ingredients is loaded to the same list where you chose your glass\n" +
+                "Step 2: \n" +
+                "Click on the name of the ingredient fro the list that you want to add to your drink.\n" +
+                " -Now you should see on the middle top, the name of your chosen ingredient.\n" +
+                " -The slider is now enabled\n" +
+                "Step 3: \n" +
+                "Adjust ingredient magnitude by moving the slider.\n" +
+                " -When you are satisfied with the magnitude you chose, press Add ingredient button " +
+                "to add chosen ingredient to the list of added ingredients\n" +
+                " -If you followed all the steps correctly, there should be a \"widget\" " +
+                "with the ingredient name, magnitude and a bar that visualizes " +
+                "the amount of the ingredient that you added to the glass on the down left side of the window\n" +
+                "Repeat step 2 and 3 until you are satisfied wit ingredient list or until glass is full\n" +
+                "Step 4: \n" +
+                "In order to save or print your recipe, you must assign a name to your drink.\n" +
+                " -You will find the text field in the top right corner with some prompt text to \"Enter name for beverage\"\n" +
+                " -If you followed all the steps correctly, buttons Print and Save to Database should be enabled.");
+        System.out.println("Step 1: \n" +
+                "Chose glassware by clicking on the item from the list to the left.\n" +
+                " -By choosing the glass, list of the ingredients is loaded to the same list where you chose your glass\n" +
+                "Step 2: \n" +
+                "Click on the name of the ingredient fro the list that you want to add to your drink.\n" +
+                " -Now you should see on the middle top, the name of your chosen ingredient.\n" +
+                " -The slider is now enabled\n" +
+                "Step 3: \n" +
+                "Adjust ingredient magnitude by moving the slider.\n" +
+                " -When you are satisfied with the magnitude you chose, press Add ingredient button " +
+                "to add chosen ingredient to the list of added ingredients\n" +
+                " -If you followed all the steps correctly, there should be a \"widget\" " +
+                "with the ingredient name, magnitude and a bar that visualizes " +
+                "the amount of the ingredient that you added to the glass on the down left side of the window\n" +
+                "Repeat step 2 and 3 until you are satisfied wit ingredient list or until glass is full\n" +
+                "Step 4: \n" +
+                "In order to save or print your recipe, you must assign a name to your drink.\n" +
+                " -You will find the text field in the top right corner with some prompt text to \"Enter name for beverage\"\n" +
+                " -If you followed all the steps correctly, buttons Print and Save to Database should be enabled.");
+        help.show();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         searchField.setDisable(true);
         toLowerCase();
         checkSearch();
@@ -698,7 +794,6 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         GlasswareCreate();
         //dummyIngredientCreate();
         sliderProgressChange();
-        lblTotalVolume.setText("100");
         slider.setBlockIncrement(1);
         GlasswareAddToList();
         btnExport.setDisable(disableExport());
@@ -712,6 +807,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         } catch (Exception e) {
             e.printStackTrace();
         }
+        helpDialog();
         //printTest();
     }
 

@@ -10,7 +10,7 @@ public enum ViewMetadata {
     AUTH_REGISTRATION_COMPANY(AuthRegistration.class, "/fxml/auth/auth-registration-company.fxml"),
 
     APP_INGREDIENT_LIST(IngredientList.class, "/fxml/app/ingredient-list.fxml"),
-    APP_BEVERAGE_BUILDER(BeverageBuilder.class, "/fxml/app/beverage-builder.fxml"),
+    APP_BEVERAGE_BUILDER(BeverageBuilder.class, "/fxml/app/beverage-builder/beverage-builder.fxml"),
     //APP_DASHBOARD(BeverageBuilder.class, "/fxml/app/beverage-builder.fxml"),
     APP_SIDEBAR(Sidebar.class, "/fxml/app/sidebar.fxml");
 
