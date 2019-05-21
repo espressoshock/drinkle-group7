@@ -16,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.effect.Bloom;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -27,17 +26,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import static com.espressoshock.drinkle.controllers.app.beverageBuilder.BeverageBuilder.*;
-
 public class Print implements Initializable {
     @FXML
-    AnchorPane printView,alcPercentageCircle;
+    AnchorPane printView, alcPercentageCircle;
     @FXML
     VBox ingredientsList;
     @FXML
     TextArea notesTextArea;
     @FXML
-    Label costLabel, bvgName, lblGlassName, lblGlassVolume;
+    Label costLabel, bvgName, lblGlassName, lblGlassVolume, lblBvgMagnitude;
     @FXML
     ImageView glassImagePrint;
     private Beverage printBeverage;
@@ -45,13 +42,14 @@ public class Print implements Initializable {
     private RingProgressIndicator aclPercent = new RingProgressIndicator();
     private ArrayList<Ingredient> ingredients = new ArrayList<>();
 
-    public void loadBeverage(Beverage beverage){
+    public void loadBeverage(Beverage beverage) {
         printBeverage = beverage;
         notesTextArea.setText(printBeverage.getNotes());
         costLabel.setText(printBeverage.getCost() + "\u20ac"); //<--- "\u20ac" is EUR symbol
         bvgName.setText(printBeverage.getName());
     }
-    public void loadGlass(Glassware glass){
+
+    public void loadGlass(Glassware glass) {
         printGlass = glass;
         Image img = new Image(printGlass.getImageUrl());
         Bloom bloom = new Bloom();
@@ -61,17 +59,20 @@ public class Print implements Initializable {
         lblGlassName.setText(printGlass.getName());
         lblGlassVolume.setText(printGlass.getVolume() + " ml");
     }
-    public void loadAlcoholRing(RingProgressIndicator alcoholRing){
+
+    public void loadAlcoholRing(RingProgressIndicator alcoholRing) {
         aclPercent.setProgress(alcoholRing.getProgress());
         aclPercent.setLayoutX(40);
         aclPercent.setLayoutY(45);
         alcPercentageCircle.getChildren().add(aclPercent);
     }
 
-    public void loadIngredientList(ArrayList<Ingredient> list){
+    public void loadIngredientList(ArrayList<Ingredient> list) {
         ingredients = list;
+        lblBvgMagnitude.setText(countMagnitude() + "ml");
         populateVbox();
     }
+
     private void addIngredientWidget2(Ingredient selected) {
         Label ingredientName = new Label();
         Label ingredientVolume = new Label();
@@ -90,6 +91,14 @@ public class Print implements Initializable {
         Group ingredient = new Group();
         ingredient.getChildren().addAll(ingredientName, ingredientVolume, addedIngredientPercentBar);
         ingredientsList.getChildren().add(ingredient);
+    }
+
+    private int countMagnitude() {
+        int magnitude = 0;
+        for (Ingredient i : ingredients) {
+            magnitude += i.getMagnitude();
+        }
+        return magnitude;
     }
 
     @FXML
@@ -131,8 +140,6 @@ public class Print implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
 
 
 

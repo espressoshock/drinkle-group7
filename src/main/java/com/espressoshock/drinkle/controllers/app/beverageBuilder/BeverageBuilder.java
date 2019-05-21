@@ -27,6 +27,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
@@ -751,41 +752,30 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         searchField.textProperty().addListener((ov, oldValue, newValue) -> searchField.setText(newValue.toLowerCase()));
     }
 
-    private void helpDialog() {
-        Alert help = new Alert(Alert.AlertType.INFORMATION);
-        help.setResizable(true);
-        help.getDialogPane().setMinWidth(500);
+    private void helpDialog(){
 
+        final FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/app/beverage-builder/user-manual.fxml"));
+        Stage stage = new Stage();
+        stage.initModality(Modality.WINDOW_MODAL);
 
-        help.setHeaderText("Here is how to use beverage builder:");
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-
-        help.setContentText(
-                "Step 1: \n" +
-                        "Chose glassware by clicking on the item from the list to the left.\n" +
-                        " -By choosing the glass, list of the ingredients is loaded to the same list where you chose your glass\n" +
-                        "Step 2: \n" +
-                        "Click on the name of the ingredient fro the list that you want to add to your drink.\n" +
-                        " -Now you should see on the middle top, the name of your chosen ingredient.\n" +
-                        " -The slider is now enabled\n" +
-                        "Step 3: \n" +
-                        "Adjust ingredient magnitude by moving the slider.\n" +
-                        " -When you are satisfied with the magnitude you chose, press Add ingredient button " +
-                        "to add chosen ingredient to the list of added ingredients\n" +
-                        " -If you followed all the steps correctly, there should be a \"widget\" " +
-                        "with the ingredient name, magnitude and a bar that visualizes " +
-                        "the amount of the ingredient that you added to the glass on the down left side of the window\n" +
-                        "Repeat step 2 and 3 until you are satisfied wit ingredient list or until glass is full\n" +
-                        "Step 4: \n" +
-                        "In order to save or print your recipe, you must assign a name to your drink.\n" +
-                        " -You will find the text field in the top right corner with some prompt text to \"Enter name for beverage\"\n" +
-                        " -If you followed all the steps correctly, buttons Print and Save to Database should be enabled.");
-        help.show();
+        Scene manual = new Scene(root);
+        stage.setTitle("Drinkle-User Manual");
+        stage.setResizable(false);
+        stage.setScene(manual);
+        stage.show();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        brandsList.setDisable(true);
         searchField.setDisable(true);
         toLowerCase();
         checkSearch();
@@ -794,15 +784,12 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         int totalAlcoholPercentage = 0;
         alcoholPercent.setProgress(totalAlcoholPercentage);  //for visual presentation only
         alcoholPercentCircle.getChildren().add(alcoholPercent);
-        //IngredientAddToList();// create generate and add to list mock ingredients
         GlasswareCreate();
-        //dummyIngredientCreate();
         sliderProgressChange();
         slider.setBlockIncrement(1);
         GlasswareAddToList();
         btnExport.setDisable(disableExport());
         btnSave.setDisable(disableExport());
-//        progressGlass.setStyle("-fx-accent: )");
         limitText(txtFieldBeverageName, 45);// <--- limit name to varchar(45)
         limitText(txtAreaNotes, 400);// <--- limit notes to 400 characters
         disableAdd();
@@ -812,36 +799,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             e.printStackTrace();
         }
         helpDialog();
-        //printTest();
     }
 
 
 }
-
-
-////////////////////simplified classes to test view -> to be deleted when Ingredients are available from database
-
-
-//class Garnish {
-//    String name;
-//
-//    Garnish(String name) {
-//        this.name = name;
-//    }
-//
-////    String getName() {
-////        return name;
-////    }
-//}
-
-//class IceType {
-//    String name;
-//
-//    IceType(String name) {
-//        this.name = name;
-//    }
-//
-////    String getName() {
-////        return name;
-////    }
-//}
