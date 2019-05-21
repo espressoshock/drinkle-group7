@@ -751,14 +751,14 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     private void toLowerCase() {
         searchField.textProperty().addListener((ov, oldValue, newValue) -> searchField.setText(newValue.toLowerCase()));
     }
-
+    @FXML
     private void helpDialog(){
 
         final FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/fxml/app/beverage-builder/user-manual.fxml"));
-        Stage stage = new Stage();
+        final Stage stage = new Stage();
         stage.initModality(Modality.WINDOW_MODAL);
-
+        
         Parent root = null;
         try {
             root = loader.load();
@@ -766,7 +766,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
             e.printStackTrace();
         }
 
-        Scene manual = new Scene(root);
+        final Scene manual = new Scene(root);
         stage.setTitle("Drinkle-User Manual");
         stage.setResizable(false);
         stage.setScene(manual);
