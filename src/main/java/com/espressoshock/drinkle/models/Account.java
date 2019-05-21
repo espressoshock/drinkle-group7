@@ -2,15 +2,16 @@ package com.espressoshock.drinkle.models;
 
 import java.util.ArrayList;
 
-public abstract class Account  {
+public abstract class Account {
 
     private Integer id;
     private String email;
     private String password;
     private ArrayList<Beverage> beverages;
 
+
     public Account(Integer id, String email, String password,
-        ArrayList<Beverage> beverages) {
+                   ArrayList<Beverage> beverages) {
         this.id = id;
         this.email = email;
         this.password = password;
