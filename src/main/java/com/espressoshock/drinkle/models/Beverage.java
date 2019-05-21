@@ -21,7 +21,7 @@ public class Beverage {
   private ArrayList<Ingredient> ingredients;
 
   public Beverage(String name, int alcoholPercentage, double cost, int volumePerMililiter,
-      ArrayList<Ingredient> ingredients) {
+                  ArrayList<Ingredient> ingredients) {
     this.name = name;
     this.alcoholPercentage = alcoholPercentage;
     this.cost = cost;

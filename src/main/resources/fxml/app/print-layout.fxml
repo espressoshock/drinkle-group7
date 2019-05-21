@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Group?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.shape.SVGPath?>
-<?import javafx.scene.text.Font?>
 
 <VBox stylesheets="@../../css/app/print.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.print.Print">
    <children>
@@ -57,5 +54,6 @@
          </children>
       </AnchorPane>
       <Button mnemonicParsing="false" onAction="#buttonPrint" prefHeight="25.0" prefWidth="520.0" text="PRINT" />
+      <Button mnemonicParsing="false" onAction="#onSendByEmail" prefHeight="25.0" prefWidth="520.0" text="Send by Email" />
    </children>
 </VBox>

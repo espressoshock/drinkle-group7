@@ -1,10 +1,10 @@
 package com.espressoshock.drinkle.controllers.print;
 
-
 import com.espressoshock.drinkle.controllers.app.beverageBuilder.Glassware;
 import com.espressoshock.drinkle.models.Beverage;
 import com.espressoshock.drinkle.models.Ingredient;
 import com.espressoshock.drinkle.progressIndicator.RingProgressIndicator;
+import java.net.URISyntaxException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -114,6 +114,43 @@ public class Print implements Initializable {
         printDialog(printView, stage);
 
     }
+
+    public void onSendByEmail() {
+        try {
+            //TODO: Add real data.
+            composeEmail("play4freesead@gmail.com", "Drinkle!",
+                "Hello Drinkle user,\r\n Here is you drink:");
+        } catch (Exception err) {
+            err.printStackTrace();
+        }
+    }
+
+    public void composeEmail(String receiver, String subject, String body) throws Exception {
+
+        String mailto = "mailTo:" + receiver;
+        mailto += "?subject=" + uriEncode(subject);
+        mailto += "^&body=" + uriEncode(body);
+
+        String cmd = "";
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.contains("win")) {
+            cmd = "cmd.exe /c start " + mailto;
+        } else if (os.contains("osx")) {
+            cmd = "open " + mailto;
+        } else if (os.contains("nix") || os.contains("aix") || os.contains("nux")) {
+            cmd = "xdg-open " + mailto;
+        }
+        Runtime.getRuntime().exec(cmd);
+    }
+
+    private String uriEncode(String in) {
+        String out = new String();
+        for (char ch : in.toCharArray()) {
+            out += Character.isLetterOrDigit(ch) ? ch : String.format("%%%02X", (int) ch);
+        }
+        return out;
+    }
+
 
     private void printDialog(Node subject, Stage window) {
         PrinterJob newPrint = PrinterJob.createPrinterJob();
