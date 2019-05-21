@@ -1,7 +1,6 @@
 package com.espressoshock.drinkle.controllers.print;
 
-
-import java.net.URISyntaxException;
+import com.espressoshock.drinkle.appState.Current;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.print.PrinterJob;
@@ -21,11 +20,12 @@ public class Print {
 
     }
 
+    //TODO: Add real data.
     public void onSendByEmail() {
+        String date = Current.environment.currentDate;
         try {
-            //TODO: Add real data.
             composeEmail("play4freesead@gmail.com", "Drinkle!",
-                "Hello Drinkle user,\r\n Here is you drink:");
+                "Hello Drinkle user,\r\n Here is you drink: \r\n" + date);
         } catch (Exception err) {
             err.printStackTrace();
         }

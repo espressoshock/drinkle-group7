@@ -12,8 +12,6 @@ public class ConnectionLayer {
   private static String username = "drinkleg7";
   private static String password = "drinkle.123";
   private static Connection connection;
-  //private static String urlString;
-
 
   public static Connection getConnection() {
     try {
