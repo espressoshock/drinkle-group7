@@ -1,71 +1,61 @@
 package com.espressoshock.drinkle.models;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.util.List;
 
-public class Beverage {
+public class Beverage extends Blueprint {
+    private String name;
+    private String description;
+    private Recipe recipe;
+    private String pictureURL;
+    private double pourCost;
 
-  private String name;
-  private int alcoholPercentage;
-  private double cost;
-  private int volumePerMililiter;
-  private String notes;
+    public Beverage(String metadata, Timestamp ts, int blueprintId, List<Permission> permissions, AccessLevel accessLevel, Statistic statistic, String name, String description, Recipe recipe, String pictureURL, double pourCost) {
+        super(metadata, ts, blueprintId, permissions, accessLevel, statistic);
+        this.name = name;
+        this.description = description;
+        this.recipe = recipe;
+        this.pictureURL = pictureURL;
+        this.pourCost = pourCost;
+    }
 
-  public String getNotes() {
-    return notes;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setNotes(String notes) {
-    this.notes = notes;
-  }
+    public String getDescription() {
+        return description;
+    }
 
-  private ArrayList<Ingredient> ingredients;
+    public Recipe getRecipe() {
+        return recipe;
+    }
 
-  public Beverage(String name, int alcoholPercentage, double cost, int volumePerMililiter,
-                  ArrayList<Ingredient> ingredients) {
-    this.name = name;
-    this.alcoholPercentage = alcoholPercentage;
-    this.cost = cost;
-    this.volumePerMililiter = volumePerMililiter;
-    this.ingredients = ingredients;
-  }
+    public String getPictureURL() {
+        return pictureURL;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public double getPourCost() {
+        return pourCost;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public int getAlcoholPercentage() {
-    return alcoholPercentage;
-  }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-  public void setAlcoholPercentage(int alcoholPercentage) {
-    this.alcoholPercentage = alcoholPercentage;
-  }
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
+    }
 
-  public double getCost() {
-    return cost;
-  }
+    public void setPictureURL(String pictureURL) {
+        this.pictureURL = pictureURL;
+    }
 
-  public void setCost(double cost) {
-    this.cost = cost;
-  }
-
-  public int getVolumePerMililiter() {
-    return volumePerMililiter;
-  }
-
-  public void setVolumePerMililiter(int volumePerMililiter) {
-    this.volumePerMililiter = volumePerMililiter;
-  }
-
-  public ArrayList<Ingredient> getIngredients() {
-    return ingredients;
-  }
-
-  public void setIngredients(ArrayList<Ingredient> ingredients) {
-    this.ingredients = ingredients;
-  }
+    public void setPourCost(double pourCost) {
+        this.pourCost = pourCost;
+    }
 }

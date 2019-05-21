@@ -2,5 +2,5 @@ package com.espressoshock.drinkle.viewLoader;
 
 public interface IEventObserver {
     /********* VIEW CHANGE REQUEST */
-    void onViewChangeRequest(ViewMetadata view);
+    public void onViewChangeRequest(ViewMetadata view);
 }

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ViewLoader {
     private static Node loadingWrapperNode;
-    public static final ViewMetadata default_view = ViewMetadata.APP_BEVERAGE_BUILDER;
+    public static final ViewMetadata default_view = ViewMetadata.APP_DASHBOARD;
 
     public ViewLoader() {
     }

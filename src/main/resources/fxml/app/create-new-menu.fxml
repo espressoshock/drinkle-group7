@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="694.0" maxWidth="935.0" minHeight="591.0" minWidth="722.0" prefHeight="591.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.app.CreateNewMenu">
+   <styleClass>
+      <String fx:value="view-white-bg" />
+      <String fx:value="view-page" />
+   </styleClass>
+   <stylesheets>
+      <URL value="@../../css/common.css" />
+      <URL value="@../../css/app/create-new-menu.css" />
+   </stylesheets>
+   <children>
+      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="509.0" prefWidth="695.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Instructions to create a new menu">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@../../css/app/create-new-menu.css">
+                     <children>
+                        <Label layoutX="57.0" layoutY="152.0" stylesheets="@../../css/app/create-new-menu.css" text="4. Chose if your Menu will contain Alcoholic beverages or only Non-Alcoholic" />
+                        <Label layoutX="57.0" layoutY="98.0" stylesheets="@../../css/app/create-new-menu.css" text="1. Chose the name of the menu" />
+                        <Label layoutX="57.0" layoutY="116.0" stylesheets="@../../css/app/create-new-menu.css" text="2. Chose the description of the menu" />
+                        <Label layoutX="57.0" layoutY="135.0" stylesheets="@../../css/app/create-new-menu.css" text="3. Chose the theme of the menu" />
+                        <Label layoutX="58.0" layoutY="186.0" stylesheets="@../../css/app/create-new-menu.css" text="6. Chose the beverages that are composing the menu" />
+                        <Label layoutX="58.0" layoutY="169.0" stylesheets="@../../css/app/create-new-menu.css" text="5. Chose if the menu is private or public" />
+                        <Label layoutX="59.0" layoutY="451.0" stylesheets="@../../css/app/create-new-menu.css" text="7. Save it" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Create Menu">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" stylesheets="@../../css/app/create-new-menu.css">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" stylesheets="@../../css/app/create-new-menu.css" />
+                        <Label layoutX="11.0" layoutY="14.0" stylesheets="@../../css/app/create-new-menu.css" text="1. Menu name" />
+                        <Label layoutX="13.0" layoutY="38.0" stylesheets="@../../css/app/create-new-menu.css" text="2.  Menu description" />
+                        <Label layoutX="14.0" layoutY="64.0" stylesheets="@../../css/app/create-new-menu.css" text="3. Menu theme" />
+                        <Label layoutX="14.0" layoutY="187.0" stylesheets="@../../css/app/create-new-menu.css" />
+                        <Label layoutX="14.0" layoutY="445.0" stylesheets="@../../css/app/create-new-menu.css" text="7. Save it" />
+                        <MenuButton fx:id="menuBtnCategory" layoutX="9.0" layoutY="158.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="23.0" prefWidth="181.0" stylesheets="@../../css/app/create-new-menu.css" text="6. Chose beverages Category" />
+                        <MenuButton fx:id="menuBtnAccess" layoutX="10.0" layoutY="123.0" mnemonicParsing="false" stylesheets="@../../css/app/create-new-menu.css" text="5. Chose accesibility" />
+                        <MenuButton fx:id="menuBtnBrand" layoutX="191.0" layoutY="157.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="23.0" prefWidth="160.0" stylesheets="@../../css/app/create-new-menu.css" text="7. Chose beverages brand" />
+                        <MenuButton fx:id="menuBtnBeverages" layoutX="351.0" layoutY="156.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="23.0" prefWidth="145.0" stylesheets="@../../css/app/create-new-menu.css" text="8. Chose beverages" />
+                        <ScrollPane layoutX="12.0" layoutY="187.0" prefHeight="284.0" prefWidth="358.0" stylesheets="@../../css/app/create-new-menu.css">
+                           <content>
+                              <VBox prefHeight="900.0" prefWidth="346.0" stylesheets="@../../css/app/create-new-menu.css" />
+                           </content>
+                        </ScrollPane>
+                        <MenuButton fx:id="menuBtnAlcoholChoice" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="129.0" text="4. Alcoholic / Non">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Alcoholic beverages" />
+                            <MenuItem mnemonicParsing="false" text="Non-Alcoholic beverages" />
+                          </items>
+                        </MenuButton>
+                        <TextField layoutX="122.0" layoutY="9.0" prefHeight="23.0" prefWidth="557.0" />
+                        <TextField layoutX="122.0" layoutY="34.0" prefHeight="23.0" prefWidth="557.0" />
+                        <TextField layoutX="122.0" layoutY="60.0" prefHeight="23.0" prefWidth="557.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <Button layoutX="29.0" layoutY="538.0" mnemonicParsing="false" stylesheets="@../../css/app/create-new-menu.css" text="Save Menu" />
+      <Button layoutX="113.0" layoutY="538.0" mnemonicParsing="false" stylesheets="@../../css/app/create-new-menu.css" text="Restart" />
+   </children>
+</AnchorPane>

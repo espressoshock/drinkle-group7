@@ -1,9 +1,9 @@
 package com.espressoshock.drinkle;
-import com.espressoshock.drinkle.databaseLayer.ConnectionLayer;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.espressoshock.drinkle.daoLayer.JPADaoManager;
+import com.espressoshock.drinkle.daoLayer.entities.JPAPersonDao;
+import com.espressoshock.drinkle.daoLayer.entities.PersonDao;
+import com.espressoshock.drinkle.models.Account;
+import com.espressoshock.drinkle.models.Person;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,11 +19,7 @@ public class Main extends Application {
     private static final int windowWidth = 1000;
     private static final int windowHeight = 729;
 
-
-    private Connection connection = null;
-    private Statement statement = null;
-    private ResultSet resultSet = null;
-
+    private PersonDao personDao;
 
 
     public static void main(String[] args) {
@@ -46,30 +42,14 @@ public class Main extends Application {
         primaryStage.show();
 
 
-        // example: Retrieve Private Acc.
+        //JPADaoManager jpaDaoManager = new JPADaoManager();
+        //jpaDaoManager.login(new Account("email@company.com", "password", "pictureURL", null, null));
 
-        try {
-            connection = ConnectionLayer.getConnection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM drinkleg7.private_account");
-
-            while (resultSet.next()) {
-                int id = resultSet.getInt("id");
-                String name = resultSet.getString("name");
-                String address = resultSet.getString("email");
-                System.out.printf("id: %d, name:%s, email: %s\n", id, name, address);
-            }
-        } catch (SQLException ex) {
-            System.out.println("Exception: ");
-            System.out.println(ex);
-        } finally {
-            ConnectionLayer.cleanUp(statement, resultSet);
-        }
-        connection.close();
-
-
-        //shows current jdk used by the app itself.
+        /*
+        shows current jdk used by the app itself.
         System.out.println(System.getProperties());
-
+        */
     }
+
+
 }
