@@ -41,16 +41,15 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        try {
-            retrieveIngredientsFromDB();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         createCategoryList();
         populateNonAlcCategories();
         populateBrandsList();
-        for (Ingredient x : ingredientsList) {
-            System.out.println(x.getName());
+        try {
+            retrieveIngredientsFromDB();
+            System.out.println("Ingredients list populated");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to populate the Ingredients list");
         }
 
     }
@@ -121,7 +120,7 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
             if (selection.getText().equals(x.getBrand().getBrandName())) {
                 Button button = new Button();
                 button.setOnAction(this::selectVbButton);
-                button.setMinWidth(405);
+                button.setMinWidth(600);
                 button.setMinHeight(40);
                 button.setText(x.getName());
                 vBoxIngredients.getChildren().add(button);
@@ -233,6 +232,7 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
                 ingredient_alcohol = resultSet.getInt(4);
                 ingredient_price_per_litre = resultSet.getInt(3);
                 ingredient_brand = resultSet.getString(2);
+
                 for (BrandsEnum brand : brandsList) {
                     if (ingredient_brand.equals(brand.getBrandName())) {
                         ingredientsList.add(new Ingredient(ingredient_name, ingredient_alcohol, ingredient_price_per_litre, brand, 0));
