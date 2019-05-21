@@ -166,7 +166,6 @@ public class Print implements Initializable {
     }
 
     private void print(PrinterJob job, Node subject) {
-        System.out.println(job.jobStatusProperty().asString());
 
         boolean jobDone = job.printPage(subject);
 

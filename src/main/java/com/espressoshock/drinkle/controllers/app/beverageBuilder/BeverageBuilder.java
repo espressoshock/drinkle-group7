@@ -445,7 +445,6 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         ImageView imageView = new ImageView(image);
         Tooltip tooltip = new Tooltip();
         tooltip.setGraphic(imageView);
-        tooltip.setText(choseGlasswareName.getText()+" "+choseGlasswareVolume.getText());
         tooltip.setStyle("-fx-background-color: rgba(255, 255, 255, 0.7);");
 
         choseGlasswareName.setTooltip(tooltip);
@@ -770,6 +769,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
         stage.setTitle("Drinkle-User Manual");
         stage.setResizable(false);
         stage.setScene(manual);
+        stage.setAlwaysOnTop(true);
         stage.show();
     }
 
