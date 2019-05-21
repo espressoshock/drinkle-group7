@@ -108,7 +108,7 @@ public class AuthService {
     System.out.println(Current.environment.currentUser.toString());
   }
 
-  
+
   public enum AccountType {Company, Private}
 
   boolean registerAccount(String email, String password, String name, AccountType accountType) {
