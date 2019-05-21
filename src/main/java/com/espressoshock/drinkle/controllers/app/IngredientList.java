@@ -49,9 +49,9 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
         createCategoryList();
         populateNonAlcCategories();
         populateBrandsList();
-        /*for (Ingredient x : ingredientsList) {
+        for (Ingredient x : ingredientsList) {
             System.out.println(x.getName());
-        }*/
+        }
 
     }
 
@@ -218,7 +218,6 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
         }
         connection.close();
     }
-
     private void retrieveIngredientsFromDB() throws Exception {
         String ingredient_name;
         int ingredient_alcohol;
