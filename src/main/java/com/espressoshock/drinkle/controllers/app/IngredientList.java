@@ -8,10 +8,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import java.net.URL;
-import com.espressoshock.drinkle.progressIndicator.RingProgressIndicator;   /**databaseLayer.ConnectionLayer **** TODO ? */;
+import com.espressoshock.drinkle.progressIndicator.RingProgressIndicator;
+import com.espressoshock.drinkle.databaseLayer.ConnectionLayer;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 
@@ -223,7 +225,7 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
     }
 
     public void retrieveDataFromDB()throws Exception{
-       /*   {
+          {
 
             //int id_ing;
 
@@ -255,7 +257,7 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
 
                 while (resultSet.next()) {
 
-                    id_ing = resultSet.getInt(1);
+                   // id_ing = resultSet.getInt(1);
 
                     name = resultSet.getString(2);
 
@@ -277,11 +279,11 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
 
                     //System.out.printf("id: %d, name: %s, alcohol: %d, price: %d\n", id, name, alcohol, price_per_litre);
 
-                    Ingredient i = new Ingredient(name, alcohol, price_per_litre / 10, brand, 0);
+                    //Ingredient i = new Ingredient(name, alcohol, price_per_litre / 10, brand, 0);
 
                     //System.out.println(i);
 
-                    choseIngredientsList2.add(i);
+                   // choseIngredientsList2.add(i);
 
                 }
 
@@ -300,7 +302,6 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
             connection.close();
             }
 
-*/
 
         }
 
