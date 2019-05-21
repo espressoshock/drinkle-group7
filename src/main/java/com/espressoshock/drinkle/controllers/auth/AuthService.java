@@ -109,11 +109,18 @@ public class AuthService {
   }
 
 
-
   public enum AccountType {Company, Private}
 
   boolean registerAccount(String email, String password, String name, AccountType accountType) {
-    System.out.println("Register Called");
+
+    // brute force basic validation
+    if (loginAsPrivateAccount(email,password)) {
+      return false;
+    }
+    if (loginAsCompanyAccount(email,password)) {
+      return false;
+    }
+
     try {
       connection = ConnectionLayer.getConnection();
 
