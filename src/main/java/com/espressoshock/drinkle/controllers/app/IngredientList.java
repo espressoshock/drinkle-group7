@@ -1,77 +1,68 @@
 package com.espressoshock.drinkle.controllers.app;
 
+import com.espressoshock.drinkle.appState.Current;
 import com.espressoshock.drinkle.models.*;
-import com.espressoshock.drinkle.models.Package;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
-import java.math.BigDecimal;
 import java.net.URL;
+import com.espressoshock.drinkle.databaseLayer.ConnectionLayer;
+import java.sql.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class IngredientList extends EventDispatcherAdapter implements Initializable {
 
+    private Connection connection = null;
+    private Statement statement = null;
+    private ResultSet resultSet = null;
+
     private ArrayList<Ingredient> ingredientsList = new ArrayList<>();
-    private ArrayList<IngredientCategory> categories = new ArrayList<>();
+    private ArrayList<IngredientCategory> categoriesAlc = new ArrayList<>();
     private ArrayList<BrandsEnum> brandsList = new ArrayList<>();
+    private ArrayList<IngredientCategory> categoryNonAlc = new ArrayList<>();
+
 
     @FXML
     private VBox vBoxIngredients;
     @FXML
-    private Button btnChoose, btnSearch;
-    /*    @FXML
-        private CheckBox checkBoxAddToList, checkBoxLike;*/
+    private Button btnSimilarProduct;
     @FXML
-    private MenuButton menuButtonCategory, menuButtonBrands;
+    private MenuButton menuBtnCategory, menuBtnBrand, menuBtnAlcoholOption;
     @FXML
-    private TextArea txtAreaDescription;
+    private TextField txtSearchOption, txtSimilarWith;
     @FXML
-    private TextField txtFieldSearchOption, txtFieldProductName, txtFieldSimilarWithProduct;
-
-//     public void changeView() {/*super.dispatchViewChangeRequest(ViewMetadata.)*/}
+    private ProgressBar progressBarAlcohol, progressBarPrice;
+    @FXML
+    private Label lblSelectedIngredientName,lblIngredientCategory, lblAlcohol, lblPrice, lblIngredientBrand;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        //       ingredientsList.addAll(createIngredientsList());
-        createIngredientsList();
         createCategoryList();
-        populateCategoryMenu(categories);
+        populateNonAlcCategories();
         populateBrandsList();
+        try {
+            retrieveIngredientsFromDB();
+            System.out.println("Ingredients list populated");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Failed to populate the Ingredients list");
+        }
+
     }
 
-    /******************TODO***Methods*** **************************************/
-
     @FXML
-    private void selectLike() {
-    }
-
-    @FXML
-    private void selectAddToFavorit() {
-    }
-
-    /*************************************************************************/
-
-    @FXML
-    private void selectBtnSearch(ActionEvent e) {
-        Button search = (Button) e.getSource();
+    private void selectBtnSearch() {
         vBoxIngredients.getChildren().clear();
-        String text = txtFieldSearchOption.getText().toLowerCase();
+        String text = txtSearchOption.getText().toLowerCase();
         for (Ingredient x : ingredientsList) {
             if (text.length() != 0) {
                 if (x.getName().toLowerCase().contains(text)) {
                     Button button = new Button();
-                    button.setOnAction(this::selectVboxButton);
+                    button.setOnAction(this::selectVbButton);
                     button.setMinWidth(280);
                     button.setMinHeight(40);
                     button.setText(x.getName());
@@ -79,38 +70,57 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
                 }
             }
         }
-        menuButtonBrands.setText("Brand");
-        menuButtonCategory.setText("Category");
+        menuBtnBrand.setText("Brand");
+        menuBtnCategory.setText("Category");
+    }
+
+    @FXML
+    private void selectAlcoholSelection(ActionEvent event) {
+        MenuItem selection = (MenuItem) event.getSource();
+        if (selection.getText().equals("Alcoholic")) {
+            menuBtnAlcoholOption.setText("Alcohol");
+            populateCategoryMenu(categoriesAlc);
+            menuBtnCategory.setText("Categories");
+            menuBtnBrand.setText("Brand");
+        } else {
+            menuBtnAlcoholOption.setText("Non Alcoholic");
+            populateCategoryMenu((categoryNonAlc));
+            menuBtnCategory.setText("Categories");
+            menuBtnBrand.setText("Brand");
+            menuBtnBrand.getItems().clear();
+            vBoxIngredients.getChildren().clear();
+        }
     }
 
     @FXML
     private void selectCategory(ActionEvent e) {
-        vBoxIngredients.getChildren().clear();
-        menuButtonBrands.setText("Brands");
-        MenuItem selection = (MenuItem) e.getSource();
-        menuButtonCategory.setText(selection.getText());
-        menuButtonBrands.getItems().clear();
 
+        vBoxIngredients.getChildren().clear();
+        menuBtnBrand.setText("Brands");
+        MenuItem selection = (MenuItem) e.getSource();
+        menuBtnCategory.setText(selection.getText());
+        menuBtnBrand.getItems().clear();
         for (BrandsEnum brandsEnum : brandsList) {
             if (selection.getText().equals(brandsEnum.getProductType().getName())) {
                 MenuItem button = new MenuItem();
                 button.setText(brandsEnum.getBrandName());
                 button.setOnAction(this::selectBrand);
-                menuButtonBrands.getItems().add(button);
+                menuBtnBrand.getItems().add(button);
             }
         }
+
     }
 
     @FXML
     private void selectBrand(ActionEvent e) {
         MenuItem selection = (MenuItem) e.getSource();
-        menuButtonBrands.setText(selection.getText());
+        menuBtnBrand.setText(selection.getText());
         vBoxIngredients.getChildren().clear();
         for (Ingredient x : ingredientsList) {
-            if (selection.getText().equals(x.getBrandsEnum().getBrandName())) {
+            if (selection.getText().equals(x.getBrand().getBrandName())) {
                 Button button = new Button();
-                button.setOnAction(this::selectVboxButton);
-                button.setMinWidth(280);
+                button.setOnAction(this::selectVbButton);
+                button.setMinWidth(600);
                 button.setMinHeight(40);
                 button.setText(x.getName());
                 vBoxIngredients.getChildren().add(button);
@@ -119,209 +129,161 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
     }
 
     @FXML
-    private void selectVboxButton(ActionEvent e) {
-        Button selection = (Button) e.getSource();
-        for (Ingredient x : ingredientsList) {
-            if (x.getName().equals(selection.getText())) {
-                txtAreaDescription.setText(x.getDescription());
-                txtFieldProductName.setText(x.getName());
-                txtFieldSimilarWithProduct.setText(x.getName());
-                for (Ingredient y : ingredientsList) {
-                    if (x.getBrandsEnum().getBrandName().equals(y.getBrandsEnum().getBrandName())) {
-                        if (!x.getName().equals(y.getName())) {
-                            btnChoose.setText(y.getName());
+    private void selectVbButton(ActionEvent e) {
+        try {
+            Button selection = (Button) e.getSource();
+            for (Ingredient x : ingredientsList) {
+                if (x.getName().equals(selection.getText())) {
+                    lblSelectedIngredientName.setText(x.getName());
+                    txtSimilarWith.setText(x.getName());
+                    lblAlcohol.setText(Integer.toString(x.getAlcoholPercentage()));
+                    progressBarAlcohol.setProgress(Double.valueOf(x.getAlcoholPercentage()) / 100);
+                    lblPrice.setText(Integer.toString(x.getPricePerLiter()));
+                    progressBarPrice.setProgress(Double.valueOf(x.getPricePerLiter()) / 1000);
+                    lblIngredientBrand.setText(x.getBrand().getBrandName());
+                    lblIngredientCategory.setText(x.getBrand().getProductType().getName());
+                    for (Ingredient y : ingredientsList) {
+                        if (x.getBrand().getBrandName().equals(y.getBrand().getBrandName())) {
+                            if (!x.getName().equals(y.getName())) {
+                                btnSimilarProduct.setText(y.getName());
+                            }
                         }
                     }
                 }
             }
+            selection.setDisable(false);
+        } catch (Exception exc) {
+            exc.printStackTrace();
         }
-    }
-
-    @FXML
-    private void selectButtonChoose(ActionEvent e) {
-        Button alternative = (Button) e.getSource();
-        for (Ingredient x : ingredientsList) {
-            if (alternative.getText().equals(x.getName())) {
-                txtFieldSimilarWithProduct.setText(x.getName());
-                txtAreaDescription.setText(x.getDescription());
-                txtFieldProductName.setText(x.getName());
-                for (Ingredient z : ingredientsList) {
-                    if (x.getBrandsEnum().getBrandName().equals(z.getBrandsEnum().getBrandName())) {
-                        if (!x.getName().equals(z.getName())) {
-                            btnChoose.setText(z.getName());
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @FXML
-    private void createNewIngredient(ActionEvent e) throws Exception {
-        Stage primaryStage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/app/create-ingredient.fxml"));
-        Scene newMenu = new Scene(root);
-        primaryStage.setTitle("Drinkle - Create new Ingredient");
-        primaryStage.setResizable(false);
-        primaryStage.setScene(newMenu);
-        primaryStage.show();
-
     }
 
     private void createCategoryList() {
-
-        /** fetch&add all the ingredients from DB Drinkle, table Category, to categories*/
-
-        /** categories added for view development use ******/
-        categories.add(IngredientCategory.WHISKEY);
-        categories.add(IngredientCategory.VODKA);
-        categories.add(IngredientCategory.VERMOUTH);
-        categories.add(IngredientCategory.BITTER);
-        categories.add(IngredientCategory.TEQUILA);
-        categories.add(IngredientCategory.GIN);
-        categories.add(IngredientCategory.RUM);
-        categories.add(IngredientCategory.LIQUEUR);
-        categories.add(IngredientCategory.BRANDY);
-        categories.add(IngredientCategory.CIDER);
-        categories.add(IngredientCategory.WINE);
-        categories.add(IngredientCategory.BEER);
-        categories.add(IngredientCategory.FRUIT);
-        categories.add(IngredientCategory.SYRUP);
-        categories.add(IngredientCategory.WATER);
-        categories.add(IngredientCategory.WARM_DRINK);
-        categories.add(IngredientCategory.DAIRY_PRODUCT);
-        categories.add(IngredientCategory.GARNISH);
-        categories.add(IngredientCategory.POWDER);
-        categories.add(IngredientCategory.OTHER);
-
+        IngredientCategory[] category = {IngredientCategory.WHISKEY, IngredientCategory.VODKA, IngredientCategory.VERMOUTH, IngredientCategory.BITTER, IngredientCategory.TEQUILA, IngredientCategory.GIN, IngredientCategory.RUM, IngredientCategory.LIQUEUR,
+                IngredientCategory.BRANDY, IngredientCategory.CIDER, IngredientCategory.WINE, IngredientCategory.BEER, IngredientCategory.OTHER};
+        Collections.addAll(categoriesAlc, category);
     }
 
     private void populateCategoryMenu(ArrayList<IngredientCategory> categoriesData) {
-        menuButtonCategory.getItems().clear();
+        menuBtnCategory.getItems().clear();
         for (IngredientCategory x : categoriesData) {
             MenuItem category = new MenuItem(x.getName());
             category.setOnAction(this::selectCategory);
-            menuButtonCategory.getItems().add(category);
+            menuBtnCategory.getItems().add(category);
         }
     }
 
-    private void createIngredientsList() {
-        ingredientsList.add(new Ingredient(null, null, 1, null, AccessLevel.PUBLIC, null,
-                "Absolut Dry", "Absolute Dry description", null, 42, null,
-                IngredientCategory.VODKA, new Package(750, Unit.MILLILITER, new BigDecimal("0.03")), BrandsEnum.ABSOLUTE));
-        ingredientsList.add(new Ingredient(null, null, 2, null, AccessLevel.PUBLIC, null,
-                "Absolut Lemon", "Absolute Lemon description", null, 40, null,
-                IngredientCategory.VODKA, null, BrandsEnum.ABSOLUTE));
-        ingredientsList.add(new Ingredient(null, null, 3, null, AccessLevel.PUBLIC, null,
-                "Absolut X", "Absolute X description", null, 45, null,
-                IngredientCategory.VODKA, null, BrandsEnum.ABSOLUTE));
-        ingredientsList.add(new Ingredient(null, null, 4, null, AccessLevel.PUBLIC, null,
-                "Jack Daniel's Black Label", "Jack Daniel's description", null, 42, null,
-                IngredientCategory.WHISKEY, null, BrandsEnum.JACK_DANIELS));
-        ingredientsList.add(new Ingredient(null, null, 5, null, AccessLevel.PUBLIC, null,
-                "Jack Daniel's XO", "Jack Daniel's XO description", null, 42, null,
-                IngredientCategory.WHISKEY, null, BrandsEnum.JACK_DANIELS));
-        ingredientsList.add(new Ingredient(null, null, 6, null, AccessLevel.PUBLIC, null,
-                "Jack Daniel's ABC", "Absolute Dry description", null, 42, null,
-                IngredientCategory.WHISKEY, null, BrandsEnum.JACK_DANIELS));
+    private void populateNonAlcCategories() {
+        IngredientCategory[] nonAlcCategories = {IngredientCategory.GARNISH, IngredientCategory.ICE_TYPE, IngredientCategory.WATER, IngredientCategory.POWDER, IngredientCategory.OTHER,
+                IngredientCategory.DAIRY_PRODUCT, IngredientCategory.JUICE, IngredientCategory.SYRUP, IngredientCategory.FRUIT, IngredientCategory.WARM_DRINK};
+        Collections.addAll(categoryNonAlc, nonAlcCategories);
     }
 
     private void populateBrandsList() {
-        brandsList.add(BrandsEnum.ABSOLUTE);
-        brandsList.add(BrandsEnum.GREY_GOOSE);
-        brandsList.add(BrandsEnum.BLACK_COW);
-        brandsList.add(BrandsEnum.SMIRNOFF);
-        brandsList.add(BrandsEnum.STOLICHNAYA);
-        brandsList.add(BrandsEnum.TITOS);
-        brandsList.add(BrandsEnum.JEAN_MARC);
-        brandsList.add(BrandsEnum.JACK_DANIELS);
-        brandsList.add(BrandsEnum.JOHNNIE_WALKER);
-        brandsList.add(BrandsEnum.JIM_BEAM);
-        brandsList.add(BrandsEnum.GLENFARCLASS);
-        brandsList.add(BrandsEnum.JAMESON);
-        brandsList.add(BrandsEnum.GLENFIDDICH);
-        brandsList.add(BrandsEnum.MARTINI);
-        brandsList.add(BrandsEnum.BEEFEATER);
-        brandsList.add(BrandsEnum.GORDONS);
-        brandsList.add(BrandsEnum.FORTALEZA);
-        brandsList.add(BrandsEnum.JOSE_CUERVO);
-        brandsList.add(BrandsEnum.HERANCIA_DE_PLATA);
-        brandsList.add(BrandsEnum.BACARDI);
-        brandsList.add(BrandsEnum.HAVANA_CLUB);
-        brandsList.add(BrandsEnum.SAINT_JAMES);
-        brandsList.add(BrandsEnum.GREEN_ISLAND);
-        brandsList.add(BrandsEnum.COGNAC);
-        brandsList.add(BrandsEnum.ARMAGNAC);
-        brandsList.add(BrandsEnum.AMARETTO);
-        brandsList.add(BrandsEnum.BAILEYS);
-        brandsList.add(BrandsEnum.TIA_MARIA);
-        brandsList.add(BrandsEnum.MIDNIGHT_ESPRESSO);
-        brandsList.add(BrandsEnum.AMARULA);
-        brandsList.add(BrandsEnum.CAROLANS);
-        brandsList.add(BrandsEnum.CRUZAN);
-        brandsList.add(BrandsEnum.CREME_DE_CASSIS);
-        brandsList.add(BrandsEnum.GUAVABERRY);
-        brandsList.add(BrandsEnum.CURACAO);
-        brandsList.add(BrandsEnum.ROSOLIO);
-        brandsList.add(BrandsEnum.TRIPLE_SEC);
-        brandsList.add(BrandsEnum.VISINATA);
-        brandsList.add(BrandsEnum.ANISETTE);
-        brandsList.add(BrandsEnum.CONTRATTO);
-        brandsList.add(BrandsEnum.COCCHI);
-        brandsList.add(BrandsEnum.MASATICA);
-        brandsList.add(BrandsEnum.JAGERMEISTER);
-        brandsList.add(BrandsEnum.UNICUM);
-        brandsList.add(BrandsEnum.DRAMBUIE);
-        brandsList.add(BrandsEnum.DISARONNO);
-        brandsList.add(BrandsEnum.NOCELLO);
-        brandsList.add(BrandsEnum.ADVOCAAT);
-        brandsList.add(BrandsEnum.ROCK_RYE);
-        brandsList.add(BrandsEnum.BANANAS);
-        brandsList.add(BrandsEnum.CAMPARI);
-        brandsList.add(BrandsEnum.GRAND_MARNIER);
-        brandsList.add(BrandsEnum.LIMONCELLO);
-        brandsList.add(BrandsEnum.MARASCHINO);
-        brandsList.add(BrandsEnum.PAMA);
-        brandsList.add(BrandsEnum.SAUVIGNON_BLANC);
-        brandsList.add(BrandsEnum.CHARDONNAY);
-        brandsList.add(BrandsEnum.PINOT_GRIS);
-        brandsList.add(BrandsEnum.CABERNET_SAUVIGNON);
-        brandsList.add(BrandsEnum.MERLOT);
-        brandsList.add(BrandsEnum.SHIRAZ);
-        brandsList.add(BrandsEnum.PINOT_NOIR);
-        brandsList.add(BrandsEnum.GRENACHE);
-        brandsList.add(BrandsEnum.DOM_PERIGNON);
-        brandsList.add(BrandsEnum.MOET_CHANDON);
-        brandsList.add(BrandsEnum.CRISTAL);
-        brandsList.add(BrandsEnum.CINZANO);
-        brandsList.add(BrandsEnum.PERRIER_JOUET);
-        brandsList.add(BrandsEnum.PROSECCO);
-        brandsList.add(BrandsEnum.LOUIS_BOUILOT);
-        brandsList.add(BrandsEnum.DEPREVILLE);
-        brandsList.add(BrandsEnum.MAGNERS);
-        brandsList.add(BrandsEnum.SOMERSBY);
-        brandsList.add(BrandsEnum.POMAGNE);
-        brandsList.add(BrandsEnum.BULMERS);
-        brandsList.add(BrandsEnum.FIZZ);
-        brandsList.add(BrandsEnum.MANZANA_VERDE);
-        brandsList.add(BrandsEnum.NOIAU_DE_POISSY);
-        brandsList.add(BrandsEnum.MIDORI);
-        brandsList.add(BrandsEnum.COINTREAU);
-        brandsList.add(BrandsEnum.HEINEKEN);
-        brandsList.add(BrandsEnum.CARLSBERG);
-        brandsList.add(BrandsEnum.BUDWEISER);
-        brandsList.add(BrandsEnum.CORONA);
-        brandsList.add(BrandsEnum.PAULANER);
-        brandsList.add(BrandsEnum.STELLA_ARTIOS);
-        brandsList.add(BrandsEnum.BIRRA_MORETTI);
-        brandsList.add(BrandsEnum.SKOL);
-        brandsList.add(BrandsEnum.GALLIANO);
-        brandsList.add(BrandsEnum.FERNET);
-        brandsList.add(BrandsEnum.CREME_DE_MENTHE);
-        brandsList.add(BrandsEnum.KAHLUA);
-        brandsList.add(BrandsEnum.SAMBUCA);
-        brandsList.add(BrandsEnum.SHERIDANS);
-        brandsList.add(BrandsEnum.OTHER_BRAND);
+        BrandsEnum[] brands = {BrandsEnum.DOM_PERIGNON, BrandsEnum.GRENACHE, BrandsEnum.PINOT_NOIR, BrandsEnum.SHIRAZ, BrandsEnum.MERLOT, BrandsEnum.CABERNET_SAUVIGNON, BrandsEnum.PINOT_GRIS, BrandsEnum.CHARDONNAY, BrandsEnum.SAUVIGNON_BLANC, BrandsEnum.PAMA, BrandsEnum.MARASCHINO,
+                BrandsEnum.LIMONCELLO, BrandsEnum.GRAND_MARNIER, BrandsEnum.CAMPARI, BrandsEnum.BANANAS, BrandsEnum.ROCK_RYE, BrandsEnum.ADVOCAAT, BrandsEnum.NOCELLO, BrandsEnum.DISARONNO, BrandsEnum.DRAMBUIE, BrandsEnum.UNICUM, BrandsEnum.JAGERMEISTER, BrandsEnum.MASATICA, BrandsEnum.COCCHI,
+                BrandsEnum.CONTRATTO, BrandsEnum.ANISETTE, BrandsEnum.VISINATA, BrandsEnum.TRIPLE_SEC, BrandsEnum.ROSOLIO, BrandsEnum.CURACAO, BrandsEnum.GUAVABERRY, BrandsEnum.CREME_DE_CASSIS, BrandsEnum.CRUZAN, BrandsEnum.CAROLANS, BrandsEnum.AMARULA, BrandsEnum.MIDNIGHT_ESPRESSO, BrandsEnum.TIA_MARIA,
+                BrandsEnum.BAILEYS, BrandsEnum.AMARETTO, BrandsEnum.ARMAGNAC, BrandsEnum.COGNAC, BrandsEnum.GREEN_ISLAND, BrandsEnum.SAINT_JAMES, BrandsEnum.HAVANA_CLUB, BrandsEnum.BACARDI, BrandsEnum.HERANCIA_DE_PLATA, BrandsEnum.JOSE_CUERVO, BrandsEnum.FORTALEZA, BrandsEnum.GORDONS, BrandsEnum.BEEFEATER,
+                BrandsEnum.MARTINI, BrandsEnum.GLENFIDDICH, BrandsEnum.JAMESON, BrandsEnum.GLENFARCLASS, BrandsEnum.JIM_BEAM, BrandsEnum.JOHNNIE_WALKER, BrandsEnum.JACK_DANIELS, BrandsEnum.JEAN_MARC, BrandsEnum.TITOS, BrandsEnum.STOLICHNAYA, BrandsEnum.SMIRNOFF, BrandsEnum.BLACK_COW, BrandsEnum.GREY_GOOSE,
+                BrandsEnum.OTHER_BRAND, BrandsEnum.SHERIDANS, BrandsEnum.SAMBUCA, BrandsEnum.KAHLUA, BrandsEnum.CREME_DE_MENTHE, BrandsEnum.FERNET, BrandsEnum.GALLIANO, BrandsEnum.SKOL, BrandsEnum.BIRRA_MORETTI, BrandsEnum.STELLA_ARTIOS, BrandsEnum.PAULANER, BrandsEnum.CORONA, BrandsEnum.BUDWEISER,
+                BrandsEnum.CARLSBERG, BrandsEnum.HEINEKEN, BrandsEnum.COINTREAU, BrandsEnum.MIDORI, BrandsEnum.NOIAU_DE_POISSY, BrandsEnum.MANZANA_VERDE, BrandsEnum.FIZZ, BrandsEnum.BULMERS, BrandsEnum.POMAGNE, BrandsEnum.SOMERSBY, BrandsEnum.MAGNERS, BrandsEnum.DEPREVILLE,
+                BrandsEnum.PROSECCO, BrandsEnum.PERRIER_JOUET, BrandsEnum.CINZANO, BrandsEnum.CRISTAL, BrandsEnum.MOET_CHANDON, BrandsEnum.ABSOLUTE};
+        Collections.addAll(brandsList, brands);
+    }
 
+
+    /**
+     * DB connection
+     */
+    @FXML
+    private void addIngredient() throws Exception {
+        int ingredientID = 0;
+        int accountID = 0;
+        try {
+            ingredientID = retrieveIngredientIdFromDB(lblSelectedIngredientName.getText());
+            accountID = retrieveUserIdFromDB();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            connection = ConnectionLayer.getConnection();
+            statement = connection.createStatement();
+            String query = String.format("insert into company_account_has_ingredient (company_account_id, ingredient_id) values (%d, %d);", accountID, ingredientID);
+            resultSet = statement.executeQuery(query);
+        } catch (SQLException ex) {
+            System.out.println("Exception: ");
+            ex.printStackTrace();
+        } finally {
+            ConnectionLayer.cleanUp(statement, resultSet);
+        }
+        connection.close();
+    }
+    private void retrieveIngredientsFromDB() throws Exception {
+        String ingredient_name;
+        int ingredient_alcohol;
+        int ingredient_price_per_litre;
+        String ingredient_brand;
+        try {
+            connection = ConnectionLayer.getConnection();
+            statement = connection.createStatement();
+            String query = "select ingredient.name,brand.name,ingredient.price_per_litre,ingredient.alcohol from ingredient,brand where ingredient.brand_id=brand.id";
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                ingredient_name = resultSet.getString(1);
+                ingredient_alcohol = resultSet.getInt(4);
+                ingredient_price_per_litre = resultSet.getInt(3);
+                ingredient_brand = resultSet.getString(2);
+
+                for (BrandsEnum brand : brandsList) {
+                    if (ingredient_brand.equals(brand.getBrandName())) {
+                        ingredientsList.add(new Ingredient(ingredient_name, ingredient_alcohol, ingredient_price_per_litre, brand, 0));
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Exception: ");
+            ex.printStackTrace();
+        } finally {
+            ConnectionLayer.cleanUp(statement, resultSet);
+        }
+        connection.close();
+    }
+    private int retrieveIngredientIdFromDB(String ingredientName) throws Exception {
+        int ingredient_id = 0;
+        try {
+            connection = ConnectionLayer.getConnection();
+            statement = connection.createStatement();
+            String query = String.format("select ingredient.id from ingredient where ingredient.name like '%s';", ingredientName);
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                ingredient_id = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Exception: ");
+            ex.printStackTrace();
+        } finally {
+            ConnectionLayer.cleanUp(statement, resultSet);
+        }
+        connection.close();
+        return ingredient_id;
+    }
+    private int retrieveUserIdFromDB() throws Exception {
+        int user_id = 0;
+        String user_email = Current.environment.currentUser.getEmail();
+        try {
+            connection = ConnectionLayer.getConnection();
+            statement = connection.createStatement();
+            String query = String.format("select company_account.id from company_account where company_account.email like '%s';", user_email);
+            resultSet = statement.executeQuery(query);
+            while (resultSet.next()) {
+                user_id = resultSet.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Exception: ");
+            ex.printStackTrace();
+        } finally {
+            ConnectionLayer.cleanUp(statement, resultSet);
+        }
+        connection.close();
+        return user_id;
     }
 }

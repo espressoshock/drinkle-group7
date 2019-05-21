@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-//NOTE: Will contain the user.
 public class Environment {
 
   public UserState userStatus() {
@@ -17,8 +16,8 @@ public class Environment {
     System.out.println("User available, show default");
     return UserState.loggedIn;
   }
-  public Account currentUser = (Account) AppStatePersistence.retrieveObject(AppStatePersistence.userFilename);
 
+  public Account currentUser = (Account) AppStatePersistence.retrieveObject(AppStatePersistence.userFilename);
 
 
   private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");

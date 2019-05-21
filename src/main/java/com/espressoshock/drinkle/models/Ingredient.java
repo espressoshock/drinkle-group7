@@ -1,91 +1,88 @@
 package com.espressoshock.drinkle.models;
 
-import java.sql.Timestamp;
-import java.util.List;
 
-public class Ingredient extends Blueprint{
+import java.util.Comparator;
+
+public class Ingredient{
+
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private String name;
-    private String description;
-    private String orderCode;
-    private float abv;
-    private String pictureURL;
-    private IngredientCategory category;
-    private Package aPackage;
+    private int alcoholPercentage;
+    private int pricePerLiter;
     private BrandsEnum brand;
+    private int magnitude;
 
-    public Ingredient(String metadata, Timestamp ts, int blueprintId, List<Permission> permissions, AccessLevel accessLevel, Statistic statistic, String name, String description, String orderCode, float abv, String pictureURL, IngredientCategory category, Package aPackage, BrandsEnum brand) {
-        super(metadata, ts, blueprintId, permissions, accessLevel, statistic);
+
+    public Ingredient(String name, int alcoholPercentage, int pricePerLiter, BrandsEnum brand, int magnitude) {
         this.name = name;
-        this.description = description;
-        this.orderCode = orderCode;
-        this.abv = abv;
-        this.pictureURL = pictureURL;
-        this.category = category;
-        this.aPackage = aPackage;
+        this.alcoholPercentage = alcoholPercentage;
+        this.pricePerLiter = pricePerLiter;
         this.brand = brand;
+        this.magnitude = magnitude;
     }
 
     public String getName() {
         return name;
     }
 
-    public BrandsEnum getBrandsEnum() {
-        return brand;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getOrderCode() {
-        return orderCode;
-    }
-
-    public float getAbv() {
-        return abv;
-    }
-
-    public String getPictureURL() {
-        return pictureURL;
-    }
-
-    public IngredientCategory getCategory() {
-        return category;
-    }
-
-    public Package getaPackage() {
-        return aPackage;
-    }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public int getAlcoholPercentage() {
+        return alcoholPercentage;
     }
 
-    public void setOrderCode(String orderCode) {
-        this.orderCode = orderCode;
+    public void setAlcoholPercentage(int alcoholPercentage) {
+        this.alcoholPercentage = alcoholPercentage;
     }
 
-    public void setAbv(float abv) {
-        this.abv = abv;
+    public int getPricePerLiter() {
+        return pricePerLiter;
     }
 
-    public void setPictureURL(String pictureURL) {
-        this.pictureURL = pictureURL;
+    public void setPricePerLiter(int pricePerLiter) {
+        this.pricePerLiter = pricePerLiter;
     }
 
-    public void setCategory(IngredientCategory category) {
-        this.category = category;
+    public BrandsEnum getBrand() {
+        return brand;
     }
 
-    public void setaPackage(Package aPackage) {
-        this.aPackage = aPackage;
-    }
-
-    public void setBrandsEnum(BrandsEnum brand) {
+    public void setBrand(BrandsEnum brand) {
         this.brand = brand;
     }
+
+
+    public int getMagnitude() {
+        return magnitude;
+    }
+
+    public void setMagnitude(int magnitude) {
+        this.magnitude = magnitude;
+
+    }
+
+    public static Comparator<Ingredient> IngredientNameComparator = new Comparator<Ingredient>() {
+
+        public int compare(Ingredient Ing1, Ingredient Ing2) {
+            String Ingredient1 = Ing1.getName().toUpperCase();
+            String Ingredient2 = Ing2.getName().toUpperCase();
+
+            //ascending order
+            return Ingredient1.compareTo(Ingredient2);
+
+            //descending order
+            //return Ingredient2.compareTo(Ingredient1);
+        }};
 }

@@ -1,20 +1,23 @@
 package com.espressoshock.drinkle.controllers.auth;
 
-import com.espressoshock.drinkle.models.Gender;
+import com.espressoshock.drinkle.controllers.auth.AuthService.AccountType;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
 import com.espressoshock.drinkle.viewLoader.ViewLoader;
 import com.espressoshock.drinkle.viewLoader.ViewMetadata;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+
 
 public class AuthRegistration extends EventDispatcherAdapter {
 
 
   @FXML
-  ComboBox genderComboBox;
+  TextField nameTextField, emailTextField, passwordTextField;
+
+  @FXML
+  Text errorText;
 
   @FXML
   public void initialize() {
@@ -22,13 +25,11 @@ public class AuthRegistration extends EventDispatcherAdapter {
     setupUI();
   }
 
-  private void setupUI() { }
-
-  private void setupComponents() {
-    genderComboBox.setItems(
-        FXCollections.observableArrayList(Gender.values())
-    );
+  private void setupUI() {
+    errorText.setVisible(false);
   }
+
+  private void setupComponents() {}
 
   @FXML
   public void onSwitchAccountRegistrationTap(MouseEvent event) {
@@ -40,7 +41,30 @@ public class AuthRegistration extends EventDispatcherAdapter {
   }
   @FXML
   public void register(MouseEvent event){
-    super.dispatchViewChangeRequest(ViewLoader.default_view);
-  }
 
+    if ((nameTextField.getText().isEmpty()) ||
+        (emailTextField.getText().isEmpty()) ||
+        (passwordTextField.getText().isEmpty()))
+    {
+      errorText.setVisible(true);
+      return;
+    }
+
+    AuthService registrationService = new AuthService();
+
+    if (
+        registrationService.registerAccount(
+            emailTextField.getText(),
+            passwordTextField.getText(),
+            nameTextField.getText(),
+            AccountType.Private
+        )
+    ) {
+      errorText.setVisible(false);
+      super.dispatchViewChangeRequest(ViewLoader.default_view);
+    } else {
+      errorText.setVisible(true);
+      System.out.println("Something went wrong, try again");
+    }
+  }
 }

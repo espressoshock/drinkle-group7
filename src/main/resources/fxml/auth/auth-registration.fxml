@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
@@ -30,16 +31,12 @@
             </HBox>
             <VBox layoutX="46.0" layoutY="260.0" prefHeight="270.0" prefWidth="349.0" styleClass="login-form">
                <children>
-                  <Label text="Full Name:" />
-                  <TextField prefHeight="34.0" prefWidth="353.0" />
+                  <Label text="Name:" />
+                  <TextField fx:id="nameTextField" prefHeight="34.0" prefWidth="353.0" />
                   <Label text="Email:" />
-                  <TextField prefHeight="34.0" prefWidth="353.0" />
-                  <Label text="Date of Birth:" />
-                  <TextField prefHeight="34.0" prefWidth="353.0" />
-                  <Label text="Gender:" />
-                  <ComboBox fx:id="genderComboBox" prefHeight="30.0" prefWidth="160.0" />
+                  <TextField fx:id="emailTextField" prefHeight="34.0" prefWidth="353.0" />
                   <Label text="Password:" />
-                  <TextField prefHeight="34.0" prefWidth="353.0" />
+                  <TextField fx:id="passwordTextField" prefHeight="34.0" prefWidth="353.0" />
                   <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="349.0" spacing="120.0">
                      <VBox.margin>
                         <Insets bottom="45.0" />
@@ -53,6 +50,7 @@
                </children>
             </VBox>
             <Button layoutX="749.0" layoutY="617.0" mnemonicParsing="false" onMousePressed="#openLoginView" prefHeight="54.0" prefWidth="251.0" text="I already have an account" />
+            <Text fx:id="errorText" fill="#eb0e0e" layoutX="45.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Something went wrong, try again!" wrappingWidth="447.02734375" />
          </children>
       </Pane>
    </children>

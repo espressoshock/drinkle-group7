@@ -2,7 +2,7 @@ package com.espressoshock.drinkle.viewLoader;
 
 public interface IEventDispatcher {
 
-    public void register(IEventObserver eo);
-    public void unregister(IEventObserver eo);
-    public void dispatchViewChangeRequest(ViewMetadata view);
+    void register(IEventObserver eo);
+    void unregister(IEventObserver eo);
+    void dispatchViewChangeRequest(ViewMetadata view);
 }
