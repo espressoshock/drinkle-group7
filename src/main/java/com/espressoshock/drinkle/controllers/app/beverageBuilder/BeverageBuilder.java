@@ -66,7 +66,7 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     @FXML
     private Label lblChosenName, lblVolume, lblCost, lblTotalVolume, lblChosenGlass, lblChosenAlcohol;
     @FXML
-    private AnchorPane alcoholPercentCircle, rootPane;
+    private AnchorPane alcoholPercentCircle;
     @FXML
     private VBox vBoxChosenIngredients, vBoxListOfIngredients;
     @FXML
@@ -76,13 +76,13 @@ public class BeverageBuilder extends EventDispatcherAdapter implements Initializ
     @FXML
     private Button btnAddIngredient, btnExport, btnSave;
     @FXML
-    TextField txtFieldBeverageName, searchField;
+    private TextField txtFieldBeverageName, searchField;
     @FXML
-    TextArea txtAreaNotes;
+    private TextArea txtAreaNotes;
     @FXML
-    ImageView glassImage;
+    private ImageView glassImage;
     @FXML
-    MenuButton brandsList;
+    private MenuButton brandsList;
     //---------------------- code -------------------------------
 
 
