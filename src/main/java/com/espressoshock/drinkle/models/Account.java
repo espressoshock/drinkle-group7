@@ -1,52 +1,107 @@
 package com.espressoshock.drinkle.models;
 
-import java.util.ArrayList;
 
-public abstract class Account {
+import javax.persistence.*;
+import java.util.List;
 
-    private Integer id;
+//JPA DB ANNOTATIONS //***********
+@Entity
+@Table(name = "account")
+//JPA DB ANNOTATIONS //***********
+public class Account implements IActionAccount{
+    @Id
+    @Column(name="email")
     private String email;
+
+    @Column(name="password")
     private String password;
-    private ArrayList<Beverage> beverages;
 
+    @Column(name="picture_url")
+    private String pictureURL;
 
-    public Account(Integer id, String email, String password,
-                   ArrayList<Beverage> beverages) {
-        this.id = id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "person_ssn")
+    private Person registered;
+
+    @Transient
+    private List<Blueprint> blueprints;
+
+    public Account(String email, String password, String pictureURL, Person registered, List<Blueprint> blueprints) {
         this.email = email;
         this.password = password;
-        this.beverages = beverages;
+        this.pictureURL = pictureURL;
+        this.registered = registered;
+        this.blueprints = blueprints;
+    }
+
+    public void setBlueprints(List<Blueprint> blueprints) {
+        this.blueprints = blueprints;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
 
-    public Integer getId() {
-        return id;
+    public Person getRegistered() {
+        return registered;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public List<Blueprint> getBlueprints() {
+        return blueprints;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public ArrayList<Beverage> getBeverages() {
-        return beverages;
+    public String getPictureURL() {
+        return pictureURL;
     }
 
-    public void setBeverages(ArrayList<Beverage> beverages) {
-        this.beverages = beverages;
+    public void setPictureURL(String pictureURL) {
+        this.pictureURL = pictureURL;
+    }
+
+    @Override
+    public boolean addBlueprint(Blueprint blueprint) {
+        return this.blueprints.add(blueprint);
+    }
+
+    @Override
+    public boolean deleteBlueprint(Blueprint blueprint) {
+        return this.blueprints.remove(blueprint);
+    }
+
+    @Override
+    public boolean deleteBlueprintUsingIndex(int pos) {
+        try{
+            this.blueprints.remove(pos);
+        } catch(IndexOutOfBoundsException|UnsupportedOperationException e){
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean editBlueprint(Blueprint source, Blueprint destination) {
+        try{
+            this.blueprints.set(this.blueprints.indexOf(source), destination);
+        } catch(IndexOutOfBoundsException|UnsupportedOperationException|ClassCastException|NullPointerException|IllegalArgumentException e){
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean editBlueprintUsingIndex(int pos, Blueprint destination) {
+        return false;
     }
 }

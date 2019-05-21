@@ -1,19 +1,9 @@
 .button{
-    -fx-background-color: #f4fff5;
+    -fx-background-color: #ebfffa;
     -fx-background-radius: 5;
     -fx-border-radius: 5;
 }
-.progress-bar{
-    -fx-progress-color: red;
-}
-#btnAddIngredient,#btnSimilarProduct{
-    -fx-background-color: #788bff;
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
-}
-#btnAddIngredient:hover,#btnSimilarProduct:hover{
-    -fx-background-color: #6eafff;
-}
+
 .button:hover{
     -fx-background-color: #6eafff;
 }
@@ -25,9 +15,6 @@
 #btnSearch:hover{
      -fx-border-color: #ababab;
  }
-#txtSearchOption:hover{
-    -fx-border-color: #ababab;
-}
 .menu-button{
     -fx-border-color: #4475ff;
     -fx-background-color: #ff6d33;
@@ -35,22 +22,27 @@
 .menu-button:hover{
     -fx-background-color: #ffa275;
 }
-#txtSearchOption{
+#txtFieldSearchOption{
     -fx-border-color: #4475ff;
+    -fx-background-radius: 20 20 20 20;
 }
-#menuBtnAlcoholOption{
+#txtFieldSearchOption:hover{
+    -fx-border-color: #ababab;
+}
+#menuButtonCategory{
     -fx-background-radius: 20 0 0 20;
     -fx-border-radius: 20 0 0 20;
+}
+#txtAreaDescription{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #581616;
 }
 .text-field{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
  }
-#btnAddIngredient,#btnSimilarProduct{
+#btnCreate,#btnAddToInventory{
     -fx-border-radius: 10;
     -fx-background-radius: 10;
-}
-#menuBtnBrand{
-    -fx-background-radius: 0 20 20 0;
-    -fx-border-radius: 0 20 20 0 ;
 }

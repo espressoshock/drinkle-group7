@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.geometry.*?>
@@ -32,12 +30,18 @@
             </HBox>
             <VBox layoutX="46.0" layoutY="260.0" prefHeight="270.0" prefWidth="349.0" styleClass="login-form">
                <children>
+                  <Label text="VAT:" />
+                  <TextField prefHeight="34.0" prefWidth="353.0" />
                   <Label text="Business Name:" />
-                  <TextField fx:id="nameTextField" prefHeight="34.0" prefWidth="353.0" />
+                  <TextField prefHeight="34.0" prefWidth="353.0" />
                   <Label text="Business Email:" />
-                  <TextField fx:id="emailTextField" prefHeight="34.0" prefWidth="353.0" />
+                  <TextField prefHeight="34.0" prefWidth="353.0" />
+                  <Label text="Country:" />
+                  <ComboBox fx:id="countryComboBox" prefWidth="150.0" />
+                  <Label text="Team:" />
+                  <TextField prefHeight="34.0" prefWidth="353.0" />
                   <Label text="Password:" />
-                  <TextField fx:id="passwordTextField" prefHeight="34.0" prefWidth="353.0" />
+                  <TextField prefHeight="34.0" prefWidth="353.0" />
                   <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="349.0" spacing="120.0">
                      <VBox.margin>
                         <Insets bottom="45.0" />
@@ -51,8 +55,6 @@
                </children>
             </VBox>
             <Button layoutX="749.0" layoutY="617.0" mnemonicParsing="false" onMousePressed="#openLoginView" prefHeight="54.0" prefWidth="251.0" text="I already have an account" />
-            <Label layoutX="45.0" layoutY="142.0" text="Note: Registering as company will give you access to more functionallity!" />
-            <Text fx:id="errorText" fill="#eb0e0e" layoutX="45.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Something went wrong, try again!" wrappingWidth="447.02734375" />
          </children>
       </Pane>
    </children>
