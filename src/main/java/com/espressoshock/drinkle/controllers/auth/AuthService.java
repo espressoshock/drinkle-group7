@@ -33,7 +33,6 @@ public class AuthService {
         String passwordFromDB = resultSet.getString("password");
 
         if (email.equals(emailFromDB) && password.equals(passwordFromDB)) {
-          //PrivateAccount newAccount = new PrivateAccount(emailFromDB,passwordFromDB,null,null);
           PrivateAccount newAccount = new PrivateAccount(id,emailFromDB,passwordFromDB,null,nameFromDB);
 
           Current

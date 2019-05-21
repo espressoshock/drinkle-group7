@@ -31,8 +31,6 @@ public class AuthRegistration extends EventDispatcherAdapter {
 
   private void setupComponents() {}
 
-
-
   @FXML
   public void onSwitchAccountRegistrationTap(MouseEvent event) {
     super.dispatchViewChangeRequest(ViewMetadata.AUTH_REGISTRATION_COMPANY);
