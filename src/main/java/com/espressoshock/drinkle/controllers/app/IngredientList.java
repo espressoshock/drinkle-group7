@@ -159,7 +159,6 @@ public class IngredientList extends EventDispatcherAdapter implements Initializa
     }
 
     private void createCategoryList() {
-
         IngredientCategory[] category = {IngredientCategory.WHISKEY, IngredientCategory.VODKA, IngredientCategory.VERMOUTH, IngredientCategory.BITTER, IngredientCategory.TEQUILA, IngredientCategory.GIN, IngredientCategory.RUM, IngredientCategory.LIQUEUR,
                 IngredientCategory.BRANDY, IngredientCategory.CIDER, IngredientCategory.WINE, IngredientCategory.BEER, IngredientCategory.OTHER};
         Collections.addAll(categoriesAlc, category);
