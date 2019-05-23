@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 
 import java.util.concurrent.*;
 
@@ -96,13 +97,24 @@ public class AuthLogin extends EventDispatcherAdapter {
     @FXML
     private Pane forgotPasswordStage1;
 
+    @FXML
+    private Pane forgotPasswordStage2;
+
+
+    @FXML
+    private TextField recoveryEmailTF;
+
+    @FXML
+    private Text recoveryEmailErrorLbl;
+
+
     private Pane[] forgotPasswordStages;
     /********* END =FORGOT-PASSWORD-MODAL  */
 
 
     public void initialize(){
         /********* =FORGOT-PASSWORD-MODAL  */
-        this.forgotPasswordStages = new Pane[]{this.forgotPasswordStage1};
+        this.forgotPasswordStages = new Pane[]{this.forgotPasswordStage1, this.forgotPasswordStage2 };
         /********* END =FORGOT-PASSWORD-MODAL  */
     }
 
@@ -151,6 +163,9 @@ public class AuthLogin extends EventDispatcherAdapter {
         for(int i=0;i<this.forgotPasswordStages.length;i++)
             this.forgotPasswordStages[i].setVisible(false);
 
+        //clean textfields
+        this.recoveryEmailTF.setText("");
+
         this.forgoPasswordModal.setVisible(false);
         ForgotPasswordModal.resetStage();
     }
@@ -164,7 +179,19 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     @FXML
     public void forgotPasswordNext(MouseEvent event) {
-        this.forgotPasswordStages[ForgotPasswordModal.nextStage()].setVisible(true);
+
+       switch (ForgotPasswordModal.getCurrentStage()){
+           case 0:
+               if(recoveryEmailTF.getText().length()>3){
+                   this.recoveryEmailErrorLbl.setVisible(false);
+                   this.forgotPasswordStages[ForgotPasswordModal.currentStage].setVisible(false);
+                   this.forgotPasswordStages[ForgotPasswordModal.nextStage()].setVisible(true);
+               } else{
+                   this.recoveryEmailErrorLbl.setVisible(true);
+               }
+
+       }
+
     }
 
     /********* END =FORGOT-PASSWORD-MODAL  */
