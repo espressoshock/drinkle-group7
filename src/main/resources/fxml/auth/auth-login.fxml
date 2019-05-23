@@ -94,25 +94,7 @@
             </Label>
          </children>
       </Pane>
-      <HBox fx:id="dialogWindow" alignment="CENTER" prefHeight="694.0" prefWidth="1000.0" styleClass="modal-container" visible="false">
-         <children>
-            <HBox alignment="CENTER" maxHeight="100.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" styleClass="card">
-               <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/auth/auth-login/round-loader.gif" />
-                           </image>
-                        </ImageView>
-                        <Label styleClass="font-bold" text="Login..." />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-         </children>
-      </HBox>
-      <HBox fx:id="forgoPasswordModal" alignment="CENTER" prefHeight="694.0" prefWidth="1000.0" styleClass="modal-container">
+      <HBox fx:id="forgoPasswordModal" alignment="CENTER" prefHeight="694.0" prefWidth="1000.0" styleClass="modal-container" visible="false">
          <children>
             <HBox alignment="CENTER" maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0" styleClass="card">
                <children>
@@ -153,7 +135,42 @@
                         </Text>
                      </children>
                   </Pane>
-                  <Pane fx:id="forgotPasswordStage2" prefHeight="300.0" prefWidth="1001.0">
+                  <Pane fx:id="forgotPasswordStage3" prefHeight="300.0" prefWidth="501.0" visible="false">
+                     <children>
+                        <ImageView fitHeight="42.0" fitWidth="280.0" layoutX="20.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/auth/auth-login/forgot-password-t1@2x.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="265.0" fitWidth="478.0" layoutX="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/auth/auth-login/forgot-password-illustration-blue@2x.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="38.0" fitWidth="44.0" layoutX="457.0" onMousePressed="#closeForgotPasswordModal" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/auth/auth-login/forgot-password-close-blue@2x.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="322.0" layoutY="255.0" minHeight="45.0" minWidth="178.0" mnemonicParsing="false" onMousePressed="#passwordChangeConfirm" text="Finish">
+                           <styleClass>
+                              <String fx:value="action-button" />
+                              <String fx:value="font-bold" />
+                           </styleClass>
+                        </Button>
+                        <Label layoutX="23.0" layoutY="102.0" styleClass="field-name" text="Password" />
+                        <Text fx:id="passwordNotMatchLbl" fill="#e40808" layoutX="118.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error! the passwords don't match" visible="false">
+                           <styleClass>
+                              <String fx:value="font-bold" />
+                              <String fx:value="login-error" />
+                           </styleClass>
+                        </Text>
+                        <PasswordField fx:id="newPassword" layoutX="25.0" layoutY="124.0" prefHeight="34.0" prefWidth="353.0" styleClass="new-password" />
+                        <Label layoutX="24.0" layoutY="163.0" styleClass="field-name" text="Confirm password" />
+                        <PasswordField fx:id="newPasswordConfimation" layoutX="26.0" layoutY="185.0" prefHeight="34.0" prefWidth="353.0" styleClass="new-password" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="forgotPasswordStage2" prefHeight="300.0" prefWidth="1001.0" visible="false">
                      <children>
                         <ImageView fitHeight="42.0" fitWidth="416.0" layoutX="20.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -192,6 +209,42 @@
             </HBox>
          </children>
       </HBox>
+      <HBox fx:id="dialogWindow" alignment="CENTER" prefHeight="694.0" prefWidth="1000.0" styleClass="modal-container" visible="false">
+         <children>
+            <HBox alignment="CENTER" maxHeight="100.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" styleClass="card">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/auth/auth-login/round-loader.gif" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="font-bold" text="Login..." />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <Pane fx:id="modalLoading" layoutX="250.0" layoutY="197.0" maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0" visible="false">
+         <children>
+            <HBox alignment="CENTER" layoutX="149.0" layoutY="50.0" maxHeight="100.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" styleClass="card">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/auth/auth-login/round-loader.gif" />
+                           </image>
+                        </ImageView>
+                        <Label styleClass="font-bold" text="Loading..." />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
    </children>
    <stylesheets>
       <URL value="@../../css/auth/auth-login.css" />
