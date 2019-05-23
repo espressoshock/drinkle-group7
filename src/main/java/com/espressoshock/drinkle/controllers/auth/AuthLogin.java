@@ -1,5 +1,6 @@
 package com.espressoshock.drinkle.controllers.auth;
 
+import animatefx.animation.*;
 import com.espressoshock.drinkle.daoLayer.JPADaoManager;
 import com.espressoshock.drinkle.models.PrivateAccount;
 import com.espressoshock.drinkle.recoveryCodeGenerator.CodeGenerator;
@@ -9,6 +10,7 @@ import com.espressoshock.drinkle.viewLoader.ViewLoader;
 import com.espressoshock.drinkle.viewLoader.ViewMetadata;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -187,33 +189,62 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     @FXML
     public void login(MouseEvent event)throws Exception {
-        /********* SHOW LOGIN MODAL DIALOG  */
-        this.showDialog();
+        //check if fields have been filled properly
+        if(this.validEmail(emailTf.getText()) && emailTf.getText().length()>3 && passwordTf.getText().length()>3){
+            /********* SHOW LOGIN MODAL DIALOG  */
+            this.showDialog();
 
-        /********* =NON-BLOCK ASYNC REQUEST  */
-       CompletableFuture.supplyAsync( () -> {
-            JPADaoManager jpaDaoManager = new JPADaoManager();
-            if (jpaDaoManager.login(new PrivateAccount(emailTf.getText(), passwordTf.getText(), null, null, null)) != null) {
-                //logged
-                this.hideDialog();
-                errorLbl.setVisible(false);
-                return true;
-            } else {
-                //incorrect username/password
-                this.hideDialog();
-                errorLbl.setVisible(true);
-                return false;
-            }
-        }).thenAccept( (status) ->{
-            /********* EVENT DISPATCHER -> WITHIN SAME THREAD  */
-           Platform.runLater(new Runnable(){
-               @Override public void run() {
-                   System.out.println(status);
-                   if(status) AuthLogin:SynchContinueApp();
-               }
-           });
-            System.out.println(status);
-        });
+            /********* =NON-BLOCK ASYNC REQUEST  */
+            CompletableFuture.supplyAsync( () -> {
+                JPADaoManager jpaDaoManager = new JPADaoManager();
+                if (jpaDaoManager.login(new PrivateAccount(emailTf.getText(), passwordTf.getText(), null, null, null)) != null) {
+                    //logged
+                    this.hideDialog();
+                    errorLbl.setVisible(false);
+                    //hide error outlines if any
+                    emailTf.getStyleClass().removeIf( name -> name.equals("error"));
+                    passwordTf.getStyleClass().removeIf( name -> name.equals("error"));
+
+                    return true;
+                } else {
+                    //incorrect username/password
+                    //hide loading dialog
+                    this.hideDialog();
+                    errorLbl.setVisible(true);
+                    //add error outline
+                    emailTf.getStyleClass().add("error");
+                    passwordTf.getStyleClass().add("error");
+                    //error animation
+                    this.addErrorAnimation(emailTf);
+                    this.addErrorAnimation(passwordTf);
+                    this.addTitleErrorAnimation(errorLbl);
+
+                    return false;
+                }
+            }).thenAccept( (status) ->{
+                /********* EVENT DISPATCHER -> WITHIN SAME THREAD  */
+                Platform.runLater(new Runnable(){
+                    @Override public void run() {
+                        System.out.println(status);
+                        if(status) AuthLogin:SynchContinueApp();
+                    }
+                });
+                System.out.println(status);
+            });
+        } else {
+            //fields not filled correctly
+
+            errorLbl.setVisible(true);
+            //add error outline
+            emailTf.getStyleClass().add("error");
+            passwordTf.getStyleClass().add("error");
+            //error animation
+            this.addErrorAnimation(emailTf);
+            this.addErrorAnimation(passwordTf);
+            this.addTitleErrorAnimation(errorLbl);
+        }
+
+
 
     }
 
@@ -374,6 +405,23 @@ public void passwordChangeConfirm(MouseEvent event){
         this.modalLoading.setVisible(false);
     }
     /********* END =DIALOGS  */
+
+    /********* =ANIMATIONS  */
+    private void addErrorAnimation (Node node){
+        new Shake(node).play();
+    }
+
+    private void addTitleErrorAnimation(Node node){
+        new Tada(node).play();
+    }
+
+
+    /********* END =ANIMATIONS  */
+
+    public boolean validEmail(String email){
+        String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+        return email.matches(regex);
+    }
 
     public void SynchContinueApp(){
         super.dispatchViewChangeRequest(ViewLoader.default_view);
