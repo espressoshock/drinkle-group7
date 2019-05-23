@@ -96,7 +96,7 @@
     -fx-background-image: url("../../images/auth/auth-login/login-btn-active@2x.png");
 }
 
-.login-error {
+.login-error, .error {
     -fx-text-fill: #fe2558;
 
 }
@@ -110,7 +110,7 @@
     -fx-background-color: #fff;
     -fx-background-radius: 20;
 }
-.modal-container .card .label{
+.modal-container .card .field-name{
     -fx-text-fill: #bfc0c7;
 }
 
@@ -120,6 +120,10 @@
     -fx-text-fill: #fff;
 }
 
+
+/********* END =LOADING DIALOG */
+
+/*********  =FORGOT-PASSWORD */
 #forgoPasswordModal .text-field{
     -fx-background-color: #e3e5eb;
     -fx-background-radius: 10;
@@ -133,7 +137,19 @@
     -fx-text-fill: #a9acc9;
     -fx-padding: 0 0 6 5;
 }
-/********* END =LOADING DIALOG */
+#forgotPasswordStage2{
+    -fx-background-color: #3f4fa5;
+    -fx-text-fill: #fff;
+    -fx-background-radius: 20;
+}
+
+#forgotPasswordStage2 .action-button{
+    -fx-background-color: #fff;
+    -fx-text-fill: #3f4fa5;
+
+}
+/********* END =FORGOT-PASSWORD */
+
 
 /********* =TOOLTIPS */
 .tooltip{
