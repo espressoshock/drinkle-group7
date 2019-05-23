@@ -165,7 +165,7 @@
                               <Image url="@../../images/auth/auth-login/forgot-password-close-blue@2x.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="322.0" layoutY="255.0" minHeight="45.0" minWidth="178.0" mnemonicParsing="false" onMousePressed="#forgotPasswordNext" text="Confirm">
+                        <Button layoutX="322.0" layoutY="255.0" minHeight="45.0" minWidth="178.0" mnemonicParsing="false" onMousePressed="#recoveryCodeConfirm" text="Confirm">
                            <styleClass>
                               <String fx:value="action-button" />
                               <String fx:value="font-bold" />

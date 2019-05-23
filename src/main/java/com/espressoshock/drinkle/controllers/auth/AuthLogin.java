@@ -107,15 +107,34 @@ public class AuthLogin extends EventDispatcherAdapter {
     @FXML
     private Text recoveryEmailErrorLbl;
 
+    @FXML
+    private TextField recoveryCodeS1;
+
+    @FXML
+    private TextField recoveryCodeS2;
+
+    @FXML
+    private TextField recoveryCodeS3;
+
+    @FXML
+    private TextField recoveryCodeS4;
+
 
     private Pane[] forgotPasswordStages;
     /********* END =FORGOT-PASSWORD-MODAL  */
+
 
 
     public void initialize(){
         /********* =FORGOT-PASSWORD-MODAL  */
         this.forgotPasswordStages = new Pane[]{this.forgotPasswordStage1, this.forgotPasswordStage2 };
         /********* END =FORGOT-PASSWORD-MODAL  */
+        //set char length limit
+        this.recoveryCodeS1.setTextFormatter(new TextFormatter<String>(change -> change.getControlNewText().length()<= 3 ? change : null));
+        this.recoveryCodeS2.setTextFormatter(new TextFormatter<String>(change -> change.getControlNewText().length()<= 3 ? change : null));
+        this.recoveryCodeS3.setTextFormatter(new TextFormatter<String>(change -> change.getControlNewText().length()<= 3 ? change : null));
+        this.recoveryCodeS4.setTextFormatter(new TextFormatter<String>(change -> change.getControlNewText().length()<= 1 ? change : null));
+
     }
 
 
@@ -193,6 +212,30 @@ public class AuthLogin extends EventDispatcherAdapter {
        }
 
     }
+
+    @FXML
+    public void recoveryCodeConfirm(MouseEvent event) {
+        if(recoveryCodeS1.getText().length()<3)
+            recoveryCodeS1.getStyleClass().add("error");
+        else
+            recoveryCodeS1.getStyleClass().removeIf( name -> name.equals("error"));
+        if(recoveryCodeS2.getText().length()<3)
+            recoveryCodeS2.getStyleClass().add("error");
+        else
+            recoveryCodeS2.getStyleClass().removeIf( name -> name.equals("error"));
+        if(recoveryCodeS3.getText().length()<3)
+            recoveryCodeS3.getStyleClass().add("error");
+        else
+            recoveryCodeS3.getStyleClass().removeIf( name -> name.equals("error"));
+        if(recoveryCodeS4.getText().length()<1)
+            recoveryCodeS4.getStyleClass().add("error");
+        else
+            recoveryCodeS4.getStyleClass().removeIf( name -> name.equals("error"));
+
+
+    }
+
+
 
     /********* END =FORGOT-PASSWORD-MODAL  */
 

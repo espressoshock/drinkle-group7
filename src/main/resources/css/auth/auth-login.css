@@ -156,10 +156,16 @@
     -fx-padding: 0 0 0 0;
     -fx-font-size: 18;
 }
+.recovery-code-wrapper .error{
+    -fx-border-width: 4;
+    -fx-border-insets: -4;
+    -fx-border-radius: 13;
+    -fx-border-color: red;
+}
 .recovery-code-wrapper .text-field:focused{
     -fx-border-width: 4;
     -fx-border-insets: -4;
-    -fx-border-radius: 10;
+    -fx-border-radius: 13;
     -fx-border-color: #101f6e;
 }
 .recovery-code-wrapper .separator{
