@@ -10,10 +10,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 
 import java.util.concurrent.*;
 
 public class AuthLogin extends EventDispatcherAdapter {
+
+    
+
     private static class AsyncCallable implements Callable<Boolean>{
         public static Boolean digestresult;
         private final String email;
@@ -51,6 +55,13 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     @FXML
     private Label errorLbl;
+    /********* =FORGOT-PASSWORD-MODAL  */
+    @FXML
+    private HBox forgoPasswordModal;
+
+    @FXML
+    private Pane forgotPasswordStage1;
+    /********* END =FORGOT-PASSWORD-MODAL  */
 
 
     @FXML
@@ -88,14 +99,22 @@ public class AuthLogin extends EventDispatcherAdapter {
             System.out.println(status);
         });
 
+    }
 
-
-
-
-
-
+    /********* =FORGOT-PASSWORD-MODAL  */
+    @FXML
+    public void closeForgotPasswordModal(MouseEvent event) {
 
     }
+
+
+    @FXML
+    public void openForgotModal(MouseEvent event) {
+
+    }
+
+    /********* END =FORGOT-PASSWORD-MODAL  */
+
 
     /********* =DIALOGS  */
     private void showDialog(){
