@@ -16,7 +16,37 @@ import java.util.concurrent.*;
 
 public class AuthLogin extends EventDispatcherAdapter {
 
-    
+
+    /********* =FORGOT-PASSWORD-MODAL  */
+    private static class ForgotPasswordModal{
+        private static int currentStage= INIT_STAGE;
+        public static final int INIT_STAGE = 1;
+        private static final String MODAL_NAME = "forgotPasswordStage";
+
+        public static void setCurrentStage(int stage){
+            currentStage = stage;
+        }
+
+        public static void nextStage(){
+            currentStage++;
+        }
+        public static void prevStage(){
+            if(currentStage>INIT_STAGE)
+                currentStage--;
+        }
+        public static void resetStage(){
+            currentStage = INIT_STAGE;
+        }
+
+        public static int getCurrentStage() {
+            return currentStage;
+        }
+
+        public static String getCurrentModalName(){
+            return MODAL_NAME+currentStage;
+        }
+    }
+    /********* END =FORGOT-PASSWORD-MODAL  */
 
     private static class AsyncCallable implements Callable<Boolean>{
         public static Boolean digestresult;
@@ -110,6 +140,8 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     @FXML
     public void openForgotModal(MouseEvent event) {
+        this.forgoPasswordModal.setVisible(true);
+        this.
 
     }
 
