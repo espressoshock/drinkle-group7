@@ -9,6 +9,9 @@ import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
 import com.espressoshock.drinkle.viewLoader.ViewLoader;
 import com.espressoshock.drinkle.viewLoader.ViewMetadata;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -188,11 +191,15 @@ public class AuthLogin extends EventDispatcherAdapter {
     }
 
     @FXML
-    public void login(MouseEvent event)throws Exception {
+    public void login(Event event)throws Exception {
         //check if fields have been filled properly
         if(this.validEmail(emailTf.getText()) && emailTf.getText().length()>3 && passwordTf.getText().length()>3){
             /********* SHOW LOGIN MODAL DIALOG  */
             this.showDialog();
+
+            //hide error outlines if any
+            emailTf.getStyleClass().removeIf( name -> name.equals("error"));
+            passwordTf.getStyleClass().removeIf( name -> name.equals("error"));
 
             /********* =NON-BLOCK ASYNC REQUEST  */
             CompletableFuture.supplyAsync( () -> {
@@ -250,7 +257,7 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     /********* =FORGOT-PASSWORD-MODAL  */
     @FXML
-    public void closeForgotPasswordModal(MouseEvent event) {
+    public void closeForgotPasswordModal(Event event) {
         //hide all steps
         for(int i=0;i<this.forgotPasswordStages.length;i++)
             this.forgotPasswordStages[i].setVisible(false);
@@ -265,25 +272,47 @@ public class AuthLogin extends EventDispatcherAdapter {
         this.newPasswordConfimation.setText("");
 
 
+        /********* =MODAL-ANIMATION  */
+       FadeOut fadeOut = new FadeOut(forgoPasswordModal);
+        fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                forgoPasswordModal.setVisible(false);
+            }
+        });
+        fadeOut.setSpeed(4d);
+        fadeOut.play();
+        /********* =END MODAL-ANIMATION  */
 
-        this.forgoPasswordModal.setVisible(false);
         ForgotPasswordModal.resetStage();
         ForgotPasswordModal.clear();
+
+        //clear fields
+        this.clearRecoveryCodeFields();
+        //clear modals
+        this.hideLoadingModal();
+
+
     }
 
 
     @FXML
-    public void openForgotModal(MouseEvent event) {
+    public void openForgotModal(Event event) {
         this.forgoPasswordModal.setVisible(true);
+
+        System.out.println(ForgotPasswordModal.getCurrentStage());
+        System.out.println(this.forgotPasswordStages[ForgotPasswordModal.getCurrentStage()]);
         this.forgotPasswordStages[ForgotPasswordModal.getCurrentStage()].setVisible(true);
+        //animation
+       new FadeIn(forgoPasswordModal).setSpeed(6d).play();
     }
 
     @FXML
-    public void forgotPasswordNext(MouseEvent event) {
+    public void forgotPasswordNext(Event event) {
 
        switch (ForgotPasswordModal.getCurrentStage()){
            case 0:
-               if(recoveryEmailTF.getText().length()>3 && !recoveryEmailTF.getText().isEmpty() && recoveryEmailTF.getText()!=null ){
+               if(this.validEmail(recoveryEmailTF.getText()) && recoveryEmailTF.getText().length()>3 && !recoveryEmailTF.getText().isEmpty() && recoveryEmailTF.getText()!=null ){
                    recoveryEmailTF.getStyleClass().removeIf( name -> name.equals("error"));
                    this.showLoadingModal();
                    /********* =NON-BLOCK ASYNC REQUEST  */
@@ -325,12 +354,19 @@ public class AuthLogin extends EventDispatcherAdapter {
                            System.out.println("Invalid email");
                        }
 
-                        //update modal
+                        //clear error label
                        this.recoveryEmailErrorLbl.setVisible(false);
-                       this.forgotPasswordStages[ForgotPasswordModal.currentStage].setVisible(false);
-                       this.forgotPasswordStages[ForgotPasswordModal.nextStage()].setVisible(true);
 
-                       this.hideLoadingModal();
+                       //deprecated
+                      /*
+                       this.forgotPasswordStages[ForgotPasswordModal.currentStage].setVisible(false);
+                       this.forgotPasswordStages[ForgotPasswordModal.nextStage()].setVisible(true);*/
+                       //hide loading
+                      this.hideLoadingModal();
+                      //update modal
+                      this.loadNextModal();
+
+
 
                    });
 
@@ -338,43 +374,47 @@ public class AuthLogin extends EventDispatcherAdapter {
                } else{
                    recoveryEmailTF.getStyleClass().add("error");
                    this.recoveryEmailErrorLbl.setVisible(true);
+                   //animation
+                   this.addTitleErrorAnimation(recoveryEmailErrorLbl);
+                   this.addErrorAnimation(recoveryEmailTF);
                }
        }
 
     }
 
     @FXML
-    public void recoveryCodeConfirm(MouseEvent event) {
+    public void recoveryCodeConfirm(Event event) {
         if(recoveryCodeS1.getText().length()<3)
-            recoveryCodeS1.getStyleClass().add("error");
+            this.addRecoveryCodeErrorAnimation(recoveryCodeS1);
         else
             recoveryCodeS1.getStyleClass().removeIf( name -> name.equals("error"));
         if(recoveryCodeS2.getText().length()<3)
-            recoveryCodeS2.getStyleClass().add("error");
+            this.addRecoveryCodeErrorAnimation(recoveryCodeS2);
         else
             recoveryCodeS2.getStyleClass().removeIf( name -> name.equals("error"));
         if(recoveryCodeS3.getText().length()<3)
-            recoveryCodeS3.getStyleClass().add("error");
+            this.addRecoveryCodeErrorAnimation(recoveryCodeS3);
         else
             recoveryCodeS3.getStyleClass().removeIf( name -> name.equals("error"));
         if(recoveryCodeS4.getText().length()<1)
-            recoveryCodeS4.getStyleClass().add("error");
+            this.addRecoveryCodeErrorAnimation(recoveryCodeS4);
         else
             recoveryCodeS4.getStyleClass().removeIf( name -> name.equals("error"));
 
         if (recoveryCodeS1.getText().length()== 3 && recoveryCodeS2.getText().length()== 3 && recoveryCodeS3.getText().length()== 3 && recoveryCodeS4.getText().length()== 1 ){
             if ( (recoveryCodeS1.getText() + recoveryCodeS2.getText() + recoveryCodeS3.getText() + recoveryCodeS4.getText()).equals(ForgotPasswordModal.getRecoveryCode())) {
-                this.forgotPasswordStages[ForgotPasswordModal.currentStage].setVisible(false);
-                this.forgotPasswordStages[ForgotPasswordModal.nextStage()].setVisible(true);
+               /* this.forgotPasswordStages[ForgotPasswordModal.currentStage].setVisible(false);
+                this.forgotPasswordStages[ForgotPasswordModal.nextStage()].setVisible(true);*/
+               this.loadNextModal();
                 recoveryCodeS1.getStyleClass().removeIf( name -> name.equals("error"));
                 recoveryCodeS2.getStyleClass().removeIf( name -> name.equals("error"));
                 recoveryCodeS3.getStyleClass().removeIf( name -> name.equals("error"));
                 recoveryCodeS4.getStyleClass().removeIf( name -> name.equals("error"));
             } else{
-                recoveryCodeS1.getStyleClass().add("error");
-                recoveryCodeS2.getStyleClass().add("error");
-                recoveryCodeS3.getStyleClass().add("error");
-                recoveryCodeS4.getStyleClass().add("error");
+                this.addRecoveryCodeErrorAnimation(recoveryCodeS1);
+                this.addRecoveryCodeErrorAnimation(recoveryCodeS2);
+                this.addRecoveryCodeErrorAnimation(recoveryCodeS3);
+                this.addRecoveryCodeErrorAnimation(recoveryCodeS4);
             }
         }
 
@@ -382,7 +422,7 @@ public class AuthLogin extends EventDispatcherAdapter {
     }
 
 @FXML
-public void passwordChangeConfirm(MouseEvent event){
+public void passwordChangeConfirm(Event event){
    this.closeForgotPasswordModal(null);
 }
 
@@ -392,17 +432,70 @@ public void passwordChangeConfirm(MouseEvent event){
     /********* =DIALOGS  */
     private void showDialog(){
       this.dialogWindow.setVisible(true);
+      new FadeIn(dialogWindow).setSpeed(6d).play();
     }
 
     private void hideDialog(){
-        this.dialogWindow.setVisible(false);
+        /********* =MODAL-ANIMATION  */
+        FadeOut fadeOut = new FadeOut(dialogWindow);
+        fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                dialogWindow.setVisible(false);
+            }
+        });
+        fadeOut.setSpeed(4d);
+        fadeOut.play();
+        /********* =END MODAL-ANIMATION  */
+
     }
 
     private void showLoadingModal(){
         this.modalLoading.setVisible(true);
+        new FadeIn(modalLoading).setSpeed(6d).play();
     }
     private void hideLoadingModal(){
-        this.modalLoading.setVisible(false);
+
+        /********* =MODAL-ANIMATION  */
+      /*  FadeOut fadeOut = new FadeOut(modalLoading);
+        fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                modalLoading.setVisible(false);
+            }
+        });
+        fadeOut.setSpeed(4d);
+        fadeOut.play();*/
+        /********* =END MODAL-ANIMATION  */
+        modalLoading.setVisible(false);
+    }
+
+    private void clearRecoveryCodeFields(){
+        recoveryCodeS1.getStyleClass().removeIf( name -> name.equals("error"));
+        recoveryCodeS2.getStyleClass().removeIf( name -> name.equals("error"));
+        recoveryCodeS3.getStyleClass().removeIf( name -> name.equals("error"));
+        recoveryCodeS4.getStyleClass().removeIf( name -> name.equals("error"));
+    }
+
+    private void loadNextModal(){
+        /********* =MODAL-ANIMATION  */
+       /* FadeOut fadeOut = new FadeOut(forgotPasswordStages[ForgotPasswordModal.currentStage]);
+        fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                forgotPasswordStages[ForgotPasswordModal.currentStage].setVisible(false);
+                forgotPasswordStages[ForgotPasswordModal.nextStage()].setVisible(true);
+                new FadeIn( forgotPasswordStages[ForgotPasswordModal.getCurrentStage()]).setSpeed(6d).play();
+
+            }
+        });
+        fadeOut.setSpeed(4d);
+        fadeOut.play();*/
+        /********* =END MODAL-ANIMATION  */
+        forgotPasswordStages[ForgotPasswordModal.currentStage].setVisible(false);
+        forgotPasswordStages[ForgotPasswordModal.nextStage()].setVisible(true);
+        new FadeIn( forgotPasswordStages[ForgotPasswordModal.getCurrentStage()]).setSpeed(6d).play();
+
     }
     /********* END =DIALOGS  */
 
@@ -413,6 +506,11 @@ public void passwordChangeConfirm(MouseEvent event){
 
     private void addTitleErrorAnimation(Node node){
         new Tada(node).play();
+    }
+
+    private void addRecoveryCodeErrorAnimation(Node node){
+        node.getStyleClass().add("error");
+        this.addErrorAnimation(node);
     }
 
 
