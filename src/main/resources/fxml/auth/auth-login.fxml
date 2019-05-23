@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -15,6 +10,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -22,7 +18,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="694.0" maxWidth="1000.0" minHeight="694.0" minWidth="1000.0" prefHeight="694.0" prefWidth="1000.0" styleClass="root" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.auth.AuthLogin">
+<AnchorPane maxHeight="694.0" maxWidth="1000.0" minHeight="694.0" minWidth="1000.0" prefHeight="694.0" prefWidth="1000.0" styleClass="root" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.espressoshock.drinkle.controllers.auth.AuthLogin">
    <children>
       <ImageView fitHeight="696.0" fitWidth="1015.0" layoutX="-14.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -69,7 +65,7 @@
                   <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="349.0" spacing="120.0">
                      <children>
                         <CheckBox mnemonicParsing="false" prefHeight="18.0" prefWidth="120.0" styleClass="remember-password-cb" text="Remember me" />
-                        <Label contentDisplay="CENTER" prefHeight="21.0" prefWidth="146.0" styleClass="forgot-password-lbl" text="Forgot your password?">
+                        <Label contentDisplay="CENTER" onMousePressed="#openForgotModal" prefHeight="21.0" prefWidth="146.0" styleClass="forgot-password-lbl" text="Forgot your password?">
                            <HBox.margin>
                               <Insets top="8.0" />
                            </HBox.margin>
@@ -95,7 +91,7 @@
             </Label>
          </children>
       </Pane>
-      <HBox fx:id="dialogWindow" alignment="CENTER" prefHeight="694.0" prefWidth="1000.0" styleClass="loading-container" visible="false">
+      <HBox fx:id="dialogWindow" alignment="CENTER" prefHeight="694.0" prefWidth="1000.0" styleClass="modal-container" visible="false">
          <children>
             <HBox alignment="CENTER" maxHeight="100.0" maxWidth="200.0" minHeight="200.0" minWidth="200.0" prefHeight="100.0" prefWidth="200.0" styleClass="card">
                <children>
@@ -109,6 +105,45 @@
                         <Label styleClass="font-bold" text="Login..." />
                      </children>
                   </VBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox fx:id="forgoPasswordModal" alignment="CENTER" prefHeight="694.0" prefWidth="1000.0" styleClass="modal-container" visible="false">
+         <children>
+            <HBox alignment="CENTER" maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0" styleClass="card">
+               <children>
+                  <Pane fx:id="forgotPasswordStage1" prefHeight="300.0" prefWidth="501.0">
+                     <children>
+                        <ImageView fitHeight="42.0" fitWidth="280.0" layoutX="20.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/auth/auth-login/forgot-password-t1@2x.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="265.0" fitWidth="478.0" layoutX="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/auth/auth-login/forgot-password-illustration-blue@2x.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="38.0" fitWidth="44.0" layoutX="457.0" onMousePressed="#closeForgotPasswordModal" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/auth/auth-login/forgot-password-close-blue@2x.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="322.0" layoutY="255.0" minHeight="45.0" minWidth="178.0" mnemonicParsing="false" text="Next">
+                           <styleClass>
+                              <String fx:value="action-button" />
+                              <String fx:value="font-bold" />
+                           </styleClass>
+                        </Button>
+                        <Label layoutX="23.0" layoutY="121.0" text="Email" />
+                        <TextField fx:id="emailTf1" layoutX="23.0" layoutY="146.0" prefHeight="34.0" prefWidth="353.0">
+                           <tooltip>
+                              <Tooltip text="Please type your email" />
+                           </tooltip>
+                        </TextField>
+                     </children>
+                  </Pane>
                </children>
             </HBox>
          </children>
