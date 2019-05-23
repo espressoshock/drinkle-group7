@@ -124,7 +124,7 @@
 /********* END =LOADING DIALOG */
 
 /*********  =FORGOT-PASSWORD */
-#forgoPasswordModal .text-field{
+#forgoPasswordModal .recovery-email{
     -fx-background-color: #e3e5eb;
     -fx-background-radius: 10;
     -fx-text-fill: #82859c;
@@ -147,6 +147,23 @@
     -fx-background-color: #fff;
     -fx-text-fill: #3f4fa5;
 
+}
+
+.recovery-code-wrapper .text-field{
+    -fx-background-color: #fff;
+    -fx-background-radius: 10;
+    -fx-text-fill: #000;
+    -fx-padding: 0 0 0 0;
+    -fx-font-size: 18;
+}
+.recovery-code-wrapper .text-field:focused{
+    -fx-border-width: 4;
+    -fx-border-insets: -4;
+    -fx-border-radius: 10;
+    -fx-border-color: #101f6e;
+}
+.recovery-code-wrapper .separator{
+    -fx-fill: #fff;
 }
 /********* END =FORGOT-PASSWORD */
 
