@@ -48,7 +48,7 @@
             <VBox layoutX="46.0" layoutY="260.0" prefHeight="270.0" prefWidth="349.0" styleClass="login-form">
                <children>
                   <Label text="Email" />
-                  <TextField fx:id="emailTf" prefHeight="34.0" prefWidth="353.0">
+                  <TextField fx:id="emailTf" onAction="#login" prefHeight="34.0" prefWidth="353.0">
                      <VBox.margin>
                         <Insets bottom="21.0" />
                      </VBox.margin>
@@ -57,7 +57,7 @@
                      </tooltip>
                   </TextField>
                   <Label text="Password" />
-                  <PasswordField fx:id="passwordTf" prefHeight="34.0" prefWidth="353.0">
+                  <PasswordField fx:id="passwordTf" onAction="#login" prefHeight="34.0" prefWidth="353.0">
                      <VBox.margin>
                         <Insets bottom="21.0" />
                      </VBox.margin>
@@ -98,43 +98,6 @@
          <children>
             <HBox alignment="CENTER" maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0" styleClass="card">
                <children>
-                  <Pane fx:id="forgotPasswordStage1" prefHeight="300.0" prefWidth="501.0" visible="false">
-                     <children>
-                        <ImageView fitHeight="42.0" fitWidth="280.0" layoutX="20.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/auth/auth-login/forgot-password-t1@2x.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="265.0" fitWidth="478.0" layoutX="23.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/auth/auth-login/forgot-password-illustration-blue@2x.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="38.0" fitWidth="44.0" layoutX="457.0" onMousePressed="#closeForgotPasswordModal" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/auth/auth-login/forgot-password-close-blue@2x.png" />
-                           </image>
-                        </ImageView>
-                        <Button layoutX="322.0" layoutY="255.0" minHeight="45.0" minWidth="178.0" mnemonicParsing="false" onMousePressed="#forgotPasswordNext" text="Next">
-                           <styleClass>
-                              <String fx:value="action-button" />
-                              <String fx:value="font-bold" />
-                           </styleClass>
-                        </Button>
-                        <Label layoutX="23.0" layoutY="121.0" styleClass="field-name" text="Email" />
-                        <TextField fx:id="recoveryEmailTF" layoutX="23.0" layoutY="146.0" prefHeight="34.0" prefWidth="353.0" styleClass="recovery-email">
-                           <tooltip>
-                              <Tooltip text="Please type your email" />
-                           </tooltip>
-                        </TextField>
-                        <Text fx:id="recoveryEmailErrorLbl" fill="#e40808" layoutX="96.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error! Email/password combination incorrect" visible="false">
-                           <styleClass>
-                              <String fx:value="font-bold" />
-                              <String fx:value="login-error" />
-                           </styleClass>
-                        </Text>
-                     </children>
-                  </Pane>
                   <Pane fx:id="forgotPasswordStage3" prefHeight="300.0" prefWidth="501.0" visible="false">
                      <children>
                         <ImageView fitHeight="42.0" fitWidth="280.0" layoutX="20.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
@@ -165,9 +128,46 @@
                               <String fx:value="login-error" />
                            </styleClass>
                         </Text>
-                        <PasswordField fx:id="newPassword" layoutX="25.0" layoutY="124.0" prefHeight="34.0" prefWidth="353.0" styleClass="new-password" />
+                        <PasswordField fx:id="newPassword" layoutX="25.0" layoutY="124.0" onAction="#passwordChangeConfirm" prefHeight="34.0" prefWidth="353.0" styleClass="new-password" />
                         <Label layoutX="24.0" layoutY="163.0" styleClass="field-name" text="Confirm password" />
-                        <PasswordField fx:id="newPasswordConfimation" layoutX="26.0" layoutY="185.0" prefHeight="34.0" prefWidth="353.0" styleClass="new-password" />
+                        <PasswordField fx:id="newPasswordConfimation" layoutX="26.0" layoutY="185.0" onAction="#passwordChangeConfirm" prefHeight="34.0" prefWidth="353.0" styleClass="new-password" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="forgotPasswordStage1" prefHeight="300.0" prefWidth="501.0" visible="false">
+                     <children>
+                        <ImageView fitHeight="42.0" fitWidth="280.0" layoutX="20.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/auth/auth-login/forgot-password-t1@2x.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="265.0" fitWidth="478.0" layoutX="23.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/auth/auth-login/forgot-password-illustration-blue@2x.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="38.0" fitWidth="44.0" layoutX="457.0" onMousePressed="#closeForgotPasswordModal" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/auth/auth-login/forgot-password-close-blue@2x.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="322.0" layoutY="255.0" minHeight="45.0" minWidth="178.0" mnemonicParsing="false" onMousePressed="#forgotPasswordNext" text="Next">
+                           <styleClass>
+                              <String fx:value="action-button" />
+                              <String fx:value="font-bold" />
+                           </styleClass>
+                        </Button>
+                        <Label layoutX="23.0" layoutY="121.0" styleClass="field-name" text="Email" />
+                        <TextField fx:id="recoveryEmailTF" layoutX="23.0" layoutY="146.0" onAction="#forgotPasswordNext" prefHeight="34.0" prefWidth="353.0" styleClass="recovery-email">
+                           <tooltip>
+                              <Tooltip text="Please type your email" />
+                           </tooltip>
+                        </TextField>
+                        <Text fx:id="recoveryEmailErrorLbl" fill="#e40808" layoutX="96.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Error! Email/password combination incorrect" visible="false">
+                           <styleClass>
+                              <String fx:value="font-bold" />
+                              <String fx:value="login-error" />
+                           </styleClass>
+                        </Text>
                      </children>
                   </Pane>
                   <Pane fx:id="forgotPasswordStage2" prefHeight="300.0" prefWidth="1001.0" visible="false">
@@ -190,17 +190,17 @@
                         </Button>
                         <HBox alignment="CENTER" layoutX="1.0" layoutY="111.0" prefHeight="100.0" prefWidth="500.0" spacing="6.5" styleClass="recovery-code-wrapper">
                            <children>
-                              <TextField fx:id="recoveryCodeS1" alignment="CENTER" maxHeight="41.0" maxWidth="88.0" minHeight="41.0" minWidth="88.0" prefHeight="41.0" prefWidth="88.0" promptText="ABC" styleClass="font-bold">
+                              <TextField fx:id="recoveryCodeS1" alignment="CENTER" maxHeight="41.0" maxWidth="88.0" minHeight="41.0" minWidth="88.0" onAction="#recoveryCodeConfirm" prefHeight="41.0" prefWidth="88.0" promptText="ABC" styleClass="font-bold">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </TextField>
                               <SVGPath content="M2.000,-0.000 C3.104,-0.000 4.000,0.895 4.000,2.000 C4.000,3.105 3.104,4.000 2.000,4.000 C0.895,4.000 -0.000,3.105 -0.000,2.000 C-0.000,0.895 0.895,-0.000 2.000,-0.000 Z" styleClass="separator" />
-                              <TextField fx:id="recoveryCodeS2" alignment="CENTER" maxHeight="41.0" maxWidth="88.0" minHeight="41.0" minWidth="88.0" prefHeight="41.0" prefWidth="88.0" promptText="0Z0" styleClass="font-bold" />
+                              <TextField fx:id="recoveryCodeS2" alignment="CENTER" maxHeight="41.0" maxWidth="88.0" minHeight="41.0" minWidth="88.0" onAction="#recoveryCodeConfirm" prefHeight="41.0" prefWidth="88.0" promptText="0Z0" styleClass="font-bold" />
                               <SVGPath content="M2.000,-0.000 C3.104,-0.000 4.000,0.895 4.000,2.000 C4.000,3.105 3.104,4.000 2.000,4.000 C0.895,4.000 -0.000,3.105 -0.000,2.000 C-0.000,0.895 0.895,-0.000 2.000,-0.000 Z" styleClass="separator" />
-                              <TextField fx:id="recoveryCodeS3" alignment="CENTER" maxHeight="41.0" maxWidth="88.0" minHeight="41.0" minWidth="88.0" prefHeight="41.0" prefWidth="88.0" promptText="AAA" styleClass="font-bold" />
+                              <TextField fx:id="recoveryCodeS3" alignment="CENTER" maxHeight="41.0" maxWidth="88.0" minHeight="41.0" minWidth="88.0" onAction="#recoveryCodeConfirm" prefHeight="41.0" prefWidth="88.0" promptText="AAA" styleClass="font-bold" />
                               <SVGPath content="M2.000,-0.000 C3.104,-0.000 4.000,0.895 4.000,2.000 C4.000,3.105 3.104,4.000 2.000,4.000 C0.895,4.000 -0.000,3.105 -0.000,2.000 C-0.000,0.895 0.895,-0.000 2.000,-0.000 Z" styleClass="separator" />
-                              <TextField fx:id="recoveryCodeS4" alignment="CENTER" maxHeight="41.0" maxWidth="30.0" minHeight="41.0" minWidth="30.0" prefHeight="41.0" prefWidth="30.0" promptText="K" styleClass="font-bold" />
+                              <TextField fx:id="recoveryCodeS4" alignment="CENTER" maxHeight="41.0" maxWidth="30.0" minHeight="41.0" minWidth="30.0" onAction="#recoveryCodeConfirm" prefHeight="41.0" prefWidth="30.0" promptText="K" styleClass="font-bold" />
                            </children>
                         </HBox>
                      </children>
