@@ -2,6 +2,8 @@ package com.espressoshock.drinkle.controllers.auth;
 
 import com.espressoshock.drinkle.daoLayer.JPADaoManager;
 import com.espressoshock.drinkle.models.PrivateAccount;
+import com.espressoshock.drinkle.recoveryCodeGenerator.CodeGenerator;
+import com.espressoshock.drinkle.recoveryCodeGenerator.EmailSender;
 import com.espressoshock.drinkle.viewLoader.EventDispatcherAdapter;
 import com.espressoshock.drinkle.viewLoader.ViewLoader;
 import com.espressoshock.drinkle.viewLoader.ViewMetadata;
@@ -13,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
+import javax.mail.MessagingException;
 import java.util.concurrent.*;
 
 public class AuthLogin extends EventDispatcherAdapter {
@@ -24,6 +27,8 @@ public class AuthLogin extends EventDispatcherAdapter {
         public static final int MAX_STAGE = 3;
         private static int currentStage = INIT_STAGE;
         private static final String MODAL_NAME = "forgotPasswordStage";
+        private static String recoveryEmail;
+        private static String recoveryCode;
 
         public static void setCurrentStage(int stage){
             currentStage = stage;
@@ -39,6 +44,28 @@ public class AuthLogin extends EventDispatcherAdapter {
                return  --currentStage;
             return INIT_STAGE;
         }
+
+        public static String getRecoveryCode() {
+            return recoveryCode;
+        }
+
+        public static void setRecoveryCode(String recoveryCode) {
+            ForgotPasswordModal.recoveryCode = recoveryCode;
+        }
+
+        public static void clear(){
+            recoveryEmail = "";
+            recoveryCode = "";
+        }
+
+        public static String getRecoveryEmail() {
+            return recoveryEmail;
+        }
+
+        public static void setRecoveryEmail(String recoveryEmail) {
+            ForgotPasswordModal.recoveryEmail = recoveryEmail;
+        }
+
         public static void resetStage(){
             currentStage = INIT_STAGE;
         }
@@ -100,6 +127,9 @@ public class AuthLogin extends EventDispatcherAdapter {
     @FXML
     private Pane forgotPasswordStage2;
 
+    @FXML
+    private Pane forgotPasswordStage3;
+
 
     @FXML
     private TextField recoveryEmailTF;
@@ -119,6 +149,18 @@ public class AuthLogin extends EventDispatcherAdapter {
     @FXML
     private TextField recoveryCodeS4;
 
+    @FXML
+    private Text passwordNotMatchLbl;
+
+    @FXML
+    private TextField newPasswordConfimation;
+
+    @FXML
+    private TextField newPassword;
+
+    @FXML
+    private Pane modalLoading;
+
 
     private Pane[] forgotPasswordStages;
     /********* END =FORGOT-PASSWORD-MODAL  */
@@ -127,7 +169,7 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     public void initialize(){
         /********* =FORGOT-PASSWORD-MODAL  */
-        this.forgotPasswordStages = new Pane[]{this.forgotPasswordStage1, this.forgotPasswordStage2 };
+        this.forgotPasswordStages = new Pane[]{this.forgotPasswordStage1, this.forgotPasswordStage2, this.forgotPasswordStage3 };
         /********* END =FORGOT-PASSWORD-MODAL  */
         //set char length limit
         this.recoveryCodeS1.setTextFormatter(new TextFormatter<String>(change -> change.getControlNewText().length()<= 3 ? change : null));
@@ -184,9 +226,18 @@ public class AuthLogin extends EventDispatcherAdapter {
 
         //clean textfields
         this.recoveryEmailTF.setText("");
+        this.recoveryCodeS1.setText("");
+        this.recoveryCodeS2.setText("");
+        this.recoveryCodeS3.setText("");
+        this.recoveryCodeS4.setText("");
+        this.newPassword.setText("");
+        this.newPasswordConfimation.setText("");
+
+
 
         this.forgoPasswordModal.setVisible(false);
         ForgotPasswordModal.resetStage();
+        ForgotPasswordModal.clear();
     }
 
 
@@ -201,14 +252,62 @@ public class AuthLogin extends EventDispatcherAdapter {
 
        switch (ForgotPasswordModal.getCurrentStage()){
            case 0:
-               if(recoveryEmailTF.getText().length()>3){
-                   this.recoveryEmailErrorLbl.setVisible(false);
-                   this.forgotPasswordStages[ForgotPasswordModal.currentStage].setVisible(false);
-                   this.forgotPasswordStages[ForgotPasswordModal.nextStage()].setVisible(true);
+               if(recoveryEmailTF.getText().length()>3 && !recoveryEmailTF.getText().isEmpty() && recoveryEmailTF.getText()!=null ){
+                   recoveryEmailTF.getStyleClass().removeIf( name -> name.equals("error"));
+                   this.showLoadingModal();
+                   /********* =NON-BLOCK ASYNC REQUEST  */
+                   CompletableFuture.supplyAsync( () -> {
+                       JPADaoManager jpaDaoManager = new JPADaoManager();
+                       if(jpaDaoManager.validEmail(recoveryEmailTF.getText())){
+                           return true;
+                       } else{
+                           return false;
+                       }
+                   }).thenAccept( (status) ->{
+
+                       if(status){
+                           System.out.println("Valid email");
+                           ForgotPasswordModal.setRecoveryEmail(recoveryEmailTF.getText());
+                           //generate recoveryCode
+                           String rc1 = (CodeGenerator.generate(3)).toString().toUpperCase();
+                           String rc2 = CodeGenerator.generate(3).toString().toUpperCase();
+                           String rc3 = CodeGenerator.generate(3).toString().toUpperCase();
+                           String rc4 = CodeGenerator.generate(1).toString().toUpperCase();
+                           ForgotPasswordModal.setRecoveryCode(rc1+rc2+rc3+rc4);
+                           System.out.println(ForgotPasswordModal.getRecoveryCode());
+
+                           //format string
+                           String formattedCode = ForgotPasswordModal.getRecoveryCode().substring(0,3)+"-";
+                           formattedCode += ForgotPasswordModal.getRecoveryCode().substring(3,6)+"-";
+                           formattedCode += ForgotPasswordModal.getRecoveryCode().substring(6,9)+"-";
+                           formattedCode += ForgotPasswordModal.getRecoveryCode().substring(9);
+                           //send email with code
+                           try {
+
+                               EmailSender.sendEmail(ForgotPasswordModal.getRecoveryEmail(), formattedCode);
+                           } catch (MessagingException e) {
+                               e.printStackTrace();
+                           }
+
+
+                       } else{
+                           System.out.println("Invalid email");
+                       }
+
+                        //update modal
+                       this.recoveryEmailErrorLbl.setVisible(false);
+                       this.forgotPasswordStages[ForgotPasswordModal.currentStage].setVisible(false);
+                       this.forgotPasswordStages[ForgotPasswordModal.nextStage()].setVisible(true);
+
+                       this.hideLoadingModal();
+
+                   });
+
+
                } else{
+                   recoveryEmailTF.getStyleClass().add("error");
                    this.recoveryEmailErrorLbl.setVisible(true);
                }
-
        }
 
     }
@@ -232,10 +331,29 @@ public class AuthLogin extends EventDispatcherAdapter {
         else
             recoveryCodeS4.getStyleClass().removeIf( name -> name.equals("error"));
 
+        if (recoveryCodeS1.getText().length()== 3 && recoveryCodeS2.getText().length()== 3 && recoveryCodeS3.getText().length()== 3 && recoveryCodeS4.getText().length()== 1 ){
+            if ( (recoveryCodeS1.getText() + recoveryCodeS2.getText() + recoveryCodeS3.getText() + recoveryCodeS4.getText()).equals(ForgotPasswordModal.getRecoveryCode())) {
+                this.forgotPasswordStages[ForgotPasswordModal.currentStage].setVisible(false);
+                this.forgotPasswordStages[ForgotPasswordModal.nextStage()].setVisible(true);
+                recoveryCodeS1.getStyleClass().removeIf( name -> name.equals("error"));
+                recoveryCodeS2.getStyleClass().removeIf( name -> name.equals("error"));
+                recoveryCodeS3.getStyleClass().removeIf( name -> name.equals("error"));
+                recoveryCodeS4.getStyleClass().removeIf( name -> name.equals("error"));
+            } else{
+                recoveryCodeS1.getStyleClass().add("error");
+                recoveryCodeS2.getStyleClass().add("error");
+                recoveryCodeS3.getStyleClass().add("error");
+                recoveryCodeS4.getStyleClass().add("error");
+            }
+        }
+
 
     }
 
-
+@FXML
+public void passwordChangeConfirm(MouseEvent event){
+   this.closeForgotPasswordModal(null);
+}
 
     /********* END =FORGOT-PASSWORD-MODAL  */
 
@@ -247,6 +365,13 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     private void hideDialog(){
         this.dialogWindow.setVisible(false);
+    }
+
+    private void showLoadingModal(){
+        this.modalLoading.setVisible(true);
+    }
+    private void hideLoadingModal(){
+        this.modalLoading.setVisible(false);
     }
     /********* END =DIALOGS  */
 
