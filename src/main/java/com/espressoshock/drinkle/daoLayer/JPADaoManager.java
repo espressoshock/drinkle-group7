@@ -11,12 +11,23 @@ import com.espressoshock.drinkle.models.PrivateAccount;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.security.MessageDigest;
+import java.util.List;
 
 public class JPADaoManager {
     private static EntityManagerFactory EMF = Persistence.createEntityManagerFactory("drinklePU");
     private JPAAAccountDal accountDao;
 
     public JPADaoManager() {
+    }
+
+    public boolean validEmail(String email){
+        this.accountDao = new JPAAAccountDal(this.EMF.createEntityManager());
+        AccountDAL result = this.accountDao.getByKey(email);
+
+        if(result == null)
+            return false;
+
+        return true;
     }
 
     public Account login(Account account){
