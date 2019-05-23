@@ -20,6 +20,7 @@ public class AuthLogin extends EventDispatcherAdapter {
     /********* =FORGOT-PASSWORD-MODAL  */
     private static class ForgotPasswordModal{
         public static final int INIT_STAGE = 0;
+        public static final int MAX_STAGE = 3;
         private static int currentStage = INIT_STAGE;
         private static final String MODAL_NAME = "forgotPasswordStage";
 
@@ -28,12 +29,14 @@ public class AuthLogin extends EventDispatcherAdapter {
         }
 
         public static int nextStage(){
-            return ++currentStage;
+            if(currentStage<MAX_STAGE)
+                return ++currentStage;
+            return INIT_STAGE;
         }
         public static int prevStage(){
             if(currentStage>INIT_STAGE)
                return  --currentStage;
-            return 0;
+            return INIT_STAGE;
         }
         public static void resetStage(){
             currentStage = INIT_STAGE;
@@ -161,7 +164,7 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     @FXML
     public void forgotPasswordNext(MouseEvent event) {
-        this.forgotPasswordStages[ForgotPasswordModal.getCurrentStage()].setVisible(true);
+        this.forgotPasswordStages[ForgotPasswordModal.nextStage()].setVisible(true);
     }
 
     /********* END =FORGOT-PASSWORD-MODAL  */
