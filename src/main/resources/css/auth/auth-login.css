@@ -102,18 +102,37 @@
 }
 
 /********* =LOADING DIALOG */
-.loading-container {
+.modal-container {
     -fx-background-color: rgba(0, 0, 0, 0.5);
     -fx-background-radius: 20 0 20 20;
 }
-.loading-container .card{
+.modal-container .card{
     -fx-background-color: #fff;
     -fx-background-radius: 20;
 }
-.loading-container .card .label{
+.modal-container .card .label{
     -fx-text-fill: #bfc0c7;
 }
 
+.modal-container .action-button{
+    -fx-background-color: #3f4fa5;
+    -fx-background-radius: 20 0 20 0;
+    -fx-text-fill: #fff;
+}
+
+#forgoPasswordModal .text-field{
+    -fx-background-color: #e3e5eb;
+    -fx-background-radius: 10;
+    -fx-text-fill: #82859c;
+    -fx-padding: 0 0 0 10;
+    -fx-font-size: 11;
+}
+
+#forgoPasswordModal .label{
+    -fx-font-size: 12.5;
+    -fx-text-fill: #a9acc9;
+    -fx-padding: 0 0 6 5;
+}
 /********* END =LOADING DIALOG */
 
 /********* =TOOLTIPS */
