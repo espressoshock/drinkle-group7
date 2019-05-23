@@ -1,9 +1,5 @@
 package com.espressoshock.drinkle;
-import com.espressoshock.drinkle.daoLayer.JPADaoManager;
-import com.espressoshock.drinkle.daoLayer.entities.JPAPersonDao;
 import com.espressoshock.drinkle.daoLayer.entities.PersonDao;
-import com.espressoshock.drinkle.models.Account;
-import com.espressoshock.drinkle.models.Person;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
