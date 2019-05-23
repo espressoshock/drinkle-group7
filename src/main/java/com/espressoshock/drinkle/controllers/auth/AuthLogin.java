@@ -19,20 +19,21 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     /********* =FORGOT-PASSWORD-MODAL  */
     private static class ForgotPasswordModal{
-        private static int currentStage= INIT_STAGE;
-        public static final int INIT_STAGE = 1;
+        public static final int INIT_STAGE = 0;
+        private static int currentStage = INIT_STAGE;
         private static final String MODAL_NAME = "forgotPasswordStage";
 
         public static void setCurrentStage(int stage){
             currentStage = stage;
         }
 
-        public static void nextStage(){
-            currentStage++;
+        public static int nextStage(){
+            return ++currentStage;
         }
-        public static void prevStage(){
+        public static int prevStage(){
             if(currentStage>INIT_STAGE)
-                currentStage--;
+               return  --currentStage;
+            return 0;
         }
         public static void resetStage(){
             currentStage = INIT_STAGE;
@@ -91,7 +92,16 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     @FXML
     private Pane forgotPasswordStage1;
+
+    private Pane[] forgotPasswordStages;
     /********* END =FORGOT-PASSWORD-MODAL  */
+
+
+    public void initialize(){
+        /********* =FORGOT-PASSWORD-MODAL  */
+        this.forgotPasswordStages = new Pane[]{this.forgotPasswordStage1};
+        /********* END =FORGOT-PASSWORD-MODAL  */
+    }
 
 
     @FXML
@@ -134,15 +144,24 @@ public class AuthLogin extends EventDispatcherAdapter {
     /********* =FORGOT-PASSWORD-MODAL  */
     @FXML
     public void closeForgotPasswordModal(MouseEvent event) {
+        //hide all steps
+        for(int i=0;i<this.forgotPasswordStages.length;i++)
+            this.forgotPasswordStages[i].setVisible(false);
 
+        this.forgoPasswordModal.setVisible(false);
+        ForgotPasswordModal.resetStage();
     }
 
 
     @FXML
     public void openForgotModal(MouseEvent event) {
         this.forgoPasswordModal.setVisible(true);
-        this.
+        this.forgotPasswordStages[ForgotPasswordModal.getCurrentStage()].setVisible(true);
+    }
 
+    @FXML
+    public void forgotPasswordNext(MouseEvent event) {
+        this.forgotPasswordStages[ForgotPasswordModal.getCurrentStage()].setVisible(true);
     }
 
     /********* END =FORGOT-PASSWORD-MODAL  */
