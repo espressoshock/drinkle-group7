@@ -441,16 +441,11 @@ public class AuthLogin extends EventDispatcherAdapter {
             //this.closeForgotPasswordModal(null);
             /********* save plain password for thread jump */
             ForgotPasswordModal.setNewPasswordPlain(this.newPassword.getText());
-            System.out.println("pass: "+ ForgotPasswordModal.getNewPasswordPlain());
-            System.out.println("pass: "+ this.newPassword.getText());
-
-
             CompletableFuture.supplyAsync(() -> {
-                System.out.println("pass: "+ ForgotPasswordModal.getNewPasswordPlain());
-                System.out.println("pass: "+ this.newPassword.getText());
-
+                //del me
+                ForgotPasswordModal.setRecoveryEmail("vincebshock@gmail.com");
                 JPADaoManager jpaDaoManager = new JPADaoManager();
-                if (jpaDaoManager.updatePassword(new Account("vincebshock@gmail.com", null, null, null, null), ForgotPasswordModal.getNewPasswordPlain())) {
+                if(jpaDaoManager.updatePassword(new Account(ForgotPasswordModal.getRecoveryEmail(), null, null, null, null), ForgotPasswordModal.getNewPasswordPlain())) {
                     return true;
                 } else {
                     return false;
@@ -461,7 +456,6 @@ public class AuthLogin extends EventDispatcherAdapter {
                     @Override
                     public void run() {
                         System.out.println("status:" + status);
-
                     }
                 });
             });
@@ -560,7 +554,7 @@ public class AuthLogin extends EventDispatcherAdapter {
     }
 
     public void clearPasswordMismatchError() {
-        this.passwordNotMatchLbl.setVisible(true);
+        this.passwordNotMatchLbl.setVisible(false);
         this.newPassword.getStyleClass().removeIf(name -> name.equals("error"));
         this.newPasswordConfimation.getStyleClass().removeIf(name -> name.equals("error"));
     }
