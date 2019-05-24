@@ -17,7 +17,8 @@ public class EmailSender {
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true"); //TLS
 
-
+        String account = "XX@XX.com";
+        String passsword = "XXX";
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override

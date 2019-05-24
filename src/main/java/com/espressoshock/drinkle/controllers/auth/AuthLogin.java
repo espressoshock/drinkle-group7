@@ -1,6 +1,9 @@
 package com.espressoshock.drinkle.controllers.auth;
 
-import animatefx.animation.*;
+import animatefx.animation.FadeIn;
+import animatefx.animation.FadeOut;
+import animatefx.animation.Shake;
+import animatefx.animation.Tada;
 import com.espressoshock.drinkle.daoLayer.JPADaoManager;
 import com.espressoshock.drinkle.models.Account;
 import com.espressoshock.drinkle.models.PrivateAccount;
@@ -23,173 +26,57 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import javax.mail.MessagingException;
-import java.util.concurrent.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
 
 public class AuthLogin extends EventDispatcherAdapter {
 
 
-    /********* =FORGOT-PASSWORD-MODAL  */
-    private static class ForgotPasswordModal {
-        public static final int INIT_STAGE = 0;
-        public static final int MAX_STAGE = 3;
-        private static int currentStage = INIT_STAGE;
-        private static final String MODAL_NAME = "forgotPasswordStage";
-        private static String recoveryEmail;
-        private static String recoveryCode;
-        private static String newPasswordPlain;
-
-        public static void setCurrentStage(int stage) {
-            currentStage = stage;
-        }
-
-        public static int nextStage() {
-            if (currentStage < MAX_STAGE)
-                return ++currentStage;
-            return INIT_STAGE;
-        }
-
-        public static int prevStage() {
-            if (currentStage > INIT_STAGE)
-                return --currentStage;
-            return INIT_STAGE;
-        }
-
-        public static String getRecoveryCode() {
-            return recoveryCode;
-        }
-
-        public static void setRecoveryCode(String recoveryCode) {
-            ForgotPasswordModal.recoveryCode = recoveryCode;
-        }
-
-        public static void clear() {
-            recoveryEmail = "";
-            recoveryCode = "";
-        }
-
-        public static String getNewPasswordPlain() {
-            return newPasswordPlain;
-        }
-
-        public static void setNewPasswordPlain(String newPasswordPlain) {
-            ForgotPasswordModal.newPasswordPlain = newPasswordPlain;
-        }
-
-        public static String getRecoveryEmail() {
-            return recoveryEmail;
-        }
-
-        public static void setRecoveryEmail(String recoveryEmail) {
-            ForgotPasswordModal.recoveryEmail = recoveryEmail;
-        }
-
-        public static void resetStage() {
-            currentStage = INIT_STAGE;
-        }
-
-        public static int getCurrentStage() {
-            return currentStage;
-        }
-
-        public static String getCurrentModalName() {
-            return MODAL_NAME + currentStage;
-        }
-    }
-
-    /********* END =FORGOT-PASSWORD-MODAL  */
-
-    private static class AsyncCallable implements Callable<Boolean> {
-        public static Boolean digestresult;
-        private final String email;
-        private final String password;
-
-        public AsyncCallable(String email, String password) {
-            this.email = email;
-            this.password = password;
-        }
-
-        public Boolean call() {
-            JPADaoManager jpaDaoManager = new JPADaoManager();
-            if (jpaDaoManager.login(new PrivateAccount(email, password, null, null, null)) != null) {
-                //logged
-                return true;
-            } else {
-                //incorrect username/password
-                return false;
-
-            }
-        }
-    }
-
     @FXML
     private TextField emailTf;
-
     @FXML
     private HBox dialogWindow;
-
     @FXML
     private ToggleGroup loginType;
-
     @FXML
     private PasswordField passwordTf;
-
     @FXML
     private Label errorLbl;
     /********* =FORGOT-PASSWORD-MODAL  */
     @FXML
     private HBox forgoPasswordModal;
-
     @FXML
     private Pane forgotPasswordStage1;
-
     @FXML
     private Pane forgotPasswordStage2;
-
     @FXML
     private Pane forgotPasswordStage3;
-
-
     @FXML
     private TextField recoveryEmailTF;
-
     @FXML
     private Text recoveryEmailErrorLbl;
-
     @FXML
     private TextField recoveryCodeS1;
-
     @FXML
     private TextField recoveryCodeS2;
-
     @FXML
     private TextField recoveryCodeS3;
-
     @FXML
     private TextField recoveryCodeS4;
-
     @FXML
     private Text passwordNotMatchLbl;
-
     @FXML
     private TextField newPasswordConfimation;
-
     @FXML
     private TextField newPassword;
-
     @FXML
     private Pane modalLoading;
-
     @FXML
     private Pane resultModal;
-
     @FXML
     private Pane modalUpdating;
-
     @FXML
     private Label modalUpdatingText;
-
-
-
     private Pane[] forgotPasswordStages;
 
     /********* END =FORGOT-PASSWORD-MODAL  */
@@ -206,7 +93,6 @@ public class AuthLogin extends EventDispatcherAdapter {
         this.recoveryCodeS4.setTextFormatter(new TextFormatter<String>(change -> change.getControlNewText().length() <= 1 ? change : null));
 
     }
-
 
     @FXML
     public void openRegistrationView(MouseEvent event) {
@@ -318,7 +204,6 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     }
 
-
     @FXML
     public void openForgotModal(Event event) {
         this.forgoPasswordModal.setVisible(true);
@@ -341,21 +226,17 @@ public class AuthLogin extends EventDispatcherAdapter {
                     /********* =NON-BLOCK ASYNC REQUEST  */
                     CompletableFuture.supplyAsync(() -> {
                         JPADaoManager jpaDaoManager = new JPADaoManager();
-                        if (jpaDaoManager.validEmail(recoveryEmailTF.getText())) {
-                            return true;
-                        } else {
-                            return false;
-                        }
+                        return jpaDaoManager.validEmail(recoveryEmailTF.getText());
                     }).thenAccept((status) -> {
 
                         if (status) {
                             System.out.println("Valid email");
                             ForgotPasswordModal.setRecoveryEmail(recoveryEmailTF.getText());
                             //generate recoveryCode
-                            String rc1 = (CodeGenerator.generate(3)).toString().toUpperCase();
-                            String rc2 = CodeGenerator.generate(3).toString().toUpperCase();
-                            String rc3 = CodeGenerator.generate(3).toString().toUpperCase();
-                            String rc4 = CodeGenerator.generate(1).toString().toUpperCase();
+                            String rc1 = (CodeGenerator.generate(3)).toUpperCase();
+                            String rc2 = CodeGenerator.generate(3).toUpperCase();
+                            String rc3 = CodeGenerator.generate(3).toUpperCase();
+                            String rc4 = CodeGenerator.generate(1).toUpperCase();
                             ForgotPasswordModal.setRecoveryCode(rc1 + rc2 + rc3 + rc4);
                             System.out.println(ForgotPasswordModal.getRecoveryCode());
 
@@ -449,28 +330,40 @@ public class AuthLogin extends EventDispatcherAdapter {
         if (this.newPassword.getText().equals(this.newPasswordConfimation.getText()) && this.newPassword.getText().length() > 5) {
             /********* clear password mismatch error */
             this.clearPasswordMismatchError();
-            //this.closeForgotPasswordModal(null);
             /********* updating modal text */
             this.showUpdatingModal();
-            this.setUpdatingModalMessage("Updating your password");
+            this.setUpdatingModalMessage("Updating your password...");
             /********* save plain password for thread jump */
             ForgotPasswordModal.setNewPasswordPlain(this.newPassword.getText());
             CompletableFuture.supplyAsync(() -> {
                 JPADaoManager jpaDaoManager = new JPADaoManager();
-                //del me
-                ForgotPasswordModal.setRecoveryEmail("vincebshock@gmail.com");
-               if(jpaDaoManager.updatePassword(new Account(ForgotPasswordModal.getRecoveryEmail(), null, null, null, null), ForgotPasswordModal.getNewPasswordPlain())) {
-                    return true;
-                } else {
-                    return false;
-                }
+                return jpaDaoManager.updatePassword(new Account(ForgotPasswordModal.getRecoveryEmail(), null, null, null, null), ForgotPasswordModal.getNewPasswordPlain());
             }).thenAccept((status) -> {
                 /********* EVENT DISPATCHER -> WITHIN SAME THREAD  */
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
                         System.out.println("status:" + status);
-                        AuthLogin:hideUpdatingModal();
+                        AuthLogin:
+                        hideUpdatingModal();
+                        /********* SUCESSFULLY PASSWORD UDPDATE  */
+                        if (status) {
+                            /********* SHOW SUCCESS SCREEN */
+                            AuthLogin:
+                            showResultModal();
+                            AuthLogin:
+                            hideResultModal(7);
+
+                        } else {
+                            /********* UNEXPECTED ERROR */
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Password Update error");
+                            alert.setHeaderText("An error occurred during the password updating");
+                            alert.setContentText("Please try back again later");
+
+                            alert.showAndWait();
+                        }
+
                     }
                 });
             });
@@ -482,9 +375,6 @@ public class AuthLogin extends EventDispatcherAdapter {
         }
 
     }
-
-    /********* END =FORGOT-PASSWORD-MODAL  */
-
 
     /********* =DIALOGS  */
     private void showDialog() {
@@ -507,6 +397,8 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     }
 
+    /********* END =FORGOT-PASSWORD-MODAL  */
+
     private void showLoadingModal() {
         this.modalLoading.setVisible(true);
         new FadeIn(modalLoading).setSpeed(6d).play();
@@ -515,7 +407,7 @@ public class AuthLogin extends EventDispatcherAdapter {
     private void hideLoadingModal() {
 
         /********* =MODAL-ANIMATION  */
-       FadeOut fadeOut = new FadeOut(modalLoading);
+        FadeOut fadeOut = new FadeOut(modalLoading);
         fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -536,7 +428,7 @@ public class AuthLogin extends EventDispatcherAdapter {
     private void hideUpdatingModal() {
 
         /********* =MODAL-ANIMATION  */
-       FadeOut fadeOut = new FadeOut(modalUpdating);
+        FadeOut fadeOut = new FadeOut(modalUpdating);
         fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -553,7 +445,7 @@ public class AuthLogin extends EventDispatcherAdapter {
         new FadeIn(resultModal).setSpeed(6d).play();
     }
 
-    private void hideResultModal(double mills) {
+    private void hideResultModal(double seconds) {
 
         /********* =MODAL-ANIMATION  */
         FadeOut fadeOut = new FadeOut(resultModal);
@@ -561,17 +453,18 @@ public class AuthLogin extends EventDispatcherAdapter {
             @Override
             public void handle(ActionEvent actionEvent) {
                 resultModal.setVisible(false);
+                /********* HIDE WINDOW */
+                closeForgotPasswordModal(null);
             }
         });
         fadeOut.setSpeed(4d);
-        fadeOut.setDelay(Duration.millis(mills)).play();
+        fadeOut.setDelay(Duration.seconds(seconds)).play();
         /********* =END MODAL-ANIMATION  */
     }
 
-    private void setUpdatingModalMessage(String text){
+    private void setUpdatingModalMessage(String text) {
         this.modalUpdatingText.setText(text);
     }
-
 
     private void clearRecoveryCodeFields() {
         recoveryCodeS1.getStyleClass().removeIf(name -> name.equals("error"));
@@ -619,9 +512,6 @@ public class AuthLogin extends EventDispatcherAdapter {
         this.newPasswordConfimation.getStyleClass().removeIf(name -> name.equals("error"));
     }
 
-
-    /********* END =DIALOGS  */
-
     /********* =ANIMATIONS  */
     private void addErrorAnimation(Node node) {
         new Shake(node).play();
@@ -631,11 +521,13 @@ public class AuthLogin extends EventDispatcherAdapter {
         new Tada(node).play();
     }
 
+
+    /********* END =DIALOGS  */
+
     private void addRecoveryCodeErrorAnimation(Node node) {
         node.getStyleClass().add("error");
         this.addErrorAnimation(node);
     }
-
 
     /********* END =ANIMATIONS  */
 
@@ -646,6 +538,94 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     public void SynchContinueApp() {
         super.dispatchViewChangeRequest(ViewLoader.default_view);
+    }
+
+    /********* =FORGOT-PASSWORD-MODAL  */
+    private static class ForgotPasswordModal {
+        public static final int INIT_STAGE = 0;
+        public static final int MAX_STAGE = 3;
+        private static final String MODAL_NAME = "forgotPasswordStage";
+        private static int currentStage = INIT_STAGE;
+        private static String recoveryEmail;
+        private static String recoveryCode;
+        private static String newPasswordPlain;
+
+        public static int nextStage() {
+            if (currentStage < MAX_STAGE)
+                return ++currentStage;
+            return INIT_STAGE;
+        }
+
+        public static int prevStage() {
+            if (currentStage > INIT_STAGE)
+                return --currentStage;
+            return INIT_STAGE;
+        }
+
+        public static String getRecoveryCode() {
+            return recoveryCode;
+        }
+
+        public static void setRecoveryCode(String recoveryCode) {
+            ForgotPasswordModal.recoveryCode = recoveryCode;
+        }
+
+        public static void clear() {
+            recoveryEmail = "";
+            recoveryCode = "";
+        }
+
+        public static String getNewPasswordPlain() {
+            return newPasswordPlain;
+        }
+
+        public static void setNewPasswordPlain(String newPasswordPlain) {
+            ForgotPasswordModal.newPasswordPlain = newPasswordPlain;
+        }
+
+        public static String getRecoveryEmail() {
+            return recoveryEmail;
+        }
+
+        public static void setRecoveryEmail(String recoveryEmail) {
+            ForgotPasswordModal.recoveryEmail = recoveryEmail;
+        }
+
+        public static void resetStage() {
+            currentStage = INIT_STAGE;
+        }
+
+        public static int getCurrentStage() {
+            return currentStage;
+        }
+
+        public static void setCurrentStage(int stage) {
+            currentStage = stage;
+        }
+
+        public static String getCurrentModalName() {
+            return MODAL_NAME + currentStage;
+        }
+    }
+
+    /********* END =FORGOT-PASSWORD-MODAL  */
+
+    private static class AsyncCallable implements Callable<Boolean> {
+        public static Boolean digestresult;
+        private final String email;
+        private final String password;
+
+        public AsyncCallable(String email, String password) {
+            this.email = email;
+            this.password = password;
+        }
+
+        public Boolean call() {
+            JPADaoManager jpaDaoManager = new JPADaoManager();
+            //logged
+            //incorrect username/password
+            return jpaDaoManager.login(new PrivateAccount(email, password, null, null, null)) != null;
+        }
     }
 
 }
