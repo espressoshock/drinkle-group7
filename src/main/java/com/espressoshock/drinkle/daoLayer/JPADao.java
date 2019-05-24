@@ -59,6 +59,22 @@ public class JPADao<K, E> implements  IDao<K, E> {
             this.entityManager.close();
         }
     }
+    public void updateMerge(E entity){
+        EntityTransaction entityTransaction = null;
+        E tmp = null;
+        try{
+            entityTransaction = this.entityManager.getTransaction();
+            entityTransaction.begin();
+            this.entityManager.merge(entity);
+            this.entityManager.getTransaction().commit();
+            this.entityManager.persist(entity);
+
+        } catch (NoResultException ex){
+            ex.printStackTrace();
+        } finally{
+            this.entityManager.close();
+        }
+    }
 
     @Override
     public void remove(K k,E entity) {
