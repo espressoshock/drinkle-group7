@@ -178,6 +178,13 @@ public class AuthLogin extends EventDispatcherAdapter {
     @FXML
     private Pane modalLoading;
 
+    @FXML
+    private Pane modalUpdating;
+
+    @FXML
+    private Label modalUpdatingText;
+
+
 
     private Pane[] forgotPasswordStages;
 
@@ -439,13 +446,16 @@ public class AuthLogin extends EventDispatcherAdapter {
             /********* clear password mismatch error */
             this.clearPasswordMismatchError();
             //this.closeForgotPasswordModal(null);
+            /********* updating modal text */
+            this.showUpdatingModal();
+            this.setUpdatingModalMessage("Updating your password");
             /********* save plain password for thread jump */
             ForgotPasswordModal.setNewPasswordPlain(this.newPassword.getText());
             CompletableFuture.supplyAsync(() -> {
+                JPADaoManager jpaDaoManager = new JPADaoManager();
                 //del me
                 ForgotPasswordModal.setRecoveryEmail("vincebshock@gmail.com");
-                JPADaoManager jpaDaoManager = new JPADaoManager();
-                if(jpaDaoManager.updatePassword(new Account(ForgotPasswordModal.getRecoveryEmail(), null, null, null, null), ForgotPasswordModal.getNewPasswordPlain())) {
+               if(jpaDaoManager.updatePassword(new Account(ForgotPasswordModal.getRecoveryEmail(), null, null, null, null), ForgotPasswordModal.getNewPasswordPlain())) {
                     return true;
                 } else {
                     return false;
@@ -456,6 +466,7 @@ public class AuthLogin extends EventDispatcherAdapter {
                     @Override
                     public void run() {
                         System.out.println("status:" + status);
+                        AuthLogin:hideUpdatingModal();
                     }
                 });
             });
@@ -500,7 +511,7 @@ public class AuthLogin extends EventDispatcherAdapter {
     private void hideLoadingModal() {
 
         /********* =MODAL-ANIMATION  */
-      /*  FadeOut fadeOut = new FadeOut(modalLoading);
+       FadeOut fadeOut = new FadeOut(modalLoading);
         fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -508,10 +519,35 @@ public class AuthLogin extends EventDispatcherAdapter {
             }
         });
         fadeOut.setSpeed(4d);
-        fadeOut.play();*/
+        fadeOut.play();
         /********* =END MODAL-ANIMATION  */
-        modalLoading.setVisible(false);
+
     }
+
+    private void showUpdatingModal() {
+        this.modalUpdating.setVisible(true);
+        new FadeIn(modalUpdating).setSpeed(6d).play();
+    }
+
+    private void hideUpdatingModal() {
+
+        /********* =MODAL-ANIMATION  */
+       FadeOut fadeOut = new FadeOut(modalUpdating);
+        fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                modalUpdating.setVisible(false);
+            }
+        });
+        fadeOut.setSpeed(4d);
+        fadeOut.play();
+        /********* =END MODAL-ANIMATION  */
+    }
+
+    private void setUpdatingModalMessage(String text){
+        this.modalUpdatingText.setText(text);
+    }
+
 
     private void clearRecoveryCodeFields() {
         recoveryCodeS1.getStyleClass().removeIf(name -> name.equals("error"));
