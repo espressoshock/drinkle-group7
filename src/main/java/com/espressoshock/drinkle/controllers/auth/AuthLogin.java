@@ -2,6 +2,7 @@ package com.espressoshock.drinkle.controllers.auth;
 
 import animatefx.animation.*;
 import com.espressoshock.drinkle.daoLayer.JPADaoManager;
+import com.espressoshock.drinkle.models.Account;
 import com.espressoshock.drinkle.models.PrivateAccount;
 import com.espressoshock.drinkle.recoveryCodeGenerator.CodeGenerator;
 import com.espressoshock.drinkle.recoveryCodeGenerator.EmailSender;
@@ -424,13 +425,30 @@ public class AuthLogin extends EventDispatcherAdapter {
 @FXML
 public void passwordChangeConfirm(Event event){
     /********* PASSWORD DOESN'T MATCH  && not->satisfy min requirements */
-   if(!this.newPassword.getText().equals(this.newPasswordConfimation) && this.newPassword.getText().length()<5){
+   if(this.newPassword.getText().equals(this.newPasswordConfimation) && this.newPassword.getText().length()>5){
        /********* display password mismatch error */
        this.displayPasswordMismatchError();
    } else{
        /********* clear password mismatch error */
        this.clearPasswordMismatchError();
        this.closeForgotPasswordModal(null);
+       CompletableFuture.supplyAsync( () -> {
+           JPADaoManager jpaDaoManager = new JPADaoManager();
+           if (jpaDaoManager.updatePassword(new Account("vincebshock@gmail.com", "xxxx", "", null, null), this.newPassword.getText())) {
+               return true;
+           } else {
+               return false;
+           }
+       }).thenAccept( (status) ->{
+           /********* EVENT DISPATCHER -> WITHIN SAME THREAD  */
+           Platform.runLater(new Runnable(){
+               @Override public void run() {
+                   System.out.println("status:"+status);
+
+               }
+           });
+       });
+
    }
 
 }
