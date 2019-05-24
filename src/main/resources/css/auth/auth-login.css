@@ -120,11 +120,16 @@
     -fx-text-fill: #fff;
 }
 
+#modalLoading, #modalUpdating, #resultModal{
+    -fx-background-radius: 20;
+    -fx-background-color: #fff;
+}
+
 
 /********* END =LOADING DIALOG */
 
 /*********  =FORGOT-PASSWORD */
-#forgoPasswordModal .recovery-email{
+#forgoPasswordModal .recovery-email, .new-password{
     -fx-background-color: #e3e5eb;
     -fx-background-radius: 10;
     -fx-text-fill: #82859c;
@@ -157,6 +162,12 @@
     -fx-font-size: 18;
 }
 .recovery-code-wrapper .error{
+    -fx-border-width: 4;
+    -fx-border-insets: -4;
+    -fx-border-radius: 13;
+    -fx-border-color: red;
+}
+.text-field.error{
     -fx-border-width: 4;
     -fx-border-insets: -4;
     -fx-border-radius: 13;
