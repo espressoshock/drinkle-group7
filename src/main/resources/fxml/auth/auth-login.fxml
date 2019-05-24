@@ -94,11 +94,11 @@
             </Label>
          </children>
       </Pane>
-      <HBox fx:id="forgoPasswordModal" alignment="CENTER" prefHeight="694.0" prefWidth="1000.0" styleClass="modal-container" visible="false">
+      <HBox fx:id="forgoPasswordModal" alignment="CENTER" prefHeight="694.0" prefWidth="1000.0" styleClass="modal-container">
          <children>
             <HBox alignment="CENTER" maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0" styleClass="card">
                <children>
-                  <Pane fx:id="forgotPasswordStage3" prefHeight="300.0" prefWidth="501.0" visible="false">
+                  <Pane fx:id="forgotPasswordStage3" prefHeight="300.0" prefWidth="501.0">
                      <children>
                         <ImageView fitHeight="42.0" fitWidth="280.0" layoutX="20.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
