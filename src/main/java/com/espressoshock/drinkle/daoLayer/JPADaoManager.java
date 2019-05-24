@@ -11,7 +11,9 @@ import com.espressoshock.drinkle.models.PrivateAccount;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class JPADaoManager {
@@ -48,11 +50,10 @@ public class JPADaoManager {
 
     public Boolean updatePassword(Account account, String plainPassword){
         this.accountDao = new JPAAAccountDal(this.EMF.createEntityManager());
-        //AccountDAL result = this.accountDao.getByKey(account.getEmail());
         JPAAAccountDal mergingInstance = new JPAAAccountDal(this.EMF.createEntityManager());
         AccountDAL currentContext = mergingInstance.getByKey(account.getEmail());
         if (currentContext!=null){
-            currentContext.setPassword("plainPassword");
+            currentContext.setPassword(this.MD5Encrypt(plainPassword));
             this.accountDao.updateMerge(currentContext);
             return true;
         }
@@ -77,4 +78,6 @@ public class JPADaoManager {
 
         return false;
     }
+
+
 }
