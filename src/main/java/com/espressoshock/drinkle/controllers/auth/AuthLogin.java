@@ -423,7 +423,16 @@ public class AuthLogin extends EventDispatcherAdapter {
 
 @FXML
 public void passwordChangeConfirm(Event event){
-   this.closeForgotPasswordModal(null);
+    /********* PASSWORD DOESN'T MATCH  && not->satisfy min requirements */
+   if(!this.newPassword.getText().equals(this.newPasswordConfimation) && this.newPassword.getText().length()<5){
+       /********* display password mismatch error */
+       this.displayPasswordMismatchError();
+   } else{
+       /********* clear password mismatch error */
+       this.clearPasswordMismatchError();
+       this.closeForgotPasswordModal(null);
+   }
+
 }
 
     /********* END =FORGOT-PASSWORD-MODAL  */
@@ -497,6 +506,20 @@ public void passwordChangeConfirm(Event event){
         new FadeIn( forgotPasswordStages[ForgotPasswordModal.getCurrentStage()]).setSpeed(6d).play();
 
     }
+    public void displayPasswordMismatchError(){
+        this.passwordNotMatchLbl.setVisible(true);
+        this.addTitleErrorAnimation(this.passwordNotMatchLbl);
+        this.addErrorAnimation(this.newPassword);
+        this.addErrorAnimation(this.newPasswordConfimation);
+    }
+
+    public void clearPasswordMismatchError(){
+        this.passwordNotMatchLbl.setVisible(true);
+        this.newPassword.getStyleClass().removeIf( name -> name.equals("error"));
+        this.newPasswordConfimation.getStyleClass().removeIf( name -> name.equals("error"));
+    }
+
+
     /********* END =DIALOGS  */
 
     /********* =ANIMATIONS  */
