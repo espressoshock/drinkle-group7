@@ -507,7 +507,12 @@ public void passwordChangeConfirm(Event event){
 
     }
     public void displayPasswordMismatchError(){
+        /********* error label visibility */
         this.passwordNotMatchLbl.setVisible(true);
+        /********* error css classes  */
+        this.newPassword.getStyleClass().add("error");
+        this.newPasswordConfimation.getStyleClass().add("error");
+        /********* error animations added  */
         this.addTitleErrorAnimation(this.passwordNotMatchLbl);
         this.addErrorAnimation(this.newPassword);
         this.addErrorAnimation(this.newPasswordConfimation);
