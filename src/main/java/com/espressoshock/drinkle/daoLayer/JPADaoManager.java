@@ -1,6 +1,7 @@
 package com.espressoshock.drinkle.daoLayer;
 
 import com.espressoshock.drinkle.daoLayer.entities.AccountDAL;
+import com.espressoshock.drinkle.daoLayer.entities.AccountDao;
 import com.espressoshock.drinkle.daoLayer.entities.JPAAAccountDal;
 import com.espressoshock.drinkle.daoLayer.entities.JPAAccountDao;
 import com.espressoshock.drinkle.models.Account;
@@ -43,6 +44,19 @@ public class JPADaoManager {
 
 
         return null;
+    }
+
+    public Boolean updatePassword(Account account, String plainPassword){
+        this.accountDao = new JPAAAccountDal(this.EMF.createEntityManager());
+        //AccountDAL result = this.accountDao.getByKey(account.getEmail());
+        JPAAAccountDal mergingInstance = new JPAAAccountDal(this.EMF.createEntityManager());
+        AccountDAL currentContext = mergingInstance.getByKey(account.getEmail());
+        if (currentContext!=null){
+            currentContext.setPassword("plainPassword");
+            this.accountDao.updateMerge(currentContext);
+            return true;
+        }
+        return false;
     }
 
     private boolean compareMD5(String toEncode, String encoded){
