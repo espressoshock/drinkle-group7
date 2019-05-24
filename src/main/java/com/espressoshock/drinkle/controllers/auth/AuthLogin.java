@@ -438,12 +438,19 @@ public class AuthLogin extends EventDispatcherAdapter {
         if (this.newPassword.getText().equals(this.newPasswordConfimation.getText()) && this.newPassword.getText().length() > 5) {
             /********* clear password mismatch error */
             this.clearPasswordMismatchError();
-            this.closeForgotPasswordModal(null);
-            
+            //this.closeForgotPasswordModal(null);
+            /********* save plain password for thread jump */
+            ForgotPasswordModal.setNewPasswordPlain(this.newPassword.getText());
+            System.out.println("pass: "+ ForgotPasswordModal.getNewPasswordPlain());
+            System.out.println("pass: "+ this.newPassword.getText());
+
+
             CompletableFuture.supplyAsync(() -> {
-                System.out.println(this.newPassword.getText());
+                System.out.println("pass: "+ ForgotPasswordModal.getNewPasswordPlain());
+                System.out.println("pass: "+ this.newPassword.getText());
+
                 JPADaoManager jpaDaoManager = new JPADaoManager();
-                if (jpaDaoManager.updatePassword(new Account("vincebshock@gmail.com", null, null, null, null), this.newPassword.getText())) {
+                if (jpaDaoManager.updatePassword(new Account("vincebshock@gmail.com", null, null, null, null), ForgotPasswordModal.getNewPasswordPlain())) {
                     return true;
                 } else {
                     return false;
