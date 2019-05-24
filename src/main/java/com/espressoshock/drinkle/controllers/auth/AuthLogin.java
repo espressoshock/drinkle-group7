@@ -20,6 +20,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import javax.mail.MessagingException;
 import java.util.concurrent.*;
@@ -177,6 +178,9 @@ public class AuthLogin extends EventDispatcherAdapter {
 
     @FXML
     private Pane modalLoading;
+
+    @FXML
+    private Pane resultModal;
 
     @FXML
     private Pane modalUpdating;
@@ -541,6 +545,26 @@ public class AuthLogin extends EventDispatcherAdapter {
         });
         fadeOut.setSpeed(4d);
         fadeOut.play();
+        /********* =END MODAL-ANIMATION  */
+    }
+
+    private void showResultModal() {
+        this.resultModal.setVisible(true);
+        new FadeIn(resultModal).setSpeed(6d).play();
+    }
+
+    private void hideResultModal(double mills) {
+
+        /********* =MODAL-ANIMATION  */
+        FadeOut fadeOut = new FadeOut(resultModal);
+        fadeOut.setOnFinished(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                resultModal.setVisible(false);
+            }
+        });
+        fadeOut.setSpeed(4d);
+        fadeOut.setDelay(Duration.millis(mills)).play();
         /********* =END MODAL-ANIMATION  */
     }
 
