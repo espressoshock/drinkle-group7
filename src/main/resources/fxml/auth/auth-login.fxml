@@ -94,11 +94,11 @@
             </Label>
          </children>
       </Pane>
-      <HBox fx:id="forgoPasswordModal" alignment="CENTER" prefHeight="694.0" prefWidth="1000.0" styleClass="modal-container">
+      <HBox fx:id="forgoPasswordModal" alignment="CENTER" prefHeight="694.0" prefWidth="1000.0" styleClass="modal-container" visible="false">
          <children>
             <HBox alignment="CENTER" maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0" styleClass="card">
                <children>
-                  <Pane fx:id="forgotPasswordStage3" prefHeight="300.0" prefWidth="501.0">
+                  <Pane fx:id="forgotPasswordStage3" prefHeight="300.0" prefWidth="501.0" visible="false">
                      <children>
                         <ImageView fitHeight="42.0" fitWidth="280.0" layoutX="20.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -257,6 +257,29 @@
                            </image>
                         </ImageView>
                         <Label fx:id="modalUpdatingText" styleClass="font-bold" text="Updating your password..." />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane fx:id="resultModal" layoutX="251.0" layoutY="197.0" maxHeight="300.0" maxWidth="500.0" minHeight="301.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0" visible="false">
+         <children>
+            <HBox alignment="CENTER" layoutX="114.0" layoutY="50.0" maxHeight="200.0" maxWidth="272.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="272.0" styleClass="card">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="246.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="173.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/auth/auth-login/success-icon.gif" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="modalUpdatingText1" styleClass="font-bold" text="Success! " textFill="#82d135">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="modalUpdatingText11" styleClass="font-bold" text="Your password has been updated successfully!" textFill="#82d135" />
                      </children>
                   </VBox>
                </children>

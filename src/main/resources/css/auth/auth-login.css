@@ -120,7 +120,7 @@
     -fx-text-fill: #fff;
 }
 
-#modalLoading, #modalUpdating{
+#modalLoading, #modalUpdating, #resultModal{
     -fx-background-radius: 20;
     -fx-background-color: #fff;
 }
