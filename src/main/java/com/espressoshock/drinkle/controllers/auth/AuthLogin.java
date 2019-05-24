@@ -426,9 +426,6 @@ public class AuthLogin extends EventDispatcherAdapter {
 public void passwordChangeConfirm(Event event){
     /********* PASSWORD DOESN'T MATCH  && not->satisfy min requirements */
    if(this.newPassword.getText().equals(this.newPasswordConfimation) && this.newPassword.getText().length()>5){
-       /********* display password mismatch error */
-       this.displayPasswordMismatchError();
-   } else{
        /********* clear password mismatch error */
        this.clearPasswordMismatchError();
        this.closeForgotPasswordModal(null);
@@ -448,6 +445,10 @@ public void passwordChangeConfirm(Event event){
                }
            });
        });
+   } else{
+
+       /********* display password mismatch error */
+       this.displayPasswordMismatchError();
 
    }
 
