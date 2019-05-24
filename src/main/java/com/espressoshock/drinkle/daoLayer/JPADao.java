@@ -73,7 +73,9 @@ public class JPADao<K, E> implements  IDao<K, E> {
             ex.printStackTrace();
         } finally{
             this.entityManager.close();
+            return;
         }
+
     }
 
     @Override
